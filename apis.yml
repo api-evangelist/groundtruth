@@ -1,8 +1,13 @@
 aid: groundtruth
 name: GroundTruth
-description: 'GroundTruth is a company surfaced as a portfolio company of emergence-capital, ivp and added
-  to the API Evangelist network as a stub for enrichment. Sector: martech. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: 'GroundTruth is a location-intelligence performance advertising platform (formerly xAd)
+  that helps brands and agencies plan, launch, and measure omnichannel ad campaigns tied to real-world
+  behavior. Its Ads Manager, proprietary Blueprints location-mapping technology, and Dynamic Intent
+  Prediction AI turn visitation, behavioral, and demographic signals into targeting and store-visit
+  and sales attribution across verticals including QSR/restaurants, CPG, auto, retail, healthcare,
+  education, travel, and political. GroundTruth is backed by Emergence Capital and IVP and became part
+  of ZeroToOne.AI in 2026. This profile was enriched by the API Evangelist pipeline; GroundTruth exposes
+  a self-serve advertiser platform (ads.groundtruth.com) but publishes no public developer API surface.'
 url: https://raw.githubusercontent.com/api-evangelist/groundtruth/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,12 +16,29 @@ x-backed-by:
 - ivp
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
+image: https://www.groundtruth.com/wp-content/uploads/2026/06/GroundTruth-Featured-Image.webp
 tags:
 - Company
 - Martech
+- Advertising
+- Location Intelligence
+- Marketing
+- Adtech
+- Location-Based Marketing
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -24,5 +46,28 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/groundtruth-domain-security.yml
+- type: WellKnown
+  url: well-known/groundtruth-well-known.yml
 - type: Website
   url: https://www.groundtruth.com
+- type: SignUp
+  url: https://ads.groundtruth.com/login?sign_up=1
+- type: Login
+  url: https://ads.groundtruth.com/login
+- type: Blog
+  url: https://www.groundtruth.com/insight/category/blog/
+- type: Support
+  url: https://www.groundtruth.com/resources/faqs/
+- type: TermsOfService
+  url: https://www.groundtruth.com/terms-of-use/
+- type: PrivacyPolicy
+  url: https://www.groundtruth.com/privacy-policy/
+- type: GettingStarted
+  url: https://www.groundtruth.com/get-started/
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
