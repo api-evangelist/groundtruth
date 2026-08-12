@@ -6,30 +6,34 @@ description: 'GroundTruth is a location-intelligence performance advertising pla
   Prediction AI turn visitation, behavioral, and demographic signals into targeting and store-visit
   and sales attribution across verticals including QSR/restaurants, CPG, auto, retail, healthcare,
   education, travel, and political. GroundTruth is backed by Emergence Capital and IVP and became part
-  of ZeroToOne.AI in 2026. This profile was enriched by the API Evangelist pipeline; GroundTruth exposes
-  a self-serve advertiser platform (ads.groundtruth.com) but publishes no public developer API surface.'
+  of ZeroToOne.AI in 2026. GroundTruth publishes two public REST API surfaces: the Ads Manager Public
+  API at api-public.groundtruth.com (259 operations across accounts, organizations, tenants, campaigns,
+  ad groups, creatives, audiences, jobs, uploads, search and reporting, with a live OpenAPI 3.1 document
+  and Swagger UI at /docs), and the Groundtruth Reporting API at reporting.groundtruth.com (59 read-only
+  demand-reporting operations described by an OpenAPI 3.0.1 document). Both authenticate with the paired
+  X-GT-USER-ID and X-GT-API-KEY headers; credentials are issued on request rather than self-serve.'
 url: https://raw.githubusercontent.com/api-evangelist/groundtruth/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - emergence-capital
 - ivp
-x-tier: stub
-x-tier-reason: portfolio-lead
 accessModel:
-  pricing: unknown
-  onboarding: unknown
+  pricing: enterprise
+  onboarding: approval
   trial: false
   try_now: false
   public: false
-  label: Unknown
-  confidence: low
-  source: []
-  generated: '2026-07-22'
-  method: derived
-specificationVersion: '0.20'
+  label: Credentials issued on request
+  confidence: high
+  source:
+  - https://api-docs.groundtruth.com/welcome-824669m0
+  - https://help.groundtruth.com/hc/en-us/articles/4402393255315-Can-I-set-up-external-reporting-API
+  generated: '2026-08-12'
+  method: searched
+specificationVersion: '0.21'
 created: '2026-07-17'
-modified: '2026-07-19'
+modified: '2026-08-12'
 image: https://www.groundtruth.com/wp-content/uploads/2026/06/GroundTruth-Featured-Image.webp
 tags:
 - Company
@@ -39,7 +43,98 @@ tags:
 - Marketing
 - Adtech
 - Location-Based Marketing
-apis: []
+- Advertising API
+- Campaign Management
+- Ad Reporting
+- Attribution
+- Geofencing
+- Digital Out Of Home
+- CTV
+apis:
+- name: GroundTruth Ads Manager Public API
+  description: 'REST API for the GroundTruth Ads Manager platform: create and manage accounts,
+    organizations, tenants, users, campaigns, ad groups, creatives and creative assets; run
+    audience, location and static reference lookups; submit and poll long-running jobs and
+    uploads; and pull reporting across performance, supply/system distribution, day-of-week
+    and time-of-day metrics, product insights, audience breakdowns, visitation and CTV/OTT.
+    259 operations described by a live OpenAPI 3.1.0 document served by the API itself at
+    /openapi.json, with Swagger UI at /docs. Authenticated with paired X-GT-USER-ID and
+    X-GT-API-KEY headers; credentials are provided on request.'
+  humanURL: https://api-docs.groundtruth.com/
+  baseURL: https://api-public.groundtruth.com
+  tags:
+  - Advertising API
+  - Campaign Management
+  - Ad Reporting
+  - Adtech
+  - Location Intelligence
+  - Attribution
+  properties:
+  - type: OpenAPI
+    url: openapi/groundtruth-ads-manager-openapi.yml
+  - type: OpenAPI
+    url: https://api-public.groundtruth.com/openapi.json
+  - type: Documentation
+    url: https://api-docs.groundtruth.com/
+  - type: APIReference
+    url: https://api-docs.groundtruth.com/
+  - type: Console
+    url: https://api-public.groundtruth.com/docs
+  - type: Authentication
+    url: authentication/groundtruth-authentication.yml
+  - type: Conventions
+    url: conventions/groundtruth-conventions.yml
+  - type: ErrorCatalog
+    url: errors/groundtruth-problem-types.yml
+  - type: DataModel
+    url: data-model/groundtruth-data-model.yml
+  - type: Overlay
+    url: overlays/groundtruth-ads-manager-overlay.yaml
+- name: Groundtruth Reporting API
+  description: 'Read-only external reporting API (the "demand" API) for pulling GroundTruth
+    campaign performance out of the platform and into a partner or agency reporting stack:
+    account, organization, campaign, ad group and creative totals and daily series, product-level
+    breakdowns, location and secondary-visit location data, audience and behavioral segments,
+    web engagement, and CTV/OTT and audio metrics. 59 GET operations described by an OpenAPI
+    3.0.1 document, fronted by AWS API Gateway. Authenticated with the same paired X-GT-USER-ID
+    and X-GT-API-KEY headers; credentials are requested from GroundTruth support. The provider
+    notes that all endpoints currently require HTTP/1.1.'
+  humanURL: https://reporting.groundtruth.com/api
+  baseURL: https://reporting.groundtruth.com
+  tags:
+  - Ad Reporting
+  - Analytics
+  - Attribution
+  - Advertising API
+  properties:
+  - type: OpenAPI
+    url: openapi/groundtruth-reporting-openapi.yml
+  - type: Documentation
+    url: https://reporting.groundtruth.com/api
+  - type: APIReference
+    url: https://reporting.groundtruth.com/api
+  - type: Authentication
+    url: authentication/groundtruth-authentication.yml
+  - type: Overlay
+    url: overlays/groundtruth-reporting-overlay.yaml
+- name: GroundTruth Documentation MCP Server
+  description: 'Model Context Protocol endpoint served on the GroundTruth developer
+    documentation host. It answers MCP JSON-RPC on /mcp but returns error -32001
+    "Authorization required" to anonymous initialize and tools/list calls, so the live
+    tool list and input schemas could not be read without credentials. Recorded from a
+    live probe, not from provider documentation.'
+  humanURL: https://docs.groundtruth.com/
+  baseURL: https://docs.groundtruth.com/mcp
+  tags:
+  - MCP
+  - Documentation
+  properties:
+  - type: MCPServer
+    url: mcp/groundtruth-mcp.yml
+  - type: MCPServer
+    url: https://docs.groundtruth.com/mcp
+  - type: Documentation
+    url: https://docs.groundtruth.com/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -52,6 +147,12 @@ common:
   url: well-known/groundtruth-well-known.yml
 - type: Website
   url: https://www.groundtruth.com
+- type: DeveloperPortal
+  url: https://docs.groundtruth.com/
+- type: Documentation
+  url: https://api-docs.groundtruth.com/
+- type: APIReference
+  url: https://api-docs.groundtruth.com/
 - type: SignUp
   url: https://ads.groundtruth.com/login?sign_up=1
 - type: Login
@@ -59,15 +160,53 @@ common:
 - type: Blog
   url: https://www.groundtruth.com/insight/category/blog/
 - type: Support
-  url: https://www.groundtruth.com/resources/faqs/
+  url: https://help.groundtruth.com/hc/en-us
+- type: HelpCenter
+  url: https://help.groundtruth.com/hc/en-us
 - type: TermsOfService
   url: https://www.groundtruth.com/terms-of-use/
 - type: PrivacyPolicy
   url: https://www.groundtruth.com/privacy-policy/
 - type: GettingStarted
   url: https://www.groundtruth.com/get-started/
+- type: Authentication
+  url: authentication/groundtruth-authentication.yml
+- type: Conventions
+  url: conventions/groundtruth-conventions.yml
+- type: ErrorCatalog
+  url: errors/groundtruth-problem-types.yml
+- type: DataModel
+  url: data-model/groundtruth-data-model.yml
+- type: Lifecycle
+  url: lifecycle/groundtruth-lifecycle.yml
+- type: Conformance
+  url: conformance/groundtruth-conformance.yml
+- type: RateLimits
+  url: rate-limits/groundtruth-rate-limits.yml
+- type: Plans
+  url: plans/groundtruth-plans-pricing.yml
+- type: Packages
+  url: packages/groundtruth-packages.yml
+- type: LLMsTxt
+  url: llms/groundtruth-llms.txt
+- type: MCPServer
+  url: mcp/groundtruth-mcp.yml
+- type: AgenticAccess
+  url: agentic-access/groundtruth-agentic-access.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Overlay
+  url: overlays/groundtruth-ads-manager-overlay.yaml
+- type: Overlay
+  url: overlays/groundtruth-reporting-overlay.yaml
 x-enrichment:
-  date: '2026-07-19'
-  status: backfilled
+  date: '2026-08-12'
+  status: enriched
+  artifacts_added: 24
   pass: local-v1
-  note: backfilled from .gitignore signal + verified work evidence
+  note: >-
+    STEP 0b contract discovery overturned the previous round. The 2026-07-19 pass recorded
+    "publishes no public developer API surface"; two live first-party OpenAPI documents were found —
+    https://api-public.groundtruth.com/openapi.json (OpenAPI 3.1.0, 259 operations, 453 schemas,
+    Swagger UI at /docs) and the Groundtruth Reporting API loaded by the provider's own Swagger UI
+    at https://reporting.groundtruth.com/api (OpenAPI 3.0.1, 59 operations).

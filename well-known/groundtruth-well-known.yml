@@ -1,18 +1,135 @@
-generated: '2026-07-19'
+generated: '2026-08-12'
 method: searched
-source: https://www.groundtruth.com/.well-known/
-host: https://www.groundtruth.com
-documents:
-- path: /.well-known/gpc.json               # Global Privacy Control
-  status: 200
-  file: groundtruth-gpc.json
-- path: /.well-known/security.txt            # RFC 9116
-  status: 404
-- path: /.well-known/openid-configuration    # OIDC discovery
-  status: 404
-- path: /.well-known/oauth-authorization-server  # RFC 8414
-  status: 404
-- path: /.well-known/api-catalog             # RFC 9727
-  status: 404
-- path: /.well-known/ai-plugin.json
-  status: 404
+source: live probes of every GroundTruth host in apis.yml and every OpenAPI servers[] host
+checked: '2026-08-12'
+summary:
+  hosts_probed: 8
+  paths_probed_per_host: 8
+  documents_found: 1
+  note: >-
+    One real document across the whole estate: the Global Privacy Control declaration on the
+    corporate site. Every other /.well-known/ path 404s on every host, including both API hosts.
+    There is no security.txt, no OIDC or OAuth discovery, no api-catalog and no agent card.
+hosts:
+- host: https://www.groundtruth.com
+  role: corporate website
+  documents:
+  - path: /.well-known/gpc.json               # Global Privacy Control
+    status: 200
+    content_type: application/json
+    file: groundtruth-gpc.json
+  - path: /.well-known/security.txt            # RFC 9116
+    status: 404
+  - path: /.well-known/openid-configuration    # OIDC discovery
+    status: 404
+  - path: /.well-known/oauth-authorization-server  # RFC 8414
+    status: 404
+  - path: /.well-known/api-catalog             # RFC 9727
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json         # A2A 1.0.0
+    status: 404
+  - path: /.well-known/agent.json              # A2A pre-0.3
+    status: 404
+- host: https://api-public.groundtruth.com
+  role: Ads Manager Public API base
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 502
+    note: Bad gateway rather than a document; re-probed and did not resolve to a body.
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  note: >-
+    This host DOES serve its machine-readable contract, just not under /.well-known/ —
+    /openapi.json returns the live OpenAPI 3.1.0 (970 KB) and /docs serves Swagger UI.
+- host: https://api-docs.groundtruth.com
+  role: Ads Manager API reference (Apidog)
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  note: >-
+    Serves /llms.txt (200, 97,699 bytes) and /sitemap.xml (200). All /.well-known/* 404s return the
+    site's HTML shell — recorded as misses, not documents.
+- host: https://docs.groundtruth.com
+  role: developer documentation portal (ReadMe)
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  note: >-
+    Serves /llms.txt (200) and an authorization-gated MCP endpoint at /mcp — see
+    mcp/groundtruth-mcp.yml. No OAuth protected-resource metadata is published for that endpoint.
+- host: https://reporting.groundtruth.com
+  role: Reporting API base
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+    note: The AWS API Gateway origin answers 403 to every unmatched path; not a document.
+- host: https://ads.groundtruth.com
+  role: Ads Manager console
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://console.groundtruth.com
+  role: console
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://api.groundtruth.com
+  role: legacy xAd API Server v1.19.0
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+gaps_for_the_provider:
+- Publish /.well-known/security.txt (RFC 9116) on groundtruth.com naming a security contact and policy.
+- Publish /.well-known/api-catalog (RFC 9727) pointing at the two API references and the live OpenAPI.

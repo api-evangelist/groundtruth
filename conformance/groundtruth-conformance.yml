@@ -1,0 +1,115 @@
+generated: '2026-08-12'
+method: derived
+source: openapi/groundtruth-ads-manager-openapi.yml + openapi/groundtruth-reporting-openapi.yml + live probes
+note: >-
+  Cross-cutting standards conformance, derived from the provider's own specifications and from live
+  probes on 2026-08-12. GroundTruth publishes no compliance/certification programme that could be
+  verified from public pages, so NO `Compliance` or `TrustCenter` pointer is emitted in apis.yml.
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: >-
+    https://api-public.groundtruth.com/openapi.json declares openapi 3.1.0 and parses; 237 paths,
+    259 operations, 453 component schemas. Served by the API itself alongside Swagger UI at /docs.
+- id: openapi-3.0
+  conforms: true
+  evidence: >-
+    The Groundtruth Reporting API spec declares openapi 3.0.1 with 59 paths and 59 schemas
+    (https://reporting.groundtruth.com/api, spec asset https://cdn.xad.com/external_api_spec.js).
+- id: json-schema-2020-12
+  conforms: true
+  evidence: Implied by OpenAPI 3.1.0 on the Ads Manager API; schemas use anyOf/null unions and const-style enums.
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 security scheme in either specification.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on every GroundTruth host probed.
+- id: api-key-auth
+  conforms: true
+  evidence: >-
+    Paired apiKey header schemes (X-GT-USER-ID + X-GT-API-KEY) on both surfaces. Confirmed live —
+    an unauthenticated call returns 401 UNAUTHENTICATED.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors are application/json with a proprietary {"errors":[{code,message,fields}]} envelope, not
+    application/problem+json. No type/title/status/instance members.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on www, api-public, api-docs, docs, ads, console and api hosts.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset or Deprecation headers observed; no deprecation policy published.
+- id: rfc9727-api-catalog
+  conforms: false
+  evidence: /.well-known/api-catalog returns 404 on every host probed.
+- id: rfc8615-well-known-agent-card
+  conforms: false
+  evidence: >-
+    /.well-known/agent-card.json and /.well-known/agent.json both 404 on all eight GroundTruth hosts
+    probed. No agent card exists; none was authored.
+- id: llms-txt
+  conforms: true
+  evidence: >-
+    Two llms.txt files are served — https://api-docs.groundtruth.com/llms.txt (97,699 bytes,
+    indexing 270 endpoint pages and the schema catalogue) and https://docs.groundtruth.com/llms.txt
+    (289 bytes). Saved verbatim to llms/groundtruth-llms.txt.
+- id: mcp
+  conforms: partial
+  evidence: >-
+    https://docs.groundtruth.com/mcp answers MCP JSON-RPC but returns error -32001 "Authorization
+    required" to anonymous initialize and tools/list. A control POST to an unrelated path on the
+    same host returned 404, so /mcp is a genuinely routed MCP endpoint rather than an SPA catch-all.
+    The live tool list could not be read.
+- id: asyncapi
+  conforms: false
+  applicable: false
+  evidence: >-
+    No event, webhook, streaming or subscription surface exists — zero occurrences of "webhook" in
+    either specification or in the published llms.txt index. Asynchronous work is done by polling
+    the /jobs surface. Not penalised; there is nothing to describe.
+- id: graphql
+  conforms: false
+  evidence: No /graphql endpoint on any host probed.
+- id: grpc
+  conforms: false
+  evidence: No published .proto; no buf.build or first-party GitHub organisation.
+- id: idempotency
+  conforms: false
+  evidence: Zero occurrences of "idempoten" across both specifications and the published docs index.
+- id: pagination
+  conforms: true
+  style: page-number
+  evidence: >-
+    limit / page_num / sort_by / sort_order request parameters and a
+    {total_count, limit, page_num, total_pages, has_next_page, has_prev_page, items[]} response
+    envelope on every collection model.
+- id: gpc
+  conforms: true
+  evidence: >-
+    https://www.groundtruth.com/.well-known/gpc.json returns 200 with {"gpc":true,"version":1.0,
+    "lastUpdate":"2025-11-10"} — Global Privacy Control honoured at the corporate site.
+- id: gdpr
+  conforms: partial
+  evidence: >-
+    Not a certification. GroundTruth's data-partner ingestion specification requires partners to
+    pass `gdpr` and `gdpr_consent` fields for EU/EEA users
+    (https://docs.groundtruth.com/docs/data-partners), and the company publishes a privacy policy
+    and an advertising-device-id reset page. No DPA, SOC 2, ISO 27001 or PCI attestation is
+    published on a public page.
+certifications_published: []
+trust_center: null
+vulnerability_disclosure: null
+gaps_for_the_provider:
+- Publish a security.txt (RFC 9116) — currently 404 on every host.
+- Publish an error-code reference; the `code` vocabulary in errors[] is undocumented.
+- Define the `session` security scheme referenced by 248 operations but absent from components.securitySchemes.
+- Declare a 429 response and emit RateLimit-* / Retry-After headers.
+- Add a `servers[]` block to the live OpenAPI — it currently has none, so a generated client has no base URL.
+- Publish the deprecation/versioning policy and a status page.
+cross_links:
+  authentication: authentication/groundtruth-authentication.yml
+  lifecycle: lifecycle/groundtruth-lifecycle.yml
+  well_known: well-known/groundtruth-well-known.yml
+  security: security/groundtruth-domain-security.yml

@@ -1,0 +1,74 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Groundtruth Reporting API
+  version: 1.0.0
+extends: openapi/groundtruth-reporting-openapi.yml
+x-generated: '2026-08-12'
+x-method: generated
+x-source: >-
+  Enhancements over the verbatim provider document extracted from
+  https://cdn.xad.com/external_api_spec.js — the spec the provider's own Swagger UI at
+  https://reporting.groundtruth.com/api loads — harvested 2026-08-12
+  (openapi/_original/groundtruth-reporting-openapi.json). The original is never mutated.
+actions:
+- target: $.info
+  description: Record provenance and the ownership justification for the cdn.xad.com asset host.
+  update:
+    x-apievangelist-source: https://cdn.xad.com/external_api_spec.js
+    x-apievangelist-reference: https://reporting.groundtruth.com/api
+    x-apievangelist-harvested: '2026-08-12'
+    x-apievangelist-http-status: 200
+    x-apievangelist-ownership-check: >-
+      The specification names itself "Groundtruth Reporting API" and is loaded by the Swagger UI the
+      provider serves at https://reporting.groundtruth.com/api — a groundtruth.com host. The spec
+      asset is hosted on cdn.xad.com because xAd is GroundTruth's former company name; the provider's
+      own site documents the rename at https://www.groundtruth.com/xad/. Its operations require the
+      same X-GT-USER-ID / X-GT-API-KEY headers as the Ads Manager API, and the reporting host
+      returns 401 UnauthorizedException to an unauthenticated call.
+- target: $
+  description: >-
+    The provider's document has no servers[] block. Supply the real production base, confirmed live
+    (GET /demand/v1/campaign/1/daily -> 401 UnauthorizedException from AWS API Gateway, 2026-08-12).
+  update:
+    servers:
+    - url: https://reporting.groundtruth.com
+      description: Production
+- target: $.info
+  description: >-
+    The contract declares apiKey headers as plain required header PARAMETERS on every operation
+    rather than as securitySchemes. Record the auth model so a reader does not conclude the API is
+    unauthenticated.
+  update:
+    x-apievangelist-authentication:
+      style: paired_api_key_header
+      headers: [X-GT-USER-ID, X-GT-API-KEY]
+      declared_as: required header parameters on all 59 operations
+      security_schemes_defined: false
+      referenced_authorizer: shadowfax-api-authorizer
+      note: >-
+        Every operation carries security: [{shadowfax-api-authorizer: []}], but
+        components.securitySchemes is null — the authorizer is never defined. See
+        authentication/groundtruth-authentication.yml.
+- target: $.info
+  description: Record the error and transport facts the contract omits.
+  update:
+    x-apievangelist-runtime:
+      declared_responses: ['200']
+      error_responses_declared: false
+      observed_unauthenticated_status: 401
+      observed_error_body: '{"message":""}'
+      observed_error_header: 'x-amzn-ErrorType: UnauthorizedException'
+      gateway: AWS API Gateway
+      http_version_constraint: >-
+        The provider states in info.description that all endpoints currently require HTTP/1.1.
+      rate_limit_headers: none observed
+- target: $.info
+  description: Cross-link the derived API Evangelist artifacts.
+  update:
+    x-apievangelist-artifacts:
+      authentication: authentication/groundtruth-authentication.yml
+      conventions: conventions/groundtruth-conventions.yml
+      errors: errors/groundtruth-problem-types.yml
+      lifecycle: lifecycle/groundtruth-lifecycle.yml
+      conformance: conformance/groundtruth-conformance.yml
+      rate_limits: rate-limits/groundtruth-rate-limits.yml

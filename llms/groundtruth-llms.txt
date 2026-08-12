@@ -1,0 +1,763 @@
+# GroundTruth - Public API
+
+## Docs
+- [Welcome](https://api-docs.groundtruth.com/welcome-824669m0.md): 
+
+## API Docs
+- Accounts [Get Accounts](https://api-docs.groundtruth.com/get-accounts-13499330e0.md): Gets accounts in an organization
+- Accounts [Create Account](https://api-docs.groundtruth.com/create-account-13499331e0.md): Creates an account
+- Accounts [Get Account](https://api-docs.groundtruth.com/get-account-13499332e0.md): Gets an account
+- Accounts [Update Account](https://api-docs.groundtruth.com/update-account-13499333e0.md): Updates an account
+- Accounts [Delete Account](https://api-docs.groundtruth.com/delete-account-13499334e0.md): Deletes an account
+- Accounts [Get Account Min Cpv Bid Rate](https://api-docs.groundtruth.com/get-account-min-cpv-bid-rate-13499335e0.md): Gets the minimum CPV bid rate for an account
+- Accounts [Get Account Pixels](https://api-docs.groundtruth.com/get-account-pixels-13499336e0.md): Gets pixels for an account
+- Accounts [Create Account Pixel](https://api-docs.groundtruth.com/create-account-pixel-13499337e0.md): Creates an account pixel
+- Accounts [Get Account Pixels Export](https://api-docs.groundtruth.com/get-account-pixels-export-13499338e0.md): Downloads a spreadsheet with account pixel information
+- Accounts [Delete Account Pixel](https://api-docs.groundtruth.com/delete-account-pixel-13499339e0.md): Deletes an account pixel
+- Campaigns [Get Campaigns](https://api-docs.groundtruth.com/get-campaigns-13499340e0.md): Gets all campaigns in an account
+- Campaigns [Create Campaign](https://api-docs.groundtruth.com/create-campaign-13499341e0.md): Creates a campaign
+- Campaigns [Create Campaign And Adgroups](https://api-docs.groundtruth.com/create-campaign-and-adgroups-37722364e0.md): Creates a campaign and ad groups together
+- Campaigns [Get Campaign](https://api-docs.groundtruth.com/get-campaign-13499342e0.md): Gets a campaign
+- Campaigns [Update Campaign](https://api-docs.groundtruth.com/update-campaign-13499343e0.md): Updates a campaign
+- Campaigns [Delete Campaign](https://api-docs.groundtruth.com/delete-campaign-13499344e0.md): Deletes a campaign
+- Campaigns [Create Ad Package](https://api-docs.groundtruth.com/create-ad-package-31116351e0.md): Creates an ad package
+- Campaigns [Get Campaigns Dashboard](https://api-docs.groundtruth.com/get-campaigns-dashboard-41623237e0.md): Gets campaigns in a tenant
+- Campaigns [Export Campaigns Dashboard](https://api-docs.groundtruth.com/export-campaigns-dashboard-41623238e0.md): Exports campaigns in a tenant as an Excel file
+- Ad Groups [Create Adgroup](https://api-docs.groundtruth.com/create-adgroup-13499345e0.md): Creates an ad group
+- Ad Groups [Get Adgroups](https://api-docs.groundtruth.com/get-adgroups-20153893e0.md): Gets all ad groups in a campaign
+- Ad Groups [Create Dooh Adgroups](https://api-docs.groundtruth.com/create-dooh-adgroups-18280156e0.md): Creates dooh ad groups with plan data
+- Ad Groups [Update Adgroup](https://api-docs.groundtruth.com/update-adgroup-20153894e0.md): Updates an ad group
+- Ad Groups [Patch Adgroup](https://api-docs.groundtruth.com/patch-adgroup-21625074e0.md): Patches an ad group
+- Ad Groups [Delete Adgroup](https://api-docs.groundtruth.com/delete-adgroup-14554572e0.md): Deletes an ad group
+- Ad Groups [Get Adgroup](https://api-docs.groundtruth.com/get-adgroup-19467636e0.md): Gets an ad group
+- Ad Groups [Get Adgroup Avails](https://api-docs.groundtruth.com/get-adgroup-avails-19467637e0.md): Gets avails for an ad group
+- Ad Groups [Post Adgroup Avails](https://api-docs.groundtruth.com/post-adgroup-avails-28235916e0.md): Gets avails for an adgroup setup
+- Ad Groups [Download Location Filters](https://api-docs.groundtruth.com/download-location-filters-27042041e0.md): Downloads location filters for an ad group
+- Ad Groups [Clone Adgroup](https://api-docs.groundtruth.com/clone-adgroup-35525811e0.md): Clones an ad group once per requested media type with the given objective
+- Health [Get Health](https://api-docs.groundtruth.com/get-health-13499346e0.md): Gets server health
+- Organizations [Get Organizations](https://api-docs.groundtruth.com/get-organizations-13499347e0.md): Gets organizations in a tenant
+- Organizations [Create Organization](https://api-docs.groundtruth.com/create-organization-13499348e0.md): Creates an organization
+- Organizations [Get Organization](https://api-docs.groundtruth.com/get-organization-13499349e0.md): Gets an organization
+- Organizations [Update Organization](https://api-docs.groundtruth.com/update-organization-13499350e0.md): Updates an organization
+- Organizations [Delete Organization](https://api-docs.groundtruth.com/delete-organization-13499351e0.md): Deletes an organization
+- Tenants [Get Tenant](https://api-docs.groundtruth.com/get-tenant-13499352e0.md): Gets a tenant
+- Tenants [Update Tenant](https://api-docs.groundtruth.com/update-tenant-13499353e0.md): Updates a tenant
+- Direct Mail [Get Orders](https://api-docs.groundtruth.com/get-orders-13499354e0.md): Gets direct mail orders for a tenant
+- Reporting [Get Supply System Distribution Campaign](https://api-docs.groundtruth.com/get-supply-system-distribution-campaign-32899759e0.md): Gets supply/system distribution for a campaign. key=1 device type, key=2 operating system, key=3 publisher type. Optional all_adgroups breaks out by ad group.
+- Reporting [Get Performance Distribution Campaign](https://api-docs.groundtruth.com/get-performance-distribution-campaign-37722367e0.md): Gets performance distribution for a campaign. key=1 product. key=2 goal KPI is not available in this version. Optional all_adgroups breaks out by ad group.
+- Reporting [Get Supply System Distribution Adgroup](https://api-docs.groundtruth.com/get-supply-system-distribution-adgroup-32899760e0.md): Gets supply/system distribution for an ad group. key=1 device type, key=2 operating system, key=3 publisher type.
+- Reporting [Get Performance Distribution Adgroup](https://api-docs.groundtruth.com/get-performance-distribution-adgroup-35525812e0.md): Gets performance distribution for an ad group. key=1 product, key=2 goal KPI.
+- Reporting [Get Ctv Ott Performance Campaign](https://api-docs.groundtruth.com/get-ctv-ott-performance-campaign-13499355e0.md): Gets CTV/OTT Performance Report for a campaign
+- Reporting [Get Ctv Ott Performance Adgroup](https://api-docs.groundtruth.com/get-ctv-ott-performance-adgroup-28235918e0.md): Gets CTV/OTT Performance Report for adgroups in a campaign
+- Reporting [Get Dow Metrics Campaign](https://api-docs.groundtruth.com/get-dow-metrics-campaign-35525813e0.md): Gets day-of-week metrics for a campaign; optionally by ad group when all_adgroups=true
+- Reporting [Get Dow Metrics Creative](https://api-docs.groundtruth.com/get-dow-metrics-creative-35525814e0.md): Gets day-of-week metrics for a creative.
+- Reporting [Get Timeseries Dow Adgroup](https://api-docs.groundtruth.com/get-timeseries-dow-adgroup-32899761e0.md): Gets timeseries day of week chart for an ad group
+- Reporting [Get Dow Metrics Adgroup](https://api-docs.groundtruth.com/get-dow-metrics-adgroup-35525815e0.md): Gets day-of-week metrics for an ad group; optionally by creative when all_creatives=true
+- Reporting [Get Tod Metrics Adgroup](https://api-docs.groundtruth.com/get-tod-metrics-adgroup-32899762e0.md): Gets time-of-day hourly metrics for an ad group; optionally by creative when all_creatives=true
+- Reporting [Get Tod Weekday Campaign](https://api-docs.groundtruth.com/get-tod-weekday-campaign-37722368e0.md): Gets weekday time-of-day hourly metrics for a campaign; optionally by ad group.
+- Reporting [Get Tod Weekday Adgroup](https://api-docs.groundtruth.com/get-tod-weekday-adgroup-37722369e0.md): Gets weekday time-of-day hourly metrics for an ad group; optionally by creative.
+- Reporting [Get Tod Weekend Adgroup](https://api-docs.groundtruth.com/get-tod-weekend-adgroup-37722370e0.md): Gets weekend time-of-day hourly metrics for an ad group; optionally by creative.
+- Reporting [Get Tod Weekend Campaign](https://api-docs.groundtruth.com/get-tod-weekend-campaign-37722371e0.md): Gets weekend time-of-day hourly metrics for a campaign; optionally by ad group.
+- Reporting [Get Timeseries Dow Campaign](https://api-docs.groundtruth.com/get-timeseries-dow-campaign-13499356e0.md): Gets timeseries day of week chart for a campaign
+- Reporting [Get Timeseries Dow Campaign Adgroups](https://api-docs.groundtruth.com/get-timeseries-dow-campaign-adgroups-32899763e0.md): Gets timeseries day of week metrics for each ad group in a campaign.
+- Reporting [Get Timeseries Dow Campaign Creatives](https://api-docs.groundtruth.com/get-timeseries-dow-campaign-creatives-32899764e0.md): Gets timeseries day of week metrics for each creative in a campaign.
+- Reporting [Get Timeseries Dow Creative](https://api-docs.groundtruth.com/get-timeseries-dow-creative-32899765e0.md): Gets timeseries day of week chart for a creative
+- Reporting [Get Timeseries Dow Tod Campaign](https://api-docs.groundtruth.com/get-timeseries-dow-tod-campaign-32899766e0.md): Gets timeseries day of week and time of day metrics for a campaign.
+- Reporting [Get Timeseries Dow Tod Campaign Adgroups](https://api-docs.groundtruth.com/get-timeseries-dow-tod-campaign-adgroups-35525816e0.md): Gets timeseries day of week and time of day metrics for each ad group in a campaign.
+- Reporting [Get Timeseries Dow Tod Campaign Creatives](https://api-docs.groundtruth.com/get-timeseries-dow-tod-campaign-creatives-35525817e0.md): Gets timeseries day of week and time of day metrics for each creative in a campaign.
+- Reporting [Get Timeseries Dow Tod Adgroup](https://api-docs.groundtruth.com/get-timeseries-dow-tod-adgroup-32899767e0.md): Gets timeseries day of week and time of day metrics for an ad group.
+- Reporting [Get Timeseries Dow Tod Creative](https://api-docs.groundtruth.com/get-timeseries-dow-tod-creative-32899768e0.md): Gets timeseries day of week and time of day metrics for a creative.
+- Reporting [Get Timeseries Tod Imp Campaign](https://api-docs.groundtruth.com/get-timeseries-tod-imp-campaign-32899769e0.md): Gets time-of-day chart metrics for a campaign.
+- Reporting [Get Timeseries Tod Campaign Adgroups](https://api-docs.groundtruth.com/get-timeseries-tod-campaign-adgroups-32899770e0.md): Gets time-of-day chart metrics for each ad group in a campaign.
+- Reporting [Get Timeseries Tod Creatives Campaign](https://api-docs.groundtruth.com/get-timeseries-tod-creatives-campaign-32899771e0.md): Gets time-of-day chart metrics for each creative in a campaign.
+- Reporting [Get Timeseries Tod Adgroup](https://api-docs.groundtruth.com/get-timeseries-tod-adgroup-32899772e0.md): Gets time-of-day chart metrics for an ad group.
+- Reporting [Get Timeseries Tod Creative](https://api-docs.groundtruth.com/get-timeseries-tod-creative-32899773e0.md): Gets time-of-day chart metrics for a creative.
+- Reporting [Get Product Insights Campaign](https://api-docs.groundtruth.com/get-product-insights-campaign-13499357e0.md): Gets product insights for a campaign
+- Reporting [Get Product Insights Adgroup](https://api-docs.groundtruth.com/get-product-insights-adgroup-28235919e0.md): Gets product insights for an adgroup
+- Reporting [Get Product Insights Creative](https://api-docs.groundtruth.com/get-product-insights-creative-28235920e0.md): Gets product insights for a creative
+- Reporting [Get Product Insights Campaign Targeting](https://api-docs.groundtruth.com/get-product-insights-campaign-targeting-13499358e0.md): Gets top N (defaults to 5) targeting strategies sorted by impressions, CTR, and VR for a campaign
+- Reporting [Get Product Insights Campaign Audience](https://api-docs.groundtruth.com/get-product-insights-campaign-audience-13499359e0.md): Gets top N (defaults to 5) audiences sorted by impressions, clicks, and visits for a campaign
+- Reporting [Get Product Insights Adgroup Targeting](https://api-docs.groundtruth.com/get-product-insights-adgroup-targeting-40141027e0.md): Gets top N (defaults to 5) targeting strategies sorted by impressions, CTR, and VR for an adgroup
+- Reporting [Get Product Insights Adgroup Audience](https://api-docs.groundtruth.com/get-product-insights-adgroup-audience-40141028e0.md): Gets top N (defaults to 5) audiences sorted by impressions, clicks, and visits for an adgroup
+- Reporting [Get Product Insights Campaign Adgroups](https://api-docs.groundtruth.com/get-product-insights-campaign-adgroups-31116352e0.md): Gets product insights for all ad groups in a campaign.
+- Reporting [Get Product Insights Campaign Creatives](https://api-docs.groundtruth.com/get-product-insights-campaign-creatives-28235922e0.md): Gets product insights for all creatives in a campaign.
+- Reporting [Get Visitation Lag Window Campaign](https://api-docs.groundtruth.com/get-visitation-lag-window-campaign-13499360e0.md): Gets the number of visits after impressions and clicks.
+- Reporting [Get Visitation Svl Campaign](https://api-docs.groundtruth.com/get-visitation-svl-campaign-32899774e0.md): Gets store visitation lift metrics for a campaign.
+- Reporting [Get Userinsight Visit](https://api-docs.groundtruth.com/get-userinsight-visit-32899775e0.md): Gets visit membership breakdown by brand (key=1), category (key=2), or behavioral audience (key=3).
+- Reporting [Get Userinsight Visit Adgroup](https://api-docs.groundtruth.com/get-userinsight-visit-adgroup-32899776e0.md): Gets adgroup-level visit membership breakdown (user insight): brand, category, or behaviour.
+- Reporting [Get Userinsight Visit Campaign](https://api-docs.groundtruth.com/get-userinsight-visit-campaign-32899777e0.md): Gets campaign-level visit membership breakdown (user insight): brand, category, or behaviour.
+- Reporting [Get Visitation Lag Window Adgroup](https://api-docs.groundtruth.com/get-visitation-lag-window-adgroup-32899778e0.md): Gets the number of visits after impressions and clicks for an ad group.
+- Reporting [Get Visitation Lag Window Creative](https://api-docs.groundtruth.com/get-visitation-lag-window-creative-32899779e0.md): Gets the number of visits after impressions and clicks for a creative.
+- Reporting [Get Product Insights Campaign Adgroups](https://api-docs.groundtruth.com/get-product-insights-campaign-adgroups-28235921e0.md): Gets product insights for all adgroups in a campaign.
+- Reporting [Get Incremental Visits Campaign](https://api-docs.groundtruth.com/get-incremental-visits-campaign-32899780e0.md): Gets incremental visits by visit frequency bucket for a campaign.
+- Reporting [Get Incremental Visits Campaign Adgroup](https://api-docs.groundtruth.com/get-incremental-visits-campaign-adgroup-35525818e0.md): Gets incremental visits by visit frequency bucket for each ad group in a campaign.
+- Reporting [Get Incremental Visits Campaign Creatives](https://api-docs.groundtruth.com/get-incremental-visits-campaign-creatives-35525819e0.md): Gets incremental visits by visit frequency bucket for each creative in a campaign.
+- Reporting [Get Incremental Visits Adgroup](https://api-docs.groundtruth.com/get-incremental-visits-adgroup-35525820e0.md): Gets incremental visits by visit frequency bucket for an ad group.
+- Reporting [Get Incremental Visits Creative](https://api-docs.groundtruth.com/get-incremental-visits-creative-32899781e0.md): Gets incremental visits by visit frequency bucket for a creative.
+- Reporting [Get Locations Imp Adgroup](https://api-docs.groundtruth.com/get-locations-imp-adgroup-37722372e0.md): Gets impressed locations for an ad group.
+- Reporting [Get Locations Imp Campaign](https://api-docs.groundtruth.com/get-locations-imp-campaign-37722373e0.md): Gets impressed locations for a campaign.
+- Reporting [Get Locations Visit Campaign](https://api-docs.groundtruth.com/get-locations-visit-campaign-37722374e0.md): Gets visited locations for a campaign.
+- Reporting [Get Locations Visit Adgroup](https://api-docs.groundtruth.com/get-locations-visit-adgroup-37722375e0.md): Gets visited locations for an ad group.
+- Reporting [Get Top Locations Campaign](https://api-docs.groundtruth.com/get-top-locations-campaign-31116353e0.md): Gets top locations (impressions-based) for a campaign by state, DMA, or zipcode.
+- Reporting [Get Top Locations Adgroup](https://api-docs.groundtruth.com/get-top-locations-adgroup-32899782e0.md): Gets top locations (impressions-based) for an ad group by state, DMA, or zipcode.
+- Reporting [Get Top Sv Locations Campaign](https://api-docs.groundtruth.com/get-top-sv-locations-campaign-13499361e0.md): Gets data for visited locations.
+- Reporting [Get Audience Breakdown Campaign](https://api-docs.groundtruth.com/get-audience-breakdown-campaign-28235931e0.md): Gets audience breakdown metrics for a specific campaign.
+- Reporting [Get Audience Breakdown Adgroup](https://api-docs.groundtruth.com/get-audience-breakdown-adgroup-28235932e0.md): Gets audience breakdown metrics for a specific ad group.
+- Reporting [Get Top Sv Locations Adgroup](https://api-docs.groundtruth.com/get-top-sv-locations-adgroup-31116354e0.md): Gets data for visited locations for an ad group.
+- Reporting [Get Audience Breakdown Creative](https://api-docs.groundtruth.com/get-audience-breakdown-creative-31116369e0.md): Gets audience breakdown metrics for a specific creative.
+- Reporting [Get Top Imp Locations Campaign](https://api-docs.groundtruth.com/get-top-imp-locations-campaign-32899783e0.md): Gets top or bottom locations by impressions, clicks, or secondary actions for a campaign.
+- Reporting [Get Top Imp Locations Adgroup](https://api-docs.groundtruth.com/get-top-imp-locations-adgroup-31116355e0.md): Gets top or bottom locations by impressions, clicks, or secondary actions for an ad group.
+- Reporting [Get Totals Account](https://api-docs.groundtruth.com/get-totals-account-28235923e0.md): Gets cumulative performance metrics for all campaigns in an account
+- Reporting [Get Totals Organization](https://api-docs.groundtruth.com/get-totals-organization-31116356e0.md): Gets cumulative performance metrics for all campaigns in an organization
+- Reporting [Post Totals Tenant](https://api-docs.groundtruth.com/post-totals-tenant-31116357e0.md): Gets tenant-level totals with up-to-date spend for a list of campaigns
+- Reporting [Get Totals Account V2](https://api-docs.groundtruth.com/get-totals-account-v2-28235924e0.md): Gets account-level totals v2 with up-to-date spend
+- Reporting [Get Total Attributed Visits Campaign](https://api-docs.groundtruth.com/get-total-attributed-visits-campaign-35525821e0.md): Gets total attributed visits estimate for a specific campaign
+- Reporting [Get Total Attributed Visits Campaign Adgroups](https://api-docs.groundtruth.com/get-total-attributed-visits-campaign-adgroups-35525822e0.md): Gets total attributed visits estimate per ad group for a specific campaign
+- Reporting [Get Totals Campaign](https://api-docs.groundtruth.com/get-totals-campaign-13499362e0.md): Gets detailed performance metrics for a specific campaign
+- Reporting [Get Totals Adgroup](https://api-docs.groundtruth.com/get-totals-adgroup-28235925e0.md): Gets cumulative performance metrics for an ad group; optionally grouped by creative when all_creatives=true
+- Reporting [Get Demographics Partial Adgroup](https://api-docs.groundtruth.com/get-demographics-partial-adgroup-31116358e0.md): Gets adgroup demographics (partial) metrics by gender and age
+- Reporting [Get Totals Creative](https://api-docs.groundtruth.com/get-totals-creative-31116359e0.md): Gets cumulative performance metrics for a creative
+- Reporting [Get Totals Campaign Creatives](https://api-docs.groundtruth.com/get-totals-campaign-creatives-13499363e0.md): Gets top N (defaults to 3) creatives with the most impressions for a specific campaign
+- Reporting [Get Audio Podcast Topic Metrics Campaign](https://api-docs.groundtruth.com/get-audio-podcast-topic-metrics-campaign-18280157e0.md): Audio podcast topic metrics for a specific campaign.
+- Reporting [Get Audio Podcast Topic Metrics Adgroup](https://api-docs.groundtruth.com/get-audio-podcast-topic-metrics-adgroup-18280158e0.md): Audio podcast topic metrics for a specific adgroup.
+- Reporting [Get Audio Podcast Series Metrics Campaign](https://api-docs.groundtruth.com/get-audio-podcast-series-metrics-campaign-18280159e0.md): Audio podcast series metrics for a specific campaign.
+- Reporting [Get Audio Podcast Series Metrics Adgroup](https://api-docs.groundtruth.com/get-audio-podcast-series-metrics-adgroup-18280160e0.md): Audio podcast series metrics for a specific adgroup.
+- Reporting [Get Campaign Recommendations](https://api-docs.groundtruth.com/get-campaign-recommendations-19467638e0.md): Get recommendations for a specific campaign.
+- Reporting [Dismiss Recommendation](https://api-docs.groundtruth.com/dismiss-recommendation-19467639e0.md): Dismiss a recommendation
+- Reporting [Apply Recommendation](https://api-docs.groundtruth.com/apply-recommendation-39692536e0.md): Apply a recommendation
+- Reporting [Get Recommendation Count](https://api-docs.groundtruth.com/get-recommendation-count-21625075e0.md): Gets the recommendations count by campaign in an account
+- Reporting [Get Foot Traffic Attribution](https://api-docs.groundtruth.com/get-foot-traffic-attribution-19467640e0.md): Gets foot traffic attribution report with visit and visitor metrics
+- Reporting [Get Foot Traffic Attribution Detailed](https://api-docs.groundtruth.com/get-foot-traffic-attribution-detailed-22729593e0.md): Gets detailed foot traffic attribution report with visit and visitor metrics
+- Reporting [Get Foot Traffic Attribution V2 Order Summary](https://api-docs.groundtruth.com/get-foot-traffic-attribution-v2-order-summary-21625076e0.md): Gets foot traffic attribution summary for a specific order
+- Reporting [Get Foot Traffic Attribution V2 Detailed](https://api-docs.groundtruth.com/get-foot-traffic-attribution-v2-detailed-21625077e0.md): Gets detailed foot traffic attribution report for a specific order
+- Reporting [Get Fp Poitag Campaign](https://api-docs.groundtruth.com/get-fp-poitag-campaign-37722376e0.md): Gets first-party POI tag breakdown metrics for a specific campaign.
+- Reporting [Get Fp Poitag Adgroup](https://api-docs.groundtruth.com/get-fp-poitag-adgroup-37722377e0.md): Gets first-party POI tag breakdown metrics for a specific ad group.
+- Reporting [Get Mobile Category Campaign](https://api-docs.groundtruth.com/get-mobile-category-campaign-21625078e0.md): Gets mobile category metrics for a specific campaign.
+- Reporting [Get Mobile Category Adgroup](https://api-docs.groundtruth.com/get-mobile-category-adgroup-21625079e0.md): Gets mobile category metrics for a specific ad group.
+- Reporting [Get Mobile Category All Adgroups](https://api-docs.groundtruth.com/get-mobile-category-all-adgroups-21625080e0.md): Gets mobile category metrics for all ad groups in a specific campaign.
+- Reporting [Get Demographics Partial Campaign](https://api-docs.groundtruth.com/get-demographics-partial-campaign-31116360e0.md): Gets campaign demographics (partial) metrics by gender and age
+- Reporting [Get Age Gender Distribution Campaign](https://api-docs.groundtruth.com/get-age-gender-distribution-campaign-31116361e0.md): Gets age-gender distribution metrics for a campaign (optionally by ad group).
+- Reporting [Get Age Gender Distribution Adgroup](https://api-docs.groundtruth.com/get-age-gender-distribution-adgroup-31116362e0.md): Gets age-gender distribution metrics for an ad group.
+- Reporting [Get Audience Affinity Creative](https://api-docs.groundtruth.com/get-audience-affinity-creative-28235926e0.md): Gets audience affinity metrics for a specific creative.
+- Reporting [Get Audience Category Campaign](https://api-docs.groundtruth.com/get-audience-category-campaign-23208041e0.md): Gets audience category metrics for a specific campaign.
+- Reporting [Get Audience Affinity Campaign](https://api-docs.groundtruth.com/get-audience-affinity-campaign-28235927e0.md): Gets audience affinity metrics for a specific campaign.
+- Reporting [Get Brand Affinity Adgroup](https://api-docs.groundtruth.com/get-brand-affinity-adgroup-32899784e0.md): Gets brand affinity (audience insights brand) metrics for a specific ad group.
+- Reporting [Get Brand Affinity Campaign](https://api-docs.groundtruth.com/get-brand-affinity-campaign-32899785e0.md): Gets brand affinity (audience insights brand) metrics for a specific campaign.
+- Reporting [Get Brand Affinity Campaign Adgroups](https://api-docs.groundtruth.com/get-brand-affinity-campaign-adgroups-32899786e0.md): Gets brand affinity metrics for all adgroups in a campaign (export scope).
+- Reporting [Get Brand Affinity Campaign Creatives](https://api-docs.groundtruth.com/get-brand-affinity-campaign-creatives-32899787e0.md): Gets brand affinity metrics for all creatives in a campaign (export scope).
+- Reporting [Get Brand Affinity Creative](https://api-docs.groundtruth.com/get-brand-affinity-creative-32899788e0.md): Gets brand affinity (audience insights brand) metrics for a specific creative.
+- Reporting [Get Imp Membership Breakdown Adgroup](https://api-docs.groundtruth.com/get-imp-membership-breakdown-adgroup-35525823e0.md): Gets ad group-level impression membership breakdown (user insight): brand, category, or behaviour.
+- Reporting [Get Imp Membership Breakdown Campaign](https://api-docs.groundtruth.com/get-imp-membership-breakdown-campaign-32899789e0.md): Gets campaign-level impression membership breakdown (user insight): brand, category, or behaviour.
+- Reporting [Get Audience Affinity Campaign Adgroups](https://api-docs.groundtruth.com/get-audience-affinity-campaign-adgroups-31116363e0.md): Gets audience affinity metrics for all adgroups in a campaign (export scope).
+- Reporting [Get Audience Affinity Campaign Creatives](https://api-docs.groundtruth.com/get-audience-affinity-campaign-creatives-31116364e0.md): Gets audience affinity metrics for all creatives in a campaign.
+- Reporting [Get Audience Affinity Campaign V2](https://api-docs.groundtruth.com/get-audience-affinity-campaign-v2-28235928e0.md): Gets audience affinity metrics for a specific campaign.
+- Reporting [Get Audience Affinity Campaign Adgroups V2](https://api-docs.groundtruth.com/get-audience-affinity-campaign-adgroups-v2-31116365e0.md): Gets audience affinity metrics for all adgroups in a specific campaign.
+- Reporting [Get Audience Affinity Creative V2](https://api-docs.groundtruth.com/get-audience-affinity-creative-v2-31116366e0.md): Gets audience affinity metrics for a specific creative (v2).
+- Reporting [Get Audience Affinity Campaign Creatives V2](https://api-docs.groundtruth.com/get-audience-affinity-campaign-creatives-v2-31116367e0.md): Gets audience affinity metrics for all creatives in a specific campaign.
+- Reporting [Get Audience Affinity Adgroup](https://api-docs.groundtruth.com/get-audience-affinity-adgroup-28235929e0.md): Gets audience affinity metrics for a specific adgroup.
+- Reporting [Get Audience Affinity Adgroup V2](https://api-docs.groundtruth.com/get-audience-affinity-adgroup-v2-31116368e0.md): Gets audience affinity metrics for a specific ad group (v2).
+- Reporting [Get Audience Category Campaign All Adgroups](https://api-docs.groundtruth.com/get-audience-category-campaign-all-adgroups-27042047e0.md): Gets audience category metrics for all ad groups in a specific campaign.
+- Reporting [Get Audience Category Campaign Creatives](https://api-docs.groundtruth.com/get-audience-category-campaign-creatives-28235930e0.md): Gets audience category metrics for all creatives in a specific campaign.
+- Reporting [Get Audience Category Adgroup](https://api-docs.groundtruth.com/get-audience-category-adgroup-23208042e0.md): Gets audience category metrics for a specific adgroup.
+- Reporting [Get Audience Category Creative](https://api-docs.groundtruth.com/get-audience-category-creative-23208043e0.md): Gets audience category metrics for a specific creative.
+- Reporting [Get Audience V1 Breakdown Campaign](https://api-docs.groundtruth.com/get-audience-v1-breakdown-campaign-32899790e0.md): Gets audience breakdown metrics for a specific campaign. (Old Taxonomy)
+- Reporting [Get Audience V1 Breakdown Adgroup](https://api-docs.groundtruth.com/get-audience-v1-breakdown-adgroup-32899791e0.md): Gets audience breakdown metrics for a specific ad group. (Old Taxonomy)
+- Reporting [Get Audience V1 Breakdown Creative](https://api-docs.groundtruth.com/get-audience-v1-breakdown-creative-32899792e0.md): Gets audience breakdown metrics for a specific creative. (Old Taxonomy)
+- Reporting [Get Audience Behavioral Campaign Adgroups](https://api-docs.groundtruth.com/get-audience-behavioral-campaign-adgroups-32899793e0.md): Gets behavioral audience (bhaud) metrics for all adgroups in a campaign.
+- Reporting [Get Audience Behavioral Campaign Creatives](https://api-docs.groundtruth.com/get-audience-behavioral-campaign-creatives-32899794e0.md): Gets behavioral audience (bhaud) metrics for all creatives in a campaign.
+- Reporting [Get Audience V2 Breakdown Campaign](https://api-docs.groundtruth.com/get-audience-v2-breakdown-campaign-32899795e0.md): Gets audience breakdown metrics for a specific campaign. (New Taxonomy)
+- Reporting [Get Audience V2 Breakdown Adgroup](https://api-docs.groundtruth.com/get-audience-v2-breakdown-adgroup-32899796e0.md): Gets audience breakdown metrics for a specific ad group. (New Taxonomy)
+- Reporting [Get Audience Behavioral Adgroup](https://api-docs.groundtruth.com/get-audience-behavioral-adgroup-32899797e0.md): Gets behavioral audience (bhaud) metrics for a specific ad group (Rocket full + chart consolidated).
+- Reporting [Get Audience Behavioral Creative](https://api-docs.groundtruth.com/get-audience-behavioral-creative-32899798e0.md): Gets behavioral audience (bhaud) metrics for a specific creative (Rocket AUDIENCE_INSIGHTS_BHAUD_CREATIVE).
+- Reporting [Get Audience Segments Behavioral Adgroup](https://api-docs.groundtruth.com/get-audience-segments-behavioral-adgroup-32899799e0.md): Gets behavioral segment (bhaud) breakdown for an ad group (Rocket BhaudBreakdownByAdgroup).
+- Reporting [Get Audience Segments Behavioral Campaign](https://api-docs.groundtruth.com/get-audience-segments-behavioral-campaign-32899800e0.md): Gets behavioral segment (bhaud) breakdown for a campaign (Rocket BhaudBreakdownByCampaign).
+- Reporting [Get Audience Behavioral Campaign](https://api-docs.groundtruth.com/get-audience-behavioral-campaign-32899801e0.md): Gets behavioral audience (bhaud) metrics for a specific campaign (Rocket full + chart + export consolidated).
+- Reporting [Get Audience V2 Breakdown Creative](https://api-docs.groundtruth.com/get-audience-v2-breakdown-creative-32899802e0.md): Gets audience breakdown metrics for a specific creative. (New Taxonomy)
+- Reporting [Get Conversion Tracking Account](https://api-docs.groundtruth.com/get-conversion-tracking-account-35525824e0.md): Gets multipixel conversion metrics aggregated across all campaigns in an account.
+- Reporting [Get Pixel Campaign](https://api-docs.groundtruth.com/get-pixel-campaign-27042048e0.md): Gets multipixel conversions data for a specific campaign.
+- Reporting [Get Pixel Adgroup](https://api-docs.groundtruth.com/get-pixel-adgroup-27042049e0.md): Gets multipixel conversions export for a specific adgroup.
+- Reporting [Get Campaign Spend](https://api-docs.groundtruth.com/get-campaign-spend-23208044e0.md): Gets total up-to-date spend for a campaign.
+- Reporting [Get Adgroup Spend](https://api-docs.groundtruth.com/get-adgroup-spend-23208045e0.md): Gets total up-to-date spend for an ad group.
+- Reporting [Get Marketshare Campaign](https://api-docs.groundtruth.com/get-marketshare-campaign-28235933e0.md): Gets market share data for a specific campaign.
+- Reporting [Get Audio Podcast Ad Position Campaign](https://api-docs.groundtruth.com/get-audio-podcast-ad-position-campaign-24181125e0.md): Gets audio podcast ad position metrics for a specific campaign.
+- Reporting [Get Audio Podcast Ad Position Campaign Adgroups](https://api-docs.groundtruth.com/get-audio-podcast-ad-position-campaign-adgroups-24181126e0.md): Gets audio podcast ad position metrics for all ad groups in a specific campaign.
+- Reporting [Get Audio Streaming Genre Campaign](https://api-docs.groundtruth.com/get-audio-streaming-genre-campaign-27042050e0.md): Gets audio streaming genre metrics for a specific campaign.
+- Reporting [Get Audio Streaming Genre Adgroup](https://api-docs.groundtruth.com/get-audio-streaming-genre-adgroup-27042051e0.md): Gets audio streaming genre metrics for a specific adgroup.
+- Reporting [Get Audio Streaming Genre Campaign Adgroups](https://api-docs.groundtruth.com/get-audio-streaming-genre-campaign-adgroups-27042052e0.md): Gets audio streaming genre metrics for all adgroups in a specific campaign.
+- Reporting [Get Daily Metrics Campaign](https://api-docs.groundtruth.com/get-daily-metrics-campaign-27042053e0.md): Gets timeseries daily trend metrics for a specific campaign.
+- Reporting [Get Audio Publisher Campaign](https://api-docs.groundtruth.com/get-audio-publisher-campaign-27042054e0.md): Gets audio publisher metrics for a specific campaign.
+- Reporting [Get Audio Publisher Adgroup](https://api-docs.groundtruth.com/get-audio-publisher-adgroup-27042055e0.md): Gets audio publisher metrics for a specific adgroup.
+- Reporting [Get Audio Publisher Campaign All Adgroups](https://api-docs.groundtruth.com/get-audio-publisher-campaign-all-adgroups-27042056e0.md): Gets audio publisher metrics for all ad groups in a specific campaign.
+- Reporting [Get Daily Metrics Adgroup](https://api-docs.groundtruth.com/get-daily-metrics-adgroup-27042057e0.md): Gets timeseries daily trend metrics for a specific ad group.
+- Reporting [Get Daily Metrics Creative](https://api-docs.groundtruth.com/get-daily-metrics-creative-27042058e0.md): Gets timeseries daily trend metrics for a specific creative.
+- Reporting [Get Ctv Publisher Adgroup](https://api-docs.groundtruth.com/get-ctv-publisher-adgroup-28235934e0.md): Gets CTV publisher metrics for a specific ad group.
+- Reporting [Get Ctv Publisher Campaign](https://api-docs.groundtruth.com/get-ctv-publisher-campaign-28235935e0.md): Gets CTV publisher metrics for a specific campaign.
+- Reporting [Get Ctv Publisher Campaign Adgroups](https://api-docs.groundtruth.com/get-ctv-publisher-campaign-adgroups-28235936e0.md): Gets CTV/OTT publisher metrics for all ad groups in a campaign.
+- Reporting [Get Ctv Network Campaign](https://api-docs.groundtruth.com/get-ctv-network-campaign-31116370e0.md): Gets CTV/OTT network bundle metrics for a campaign (unified full/partial/export).
+- Reporting [Get Ctv Network Campaign Adgroups](https://api-docs.groundtruth.com/get-ctv-network-campaign-adgroups-31116371e0.md): Gets CTV/OTT network bundle metrics per ad group for a campaign.
+- Reporting [Get Ctv Network Adgroup](https://api-docs.groundtruth.com/get-ctv-network-adgroup-31116372e0.md): Gets CTV/OTT network bundle metrics for an ad group.
+- Reporting [Get Daily Metrics Campaign Adgroups](https://api-docs.groundtruth.com/get-daily-metrics-campaign-adgroups-28235937e0.md): Gets timeseries daily trend metrics for all ad groups in a specific campaign.
+- Reporting [Get Daily Metrics Campaign Creatives](https://api-docs.groundtruth.com/get-daily-metrics-campaign-creatives-28235938e0.md): Gets timeseries daily trend metrics for all creatives in a specific campaign.
+- Reporting [Get Dooh Campaign V1](https://api-docs.groundtruth.com/get-dooh-campaign-v1-35525825e0.md): Retrieves DOOH campaign performance grouped by requested dimensions. Supported dimensions include publisher, venue_type, state, county, dma, zip, ad_group, creative, and ad_unit_id.
+- Reporting [Get Dooh Publisher Campaign](https://api-docs.groundtruth.com/get-dooh-publisher-campaign-31116373e0.md): Gets DOOH publisher metrics for a specific campaign.
+- Reporting [Get Banner Size Breakdown Adgroup](https://api-docs.groundtruth.com/get-banner-size-breakdown-adgroup-37722378e0.md): Gets banner-size breakdown metrics for a specific ad group, optionally split by creative.
+- Reporting [Get Banner Size Breakdown Campaign](https://api-docs.groundtruth.com/get-banner-size-breakdown-campaign-35525826e0.md): Gets banner-size breakdown metrics for a specific campaign, optionally split by ad group or creative.
+- Reporting [Get Dooh Venue Type Campaign](https://api-docs.groundtruth.com/get-dooh-venue-type-campaign-31116374e0.md): Gets DOOH venue type metrics for a specific campaign.
+- Reporting [Get Web Engagement Campaign](https://api-docs.groundtruth.com/get-web-engagement-campaign-31116375e0.md): Gets daily trend web engagement metrics for a specific campaign.
+- Reporting [Get Web Engagement Totals Campaign](https://api-docs.groundtruth.com/get-web-engagement-totals-campaign-39692537e0.md): Gets totals / cumulative web engagement metrics for a specific campaign.
+- Reporting [Get Web Engagement Adgroup](https://api-docs.groundtruth.com/get-web-engagement-adgroup-40141029e0.md): Gets daily trend web engagement metrics for a specific ad group.
+- Reporting [Get Web Engagement Totals Adgroup](https://api-docs.groundtruth.com/get-web-engagement-totals-adgroup-40141030e0.md): Gets totals / cumulative web engagement metrics for a specific ad group.
+- Reporting [Get Locations Imp Adgroup](https://api-docs.groundtruth.com/get-locations-imp-adgroup-40988779e0.md): Gets impressed locations for an ad group.
+- Miscellaneous [Get Version](https://api-docs.groundtruth.com/get-version-13499364e0.md): Gets the current API version
+- Search [Search Tenants](https://api-docs.groundtruth.com/search-tenants-21625081e0.md): Searches tenants
+- Search [Search Organizations](https://api-docs.groundtruth.com/search-organizations-21625082e0.md): Searches organizations
+- Search [Search Accounts](https://api-docs.groundtruth.com/search-accounts-13499366e0.md): Searches accounts
+- Search [Search Campaigns](https://api-docs.groundtruth.com/search-campaigns-13499365e0.md): Searches campaigns
+- Search [Search Adgroups](https://api-docs.groundtruth.com/search-adgroups-21625083e0.md): Searches ad groups
+- Search [Search Creatives](https://api-docs.groundtruth.com/search-creatives-21625084e0.md): Searches creatives
+- Search [Search Location Filters](https://api-docs.groundtruth.com/search-location-filters-23208046e0.md): Searches location filters
+- Search [Search Audiences](https://api-docs.groundtruth.com/search-audiences-23208047e0.md): Searches audiences
+- Search [Search Neighborhoods](https://api-docs.groundtruth.com/search-neighborhoods-27042059e0.md): Searches neighborhoods (behaviors, brands, categories, and location groups)
+- Search [Search On Premise Locations](https://api-docs.groundtruth.com/search-on-premise-locations-27042060e0.md): Searches on premise brands, categories, and location groups
+- Search [Search Drive To Locations](https://api-docs.groundtruth.com/search-drive-to-locations-27042061e0.md): Searches drive-to locations (brands and location groups)
+- Search [Search Location Groups](https://api-docs.groundtruth.com/search-location-groups-28235939e0.md): Searches location groups for audience targeting
+- Search [Search Ad Packages](https://api-docs.groundtruth.com/search-ad-packages-31116376e0.md): Searches ad packages
+- Search [Search Pois Sources](https://api-docs.groundtruth.com/search-pois-sources-40141031e0.md): Searches sources to add to a location group
+- Search [Search Pois Sources Count](https://api-docs.groundtruth.com/search-pois-sources-count-40141032e0.md): Returns counts for requested sources
+- Search [Search Pois Sources Preview Pois](https://api-docs.groundtruth.com/search-pois-sources-preview-pois-40141033e0.md): Searches POIs given requested sources
+- Search [Search Pois Location Filters](https://api-docs.groundtruth.com/search-pois-location-filters-40141034e0.md): Searches location filters for a location group
+- Search [Search Location Group Pois](https://api-docs.groundtruth.com/search-location-group-pois-41623239e0.md): Searches POIs and addresses by business name and/or address
+- Static [Get Account Verticals](https://api-docs.groundtruth.com/get-account-verticals-13499367e0.md): Gets all account verticals
+- Static [Get Audio Podcast Topics](https://api-docs.groundtruth.com/get-audio-podcast-topics-13499368e0.md): Gets all targetable audio podcast topics
+- Static [Get Audio Streaming Genres](https://api-docs.groundtruth.com/get-audio-streaming-genres-13499369e0.md): Gets all targetable audio streaming genres
+- Static [Get Carriers](https://api-docs.groundtruth.com/get-carriers-13499370e0.md): Gets all targetable carriers for your account's country
+- Static [Get Cities](https://api-docs.groundtruth.com/get-cities-13499371e0.md): Gets all targetable cities for your account's country
+- Static [Get Ctv Content Categories](https://api-docs.groundtruth.com/get-ctv-content-categories-13499372e0.md): Gets all targetable CTV content categories
+- Static [Get Streaming Video Content Categories](https://api-docs.groundtruth.com/get-streaming-video-content-categories-21625085e0.md): Gets all targetable streaming video content categories
+- Static [Get Streaming Video Premium Ctv Categories](https://api-docs.groundtruth.com/get-streaming-video-premium-ctv-categories-21625086e0.md): Gets all targetable CTV premium categories
+- Static [Get Dmas](https://api-docs.groundtruth.com/get-dmas-13499373e0.md): Gets all targetable DMAs
+- Static [Get Publisher Categories](https://api-docs.groundtruth.com/get-publisher-categories-13499374e0.md): Gets all targetable publisher categories
+- Static [Get States](https://api-docs.groundtruth.com/get-states-13499375e0.md): Gets all targetable states for your account's country
+- Static [Get Iab Categories](https://api-docs.groundtruth.com/get-iab-categories-19752111e0.md): Gets IAB categories
+- Static [Get Publishers](https://api-docs.groundtruth.com/get-publishers-37722379e0.md): Gets available publishers for a campaign
+- Users [Signup](https://api-docs.groundtruth.com/signup-13499376e0.md): Creates a new user, tenant, organization, and account
+- Users [Activate](https://api-docs.groundtruth.com/activate-20153895e0.md): Activates a user
+- Users [Get Current User](https://api-docs.groundtruth.com/get-current-user-22406716e0.md): Gets the current user
+- Users [Get User](https://api-docs.groundtruth.com/get-user-13499377e0.md): Gets a user
+- Users [Delete User](https://api-docs.groundtruth.com/delete-user-13499378e0.md): Deletes a user
+- Users [Update User](https://api-docs.groundtruth.com/update-user-13499379e0.md): Updates a user
+- Users [Get Users](https://api-docs.groundtruth.com/get-users-13499380e0.md): Gets users under a tenant
+- Users [Invite User](https://api-docs.groundtruth.com/invite-user-20153896e0.md): Invites a user
+- Creatives [Create Creative](https://api-docs.groundtruth.com/create-creative-13499381e0.md): Creates a creative
+- Creatives [Get Creatives](https://api-docs.groundtruth.com/get-creatives-20153897e0.md): Gets all creatives in an ad group
+- Creatives [Patch Creatives](https://api-docs.groundtruth.com/patch-creatives-37722365e0.md): Patches multiple creatives in a campaign
+- Creatives [Get Creative](https://api-docs.groundtruth.com/get-creative-20153898e0.md): Gets a creative
+- Creatives [Update Creative](https://api-docs.groundtruth.com/update-creative-20153899e0.md): Updates a creative
+- Creatives [Delete Creative](https://api-docs.groundtruth.com/delete-creative-20153900e0.md): Deletes a creative
+- Creatives [Patch Creative](https://api-docs.groundtruth.com/patch-creative-23317235e0.md): Patches a creative
+- Creatives [Clone Creative](https://api-docs.groundtruth.com/clone-creative-23317236e0.md): Clones a creative
+- Creatives [Get Creative Preview](https://api-docs.groundtruth.com/get-creative-preview-37722366e0.md): Gets the creative preview using the stored CMS configuration. Video creatives return VAST XML; other types return HTML.
+- Creatives [Get Creative Landing Page Preview](https://api-docs.groundtruth.com/get-creative-landing-page-preview-39692534e0.md): Gets the landing page preview HTML for a creative
+- Audiences [Get Audience Taxonomy](https://api-docs.groundtruth.com/get-audience-taxonomy-13499382e0.md): Gets entire audience taxonomy for a tenant and account
+- Audiences [Get Audience Recommendations](https://api-docs.groundtruth.com/get-audience-recommendations-23208048e0.md): Gets audience recommendations based on current selections
+- Jobs [Get Jobs](https://api-docs.groundtruth.com/get-jobs-24181124e0.md): Gets jobs
+- Jobs [Get Job](https://api-docs.groundtruth.com/get-job-27042046e0.md): Gets a job
+- Jobs [Create Campaign Bulk Upload Job](https://api-docs.groundtruth.com/create-campaign-bulk-upload-job-21625087e0.md): Creates a campaign bulk upload job
+- Jobs [Cancel Campaign Bulk Upload Job](https://api-docs.groundtruth.com/cancel-campaign-bulk-upload-job-39692535e0.md): Cancels a campaign bulk upload job
+- Jobs [Confirm Campaign Bulk Upload Job](https://api-docs.groundtruth.com/confirm-campaign-bulk-upload-job-28235917e0.md): Confirms a campaign bulk upload job
+- Jobs [Create Location Filter Bulk Upload Job](https://api-docs.groundtruth.com/create-location-filter-bulk-upload-job-27042042e0.md): Creates a location filter bulk upload job
+- Jobs [Create Campaign Bulk Download Job](https://api-docs.groundtruth.com/create-campaign-bulk-download-job-27042043e0.md): Creates a campaign bulk download job
+- Jobs [Confirm Location Filter Bulk Upload Job](https://api-docs.groundtruth.com/confirm-location-filter-bulk-upload-job-27042044e0.md): Confirms location filter bulk upload job
+- Jobs [Cancel Location Filter Bulk Upload Job](https://api-docs.groundtruth.com/cancel-location-filter-bulk-upload-job-27042045e0.md): Cancels location filter bulk upload job
+- Upload [Upload](https://api-docs.groundtruth.com/upload-21625088e0.md): Uploads a file and returns a URL
+- Creative Assets [Get Creative Assets](https://api-docs.groundtruth.com/get-creative-assets-35525827e0.md): Gets creative assets in a tenant
+- Creative Assets [Get Creative Asset](https://api-docs.groundtruth.com/get-creative-asset-35525828e0.md): Gets a creative asset
+- Creative Assets [Delete Creative Asset](https://api-docs.groundtruth.com/delete-creative-asset-35525829e0.md): Deletes a creative asset
+- DOOH [Get Dooh Creative Approval Status](https://api-docs.groundtruth.com/get-dooh-creative-approval-status-35525830e0.md): Gets the approval status of a DOOH creative
+
+## Schemas
+- Schemas [AccountSearchResults](https://api-docs.groundtruth.com/accountsearchresults-4985310d0.md): 
+- Schemas [AdSpec](https://api-docs.groundtruth.com/adspec-10001428d0.md): 
+- Schemas [ActivateUserModel](https://api-docs.groundtruth.com/activateusermodel-8667092d0.md): 
+- Schemas [CTVContentCategoriesModel](https://api-docs.groundtruth.com/ctvcontentcategoriesmodel-4985337d0.md): 
+- Schemas [CTVContentCategoryModel](https://api-docs.groundtruth.com/ctvcontentcategorymodel-4985338d0.md): 
+- Schemas [CampaignSearchRequest](https://api-docs.groundtruth.com/campaignsearchrequest-4985340d0.md): 
+- Schemas [Body_create_campaign_bulk_upload_jobs_campaign_bulk_upload_post](https://api-docs.groundtruth.com/body-create-campaign-bulk-upload-jobs-campaign-bulk-upload-post-9555009d0.md): 
+- Schemas [CampaignSearchResults](https://api-docs.groundtruth.com/campaignsearchresults-4985342d0.md): 
+- Schemas [CreateAudienceModel](https://api-docs.groundtruth.com/createaudiencemodel-4985351d0.md): 
+- Schemas [SearchRequest](https://api-docs.groundtruth.com/searchrequest-4985390d0.md): 
+- Schemas [SuccessResponse](https://api-docs.groundtruth.com/successresponse-4985398d0.md): 
+- Schemas [InviteUserModel](https://api-docs.groundtruth.com/inviteusermodel-8667099d0.md): 
+- Schemas [app__api__routes__adgroups__constants__BidType](https://api-docs.groundtruth.com/bidtype-4985418d0.md): 
+- [AccountMinCPVBidRateModel](https://api-docs.groundtruth.com/accountmincpvbidratemodel-4985305d0.md): 
+- [AccountModel](https://api-docs.groundtruth.com/accountmodel-4985306d0.md): 
+- [AccountPixelModel](https://api-docs.groundtruth.com/accountpixelmodel-4985307d0.md): 
+- [AccountPixelsModel](https://api-docs.groundtruth.com/accountpixelsmodel-4985308d0.md): 
+- [AccountSearchResult](https://api-docs.groundtruth.com/accountsearchresult-4985309d0.md): 
+- [AccountType](https://api-docs.groundtruth.com/accounttype-4985311d0.md): 
+- [AccountVertical](https://api-docs.groundtruth.com/accountvertical-4985312d0.md): 
+- [AccountVerticalModel](https://api-docs.groundtruth.com/accountverticalmodel-4985313d0.md): 
+- [AccountVerticalsModel](https://api-docs.groundtruth.com/accountverticalsmodel-4985314d0.md): 
+- [AccountsModel](https://api-docs.groundtruth.com/accountsmodel-4985315d0.md): 
+- [AdPackageModel](https://api-docs.groundtruth.com/adpackagemodel-13630992d0.md): 
+- [AdPackageSearchResult](https://api-docs.groundtruth.com/adpackagesearchresult-13630993d0.md): 
+- [AdgroupAvailsResponse](https://api-docs.groundtruth.com/adgroupavailsresponse-8244606d0.md): 
+- [AdgroupModel](https://api-docs.groundtruth.com/adgroupmodel-4985316d0.md): 
+- [ApplicationCode](https://api-docs.groundtruth.com/applicationcode-4985318d0.md): 
+- [AdgroupSearchResult](https://api-docs.groundtruth.com/adgroupsearchresult-9555008d0.md): 
+- [AdgroupSpendModel](https://api-docs.groundtruth.com/adgroupspendmodel-10361486d0.md): 
+- [AdgroupStep](https://api-docs.groundtruth.com/adgroupstep-13630994d0.md): 
+- [AdgroupsModel](https://api-docs.groundtruth.com/adgroupsmodel-8667093d0.md): 
+- [AudioPodcastTopicModel](https://api-docs.groundtruth.com/audiopodcasttopicmodel-4985323d0.md): 
+- [AdgroupsTodaySpendModel](https://api-docs.groundtruth.com/adgroupstodayspendmodel-12966648d0.md): 
+- [AgeGenderDistributionCampaignModel](https://api-docs.groundtruth.com/agegenderdistributioncampaignmodel-13630995d0.md): 
+- [AgeRange](https://api-docs.groundtruth.com/agerange-4985317d0.md): 
+- [AudioStreamingGenreModel](https://api-docs.groundtruth.com/audiostreaminggenremodel-4985325d0.md): 
+- [AppBundleModel](https://api-docs.groundtruth.com/appbundlemodel-14952122d0.md): 
+- [AppCode](https://api-docs.groundtruth.com/appcode-12966649d0.md): 
+- [Audience](https://api-docs.groundtruth.com/audience-4985319d0.md): 
+- [AudienceAffinityAdgroupModel](https://api-docs.groundtruth.com/audienceaffinityadgroupmodel-12966650d0.md): 
+- [AudienceAffinityCampaignCreativeFieldName](https://api-docs.groundtruth.com/audienceaffinitycampaigncreativefieldname-12966651d0.md): 
+- [AudienceAffinityCampaignModel](https://api-docs.groundtruth.com/audienceaffinitycampaignmodel-12966652d0.md): 
+- [AudienceAffinityCampaignSummaryModel](https://api-docs.groundtruth.com/audienceaffinitycampaignsummarymodel-12966653d0.md): 
+- [AudienceAffinityCreativeModel](https://api-docs.groundtruth.com/audienceaffinitycreativemodel-12966654d0.md): 
+- [AudienceAffinityFieldName](https://api-docs.groundtruth.com/audienceaffinityfieldname-12966655d0.md): 
+- [AudienceBehavioralCreativeResponseModel](https://api-docs.groundtruth.com/audiencebehavioralcreativeresponsemodel-14117403d0.md): 
+- [AudienceBehavioralSortByFieldName](https://api-docs.groundtruth.com/audiencebehavioralsortbyfieldname-14117404d0.md): 
+- [AudienceBreakdownAdgroupResponseModel](https://api-docs.groundtruth.com/audiencebreakdownadgroupresponsemodel-12966656d0.md): 
+- [AudienceBreakdownCampaignResponseModel](https://api-docs.groundtruth.com/audiencebreakdowncampaignresponsemodel-12966657d0.md): 
+- [AudienceBreakdownCreativeResponseModel](https://api-docs.groundtruth.com/audiencebreakdowncreativeresponsemodel-13630996d0.md): 
+- [AudienceBreakdownV1AdgroupResponseModel](https://api-docs.groundtruth.com/audiencebreakdownv1adgroupresponsemodel-14117405d0.md): 
+- [AudienceBreakdownV1CampaignResponseModel](https://api-docs.groundtruth.com/audiencebreakdownv1campaignresponsemodel-14117406d0.md): 
+- [AudienceBreakdownV1CreativeResponseModel](https://api-docs.groundtruth.com/audiencebreakdownv1creativeresponsemodel-14117407d0.md): 
+- [AudienceBreakdownV1Key](https://api-docs.groundtruth.com/audiencebreakdownv1key-14117408d0.md): 
+- [AudienceCategoryAdgroupFieldName](https://api-docs.groundtruth.com/audiencecategoryadgroupfieldname-10361487d0.md): 
+- [AudienceCategoryAdgroupModel](https://api-docs.groundtruth.com/audiencecategoryadgroupmodel-10361488d0.md): 
+- [AudienceCategoryCampaignAllAdgroupsModel](https://api-docs.groundtruth.com/audiencecategorycampaignalladgroupsmodel-12450181d0.md): 
+- [AudienceCategoryCampaignCreativesModel](https://api-docs.groundtruth.com/audiencecategorycampaigncreativesmodel-12966658d0.md): 
+- [AudienceCategoryCampaignModel](https://api-docs.groundtruth.com/audiencecategorycampaignmodel-10361489d0.md): 
+- [AudienceCategoryCreativeFieldName](https://api-docs.groundtruth.com/audiencecategorycreativefieldname-10361490d0.md): 
+- [AudienceCategoryCreativeModel](https://api-docs.groundtruth.com/audiencecategorycreativemodel-10361491d0.md): 
+- [AudienceCategoryFieldName](https://api-docs.groundtruth.com/audiencecategoryfieldname-10361492d0.md): 
+- [AudienceModel](https://api-docs.groundtruth.com/audiencemodel-4985320d0.md): 
+- [AudienceRecommendationsModel](https://api-docs.groundtruth.com/audiencerecommendationsmodel-10361493d0.md): 
+- [AudienceRecommendationsRequestModel](https://api-docs.groundtruth.com/audiencerecommendationsrequestmodel-10361494d0.md): 
+- [AudienceSearchResult](https://api-docs.groundtruth.com/audiencesearchresult-10361495d0.md): 
+- [AudienceTaxonomy](https://api-docs.groundtruth.com/audiencetaxonomy-4985321d0.md): 
+- [AudienceType-Input](https://api-docs.groundtruth.com/audiencetype-4985322d0.md): 
+- [AudioPodcastAdPosition](https://api-docs.groundtruth.com/audiopodcastadposition-10423598d0.md): 
+- [AudioPodcastAdPositionCampaignAdgroupsModel](https://api-docs.groundtruth.com/audiopodcastadpositioncampaignadgroupsmodel-10862910d0.md): 
+- [AudioPodcastAdPositionCampaignModel](https://api-docs.groundtruth.com/audiopodcastadpositioncampaignmodel-10862911d0.md): 
+- [AudioPodcastFieldName](https://api-docs.groundtruth.com/audiopodcastfieldname-7536786d0.md): 
+- [Body_create_campaign_bulk_upload_job_jobs_campaign_bulk_upload_post](https://api-docs.groundtruth.com/body-create-campaign-bulk-upload-job-jobs-campaign-bulk-upload-post-12450188d0.md): 
+- [AudioPodcastSeriesMetricsAdgroupModel](https://api-docs.groundtruth.com/audiopodcastseriesmetricsadgroupmodel-7536787d0.md): 
+- [AudioPodcastSeriesMetricsCampaignModel](https://api-docs.groundtruth.com/audiopodcastseriesmetricscampaignmodel-7536788d0.md): 
+- [AudioPodcastTopicMetricsAdgroupModel](https://api-docs.groundtruth.com/audiopodcasttopicmetricsadgroupmodel-7536789d0.md): 
+- [AudioPodcastTopicMetricsCampaignModel](https://api-docs.groundtruth.com/audiopodcasttopicmetricscampaignmodel-7536790d0.md): 
+- [AudioPodcastTopicsModel](https://api-docs.groundtruth.com/audiopodcasttopicsmodel-4985324d0.md): 
+- [AudioPublisherAdgroupModel](https://api-docs.groundtruth.com/audiopublisheradgroupmodel-12450182d0.md): 
+- [AudioPublisherCampaignAllAdgroupsModel](https://api-docs.groundtruth.com/audiopublishercampaignalladgroupsmodel-12450183d0.md): 
+- [AudioPublisherCampaignModel](https://api-docs.groundtruth.com/audiopublishercampaignmodel-12450184d0.md): 
+- [AudioStreamingGenreAdgroupModel](https://api-docs.groundtruth.com/audiostreaminggenreadgroupmodel-12450185d0.md): 
+- [AudioStreamingGenreCampaignAllAdgroupsModel](https://api-docs.groundtruth.com/audiostreaminggenrecampaignalladgroupsmodel-12450186d0.md): 
+- [AudioStreamingGenreCampaignModel](https://api-docs.groundtruth.com/audiostreaminggenrecampaignmodel-12450187d0.md): 
+- [AudioStreamingGenresModel](https://api-docs.groundtruth.com/audiostreaminggenresmodel-4985326d0.md): 
+- [LocationFilterModel](https://api-docs.groundtruth.com/locationfiltermodel-4985374d0.md): 
+- [BannerSizeBreakdownAdgroupModel](https://api-docs.groundtruth.com/bannersizebreakdownadgroupmodel-15707506d0.md): 
+- [BannerSizeBreakdownCampaignModel](https://api-docs.groundtruth.com/bannersizebreakdowncampaignmodel-14952123d0.md): 
+- [BasicAdgroupModel](https://api-docs.groundtruth.com/basicadgroupmodel-8667094d0.md): 
+- [BestAudiencesModel](https://api-docs.groundtruth.com/bestaudiencesmodel-4985327d0.md): 
+- [BestAudiencesSummaryModel](https://api-docs.groundtruth.com/bestaudiencessummarymodel-4985328d0.md): 
+- [BestStrategiesModel](https://api-docs.groundtruth.com/beststrategiesmodel-4985329d0.md): 
+- [BestStrategiesSummaryModel](https://api-docs.groundtruth.com/beststrategiessummarymodel-4985330d0.md): 
+- [BillabilityType](https://api-docs.groundtruth.com/billabilitytype-13630997d0.md): 
+- [BillingSource](https://api-docs.groundtruth.com/billingsource-4985331d0.md): 
+- [DOOHLocationGroupDistanceUnits](https://api-docs.groundtruth.com/doohlocationgroupdistanceunits-7536801d0.md): 
+- [BlueprintsPolygonTypes](https://api-docs.groundtruth.com/blueprintspolygontypes-5036252d0.md): 
+- [Body_upload_upload_post](https://api-docs.groundtruth.com/body-upload-upload-post-9555010d0.md): 
+- [BrandAffinityAdgroupFieldName](https://api-docs.groundtruth.com/brandaffinityadgroupfieldname-14117409d0.md): 
+- [BrandAffinityAdgroupModel](https://api-docs.groundtruth.com/brandaffinityadgroupmodel-14117410d0.md): 
+- [BrandAffinityCampaignAdgroupsFieldName](https://api-docs.groundtruth.com/brandaffinitycampaignadgroupsfieldname-14117411d0.md): 
+- [BrandAffinityCampaignAdgroupsModel](https://api-docs.groundtruth.com/brandaffinitycampaignadgroupsmodel-14117412d0.md): 
+- [PublisherCategoryModel](https://api-docs.groundtruth.com/publishercategorymodel-4985389d0.md): 
+- [BrandAffinityCampaignCreativesFieldName](https://api-docs.groundtruth.com/brandaffinitycampaigncreativesfieldname-14117413d0.md): 
+- [BrandAffinityCampaignCreativesModel](https://api-docs.groundtruth.com/brandaffinitycampaigncreativesmodel-14117414d0.md): 
+- [BrandAffinityCampaignFieldName](https://api-docs.groundtruth.com/brandaffinitycampaignfieldname-14117415d0.md): 
+- [BrandAffinityCampaignModel](https://api-docs.groundtruth.com/brandaffinitycampaignmodel-14117416d0.md): 
+- [BrandAffinityCreativeFieldName](https://api-docs.groundtruth.com/brandaffinitycreativefieldname-14117417d0.md): 
+- [BrandAffinityCreativeModel](https://api-docs.groundtruth.com/brandaffinitycreativemodel-14117418d0.md): 
+- [BudgetLevel](https://api-docs.groundtruth.com/budgetlevel-4985332d0.md): 
+- [BudgetModel-Input](https://api-docs.groundtruth.com/budgetmodel-4985333d0.md): 
+- [BudgetModel-Output](https://api-docs.groundtruth.com/budgetmodel-4985334d0.md): 
+- [BudgetType](https://api-docs.groundtruth.com/budgettype-4985335d0.md): 
+- [BusinessType](https://api-docs.groundtruth.com/businesstype-4985336d0.md): 
+- [CTVAppModel](https://api-docs.groundtruth.com/ctvappmodel-9555011d0.md): 
+- [CTVPremiumCategoriesModel](https://api-docs.groundtruth.com/ctvpremiumcategoriesmodel-9555012d0.md): 
+- [CampaignAndAdgroupsModel](https://api-docs.groundtruth.com/campaignandadgroupsmodel-15707507d0.md): 
+- [CampaignBudgetType](https://api-docs.groundtruth.com/campaignbudgettype-14952124d0.md): 
+- [CampaignModel](https://api-docs.groundtruth.com/campaignmodel-4985339d0.md): 
+- [CampaignDashboardItemModel](https://api-docs.groundtruth.com/campaigndashboarditemmodel-17010015d0.md): 
+- [CampaignSearchResult](https://api-docs.groundtruth.com/campaignsearchresult-4985341d0.md): 
+- [CampaignDashboardSortField](https://api-docs.groundtruth.com/campaigndashboardsortfield-17010016d0.md): 
+- [CampaignSpendModel](https://api-docs.groundtruth.com/campaignspendmodel-10361496d0.md): 
+- [CampaignDashboardStatus](https://api-docs.groundtruth.com/campaigndashboardstatus-17010017d0.md): 
+- [CampaignUserModel](https://api-docs.groundtruth.com/campaignusermodel-14952125d0.md): 
+- [CampaignsModel](https://api-docs.groundtruth.com/campaignsmodel-4985343d0.md): 
+- [CitiesModel](https://api-docs.groundtruth.com/citiesmodel-4985344d0.md): 
+- [CityModel](https://api-docs.groundtruth.com/citymodel-4985345d0.md): 
+- [CloneAdgroupRequestModel](https://api-docs.groundtruth.com/cloneadgrouprequestmodel-14952126d0.md): 
+- [CampaignsDashboardExportColumn](https://api-docs.groundtruth.com/campaignsdashboardexportcolumn-17010018d0.md): 
+- [ClonedAdgroupsResponse](https://api-docs.groundtruth.com/clonedadgroupsresponse-14952127d0.md): 
+- [CampaignsDashboardModel](https://api-docs.groundtruth.com/campaignsdashboardmodel-17010019d0.md): 
+- [Community](https://api-docs.groundtruth.com/community-4985346d0.md): 
+- [ConsolidatedDOOHApprovalStatus](https://api-docs.groundtruth.com/consolidateddoohapprovalstatus-15707508d0.md): 
+- [CountryCode](https://api-docs.groundtruth.com/countrycode-4985347d0.md): 
+- [CreateAccountModel](https://api-docs.groundtruth.com/createaccountmodel-4985348d0.md): 
+- [CreateAccountPixelModel](https://api-docs.groundtruth.com/createaccountpixelmodel-4985349d0.md): 
+- [CreateAdPackageModel](https://api-docs.groundtruth.com/createadpackagemodel-13630998d0.md): 
+- [CreateCampaignAndAdgroupsModel](https://api-docs.groundtruth.com/createcampaignandadgroupsmodel-15707509d0.md): 
+- [CreateCampaignBulkDownloadJobRequestModel](https://api-docs.groundtruth.com/createcampaignbulkdownloadjobrequestmodel-12450189d0.md): 
+- [CreateCampaignModel](https://api-docs.groundtruth.com/createcampaignmodel-4985352d0.md): 
+- [CreateAdgroupModel](https://api-docs.groundtruth.com/createadgroupmodel-4985350d0.md): 
+- [CreateDoohAdgroupModel](https://api-docs.groundtruth.com/createdoohadgroupmodel-7536791d0.md): 
+- [CreateDoohAdgroupsModel](https://api-docs.groundtruth.com/createdoohadgroupsmodel-7536792d0.md): 
+- [CreateLocationFilterTargetBulkUploadJobModel](https://api-docs.groundtruth.com/createlocationfiltertargetbulkuploadjobmodel-12450190d0.md): 
+- [CreateNeighborhoodModel](https://api-docs.groundtruth.com/createneighborhoodmodel-12450191d0.md): 
+- [CreateCreativeModel](https://api-docs.groundtruth.com/createcreativemodel-4985353d0.md): 
+- [CreateOrUpdateOrganizationModel](https://api-docs.groundtruth.com/createorupdateorganizationmodel-4985354d0.md): 
+- [CreatePublisherModel](https://api-docs.groundtruth.com/createpublishermodel-15707510d0.md): 
+- [CreateUpdateAdPackageModel](https://api-docs.groundtruth.com/createupdateadpackagemodel-13630999d0.md): 
+- [CreateUpdateAudienceModel](https://api-docs.groundtruth.com/createupdateaudiencemodel-8667095d0.md): 
+- [CreateUpdateAudioPodcastTopicModel](https://api-docs.groundtruth.com/createupdateaudiopodcasttopicmodel-10423599d0.md): 
+- [CreateUpdateAudioStreamingGenreModel](https://api-docs.groundtruth.com/createupdateaudiostreaminggenremodel-10423600d0.md): 
+- [CreateUpdateCTVPremiumCategoryModel](https://api-docs.groundtruth.com/createupdatectvpremiumcategorymodel-9555013d0.md): 
+- [CreateUpdateCampaignUserModel](https://api-docs.groundtruth.com/createupdatecampaignusermodel-14952128d0.md): 
+- [CreateUpdateDriveToLocationModel](https://api-docs.groundtruth.com/createupdatedrivetolocationmodel-8819334d0.md): 
+- [CreateUpdateOnPremiseLocationModel](https://api-docs.groundtruth.com/createupdateonpremiselocationmodel-12966659d0.md): 
+- [CreateUpdatePublisherCategoryModel](https://api-docs.groundtruth.com/createupdatepublishercategorymodel-9998745d0.md): 
+- [CreateUpdateStreamingVideoContentCategoryModel](https://api-docs.groundtruth.com/createupdatestreamingvideocontentcategorymodel-9555014d0.md): 
+- [CreateUpdateTrackingPixelModel](https://api-docs.groundtruth.com/createupdatetrackingpixelmodel-12966660d0.md): 
+- [CreatedAdPackageModel](https://api-docs.groundtruth.com/createdadpackagemodel-13631000d0.md): 
+- [CreativeAPI](https://api-docs.groundtruth.com/creativeapi-9998746d0.md): 
+- [CreativeAssetModel](https://api-docs.groundtruth.com/creativeassetmodel-14952129d0.md): 
+- [CreativeAssetSortField](https://api-docs.groundtruth.com/creativeassetsortfield-14952130d0.md): 
+- [CreativeAssetStatus](https://api-docs.groundtruth.com/creativeassetstatus-14952131d0.md): 
+- [CreativeAssetType](https://api-docs.groundtruth.com/creativeassettype-14952132d0.md): 
+- [CreativeBlockedStatus](https://api-docs.groundtruth.com/creativeblockedstatus-10423601d0.md): 
+- [CreativeDOOHMetadata](https://api-docs.groundtruth.com/creativedoohmetadata-14952133d0.md): 
+- [CreativeModel](https://api-docs.groundtruth.com/creativemodel-4985355d0.md): 
+- [CreativeSearchResult](https://api-docs.groundtruth.com/creativesearchresult-9555015d0.md): 
+- [CreativeStatus](https://api-docs.groundtruth.com/creativestatus-8667096d0.md): 
+- [CreativeType](https://api-docs.groundtruth.com/creativetype-4985356d0.md): 
+- [CreativesModel](https://api-docs.groundtruth.com/creativesmodel-8667097d0.md): 
+- [CtvNetworkRowModel](https://api-docs.groundtruth.com/ctvnetworkrowmodel-13631001d0.md): 
+- [CtvNetworkSortByFieldName](https://api-docs.groundtruth.com/ctvnetworksortbyfieldname-13631002d0.md): 
+- [CtvOttAdgroupPerformanceModel](https://api-docs.groundtruth.com/ctvottadgroupperformancemodel-12966661d0.md): 
+- [CtvOttCampaignPerformanceModel](https://api-docs.groundtruth.com/ctvottcampaignperformancemodel-4985357d0.md): 
+- [CtvOttCampaignSortByFieldName](https://api-docs.groundtruth.com/ctvottcampaignsortbyfieldname-4985358d0.md): 
+- [CtvOttDeviceSummaryModel](https://api-docs.groundtruth.com/ctvottdevicesummarymodel-4985359d0.md): 
+- [DoohPublisherCampaignModel](https://api-docs.groundtruth.com/doohpublishercampaignmodel-13631005d0.md): 
+- [CtvOttNetworkSummaryModel](https://api-docs.groundtruth.com/ctvottnetworksummarymodel-4985360d0.md): 
+- [CtvOttPublisherSummaryModel](https://api-docs.groundtruth.com/ctvottpublishersummarymodel-4985361d0.md): 
+- [CtvOttReportSummaryModel](https://api-docs.groundtruth.com/ctvottreportsummarymodel-4985362d0.md): 
+- [LocationGroupMetadata](https://api-docs.groundtruth.com/locationgroupmetadata-12450200d0.md): 
+- [CtvPublisherAdgroupModel](https://api-docs.groundtruth.com/ctvpublisheradgroupmodel-12966662d0.md): 
+- [StreamingVideoContentCategoryModel](https://api-docs.groundtruth.com/streamingvideocontentcategorymodel-9555039d0.md): 
+- [CtvPublisherCampaignAdgroupsModel](https://api-docs.groundtruth.com/ctvpublishercampaignadgroupsmodel-12966663d0.md): 
+- [CtvPublisherNetworkModel](https://api-docs.groundtruth.com/ctvpublishernetworkmodel-12966664d0.md): 
+- [Currency](https://api-docs.groundtruth.com/currency-4985363d0.md): 
+- [DOOHCreativeApprovalResponse](https://api-docs.groundtruth.com/doohcreativeapprovalresponse-14952134d0.md): 
+- [DMAModel](https://api-docs.groundtruth.com/dmamodel-4985364d0.md): 
+- [DOOHCreativeApprovalStatusLabel](https://api-docs.groundtruth.com/doohcreativeapprovalstatuslabel-14952135d0.md): 
+- [DMAsModel](https://api-docs.groundtruth.com/dmasmodel-4985365d0.md): 
+- [DOOHAdgroupsModel](https://api-docs.groundtruth.com/doohadgroupsmodel-7536793d0.md): 
+- [DOOHCreativeFormat](https://api-docs.groundtruth.com/doohcreativeformat-7536794d0.md): 
+- [DOOHDistanceUnit](https://api-docs.groundtruth.com/doohdistanceunit-14952136d0.md): 
+- [DOOHGeoCityModel](https://api-docs.groundtruth.com/doohgeocitymodel-7536795d0.md): 
+- [DOOHGeoCountyModel](https://api-docs.groundtruth.com/doohgeocountymodel-7536796d0.md): 
+- [DOOHGeoDmaModel](https://api-docs.groundtruth.com/doohgeodmamodel-7536797d0.md): 
+- [DOOHAdgroupIDsModel](https://api-docs.groundtruth.com/doohadgroupidsmodel-17010020d0.md): 
+- [DOOHGeoLocationGroupModel](https://api-docs.groundtruth.com/doohgeolocationgroupmodel-7536798d0.md): 
+- [DOOHGeoStateModel](https://api-docs.groundtruth.com/doohgeostatemodel-7536799d0.md): 
+- [DOOHGeoZipcodeModel](https://api-docs.groundtruth.com/doohgeozipcodemodel-7536800d0.md): 
+- [DOOHMetadataModel](https://api-docs.groundtruth.com/doohmetadatamodel-14952137d0.md): 
+- [DOOHPlanDataModel](https://api-docs.groundtruth.com/doohplandatamodel-7536802d0.md): 
+- [DOOHPublisherModel](https://api-docs.groundtruth.com/doohpublishermodel-8667098d0.md): 
+- [DOOHVenueTypeModel](https://api-docs.groundtruth.com/doohvenuetypemodel-7536803d0.md): 
+- [DailyMetricsAdgroupModel](https://api-docs.groundtruth.com/dailymetricsadgroupmodel-12450192d0.md): 
+- [DailyMetricsCampaignAdgroupsModel](https://api-docs.groundtruth.com/dailymetricscampaignadgroupsmodel-12966665d0.md): 
+- [DailyMetricsCampaignAdgroupsResponseModel](https://api-docs.groundtruth.com/dailymetricscampaignadgroupsresponsemodel-12966666d0.md): 
+- [DailyMetricsCampaignCreativesModel](https://api-docs.groundtruth.com/dailymetricscampaigncreativesmodel-12966667d0.md): 
+- [DailyMetricsCampaignModel](https://api-docs.groundtruth.com/dailymetricscampaignmodel-12450193d0.md): 
+- [DailyMetricsCreativeModel](https://api-docs.groundtruth.com/dailymetricscreativemodel-12450194d0.md): 
+- [DartBillingAccount](https://api-docs.groundtruth.com/dartbillingaccount-4985366d0.md): 
+- [DemographicsPartialAgeModel](https://api-docs.groundtruth.com/demographicspartialagemodel-13631003d0.md): 
+- [DemographicsPartialGenderModel](https://api-docs.groundtruth.com/demographicspartialgendermodel-13631004d0.md): 
+- [DetailedAudienceCategory](https://api-docs.groundtruth.com/detailedaudiencecategory-4985367d0.md): 
+- [DoohCampaignV1PaginationModel](https://api-docs.groundtruth.com/doohcampaignv1paginationmodel-14952138d0.md): 
+- [DoohCampaignV1ResponseModel](https://api-docs.groundtruth.com/doohcampaignv1responsemodel-14952139d0.md): 
+- [DoohCampaignV1RowMetricsModel](https://api-docs.groundtruth.com/doohcampaignv1rowmetricsmodel-14952140d0.md): 
+- [DoohCampaignV1RowModel](https://api-docs.groundtruth.com/doohcampaignv1rowmodel-14952141d0.md): 
+- [DoohCampaignV1SummaryModel](https://api-docs.groundtruth.com/doohcampaignv1summarymodel-14952142d0.md): 
+- [DoohPublisherCampaignResponseModel](https://api-docs.groundtruth.com/doohpublishercampaignresponsemodel-14952143d0.md): 
+- [DoohPublisherCampaignSortByFieldName](https://api-docs.groundtruth.com/doohpublishercampaignsortbyfieldname-13631006d0.md): 
+- [DoohVenueTypeCampaignModel](https://api-docs.groundtruth.com/doohvenuetypecampaignmodel-13631007d0.md): 
+- [DoohVenueTypeCampaignSortByFieldName](https://api-docs.groundtruth.com/doohvenuetypecampaignsortbyfieldname-13631008d0.md): 
+- [DowMetricsAdgroupModel](https://api-docs.groundtruth.com/dowmetricsadgroupmodel-14952144d0.md): 
+- [DowMetricsCampaignModel](https://api-docs.groundtruth.com/dowmetricscampaignmodel-14952145d0.md): 
+- [DowMetricsCreativeModel](https://api-docs.groundtruth.com/dowmetricscreativemodel-14952146d0.md): 
+- [DowTodDataType](https://api-docs.groundtruth.com/dowtoddatatype-14117419d0.md): 
+- [DriveToLocationModel](https://api-docs.groundtruth.com/drivetolocationmodel-8819335d0.md): 
+- [DriveToLocationType](https://api-docs.groundtruth.com/drivetolocationtype-8819336d0.md): 
+- [DriveToLocationsSearchResult](https://api-docs.groundtruth.com/drivetolocationssearchresult-12450195d0.md): 
+- [ErrorModel](https://api-docs.groundtruth.com/errormodel-4985368d0.md): 
+- [ErrorResponseModel](https://api-docs.groundtruth.com/errorresponsemodel-4985369d0.md): 
+- [ExchangeBidType](https://api-docs.groundtruth.com/exchangebidtype-15707511d0.md): 
+- [FootTrafficAttributionDefaultFields](https://api-docs.groundtruth.com/foottrafficattributiondefaultfields-8415690d0.md): 
+- [FootTrafficAttributionDetailedFilterModel](https://api-docs.groundtruth.com/foottrafficattributiondetailedfiltermodel-10184860d0.md): 
+- [FootTrafficAttributionDetailedModel](https://api-docs.groundtruth.com/foottrafficattributiondetailedmodel-10184861d0.md): 
+- [FootTrafficAttributionDetailedRequestModel](https://api-docs.groundtruth.com/foottrafficattributiondetailedrequestmodel-10184862d0.md): 
+- [FootTrafficAttributionFieldName](https://api-docs.groundtruth.com/foottrafficattributionfieldname-8244607d0.md): 
+- [FootTrafficAttributionFilterModel](https://api-docs.groundtruth.com/foottrafficattributionfiltermodel-8244608d0.md): 
+- [ExportCampaignsDashboardRequestModel](https://api-docs.groundtruth.com/exportcampaignsdashboardrequestmodel-17010021d0.md): 
+- [FootTrafficAttributionGroupByFieldName](https://api-docs.groundtruth.com/foottrafficattributiongroupbyfieldname-8244609d0.md): 
+- [FootTrafficAttributionModel](https://api-docs.groundtruth.com/foottrafficattributionmodel-8244610d0.md): 
+- [FootTrafficAttributionRequestModel](https://api-docs.groundtruth.com/foottrafficattributionrequestmodel-8244611d0.md): 
+- [FootTrafficAttributionV2DetailedModel](https://api-docs.groundtruth.com/foottrafficattributionv2detailedmodel-9555016d0.md): 
+- [FootTrafficAttributionV2OrderSummaryModel](https://api-docs.groundtruth.com/foottrafficattributionv2ordersummarymodel-9555017d0.md): 
+- [FpPoitagAdgroupResponseModel](https://api-docs.groundtruth.com/fppoitagadgroupresponsemodel-15707512d0.md): 
+- [FpPoitagCampaignResponseModel](https://api-docs.groundtruth.com/fppoitagcampaignresponsemodel-15707513d0.md): 
+- [GTLandingPagePageOverlayAction](https://api-docs.groundtruth.com/gtlandingpagepageoverlayaction-13631009d0.md): 
+- [Gender](https://api-docs.groundtruth.com/gender-4985370d0.md): 
+- [GetDailyMetricsAdgroupResponseModel](https://api-docs.groundtruth.com/getdailymetricsadgroupresponsemodel-12450196d0.md): 
+- [GetDailyMetricsCampaignResponseModel](https://api-docs.groundtruth.com/getdailymetricscampaignresponsemodel-12450197d0.md): 
+- [GetDailyMetricsCreativeResponseModel](https://api-docs.groundtruth.com/getdailymetricscreativeresponsemodel-12450198d0.md): 
+- [Group](https://api-docs.groundtruth.com/group-4985371d0.md): 
+- [HTTPValidationError](https://api-docs.groundtruth.com/httpvalidationerror-4985372d0.md): 
+- [IABCategoriesResponseModel](https://api-docs.groundtruth.com/iabcategoriesresponsemodel-8415691d0.md): 
+- [IABCategoryModel](https://api-docs.groundtruth.com/iabcategorymodel-8415692d0.md): 
+- [ImageLandingPage](https://api-docs.groundtruth.com/imagelandingpage-13631010d0.md): 
+- [ImageLandingPage-Input](https://api-docs.groundtruth.com/imagelandingpage-16521754d0.md): 
+- [ImageLandingPage-Output](https://api-docs.groundtruth.com/imagelandingpage-16521755d0.md): 
+- [ImpMembershipBreakdownAdgroupModel](https://api-docs.groundtruth.com/impmembershipbreakdownadgroupmodel-14952147d0.md): 
+- [ImpMembershipBreakdownCampaignModel](https://api-docs.groundtruth.com/impmembershipbreakdowncampaignmodel-14117420d0.md): 
+- [ImpMembershipBreakdownKey](https://api-docs.groundtruth.com/impmembershipbreakdownkey-14117421d0.md): 
+- [IncomeRange](https://api-docs.groundtruth.com/incomerange-4985373d0.md): 
+- [IncrementalVisitsAdgroupModel](https://api-docs.groundtruth.com/incrementalvisitsadgroupmodel-14952148d0.md): 
+- [IncrementalVisitsCampaignAdgroupModel](https://api-docs.groundtruth.com/incrementalvisitscampaignadgroupmodel-14952149d0.md): 
+- [IncrementalVisitsCampaignModel](https://api-docs.groundtruth.com/incrementalvisitscampaignmodel-14117422d0.md): 
+- [IncrementalVisitsCreativeModel](https://api-docs.groundtruth.com/incrementalvisitscreativemodel-14117423d0.md): 
+- [IntegrationReport](https://api-docs.groundtruth.com/integrationreport-15707514d0.md): 
+- [JobModel](https://api-docs.groundtruth.com/jobmodel-9555018d0.md): 
+- [JobStatus](https://api-docs.groundtruth.com/jobstatus-10862912d0.md): 
+- [JobsModel](https://api-docs.groundtruth.com/jobsmodel-10862913d0.md): 
+- [Language](https://api-docs.groundtruth.com/language-10423602d0.md): 
+- [LocationFilterSearchResult](https://api-docs.groundtruth.com/locationfiltersearchresult-10361497d0.md): 
+- [LocationFilterSearchResultModel](https://api-docs.groundtruth.com/locationfiltersearchresultmodel-16477953d0.md): 
+- [LocationFilterType](https://api-docs.groundtruth.com/locationfiltertype-4985375d0.md): 
+- [LocationFiltersModel](https://api-docs.groundtruth.com/locationfiltersmodel-12450199d0.md): 
+- [LocationGroupBuildStatus](https://api-docs.groundtruth.com/locationgroupbuildstatus-14952150d0.md): 
+- [LocationFilterModel-Input](https://api-docs.groundtruth.com/locationfiltermodel-12966668d0.md): 
+- [LocationGroupResult](https://api-docs.groundtruth.com/locationgroupresult-12966670d0.md): 
+- [LocationGroupType](https://api-docs.groundtruth.com/locationgrouptype-12450201d0.md): 
+- [LocationFilterModel-Output](https://api-docs.groundtruth.com/locationfiltermodel-12966669d0.md): 
+- [LocationImpressionAdgroupModel](https://api-docs.groundtruth.com/locationimpressionadgroupmodel-15707515d0.md): 
+- [LocationImpressionCampaignModel](https://api-docs.groundtruth.com/locationimpressioncampaignmodel-15707516d0.md): 
+- [LocationVisitAdgroupModel](https://api-docs.groundtruth.com/locationvisitadgroupmodel-15707517d0.md): 
+- [LocationVisitCampaignModel](https://api-docs.groundtruth.com/locationvisitcampaignmodel-15707518d0.md): 
+- [LookalikeAudienceScale](https://api-docs.groundtruth.com/lookalikeaudiencescale-4985376d0.md): 
+- [MarketShareCampaignModel](https://api-docs.groundtruth.com/marketsharecampaignmodel-12966671d0.md): 
+- [MediaType](https://api-docs.groundtruth.com/mediatype-4985377d0.md): 
+- [MobileCarrierCode](https://api-docs.groundtruth.com/mobilecarriercode-15707519d0.md): 
+- [MobileCarrierModel](https://api-docs.groundtruth.com/mobilecarriermodel-4985378d0.md): 
+- [MobileCarriersModel](https://api-docs.groundtruth.com/mobilecarriersmodel-4985379d0.md): 
+- [MobileCategoryAdgroupModel](https://api-docs.groundtruth.com/mobilecategoryadgroupmodel-9555019d0.md): 
+- [MobileCategoryCampaignAllAdgroupsModel](https://api-docs.groundtruth.com/mobilecategorycampaignalladgroupsmodel-9555020d0.md): 
+- [MobileCategoryCampaignModel](https://api-docs.groundtruth.com/mobilecategorycampaignmodel-9555021d0.md): 
+- [MobileCategoryFieldName](https://api-docs.groundtruth.com/mobilecategoryfieldname-9555022d0.md): 
+- [MultiPatchCreativeModel](https://api-docs.groundtruth.com/multipatchcreativemodel-15707520d0.md): 
+- [NeighborhoodModel](https://api-docs.groundtruth.com/neighborhoodmodel-12450202d0.md): 
+- [NeighborhoodSearchResult](https://api-docs.groundtruth.com/neighborhoodsearchresult-12450203d0.md): 
+- [NeighborhoodTargetType](https://api-docs.groundtruth.com/neighborhoodtargettype-12450204d0.md): 
+- [NeighborhoodType](https://api-docs.groundtruth.com/neighborhoodtype-12450205d0.md): 
+- [Objective](https://api-docs.groundtruth.com/objective-10862914d0.md): 
+- [OnPremiseLocationModel](https://api-docs.groundtruth.com/onpremiselocationmodel-12966672d0.md): 
+- [OnPremiseLocationSearchResult](https://api-docs.groundtruth.com/onpremiselocationsearchresult-12450206d0.md): 
+- [OnPremiseLocationType](https://api-docs.groundtruth.com/onpremiselocationtype-12450207d0.md): 
+- [OperatingSystem](https://api-docs.groundtruth.com/operatingsystem-12450208d0.md): 
+- [OptimizationStrategy](https://api-docs.groundtruth.com/optimizationstrategy-4985380d0.md): 
+- [OrderModel](https://api-docs.groundtruth.com/ordermodel-4985381d0.md): 
+- [OrdersModel](https://api-docs.groundtruth.com/ordersmodel-4985382d0.md): 
+- [OrganizationModel](https://api-docs.groundtruth.com/organizationmodel-4985383d0.md): 
+- [OrganizationSearchResult](https://api-docs.groundtruth.com/organizationsearchresult-9555023d0.md): 
+- [OrganizationsModel](https://api-docs.groundtruth.com/organizationsmodel-4985384d0.md): 
+- [POIPolygonModel](https://api-docs.groundtruth.com/poipolygonmodel-5036253d0.md): 
+- [POISourceSearchBrandModel](https://api-docs.groundtruth.com/poisourcesearchbrandmodel-16477954d0.md): 
+- [POISourceSearchCategoryModel](https://api-docs.groundtruth.com/poisourcesearchcategorymodel-16477955d0.md): 
+- [POISourceSearchLocationGroupModel](https://api-docs.groundtruth.com/poisourcesearchlocationgroupmodel-16477956d0.md): 
+- [POISourceSearchPOIModel](https://api-docs.groundtruth.com/poisourcesearchpoimodel-16477957d0.md): 
+- [POISourceType](https://api-docs.groundtruth.com/poisourcetype-16477958d0.md): 
+- [PacingMode](https://api-docs.groundtruth.com/pacingmode-14952151d0.md): 
+- [PaginatedCreativeAssetsModel](https://api-docs.groundtruth.com/paginatedcreativeassetsmodel-14952152d0.md): 
+- [PatchCreativeModel](https://api-docs.groundtruth.com/patchcreativemodel-10423603d0.md): 
+- [PatchCreativesModel](https://api-docs.groundtruth.com/patchcreativesmodel-15707521d0.md): 
+- [PaymentType](https://api-docs.groundtruth.com/paymenttype-4985385d0.md): 
+- [PerformanceDistributionAdgroupModel](https://api-docs.groundtruth.com/performancedistributionadgroupmodel-14952153d0.md): 
+- [PerformanceDistributionCampaignModel](https://api-docs.groundtruth.com/performancedistributioncampaignmodel-15707522d0.md): 
+- [PatchAdgroupModel](https://api-docs.groundtruth.com/patchadgroupmodel-9555024d0.md): 
+- [PerformanceDistributionKey](https://api-docs.groundtruth.com/performancedistributionkey-14952154d0.md): 
+- [PixelCampaignFieldName](https://api-docs.groundtruth.com/pixelcampaignfieldname-12450209d0.md): 
+- [PixelConversionModel](https://api-docs.groundtruth.com/pixelconversionmodel-12450210d0.md): 
+- [ProductInsightsCampaignAdgroupsModel](https://api-docs.groundtruth.com/productinsightscampaignadgroupsmodel-12966673d0.md): 
+- [ProductInsightsCampaignCreativesModel](https://api-docs.groundtruth.com/productinsightscampaigncreativesmodel-12966674d0.md): 
+- [ProductInsightsCampaignFieldName](https://api-docs.groundtruth.com/productinsightscampaignfieldname-4985386d0.md): 
+- [ProductInsightsCampaignModel](https://api-docs.groundtruth.com/productinsightscampaignmodel-4985387d0.md): 
+- [ProximityMode](https://api-docs.groundtruth.com/proximitymode-12966675d0.md): 
+- [PublisherCategoriesModel](https://api-docs.groundtruth.com/publishercategoriesmodel-4985388d0.md): 
+- [PublisherDomainModel](https://api-docs.groundtruth.com/publisherdomainmodel-14952155d0.md): 
+- [PublisherModel](https://api-docs.groundtruth.com/publishermodel-15707523d0.md): 
+- [RecommendationCountModel](https://api-docs.groundtruth.com/recommendationcountmodel-9555025d0.md): 
+- [RecommendationCountRequestModel](https://api-docs.groundtruth.com/recommendationcountrequestmodel-9555026d0.md): 
+- [RecommendationModel](https://api-docs.groundtruth.com/recommendationmodel-8244612d0.md): 
+- [RecommendationStatus](https://api-docs.groundtruth.com/recommendationstatus-8244613d0.md): 
+- [RecommendationsModel](https://api-docs.groundtruth.com/recommendationsmodel-8244614d0.md): 
+- [PublisherTier](https://api-docs.groundtruth.com/publishertier-17010022d0.md): 
+- [SearchAccountsRequestModel](https://api-docs.groundtruth.com/searchaccountsrequestmodel-9555027d0.md): 
+- [PublishersModel](https://api-docs.groundtruth.com/publishersmodel-15707524d0.md): 
+- [SearchAccountsResultsModel](https://api-docs.groundtruth.com/searchaccountsresultsmodel-9555028d0.md): 
+- [SearchAdPackagesResultsModel](https://api-docs.groundtruth.com/searchadpackagesresultsmodel-13631011d0.md): 
+- [SearchAdgroupsRequestModel](https://api-docs.groundtruth.com/searchadgroupsrequestmodel-9555029d0.md): 
+- [SearchAdgroupsResultsModel](https://api-docs.groundtruth.com/searchadgroupsresultsmodel-9555030d0.md): 
+- [SearchAudiencesRequestModel](https://api-docs.groundtruth.com/searchaudiencesrequestmodel-10361498d0.md): 
+- [SearchAudiencesResultsModel](https://api-docs.groundtruth.com/searchaudiencesresultsmodel-10361499d0.md): 
+- [SearchCampaignsRequestModel](https://api-docs.groundtruth.com/searchcampaignsrequestmodel-9555031d0.md): 
+- [SearchCampaignsResultsModel](https://api-docs.groundtruth.com/searchcampaignsresultsmodel-9555032d0.md): 
+- [SearchCreativesRequestModel](https://api-docs.groundtruth.com/searchcreativesrequestmodel-9555033d0.md): 
+- [SearchCreativesResultsModel](https://api-docs.groundtruth.com/searchcreativesresultsmodel-9555034d0.md): 
+- [SearchDriveToLocationsRequestModel](https://api-docs.groundtruth.com/searchdrivetolocationsrequestmodel-12450211d0.md): 
+- [SearchLocationFiltersRequestModel](https://api-docs.groundtruth.com/searchlocationfiltersrequestmodel-10361500d0.md): 
+- [SearchLocationFiltersResultsModel](https://api-docs.groundtruth.com/searchlocationfiltersresultsmodel-10361501d0.md): 
+- [SearchLocationGroupsRequestModel](https://api-docs.groundtruth.com/searchlocationgroupsrequestmodel-12966676d0.md): 
+- [SearchLocationGroupsResultsModel](https://api-docs.groundtruth.com/searchlocationgroupsresultsmodel-12966677d0.md): 
+- [SearchNeighborhoodsRequestModel](https://api-docs.groundtruth.com/searchneighborhoodsrequestmodel-12450212d0.md): 
+- [SearchOnPremiseLocationsRequestModel](https://api-docs.groundtruth.com/searchonpremiselocationsrequestmodel-12450213d0.md): 
+- [SearchOrganizationsResultsModel](https://api-docs.groundtruth.com/searchorganizationsresultsmodel-9555035d0.md): 
+- [SearchPOISourcesCountItemModel](https://api-docs.groundtruth.com/searchpoisourcescountitemmodel-16477959d0.md): 
+- [SearchPOISourcesCountResponseModel](https://api-docs.groundtruth.com/searchpoisourcescountresponsemodel-16477960d0.md): 
+- [SearchLocationGroupPOIsPositionModel](https://api-docs.groundtruth.com/searchlocationgrouppoispositionmodel-17010023d0.md): 
+- [SearchPOISourcesPreviewItemModel](https://api-docs.groundtruth.com/searchpoisourcespreviewitemmodel-16477961d0.md): 
+- [SearchLocationGroupPOIsRequestModel](https://api-docs.groundtruth.com/searchlocationgrouppoisrequestmodel-17010024d0.md): 
+- [SearchPOISourcesPreviewPOIsRequestModel](https://api-docs.groundtruth.com/searchpoisourcespreviewpoisrequestmodel-16477962d0.md): 
+- [SearchLocationGroupPOIsResponseModel](https://api-docs.groundtruth.com/searchlocationgrouppoisresponsemodel-17010025d0.md): 
+- [SearchPOISourcesPreviewResponseModel](https://api-docs.groundtruth.com/searchpoisourcespreviewresponsemodel-16477963d0.md): 
+- [SearchLocationGroupPOIsResultModel](https://api-docs.groundtruth.com/searchlocationgrouppoisresultmodel-17010026d0.md): 
+- [SearchPOISourcesRequestModel](https://api-docs.groundtruth.com/searchpoisourcesrequestmodel-16477964d0.md): 
+- [SearchPOISourcesResponseModel](https://api-docs.groundtruth.com/searchpoisourcesresponsemodel-16477965d0.md): 
+- [SearchPOIsCityLocationFilterResponseModel](https://api-docs.groundtruth.com/searchpoiscitylocationfilterresponsemodel-16477966d0.md): 
+- [SearchPOIsDMALocationFilterResponseModel](https://api-docs.groundtruth.com/searchpoisdmalocationfilterresponsemodel-16477967d0.md): 
+- [SearchPOIsLocationFiltersResponseModel](https://api-docs.groundtruth.com/searchpoislocationfiltersresponsemodel-16477968d0.md): 
+- [SearchPOIsStateLocationFilterResponseModel](https://api-docs.groundtruth.com/searchpoisstatelocationfilterresponsemodel-16477969d0.md): 
+- [SearchPOIsZipCodeLocationFilterResponseModel](https://api-docs.groundtruth.com/searchpoiszipcodelocationfilterresponsemodel-16477970d0.md): 
+- [SearchRequestModel](https://api-docs.groundtruth.com/searchrequestmodel-9555036d0.md): 
+- [SearchTenantsResultsModel](https://api-docs.groundtruth.com/searchtenantsresultsmodel-9555037d0.md): 
+- [SignupModel](https://api-docs.groundtruth.com/signupmodel-4985392d0.md): 
+- [SignupResponseModel](https://api-docs.groundtruth.com/signupresponsemodel-4985393d0.md): 
+- [SortOrder](https://api-docs.groundtruth.com/sortorder-4985394d0.md): 
+- [StandardSuperLandingPage](https://api-docs.groundtruth.com/standardsuperlandingpage-13631012d0.md): 
+- [StandardSuperLandingPage-Input](https://api-docs.groundtruth.com/standardsuperlandingpage-16521756d0.md): 
+- [StandardSuperLandingPage-Output](https://api-docs.groundtruth.com/standardsuperlandingpage-16521757d0.md): 
+- [StateModel](https://api-docs.groundtruth.com/statemodel-4985395d0.md): 
+- [StatesModel](https://api-docs.groundtruth.com/statesmodel-4985396d0.md): 
+- [Status](https://api-docs.groundtruth.com/status-4985397d0.md): 
+- [StreamingVideoContentCategoriesModel](https://api-docs.groundtruth.com/streamingvideocontentcategoriesmodel-9555038d0.md): 
+- [Sensitivity](https://api-docs.groundtruth.com/sensitivity-4985391d0.md): 
+- [SuccessResponseModel](https://api-docs.groundtruth.com/successresponsemodel-12450214d0.md): 
+- [SupplySystemDistributionCampaignModel](https://api-docs.groundtruth.com/supplysystemdistributioncampaignmodel-14117424d0.md): 
+- [SupplySystemDistributionKey](https://api-docs.groundtruth.com/supplysystemdistributionkey-14117425d0.md): 
+- [TargetingTactic](https://api-docs.groundtruth.com/targetingtactic-4985399d0.md): 
+- [TenantModel](https://api-docs.groundtruth.com/tenantmodel-4985400d0.md): 
+- [TenantSearchResult](https://api-docs.groundtruth.com/tenantsearchresult-9555040d0.md): 
+- [TextBannerCreativeSettings](https://api-docs.groundtruth.com/textbannercreativesettings-15707525d0.md): 
+- [TenantType](https://api-docs.groundtruth.com/tenanttype-4985401d0.md): 
+- [TextBannerCreativeSettings-Input](https://api-docs.groundtruth.com/textbannercreativesettings-16521758d0.md): 
+- [TextBannerCreativeSettings-Output](https://api-docs.groundtruth.com/textbannercreativesettings-16521759d0.md): 
+- [ThirdPartyAudienceStatus](https://api-docs.groundtruth.com/thirdpartyaudiencestatus-16477971d0.md): 
+- [TimeseriesDowAdgroupModel](https://api-docs.groundtruth.com/timeseriesdowadgroupmodel-14117426d0.md): 
+- [TimeseriesDowCampaignAdgroupsModel](https://api-docs.groundtruth.com/timeseriesdowcampaignadgroupsmodel-14117427d0.md): 
+- [TimeseriesDowCampaignCreativesModel](https://api-docs.groundtruth.com/timeseriesdowcampaigncreativesmodel-14117428d0.md): 
+- [TimeseriesDowCampaignModel](https://api-docs.groundtruth.com/timeseriesdowcampaignmodel-4985402d0.md): 
+- [TimeseriesDowCreativeModel](https://api-docs.groundtruth.com/timeseriesdowcreativemodel-14952156d0.md): 
+- [TimeseriesDowDataType](https://api-docs.groundtruth.com/timeseriesdowdatatype-14952157d0.md): 
+- [TimeseriesDowDayLabel](https://api-docs.groundtruth.com/timeseriesdowdaylabel-14117429d0.md): 
+- [TimeseriesDowTodAdgroupModel](https://api-docs.groundtruth.com/timeseriesdowtodadgroupmodel-14117430d0.md): 
+- [TimeseriesDowTodCampaignAdgroupsModel](https://api-docs.groundtruth.com/timeseriesdowtodcampaignadgroupsmodel-14952158d0.md): 
+- [TimeseriesDowTodCampaignCreativesModel](https://api-docs.groundtruth.com/timeseriesdowtodcampaigncreativesmodel-14952159d0.md): 
+- [TimeseriesDowTodCampaignModel](https://api-docs.groundtruth.com/timeseriesdowtodcampaignmodel-14117431d0.md): 
+- [TimeseriesDowTodCreativeModel](https://api-docs.groundtruth.com/timeseriesdowtodcreativemodel-14117432d0.md): 
+- [TimeseriesTodAdgroupModel](https://api-docs.groundtruth.com/timeseriestodadgroupmodel-14117433d0.md): 
+- [TimeseriesTodCampaignAdgroupChartModel](https://api-docs.groundtruth.com/timeseriestodcampaignadgroupchartmodel-14117434d0.md): 
+- [TimeseriesTodCampaignChartModel](https://api-docs.groundtruth.com/timeseriestodcampaignchartmodel-14117435d0.md): 
+- [TimeseriesTodCampaignCreativesChartModel](https://api-docs.groundtruth.com/timeseriestodcampaigncreativeschartmodel-14117436d0.md): 
+- [Timezone](https://api-docs.groundtruth.com/timezone-4985403d0.md): 
+- [TodMetricsAdgroupModel](https://api-docs.groundtruth.com/todmetricsadgroupmodel-14117437d0.md): 
+- [TodMetricsCampaignModel](https://api-docs.groundtruth.com/todmetricscampaignmodel-15707526d0.md): 
+- [TopImpLocationsAdgroupFieldName](https://api-docs.groundtruth.com/topimplocationsadgroupfieldname-13631013d0.md): 
+- [TopImpLocationsAdgroupMetricName](https://api-docs.groundtruth.com/topimplocationsadgroupmetricname-13631014d0.md): 
+- [TopImpLocationsAdgroupModel](https://api-docs.groundtruth.com/topimplocationsadgroupmodel-13631015d0.md): 
+- [TopImpLocationsCampaignModel](https://api-docs.groundtruth.com/topimplocationscampaignmodel-14117438d0.md): 
+- [TopLocationsAdgroupModel](https://api-docs.groundtruth.com/toplocationsadgroupmodel-14117439d0.md): 
+- [TopLocationsCampaignFieldName](https://api-docs.groundtruth.com/toplocationscampaignfieldname-13631016d0.md): 
+- [TopLocationsCampaignModel](https://api-docs.groundtruth.com/toplocationscampaignmodel-13631017d0.md): 
+- [TopLocationsMetricName](https://api-docs.groundtruth.com/toplocationsmetricname-13631018d0.md): 
+- [TopSVLocationsAdgroupModel](https://api-docs.groundtruth.com/topsvlocationsadgroupmodel-13631019d0.md): 
+- [TopSVLocationsCampaignFieldName](https://api-docs.groundtruth.com/topsvlocationscampaignfieldname-5036254d0.md): 
+- [TopSVLocationsCampaignModel](https://api-docs.groundtruth.com/topsvlocationscampaignmodel-4985404d0.md): 
+- [TotalAttributedVisitsAdgroupModel](https://api-docs.groundtruth.com/totalattributedvisitsadgroupmodel-14952160d0.md): 
+- [TotalAttributedVisitsModel](https://api-docs.groundtruth.com/totalattributedvisitsmodel-14952161d0.md): 
+- [TotalsCampaignCreativesModel](https://api-docs.groundtruth.com/totalscampaigncreativesmodel-4985405d0.md): 
+- [TotalsCampaignModel](https://api-docs.groundtruth.com/totalscampaignmodel-4985406d0.md): 
+- [TrackingPixelModel](https://api-docs.groundtruth.com/trackingpixelmodel-12966678d0.md): 
+- [UpdateAccountModel](https://api-docs.groundtruth.com/updateaccountmodel-4985407d0.md): 
+- [UpdateCampaignModel](https://api-docs.groundtruth.com/updatecampaignmodel-4985408d0.md): 
+- [UpdateTenantModel](https://api-docs.groundtruth.com/updatetenantmodel-4985409d0.md): 
+- [UpdateUserModel](https://api-docs.groundtruth.com/updateusermodel-4985410d0.md): 
+- [UploadJobType](https://api-docs.groundtruth.com/uploadjobtype-10862915d0.md): 
+- [UploadResponseModel](https://api-docs.groundtruth.com/uploadresponsemodel-9555041d0.md): 
+- [UploadType](https://api-docs.groundtruth.com/uploadtype-9555042d0.md): 
+- [TotalsTenantRequestModel](https://api-docs.groundtruth.com/totalstenantrequestmodel-13631020d0.md): 
+- [UserModel](https://api-docs.groundtruth.com/usermodel-4985411d0.md): 
+- [TotalsTenantResponseModel](https://api-docs.groundtruth.com/totalstenantresponsemodel-17010027d0.md): 
+- [UserStatus](https://api-docs.groundtruth.com/userstatus-4985412d0.md): 
+- [UserinsightVisitModel](https://api-docs.groundtruth.com/userinsightvisitmodel-14117440d0.md): 
+- [UsersModel](https://api-docs.groundtruth.com/usersmodel-4985413d0.md): 
+- [UpdateAdgroupModel](https://api-docs.groundtruth.com/updateadgroupmodel-8667100d0.md): 
+- [ValidationError](https://api-docs.groundtruth.com/validationerror-4985414d0.md): 
+- [VersionModel](https://api-docs.groundtruth.com/versionmodel-4985415d0.md): 
+- [UpdateCreativeModel](https://api-docs.groundtruth.com/updatecreativemodel-8667101d0.md): 
+- [VisitMembershipBreakdownAdgroupModel](https://api-docs.groundtruth.com/visitmembershipbreakdownadgroupmodel-14117441d0.md): 
+- [VisitMembershipBreakdownCampaignModel](https://api-docs.groundtruth.com/visitmembershipbreakdowncampaignmodel-14117442d0.md): 
+- [VisitMembershipBreakdownKey](https://api-docs.groundtruth.com/visitmembershipbreakdownkey-14117443d0.md): 
+- [VisitationLagWindowModel](https://api-docs.groundtruth.com/visitationlagwindowmodel-4985416d0.md): 
+- [VisitationSVLCampaignModel](https://api-docs.groundtruth.com/visitationsvlcampaignmodel-14117444d0.md): 
+- [app__api__models__LocationGroupMetadata](https://api-docs.groundtruth.com/locationgroupmetadata-13631022d0.md): 
+- [app__api__routes__adgroups__constants__AudienceType](https://api-docs.groundtruth.com/audiencetype-4985417d0.md): 
+- [app__api__routes__adgroups__models__AudioPodcastTopicModel](https://api-docs.groundtruth.com/audiopodcasttopicmodel-12966679d0.md): 
+- [app__api__routes__adgroups__models__AudioStreamingGenreModel](https://api-docs.groundtruth.com/audiostreaminggenremodel-12966680d0.md): 
+- [app__api__routes__adgroups__models__CTVPremiumCategoryModel](https://api-docs.groundtruth.com/ctvpremiumcategorymodel-9555043d0.md): 
+- [app__api__routes__adgroups__models__PublisherCategoryModel](https://api-docs.groundtruth.com/publishercategorymodel-12966681d0.md): 
+- [app__api__routes__adgroups__models__StreamingVideoContentCategoryModel](https://api-docs.groundtruth.com/streamingvideocontentcategorymodel-12966682d0.md): 
+- [app__api__routes__constants__BidType](https://api-docs.groundtruth.com/bidtype-8819337d0.md): 
+- [WebEngagementAdgroupResponseModel](https://api-docs.groundtruth.com/webengagementadgroupresponsemodel-16477972d0.md): 
+- [app__api__routes__static__models__AudioPodcastTopicModel](https://api-docs.groundtruth.com/audiopodcasttopicmodel-12966683d0.md): 
+- [WebEngagementCampaignResponseModel](https://api-docs.groundtruth.com/webengagementcampaignresponsemodel-13631021d0.md): 
+- [app__api__routes__static__models__AudioStreamingGenreModel](https://api-docs.groundtruth.com/audiostreaminggenremodel-12966684d0.md): 
+- [WebEngagementTotalsAdgroupResponseModel](https://api-docs.groundtruth.com/webengagementtotalsadgroupresponsemodel-16477973d0.md): 
+- [app__api__routes__static__models__CTVPremiumCategoryModel](https://api-docs.groundtruth.com/ctvpremiumcategorymodel-9555044d0.md): 
+- [WebEngagementTotalsCampaignResponseModel](https://api-docs.groundtruth.com/webengagementtotalscampaignresponsemodel-16314732d0.md): 
+- [app__api__routes__static__models__PublisherCategoryModel](https://api-docs.groundtruth.com/publishercategorymodel-12966685d0.md): 
+- [app__api__routes__static__models__StreamingVideoContentCategoryModel](https://api-docs.groundtruth.com/streamingvideocontentcategorymodel-12966686d0.md): 
+- [app__constants__BidType](https://api-docs.groundtruth.com/bidtype-4985419d0.md): 
+- [app__services__audience__types__AudienceType](https://api-docs.groundtruth.com/audiencetype-4985420d0.md): 
+- [app__services__audience__types__LocationGroupMetadata](https://api-docs.groundtruth.com/locationgroupmetadata-13631023d0.md): 
+- [app__api__routes__adgroups__models__PublisherModel](https://api-docs.groundtruth.com/publishermodel-17010028d0.md): 
+- [app__api__routes__static__models__PublisherModel](https://api-docs.groundtruth.com/publishermodel-17010029d0.md): 

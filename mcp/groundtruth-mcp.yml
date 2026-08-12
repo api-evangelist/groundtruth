@@ -1,0 +1,66 @@
+generated: '2026-08-12'
+method: probed
+status: published-gated
+source: https://docs.groundtruth.com/mcp
+server:
+  name: groundtruth-docs
+  transport: http
+  url: https://docs.groundtruth.com/mcp
+  protocol: MCP JSON-RPC over HTTP
+tools: []
+tools_readable: false
+gating:
+  anonymous_tools_list: denied
+  jsonrpc_error:
+    code: -32001
+    message: Authorization required
+  probes:
+  - method: tools/list
+    request: '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+    http_status: 401
+    body: '{"jsonrpc":"2.0","error":{"code":-32001,"message":"Authorization required"},"id":null}'
+  - method: initialize
+    request: '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18",...}}'
+    http_status: 401
+    body: '{"jsonrpc":"2.0","error":{"code":-32001,"message":"Authorization required"},"id":null}'
+  oauth_discovery:
+    '/.well-known/oauth-protected-resource': 404
+    '/.well-known/oauth-protected-resource/mcp': 404
+    '/.well-known/oauth-authorization-server': 404
+  note: >-
+    The endpoint returns an OAuth-style authorization challenge as a JSON-RPC error but publishes no
+    OAuth protected-resource or authorization-server metadata, so an agent cannot discover how to
+    authenticate. The tool list and per-tool inputSchema require authenticated introspection and were
+    NOT read. No tools are listed here, because none were observed — nothing was inferred or invented.
+false_positive_control:
+  test: POST the same tools/list body to https://docs.groundtruth.com/zzz-not-a-real-path
+  result: 404
+  conclusion: >-
+    /mcp is a specifically routed endpoint, not a single-page-app catch-all answering every path.
+    The MCP surface is real.
+provenance_caution: >-
+  This endpoint is served on GroundTruth's own documentation host, but it is the documentation
+  platform's MCP surface (docs.groundtruth.com runs ReadMe, which ships an MCP endpoint per docs
+  site). GroundTruth does not document, link or announce it anywhere on api-docs.groundtruth.com,
+  docs.groundtruth.com or www.groundtruth.com. Recorded from a live probe only.
+related_api_surface:
+  note: >-
+    GroundTruth has no MCP server in front of its actual APIs. An agent that wants to drive the Ads
+    Manager or Reporting APIs today must call REST directly using the paired
+    X-GT-USER-ID / X-GT-API-KEY headers.
+  openapi:
+  - openapi/groundtruth-ads-manager-openapi.yml
+  - openapi/groundtruth-reporting-openapi.yml
+  operations_available_for_tooling: 318
+tool_crosswalk:
+  emitted: false
+  reason: >-
+    A crosswalk binds published MCP tools to backing OpenAPI operationIds. The live tool list is
+    auth-gated and GroundTruth publishes no tool list anywhere else, so there is nothing to bind.
+    Emitting a crosswalk with zero mapped tools and 318 rest_only rows would assert a correspondence
+    that has not been observed. Re-run when tools/list becomes readable.
+gaps_for_the_provider:
+- Publish /.well-known/oauth-protected-resource for the /mcp endpoint so an agent can discover the
+  authorization server instead of receiving a bare -32001.
+- Consider an MCP server in front of the Ads Manager API itself — 318 documented operations across
+  two REST surfaces with no agent-facing tool layer.

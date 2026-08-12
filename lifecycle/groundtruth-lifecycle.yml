@@ -1,0 +1,99 @@
+generated: '2026-08-12'
+method: searched
+source: https://api-docs.groundtruth.com/ + https://api-public.groundtruth.com/openapi.json + https://reporting.groundtruth.com/api + https://api.groundtruth.com/
+versioning:
+- api: GroundTruth Ads Manager Public API
+  scheme: unversioned-path
+  current: '1.0.0'
+  evidence: >-
+    info.version 1.0.0 in the live OpenAPI. No version segment in any of the 237 paths, and no
+    version negotiation header. The API does expose an unauthenticated GET /version operation
+    (operationId get_version, schema VersionModel), so the running build is discoverable at runtime
+    even though the contract is not versioned in the URL.
+- api: Groundtruth Reporting API
+  scheme: uri-path
+  current: v1
+  spec_version: '2.0.0'
+  evidence: All 59 paths are /demand/v1/...; info.version is 2.0.0.
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecated_operations: []
+  evidence: >-
+    Zero operations in either OpenAPI carry `deprecated: true`. No deprecation, sunset or
+    breaking-change policy page exists on api-docs.groundtruth.com, docs.groundtruth.com or
+    www.groundtruth.com. No Deprecation or Sunset (RFC 8594) headers were observed on live
+    responses. No `Deprecation` pointer is emitted in apis.yml — there is no policy to point at.
+  in_contract_deprecation_note: >-
+    One field-level deprecation IS documented: the batch data-partner ingestion doc at
+    docs.groundtruth.com/docs/data-partners states "Note: The country field is deprecated. Country
+    is derived using the coordinates." That is a CSV field, not an API operation.
+status_page:
+  url: null
+  published: false
+  evidence: >-
+    status.groundtruth.com does not serve TLS (connection fails at handshake) and no status page is
+    linked from the site, the help centre or either API reference. No `StatusPage` pointer is
+    emitted in apis.yml.
+sla:
+  url: null
+  published: false
+changelog:
+  published: false
+  note: >-
+    Neither current API publishes a dated changelog. api-docs.groundtruth.com has no changelog page
+    and its sitemap contains exactly one non-endpoint page (Welcome). No `ChangeLog` pointer is
+    emitted.
+  legacy_release_notes:
+    host: https://api.groundtruth.com/
+    title: xAd API Server v1.19.0
+    http_status: 200
+    checked: '2026-08-12'
+    latest_entry: April 12, 2016
+    note: >-
+      The legacy xAd API Server still answers on api.groundtruth.com and serves an HTML page of
+      dated release notes, but the most recent entry is from April 2016 and it links to no reachable
+      documentation ("Please read the API documentation and also apply for an access key" — /docs,
+      /api, /v1, /swagger.json all 404). It is a decade-stale surface for a predecessor API and is
+      deliberately NOT wired as a ChangeLog pointer, because doing so would credit the current API
+      with a changelog it does not have.
+contract_drift:
+  finding: >-
+    The published reference documents 11 operations the live API does not serve. Every one of the
+    259 operations in https://api-public.groundtruth.com/openapi.json is present in the 270-operation
+    surface published at api-docs.groundtruth.com; the reverse is not true.
+  live_operations: 259
+  documented_operations: 270
+  documented_but_not_served:
+  - DELETE /creatives/{creative_id}
+  - GET /dooh/creatives/{creative_id}/dooh_approval_status
+  - GET /reporting/audience/adgroup/{adgroup_id}
+  - GET /reporting/audience/campaign/{campaign_id}
+  - GET /reporting/audience/creative/{creative_id}
+  - GET /reporting/locations/impadgroup/{adgroup_id}
+  - GET /reporting/product_insights/campaign/{campaign_id}/adgroups
+  - GET /static/ctv/content_categories
+  - POST /adgroups/avails
+  - POST /users/activate
+  - POST /users/invite
+  method: >-
+    Diffed the live OpenAPI 3.1.0 against the 270 per-endpoint OpenAPI documents published on
+    api-docs.groundtruth.com (each endpoint page ships a complete standalone OpenAPI document),
+    2026-08-12. Both are provider-published; they disagree.
+hosts:
+- host: api-public.groundtruth.com
+  role: Ads Manager Public API production base
+  status: live
+  evidence: GET /health -> 200 "ok" (2026-08-12), server uvicorn
+- host: reporting.groundtruth.com
+  role: Reporting API production base (AWS API Gateway)
+  status: live
+  evidence: GET /demand/v1/campaign/1/daily -> 401 UnauthorizedException (2026-08-12)
+- host: api.groundtruth.com
+  role: legacy xAd API Server v1.19.0
+  status: stale
+  evidence: 200 HTML, release notes end April 2016
+cross_links:
+  conventions: conventions/groundtruth-conventions.yml
+  conformance: conformance/groundtruth-conformance.yml

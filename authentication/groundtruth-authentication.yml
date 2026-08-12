@@ -1,0 +1,62 @@
+generated: '2026-08-12'
+method: searched
+source: openapi/groundtruth-ads-manager-openapi.yml + openapi/groundtruth-reporting-openapi.yml
+docs: https://api-docs.groundtruth.com/welcome-824669m0
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  model: >-
+    Paired-header API key. Both GroundTruth API surfaces require the SAME two headers together —
+    X-GT-USER-ID (the calling user's identifier) and X-GT-API-KEY (the secret). Neither header is
+    sufficient on its own. There is no OAuth 2.0, OIDC, mutual TLS or bearer-token flow on either
+    surface, and therefore no scope surface (scopes/ is intentionally absent).
+  credential_issuance: >-
+    Not self-serve. The provider's own reference states "API credentials are provided on a request
+    basis", and the help centre directs reporting-API users to contact support to request
+    credentials. There is no signup, key-provisioning or key-rotation endpoint in either spec.
+schemes:
+- name: api-key
+  type: apiKey
+  in: header
+  parameter: X-GT-API-KEY
+  description: Secret API key issued by GroundTruth on request.
+  sources:
+  - openapi/groundtruth-ads-manager-openapi.yml
+  - openapi/groundtruth-reporting-openapi.yml
+- name: user-id
+  type: apiKey
+  in: header
+  parameter: X-GT-USER-ID
+  description: Identifier of the user the key is issued to; sent alongside X-GT-API-KEY.
+  sources:
+  - openapi/groundtruth-ads-manager-openapi.yml
+  - openapi/groundtruth-reporting-openapi.yml
+declared_but_undefined:
+- name: session
+  used_by_operations: 248
+  note: >-
+    248 of the 259 Ads Manager operations list `session` in their `security` requirement, but
+    `session` is NOT defined in components.securitySchemes (only `api-key` and `user-id` are).
+    This is a real defect in the published contract: a generated client cannot resolve the scheme.
+    It most likely refers to the browser session cookie the ads.groundtruth.com console uses.
+    Recorded as observed; not resolved, and not invented.
+observed:
+- probe: GET https://api-public.groundtruth.com/accounts?tenant_id=1&organization_id=1
+  http_status: 401
+  body: '{"errors":[{"code":"UNAUTHENTICATED","message":"Sorry, you need to be authenticated to perform this operation."}]}'
+  fetched: '2026-08-12'
+- probe: GET https://reporting.groundtruth.com/demand/v1/campaign/1/daily
+  http_status: 401
+  header: 'x-amzn-ErrorType: UnauthorizedException'
+  fetched: '2026-08-12'
+unauthenticated_operations:
+  count: 11
+  note: >-
+    11 Ads Manager operations carry no `security` block at all (including GET /health and
+    GET /version). GET https://api-public.groundtruth.com/health returned 200 "ok" anonymously.
+cross_links:
+  conventions: conventions/groundtruth-conventions.yml
+  errors: errors/groundtruth-problem-types.yml
+  conformance: conformance/groundtruth-conformance.yml

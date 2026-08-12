@@ -1,0 +1,82 @@
+generated: '2026-08-12'
+method: derived
+source: openapi/groundtruth-ads-manager-openapi.yml (4xx/5xx responses) + live probe of api-public.groundtruth.com
+docs: https://api-docs.groundtruth.com/
+format: proprietary
+rfc9457: false
+media_type: application/json
+envelope:
+  schema: ErrorResponseModel
+  shape: '{ "errors": [ ErrorModel, ... ] }'
+  member:
+    schema: ErrorModel
+    required: [code, message, fields]
+    properties:
+      code: string — machine-readable constant (e.g. UNAUTHENTICATED)
+      message: string — human-readable sentence
+      fields: array of string, or null — which request fields caused the error
+  note: >-
+    The envelope is an ARRAY of errors, so a single response can carry several. It is not
+    application/problem+json and carries no `type` URI, `title`, `status` or `instance` member,
+    so RFC 9457 tooling will not parse it.
+validation_envelope:
+  schema: HTTPValidationError
+  shape: '{ "detail": [ { "loc": [...], "msg": "...", "type": "..." } ] }'
+  note: >-
+    FastAPI's native validation shape. It coexists with ErrorResponseModel, so a client must be
+    prepared for TWO different error bodies from the same API.
+problems:
+- status: 400
+  title: Bad Request
+  schema: ErrorResponseModel
+  operations: 259
+  remediation: >-
+    Request failed validation. Inspect errors[].fields for the offending parameters. Note that
+    tenant_id is a REQUIRED query parameter on 242 of the 259 operations and is a common cause.
+- status: 401
+  title: Unauthorized
+  schema: ErrorResponseModel
+  operations: 259
+  observed_code: UNAUTHENTICATED
+  observed_body: '{"errors":[{"code":"UNAUTHENTICATED","message":"Sorry, you need to be authenticated to perform this operation."}]}'
+  observed_at: '2026-08-12'
+  observed_url: https://api-public.groundtruth.com/accounts?tenant_id=1&organization_id=1
+  remediation: Send BOTH X-GT-USER-ID and X-GT-API-KEY headers. Neither alone is accepted.
+- status: 403
+  title: Forbidden
+  schema: ErrorResponseModel
+  operations: 259
+  remediation: >-
+    Credentials are valid but not entitled to this tenant/organization/account. Confirm the
+    tenant_id and organization_id belong to the user the key was issued to.
+- status: 404
+  title: Not Found
+  docs_title: Record Not Found
+  schema: ErrorResponseModel
+  operations: 259
+  remediation: The addressed campaign, ad group, creative or account id does not exist in this tenant.
+- status: 500
+  title: Internal Server Error
+  docs_title: Server Error
+  schema: ErrorResponseModel
+  operations: 259
+  remediation: >-
+    Retry with backoff. Capture the x-gt-trace-id response header and quote it to GroundTruth
+    support — it is the only correlation handle the API returns.
+gaps:
+- No 429 response is declared on ANY of the 259 operations, and no rate-limit headers were
+  observed, so a client has no declared contract for throttling.
+- No 409 (conflict) response is declared, and there is no idempotency key, so a retried create
+  has no defined collision behaviour.
+- No 422 response is declared even though HTTPValidationError exists in components.schemas.
+- The published error `code` vocabulary is not documented anywhere; UNAUTHENTICATED is the only
+  constant observed live. There is no error-code reference page on api-docs.groundtruth.com.
+reporting_api:
+  note: >-
+    The Groundtruth Reporting API (openapi/groundtruth-reporting-openapi.yml) declares ONLY 200
+    responses on all 59 operations - no error responses are described at all. Live probing of
+    GET /demand/v1/campaign/1/daily returned HTTP 401 with body {"message":""} and header
+    x-amzn-ErrorType: UnauthorizedException (AWS API Gateway), which the contract does not mention.
+cross_links:
+  conventions: conventions/groundtruth-conventions.yml
+  authentication: authentication/groundtruth-authentication.yml

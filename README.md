@@ -42,6 +42,17 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-GroundTruth is a company surfaced as a portfolio company of emergence-capital, ivp and added to the API Evangelist network as a stub for enrichment. Sector: martech. This profile is a lead awaiting the enrichment pipeline.
+GroundTruth is a location-intelligence performance advertising platform (formerly xAd), surfaced as a
+portfolio company of emergence-capital and ivp. Sector: martech.
+
+GroundTruth publishes **two public REST API surfaces**, both described by first-party OpenAPI documents:
+
+| API | Base | Contract | Operations |
+|---|---|---|---|
+| Ads Manager Public API | `https://api-public.groundtruth.com` | [OpenAPI 3.1.0, live at `/openapi.json`](https://api-public.groundtruth.com/openapi.json), Swagger UI at `/docs`, reference at [api-docs.groundtruth.com](https://api-docs.groundtruth.com/) | 259 |
+| Groundtruth Reporting API | `https://reporting.groundtruth.com` | OpenAPI 3.0.1, loaded by the provider's Swagger UI at [reporting.groundtruth.com/api](https://reporting.groundtruth.com/api) | 59 |
+
+Both authenticate with the **paired** `X-GT-USER-ID` + `X-GT-API-KEY` headers. Credentials are issued
+on request — there is no self-serve signup and no published pricing.
 
 Backed by: emergence-capital, ivp — https://www.groundtruth.com

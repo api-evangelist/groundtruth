@@ -1,0 +1,131 @@
+generated: '2026-08-12'
+method: derived
+source: openapi/groundtruth-ads-manager-openapi.yml + openapi/groundtruth-reporting-openapi.yml + live probes of api-public.groundtruth.com
+summary: >-
+  Cross-cutting request/response semantics for the two GroundTruth REST surfaces, derived from the
+  provider's own OpenAPI documents and confirmed against live unauthenticated probes. GroundTruth
+  does NOT publish an idempotency contract, does NOT emit rate-limit headers, and does NOT use
+  RFC 9457 problem+json — all three are recorded as absent rather than assumed.
+authentication:
+  style: paired_api_key_header
+  headers: [X-GT-USER-ID, X-GT-API-KEY]
+  see: authentication/groundtruth-authentication.yml
+idempotency:
+  documented: false
+  supported: false
+  evidence: >-
+    Zero occurrences of "idempoten" across the live Ads Manager OpenAPI (259 operations), the
+    Reporting OpenAPI (59 operations), and the published api-docs.groundtruth.com llms.txt index.
+    No Idempotency-Key header or parameter exists on any of the 63 write operations
+    (44 POST / 9 PUT / 3 PATCH / 7 DELETE). Retrying a create is not safe.
+  note: >-
+    No `Idempotency` pointer is emitted in apis.yml — the provider has no idempotency contract,
+    and claiming one would be false.
+pagination:
+  style: page-number
+  request_params:
+    limit:
+      default: 10
+      maximum: 100
+      minimum: 1
+      note: Appears on 86 operations.
+    page_num:
+      default: 1
+      minimum: 1
+      note: 1-indexed. Appears on 9 collection operations.
+    sort_by: Field to sort on (60 operations).
+    sort_order:
+      values: [asc, desc]
+      default: asc
+  response_envelope:
+    shape: '{ total_count, limit, page_num, total_pages, has_next_page, has_prev_page, items[] }'
+    examples: [AccountsModel, CampaignsModel, AdgroupsModel, CreativesModel, UsersModel]
+  note: >-
+    Not cursor-based. There is no Link header and no next-page token; a client computes the next
+    request from page_num/total_pages or stops on has_next_page = false.
+field_selection:
+  supported: true
+  style: comma-separated allow-list
+  param: fields
+  scope: reporting operations only (16 operations)
+  note: >-
+    "Comma-separated list of fields to return. If none are provided, all will be returned."
+    Each reporting operation enumerates its own available values in the parameter description.
+    On the time-of-day per-adgroup/per-creative timeseries operations at least one field is required.
+tenancy:
+  required_param: tenant_id
+  scope: 242 of 259 Ads Manager operations
+  note: >-
+    tenant_id is a required QUERY parameter on almost every operation rather than being implied by
+    the credential. Callers must carry tenant, organization and account identifiers explicitly;
+    the hierarchy is tenant > organization > account > campaign > ad group > creative.
+filtering:
+  incremental: updated_since
+  incremental_note: Unix timestamp; limits results to records updated since that time (5 operations).
+  date_range:
+    params: [start_date, end_date]
+    scope: 138 reporting operations
+  geo_bbox:
+    params: [sw_lat, sw_lng, ne_lat, ne_lng]
+    scope: location search operations
+request_tracing:
+  header: x-gt-trace-id
+  direction: response
+  observed: true
+  evidence: >-
+    Returned on every live response observed on 2026-08-12, including GET /health (200) and an
+    unauthenticated GET /accounts (401). Example values b4f49ced, 3dbfaac9, d6257942 - an 8-hex-char
+    trace id. Not declared anywhere in the OpenAPI, so a client only discovers it by observation.
+caching:
+  etag: true
+  evidence: 'ETag returned on live responses (e.g. etag: 72054d9a6fbdcc7df012e19f32345b65 on GET /health).'
+  cache_control: not observed
+error_envelope:
+  format: proprietary
+  rfc9457: false
+  media_type: application/json
+  shape: '{ "errors": [ { "code": "STRING_CONSTANT", "message": "human sentence", "fields": [..] | null } ] }'
+  schema: ErrorResponseModel -> ErrorModel
+  validation_shape: '{ "detail": [ { "loc": [..], "msg": "..", "type": ".." } ] }  # HTTPValidationError'
+  see: errors/groundtruth-problem-types.yml
+rate_limit_signaling:
+  headers: none observed
+  status_on_exhaustion: undocumented
+  see: rate-limits/groundtruth-rate-limits.yml
+versioning:
+  ads_manager:
+    scheme: unversioned-path
+    note: >-
+      Ads Manager paths carry no version segment (/accounts, /campaigns, /adgroups). The spec
+      declares info.version 1.0.0 and the API exposes an unauthenticated GET /version operation,
+      but there is no version negotiation header and no published deprecation policy.
+  reporting:
+    scheme: uri-path
+    current: v1
+    note: All Reporting API paths are /demand/v1/... and info.version is 2.0.0.
+  see: lifecycle/groundtruth-lifecycle.yml
+transport:
+  http_version_constraint: >-
+    The Reporting API's own info.description states "All REST API endpoints currently require
+    HTTP/1.1. Please use HTTP/1.1 (e.g., by adding `--http1.1` in curl commands) to receive a
+    response." The Ads Manager API serves HTTP/2 normally (server: uvicorn).
+  security_headers_observed: [x-frame-options DENY]
+long_running_operations:
+  style: job-polling
+  paths: [/jobs, /upload]
+  note: >-
+    Bulk work (uploads, exports, location-group processing) is submitted and then polled through
+    the Jobs surface (9 operations) rather than returning inline. There are no webhooks or events.
+anonymous_operations:
+  count: 11
+  note: >-
+    11 operations declare no security requirement, including GET /health, GET /version, the eight
+    /static/* reference lookups (DMAs, IAB categories, publisher categories, podcast topics,
+    streaming genres, CTV categories, account verticals) and POST /users/signup.
+cross_links:
+  authentication: authentication/groundtruth-authentication.yml
+  errors: errors/groundtruth-problem-types.yml
+  lifecycle: lifecycle/groundtruth-lifecycle.yml
+  rate_limits: rate-limits/groundtruth-rate-limits.yml
+  data_model: data-model/groundtruth-data-model.yml
+  conformance: conformance/groundtruth-conformance.yml

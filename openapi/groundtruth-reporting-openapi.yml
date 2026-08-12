@@ -1,0 +1,6236 @@
+components:
+  schemas:
+    DailyAdgroup:
+      properties:
+        account_name:
+          type: string
+        adgroup_id:
+          type: integer
+        adgroup_name:
+          type: string
+        campaign_id:
+          type: integer
+        campaign_name:
+          type: string
+        click_to_call:
+          type: number
+        clicks:
+          type: integer
+        coupon:
+          type: number
+        cpm:
+          type: number
+        creative_id:
+          nullable: true
+          type: integer
+        creative_name:
+          nullable: true
+          type: string
+        ctr:
+          type: number
+        cumulative_reach:
+          type: integer
+        daily_reach:
+          type: integer
+        date:
+          type: string
+        directions:
+          type: number
+        impressions:
+          type: integer
+        moreinfo:
+          type: number
+        oh_visitors:
+          type: number
+        oh_vst:
+          type: number
+        prj_vst:
+          type: number
+        sar:
+          type: number
+        spend:
+          type: number
+        svl:
+          type: number
+        svr:
+          type: number
+        total_sa:
+          type: number
+        video:
+          type: number
+        video_end:
+          type: number
+        video_first_quartile:
+          type: number
+        video_midpoint:
+          type: number
+        video_start:
+          type: number
+        video_third_quartile:
+          type: number
+        visitors:
+          type: number
+        visits:
+          type: integer
+        website:
+          type: number
+      type: object
+    DailyCampaign:
+      properties:
+        date:
+          type: string
+        cumulative_reach:
+          type: number
+        adgroup_id:
+          type: number
+          nullable: true
+        adgroup_start_date:
+          type: string
+          nullable: true
+        adgroup_end_date:
+          type: string
+          nullable: true
+        adgroup_status:
+          type: string
+          nullable: true
+        prj_vst:
+          type: number
+        video_start:
+          type: number
+        click_to_call:
+          type: number
+        video:
+          type: number
+        campaign_name:
+          type: string
+        visits:
+          type: number
+        daily_reach:
+          type: number
+        video_third_quartile:
+          type: number
+        account_name:
+          type: string
+        spend:
+          type: number
+        campaign_id:
+          type: number
+        video_first_quartile:
+          type: number
+        ctr:
+          type: number
+        cpm:
+          type: number
+        oh_vst:
+          type: number
+        website:
+          type: number
+        coupon:
+          type: number
+        sar:
+          type: number
+        svl:
+          type: number
+        video_midpoint:
+          type: number
+        impressions:
+          type: number
+        svr:
+          type: number
+        video_end:
+          type: number
+        visitors:
+          type: number
+        oh_visitors:
+          type: number
+        directions:
+          type: number
+        clicks:
+          type: number
+        adgroup_name:
+          type: string
+          nullable: true
+        total_sa:
+          type: number
+        moreinfo:
+          type: number
+        campaign_start_date:
+          type: string
+        campaign_end_date:
+          type: string
+        adv_bid_type:
+          type: string
+        budget_type:
+          type: string
+      type: object
+    TotalsAccount:
+      properties:
+        account_name:
+          type: string
+        campaign_id:
+          type: integer
+        campaign_name:
+          type: string
+        click_to_call:
+          type: number
+        clicks:
+          type: integer
+        coupon:
+          type: number
+        cpm:
+          type: number
+        ctr:
+          type: number
+        cumulative_reach:
+          type: integer
+        cumulative_visitors:
+          type: number
+        directions:
+          type: number
+        impressions:
+          type: integer
+        moreinfo:
+          type: number
+        open_hour_cumulative_visitors:
+          type: number
+        open_hour_visits:
+          type: number
+        projected_open_hour_visits:
+          type: number
+        projected_visits:
+          type: number
+        sar:
+          type: number
+        spend:
+          type: number
+        svr:
+          type: number
+        total_sa:
+          type: number
+        video:
+          type: number
+        video_end:
+          type: number
+        video_first_quartile:
+          type: number
+        video_midpoint:
+          type: number
+        video_start:
+          type: number
+        video_third_quartile:
+          type: number
+        visits:
+          type: integer
+        website:
+          type: number
+      type: object
+    TotalsAdgroup:
+      properties:
+        account_name:
+          type: string
+        adgroup_id:
+          type: integer
+        adgroup_name:
+          type: string
+        campaign_id:
+          type: integer
+        campaign_name:
+          type: string
+        click_conversions:
+          type: number
+        click_to_call:
+          type: number
+        clicks:
+          type: integer
+        coupon:
+          type: number
+        cpm:
+          type: number
+        creative_id:
+          nullable: true
+          type: integer
+        creative_name:
+          nullable: true
+          type: string
+        ctr:
+          type: number
+        cumulative_reach:
+          type: integer
+        cumulative_visitors:
+          type: integer
+        directions:
+          type: number
+        impressions:
+          type: integer
+        moreinfo:
+          type: number
+        open_hour_cumulative_visitors:
+          type: integer
+        open_hour_visits:
+          type: integer
+        projected_open_hour_visits:
+          type: integer
+        projected_visits:
+          type: integer
+        sar:
+          type: number
+        spend:
+          type: number
+        svr:
+          type: number
+        total_conversions:
+          type: number
+        total_sa:
+          type: number
+        video:
+          type: number
+        video_end:
+          type: integer
+        video_first_quartile:
+          type: integer
+        video_midpoint:
+          type: integer
+        video_start:
+          type: integer
+        video_third_quartile:
+          type: integer
+        view_conversions:
+          type: number
+        visits:
+          type: integer
+        website:
+          type: number
+        adgroup_budget:
+          type: number
+        adgroup_imp_contracted:
+          type: number
+      type: object
+    TotalsCampaign:
+      properties:
+        account_name:
+          type: string
+        adgroup_id:
+          nullable: true
+          type: integer
+        adgroup_name:
+          nullable: true
+          type: string
+        campaign_id:
+          type: integer
+        campaign_name:
+          type: string
+        click_conversions:
+          type: number
+        click_to_call:
+          type: number
+        clicks:
+          type: integer
+        coupon:
+          type: number
+        cpm:
+          type: number
+        creative_id:
+          nullable: true
+          type: integer
+        creative_name:
+          nullable: true
+          type: string
+        ctr:
+          type: number
+        cumulative_reach:
+          type: integer
+        cumulative_visitors:
+          type: number
+        directions:
+          type: number
+        impressions:
+          type: integer
+        moreinfo:
+          type: number
+        open_hour_cumulative_visitors:
+          type: number
+        open_hour_visits:
+          type: integer
+        projected_open_hour_visits:
+          type: number
+        projected_visits:
+          type: number
+        sar:
+          type: number
+        spend:
+          type: number
+        svr:
+          type: number
+        total_conversions:
+          type: number
+        total_sa:
+          type: number
+        video:
+          type: number
+        video_end:
+          type: number
+        video_first_quartile:
+          type: number
+        video_midpoint:
+          type: number
+        video_start:
+          type: number
+        video_third_quartile:
+          type: number
+        view_conversions:
+          type: number
+        visits:
+          type: integer
+        website:
+          type: number
+      type: object
+    ProductExportCampaign:
+      properties:
+        product_group:
+          type: string
+        product:
+          type: string
+        constraint:
+          type: string
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        poi_name:
+          type: string
+        dma_name:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        latitude:
+          type: string
+        longitude:
+          type: string
+        imp:
+          type: number
+        clks:
+          type: number
+        sa:
+          type: number
+        spt:
+          type: number
+        vst:
+          type: number
+        oh_vst:
+          type: number
+        ctr:
+          type: number
+        sar:
+          type: number
+        vr:
+          type: number
+        prj_vst:
+          type: number
+        prj_oh_vst:
+          type: number
+        web:
+          type: number
+        dir:
+          type: number
+        ctc:
+          type: number
+        info:
+          type: number
+        cpn:
+          type: number
+        vid_0:
+          type: number
+        vid_25:
+          type: number
+        vid_50:
+          type: number
+        vid_75:
+          type: number
+        vid_100:
+          type: number
+      type: object
+    ProductExportAdgroup:
+      properties:
+        product_group:
+          type: string
+        product:
+          type: string
+        constraint:
+          type: string
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        poi_name:
+          type: string
+        dma_name:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        latitude:
+          type: string
+        longitude:
+          type: string
+        imp:
+          type: number
+        clks:
+          type: number
+        sa:
+          type: number
+        spt:
+          type: number
+        vst:
+          type: number
+        oh_vst:
+          type: number
+        ctr:
+          type: number
+        sar:
+          type: number
+        vr:
+          type: number
+        prj_vst:
+          type: number
+        prj_oh_vst:
+          type: number
+        web:
+          type: number
+        dir:
+          type: number
+        ctc:
+          type: number
+        info:
+          type: number
+        cpn:
+          type: number
+        vid_0:
+          type: number
+        vid_25:
+          type: number
+        vid_50:
+          type: number
+        vid_75:
+          type: number
+        vid_100:
+          type: number
+      type: object
+    ProductExportCreative:
+      properties:
+        organization_name:
+          type: string
+        account_id:
+          type: number
+        account_name:
+          type: string
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        product_group:
+          type: string
+        product:
+          type: string
+        constraint:
+          type: string
+        creative_id:
+          type: number
+        creative_name:
+          type: string
+        poi_name:
+          type: string
+        dma_name:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        latitude:
+          type: string
+        longitude:
+          type: string
+        imp:
+          type: number
+        clks:
+          type: number
+        sa:
+          type: number
+        spt:
+          type: number
+        vst:
+          type: number
+        oh_vst:
+          type: number
+        ctr:
+          type: number
+        sar:
+          type: number
+        vr:
+          type: number
+        prj_vst:
+          type: number
+        prj_oh_vst:
+          type: number
+        web:
+          type: number
+        dir:
+          type: number
+        ctc:
+          type: number
+        info:
+          type: number
+        cpn:
+          type: number
+        vid_0:
+          type: number
+        vid_25:
+          type: number
+        vid_50:
+          type: number
+        vid_75:
+          type: number
+        vid_100:
+          type: number
+      type: object
+    TotalsOrg:
+      properties:
+        account_name:
+          type: string
+        campaign_id:
+          type: number
+        account_id:
+          type: number
+        campaign_name:
+          type: string
+        account_timezone:
+          type: string
+        currency:
+          type: string
+        account_status:
+          type: string
+        impressions:
+          type: number
+        clicks:
+          type: number
+        spend:
+          type: number
+        ctr:
+          type: number
+        cpm:
+          type: number
+        total_sa:
+          type: number
+        sar:
+          type: number
+        click_to_call:
+          type: number
+        directions:
+          type: number
+        website:
+          type: number
+        moreinfo:
+          type: number
+        coupon:
+          type: number
+        video:
+          type: number
+        cumulative_reach:
+          type: number
+        visits:
+          type: number
+        svr:
+          type: number
+        video_start:
+          type: number
+        video_first_quartile:
+          type: number
+        video_midpoint:
+          type: number
+        video_third_quartile:
+          type: number
+        video_end:
+          type: number
+      type: object
+    LocationCampaign:
+      properties:
+        account_name:
+          type: string
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        zip:
+          type: string
+          nullable: true
+        latitude:
+          type: number
+          nullable: true
+        longitude:
+          type: number
+          nullable: true
+        dma:
+          type: integer
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        country:
+          type: string
+          nullable: true
+        impressions:
+          type: number
+        clicks:
+          type: number
+        spend:
+          type: number
+        ctr:
+          type: number
+        secondary_actions:
+          type: number
+        visits:
+          type: number
+        coupon:
+          type: number
+        website:
+          type: number
+        moreinfo:
+          type: number
+        directions:
+          type: number
+        click_to_call:
+          type: number
+      type: object
+    LocationAdgroup:
+      properties:
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        zip:
+          type: string
+          nullable: true
+        latitude:
+          type: number
+          nullable: true
+        longitude:
+          type: number
+          nullable: true
+        dma:
+          type: number
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        country:
+          type: string
+          nullable: true
+        impressions:
+          type: number
+        clicks:
+          type: number
+        spend:
+          type: number
+        ctr:
+          type: number
+        secondary_actions:
+          type: number
+        visits:
+          type: number
+      type: object
+    SVLocationCampaign:
+      properties:
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        poi_id:
+          type: string
+          nullable: true
+        company_name:
+          type: string
+          nullable: true
+        address:
+          type: string
+          nullable: true
+        zip:
+          type: string
+          nullable: true
+        dma:
+          type: number
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        country:
+          type: string
+          nullable: true
+        latitude:
+          type: number
+          nullable: true
+        longitude:
+          type: number
+          nullable: true
+        total_sv:
+          type: number
+      type: object
+    SVLocationAdgroup:
+      properties:
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        poi_id:
+          type: string
+          nullable: true
+        company_name:
+          type: string
+          nullable: true
+        address:
+          type: string
+          nullable: true
+        zip:
+          type: string
+          nullable: true
+        dma:
+          type: number
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        country:
+          type: string
+          nullable: true
+        latitude:
+          type: number
+          nullable: true
+        longitude:
+          type: number
+          nullable: true
+        total_sv:
+          type: number
+      type: object
+    AccountCount:
+      properties:
+        organization_id:
+          type: number
+        organization_name:
+          type: string
+        number_of_accounts:
+          type: number
+      type: object
+    ConversionTracking:
+      properties:
+        account_name:
+          type: string
+        account_id:
+          type: number
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        conversions:
+          type: number
+        pixel_id:
+          type: number
+        pixel_name:
+          type: string
+        view_thru_conversions:
+          type: number
+        click_thru_conversions:
+          type: number
+      type: object
+    DailyExportCreatives:
+      properties:
+        date:
+          type: string
+        organization_name:
+          type: string
+        account_id:
+          type: number
+        account_name:
+          type: string
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        creative_id:
+          type: number
+        creative_name:
+          type: string
+        creative_size:
+          type: string
+        creative_url:
+          type: string
+        campaign_start_date:
+          type: string
+        campaign_end_date:
+          type: string
+        advertiser_bid_type:
+          type: string
+        budget_type:
+          type: string
+        impressions:
+          type: number
+        clicks:
+          type: number
+        daily_reach:
+          type: number
+        ctr:
+          type: number
+        cpm:
+          type: number
+        cpv:
+          type: number
+        visits:
+          type: number
+        video_start:
+          type: number
+        video_first_quartile:
+          type: number
+        video_midpoint:
+          type: number
+        video_third_quartile:
+          type: number
+        video_end:
+          type: number
+        total_sa:
+          type: number
+        coupon:
+          type: number
+        website:
+          type: number
+        moreinfo:
+          type: number
+        directions:
+          type: number
+        click_to_call:
+          type: number
+        sar:
+          type: number
+        spend:
+          type: number
+        market:
+          type: string
+        contract_id:
+          type: string
+        campaign_budget:
+          type: number
+        total_imp_contracted:
+          type: number
+        external_adgroup_id:
+          type: number
+        oh_vst:
+          type: number
+        prj_vst:
+          type: number
+      type: object
+    BehavioralAudienceCampaign:
+      properties:
+        a_id:
+          type: number
+          description: audience_id
+        a_name:
+          type: string
+          description: audience_name
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        vst:
+          type: number
+          description: visits
+        oh_vst:
+          type: number
+          description: open_hour_visits
+        clks:
+          type: number
+          description: clicks
+        ctr:
+          type: number
+          description: click_thru_rate
+        sa:
+          type: number
+          description: secondary_actions
+        sar:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+        prj_vst:
+          type: number
+          description: projected_visits
+        prj_oh_vst:
+          type: number
+          description: projected_open_hour_visits
+      type: object
+    BehavioralAudienceAdgroup:
+      properties:
+        a_id:
+          type: number
+          description: audience_id
+        a_name:
+          type: string
+          description: audience_name
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        vst:
+          type: number
+          description: visits
+        oh_vst:
+          type: number
+          description: open_hour_visits
+        clks:
+          type: number
+          description: clicks
+        ctr:
+          type: number
+          description: click_thru_rate
+        sa:
+          type: number
+          description: secondary_actions
+        sar:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+        prj_vst:
+          type: number
+          description: projected_visits
+        prj_oh_vst:
+          type: number
+          description: projected_open_hour_visits
+      type: object
+    BehavioralAudienceCreative:
+      properties:
+        a_id:
+          type: number
+          description: audience_id
+        a_name:
+          type: string
+          description: audience_name
+        creative_id:
+          type: number
+        creative_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        vst:
+          type: number
+          description: visits
+        oh_vst:
+          type: number
+          description: open_hour_visits
+        clks:
+          type: number
+          description: clicks
+        ctr:
+          type: number
+          description: click_thru_rate
+        sa:
+          type: number
+          description: secondary_actions
+        sar:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+        prj_vst:
+          type: number
+          description: projected_visits
+        prj_oh_vst:
+          type: number
+          description: projected_open_hour_visits
+      type: object
+    CategoryCampaign:
+      properties:
+        sic:
+          type: string
+          description: category_id
+        c_name:
+          type: string
+          description: category_name
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        vst:
+          type: number
+          description: visits
+        oh_vst:
+          type: number
+          description: open_hour_visits
+        clks:
+          type: number
+          description: clicks
+        ctr:
+          type: number
+          description: click_thru_rate
+        sa:
+          type: number
+          description: secondary_actions
+        sar:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+        prj_vst:
+          type: number
+          description: projected_visits
+        prj_oh_vst:
+          type: number
+          description: projected_open_hour_visits
+      type: object
+    CategoryAdgroup:
+      properties:
+        sic:
+          type: string
+          description: category_id
+        c_name:
+          type: string
+          description: category_name
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        vst:
+          type: number
+          description: visits
+        oh_vst:
+          type: number
+          description: open_hour_visits
+        clks:
+          type: number
+          description: clicks
+        ctr:
+          type: number
+          description: click_thru_rate
+        sa:
+          type: number
+          description: secondary_actions
+        sar:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+        prj_vst:
+          type: number
+          description: projected_visits
+        prj_oh_vst:
+          type: number
+          description: projected_open_hour_visits
+      type: object
+    CategoryCreative:
+      properties:
+        sic:
+          type: string
+          description: category_id
+        c_name:
+          type: string
+          description: category_name
+        creative_id:
+          type: number
+        creative_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        vst:
+          type: number
+          description: visits
+        oh_vst:
+          type: number
+          description: open_hour_visits
+        clks:
+          type: number
+          description: clicks
+        ctr:
+          type: number
+          description: click_thru_rate
+        sa:
+          type: number
+          description: secondary_actions
+        sar:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+        prj_vst:
+          type: number
+          description: projected_visits
+        prj_oh_vst:
+          type: number
+          description: projected_open_hour_visits
+      type: object
+    BrandAffinityCampaign:
+      properties:
+        b_id:
+          type: number
+          description: brand_id
+        b_name:
+          type: string
+          description: brand_name
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        vst:
+          type: number
+          description: visits
+        oh_vst:
+          type: number
+          description: open_hour_visits
+        clks:
+          type: number
+          description: clicks
+        ctr:
+          type: number
+          description: click_thru_rate
+        sa:
+          type: number
+          description: secondary_actions
+        sar:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+        prj_vst:
+          type: number
+          description: projected_visits
+        prj_oh_vst:
+          type: number
+          description: projected_open_hour_visits
+      type: object
+    BrandAffinityAdgroup:
+      properties:
+        b_id:
+          type: number
+          description: brand_id
+        b_name:
+          type: string
+          description: brand_name
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        vst:
+          type: number
+          description: visits
+        oh_vst:
+          type: number
+          description: open_hour_visits
+        clks:
+          type: number
+          description: clicks
+        ctr:
+          type: number
+          description: click_thru_rate
+        sa:
+          type: number
+          description: secondary_actions
+        sar:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+        prj_vst:
+          type: number
+          description: projected_visits
+        prj_oh_vst:
+          type: number
+          description: projected_open_hour_visits
+      type: object
+    BrandAffinityCreative:
+      properties:
+        b_id:
+          type: number
+          description: brand_id
+        b_name:
+          type: string
+          description: brand_name
+        creative_id:
+          type: number
+        creative_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        vst:
+          type: number
+          description: visits
+        oh_vst:
+          type: number
+          description: open_hour_visits
+        clks:
+          type: number
+          description: clicks
+        ctr:
+          type: number
+          description: click_thru_rate
+        sa:
+          type: number
+          description: secondary_actions
+        sar:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+        prj_vst:
+          type: number
+          description: projected_visits
+        prj_oh_vst:
+          type: number
+          description: projected_open_hour_visits
+      type: object
+    DemographicCampaign:
+      properties:
+        account_name:
+          type: string
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        adgroup_id:
+          nullable: true
+          type: number
+        adgroup_name:
+          nullable: true
+          type: string
+        age:
+          nullable: true
+          type: string
+        gender:
+          nullable: true
+          type: string
+        impressions:
+          type: number
+        clicks:
+          type: number
+        spend:
+          type: number
+        ctr:
+          type: number
+          description: click_thru_rate
+        cpm:
+          type: number
+        total_sa:
+          type: number
+        sar:
+          type: number
+          description: secondary_action_rate
+        click_to_call:
+          type: number
+        directions:
+          type: number
+        website:
+          type: number
+        moreinfo:
+          type: number
+        coupon:
+          type: number
+        video:
+          type: number
+        cumulative_reach:
+          type: number
+        visits:
+          type: number
+        open_hour_visits:
+          type: number
+        projected_visits:
+          type: number
+        projected_open_hour_visits:
+          type: number
+      type: object
+    DeviceTypeCampaign:
+      properties:
+        account_name:
+          type: string
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        pub_type:
+          type: string
+          description: device_type
+        impressions:
+          type: number
+        clicks:
+          type: number
+        spend:
+          type: number
+        ctr:
+          type: number
+          description: click_thru_rate
+      type: object
+    DeviceTypeAdgroup:
+      properties:
+        account_name:
+          type: string
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        pub_type:
+          type: string
+          description: device_type
+        impressions:
+          type: number
+        clicks:
+          type: number
+        spend:
+          type: number
+        ctr:
+          type: number
+          description: click_thru_rate
+      type: object
+    ProductExportCampaignV2:
+      properties:
+        product_group:
+          type: string
+        product:
+          type: string
+        constraint:
+          type: string
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        poi_name:
+          type: string
+        dma_name:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        latitude:
+          type: string
+        longitude:
+          type: string
+        imp:
+          type: number
+        clicks:
+          type: number
+        secondary_actions:
+          type: number
+        spt:
+          type: number
+        visits:
+          type: number
+        click_through_rate:
+          type: number
+        secondary_action_rate:
+          type: number
+        vr:
+          type: number
+        web:
+          type: number
+        dir:
+          type: number
+        ctc:
+          type: number
+        info:
+          type: number
+        cpm:
+          type: number
+        video_start:
+          type: number
+        video_first_quartile:
+          type: number
+        video_midpoint:
+          type: number
+        video_third_quartile:
+          type: number
+        video_end:
+          type: number
+      type: object
+    ProductExportAdgroupV2:
+      properties:
+        product_group:
+          type: string
+        product:
+          type: string
+        constraint:
+          type: string
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        poi_name:
+          type: string
+        dma_name:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        latitude:
+          type: string
+        longitude:
+          type: string
+        imp:
+          type: number
+        clicks:
+          type: number
+        secondary_actions:
+          type: number
+        spt:
+          type: number
+        visits:
+          type: number
+        click_through_rate:
+          type: number
+        secondary_action_rate:
+          type: number
+        vr:
+          type: number
+        web:
+          type: number
+        dir:
+          type: number
+        ctc:
+          type: number
+        info:
+          type: number
+        cpm:
+          type: number
+        video_start:
+          type: number
+        video_first_quartile:
+          type: number
+        video_midpoint:
+          type: number
+        video_third_quartile:
+          type: number
+        video_end:
+          type: number
+      type: object
+    ProductExportCreativeV2:
+      properties:
+        organization_name:
+          type: string
+        account_id:
+          type: number
+        account_name:
+          type: string
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        product_group:
+          type: string
+        product:
+          type: string
+        constraint:
+          type: string
+        creative_id:
+          type: number
+        creative_name:
+          type: string
+        poi_name:
+          type: string
+        dma_name:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        latitude:
+          type: string
+        longitude:
+          type: string
+        imp:
+          type: number
+        clicks:
+          type: number
+        secondary_actions:
+          type: number
+        spt:
+          type: number
+        visits:
+          type: number
+        click_through_rate:
+          type: number
+        secondary_action_rate:
+          type: number
+        vr:
+          type: number
+        web:
+          type: number
+        dir:
+          type: number
+        ctc:
+          type: number
+        info:
+          type: number
+        cpm:
+          type: number
+        video_start:
+          type: number
+        video_first_quartile:
+          type: number
+        video_midpoint:
+          type: number
+        video_third_quartile:
+          type: number
+        video_end:
+          type: number
+      type: object
+    ProductExportCampaignV3:
+      properties:
+        product_group:
+          type: string
+        product:
+          type: string
+        constraint:
+          type: string
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        poi_name:
+          type: string
+        dma_name:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        latitude:
+          type: string
+        longitude:
+          type: string
+        imp:
+          type: number
+        clicks:
+          type: number
+        secondary_actions:
+          type: number
+        spt:
+          type: number
+        visits:
+          type: number
+        click_through_rate:
+          type: number
+        secondary_action_rate:
+          type: number
+        vr:
+          type: number
+        web:
+          type: number
+        dir:
+          type: number
+        ctc:
+          type: number
+        info:
+          type: number
+        cpm:
+          type: number
+        video_start:
+          type: number
+        video_first_quartile:
+          type: number
+        video_midpoint:
+          type: number
+        video_third_quartile:
+          type: number
+        video_end:
+          type: number
+      type: object
+    ProductExportAdgroupV3:
+      properties:
+        product_group:
+          type: string
+        product:
+          type: string
+        constraint:
+          type: string
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        poi_name:
+          type: string
+        dma_name:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        latitude:
+          type: string
+        longitude:
+          type: string
+        imp:
+          type: number
+        clicks:
+          type: number
+        secondary_actions:
+          type: number
+        spt:
+          type: number
+        visits:
+          type: number
+        click_through_rate:
+          type: number
+        secondary_action_rate:
+          type: number
+        vr:
+          type: number
+        web:
+          type: number
+        dir:
+          type: number
+        ctc:
+          type: number
+        info:
+          type: number
+        cpm:
+          type: number
+        video_start:
+          type: number
+        video_first_quartile:
+          type: number
+        video_midpoint:
+          type: number
+        video_third_quartile:
+          type: number
+        video_end:
+          type: number
+      type: object
+    ProductExportCreativeV3:
+      properties:
+        organization_name:
+          type: string
+        account_id:
+          type: number
+        account_name:
+          type: string
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        product_group:
+          type: string
+        product:
+          type: string
+        constraint:
+          type: string
+        creative_id:
+          type: number
+        creative_name:
+          type: string
+        poi_name:
+          type: string
+        dma_name:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        latitude:
+          type: string
+        longitude:
+          type: string
+        imp:
+          type: number
+        clicks:
+          type: number
+        secondary_actions:
+          type: number
+        spt:
+          type: number
+        visits:
+          type: number
+        click_through_rate:
+          type: number
+        secondary_action_rate:
+          type: number
+        vr:
+          type: number
+        web:
+          type: number
+        dir:
+          type: number
+        ctc:
+          type: number
+        info:
+          type: number
+        cpm:
+          type: number
+        video_start:
+          type: number
+        video_first_quartile:
+          type: number
+        video_midpoint:
+          type: number
+        video_third_quartile:
+          type: number
+        video_end:
+          type: number
+      type: object
+    BehavioralAudienceCampaignV2:
+      properties:
+        a_id:
+          type: number
+          description: audience_id
+        a_name:
+          type: string
+          description: audience_name
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        visits:
+          type: number
+          description: visits
+        clicks:
+          type: number
+          description: clicks
+        click_through_rate:
+          type: number
+          description: click_thru_rate
+        secondary_actions:
+          type: number
+          description: secondary_actions
+        secondary_action_rate:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+      type: object
+    BehavioralAudienceAdgroupV2:
+      properties:
+        a_id:
+          type: number
+          description: audience_id
+        a_name:
+          type: string
+          description: audience_name
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        visits:
+          type: number
+          description: visits
+        clicks:
+          type: number
+          description: clicks
+        click_through_rate:
+          type: number
+          description: click_thru_rate
+        secondary_actions:
+          type: number
+          description: secondary_actions
+        secondary_action_rate:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+      type: object
+    BehavioralAudienceCreativeV2:
+      properties:
+        a_id:
+          type: number
+          description: audience_id
+        a_name:
+          type: string
+          description: audience_name
+        creative_id:
+          type: number
+        creative_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        visits:
+          type: number
+          description: visits
+        clicks:
+          type: number
+          description: clicks
+        click_through_rate:
+          type: number
+          description: click_thru_rate
+        secondary_actions:
+          type: number
+          description: secondary_actions
+        secondary_action_rate:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+      type: object
+    CategoryCampaignV2:
+      properties:
+        sic:
+          type: string
+          description: category_id
+        c_name:
+          type: string
+          description: category_name
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        visits:
+          type: number
+          description: visits
+        clicks:
+          type: number
+          description: clicks
+        click_through_rate:
+          type: number
+          description: click_thru_rate
+        secondary_actions:
+          type: number
+          description: secondary_actions
+        secondary_action_rate:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+      type: object
+    CategoryAdgroupV2:
+      properties:
+        sic:
+          type: string
+          description: category_id
+        c_name:
+          type: string
+          description: category_name
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        visits:
+          type: number
+          description: visits
+        clicks:
+          type: number
+          description: clicks
+        click_through_rate:
+          type: number
+          description: click_thru_rate
+        secondary_actions:
+          type: number
+          description: secondary_actions
+        secondary_action_rate:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+      type: object
+    CategoryCreativeV2:
+      properties:
+        sic:
+          type: string
+          description: category_id
+        c_name:
+          type: string
+          description: category_name
+        creative_id:
+          type: number
+        creative_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        visits:
+          type: number
+          description: visits
+        clicks:
+          type: number
+          description: clicks
+        click_through_rate:
+          type: number
+          description: click_thru_rate
+        secondary_actions:
+          type: number
+          description: secondary_actions
+        secondary_action_rate:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+      type: object
+    BrandAffinityCampaignV2:
+      properties:
+        b_id:
+          type: number
+          description: brand_id
+        b_name:
+          type: string
+          description: brand_name
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        visits:
+          type: number
+          description: visits
+        clicks:
+          type: number
+          description: clicks
+        click_through_rate:
+          type: number
+          description: click_thru_rate
+        secondary_actions:
+          type: number
+          description: secondary_actions
+        secondary_action_rate:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+      type: object
+    BrandAffinityAdgroupV2:
+      properties:
+        b_id:
+          type: number
+          description: brand_id
+        b_name:
+          type: string
+          description: brand_name
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        visits:
+          type: number
+          description: visits
+        clicks:
+          type: number
+          description: clicks
+        click_through_rate:
+          type: number
+          description: click_thru_rate
+        secondary_actions:
+          type: number
+          description: secondary_actions
+        secondary_action_rate:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+      type: object
+    BrandAffinityCreativeV2:
+      properties:
+        b_id:
+          type: number
+          description: brand_id
+        b_name:
+          type: string
+          description: brand_name
+        creative_id:
+          type: number
+        creative_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        visits:
+          type: number
+          description: visits
+        clicks:
+          type: number
+          description: clicks
+        click_through_rate:
+          type: number
+          description: click_thru_rate
+        secondary_actions:
+          type: number
+          description: secondary_actions
+        secondary_action_rate:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+      type: object
+    SVLocationCampaignV2:
+      properties:
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        poi_id:
+          type: string
+          nullable: true
+        company_name:
+          type: string
+          nullable: true
+        address:
+          type: string
+          nullable: true
+        zip:
+          type: string
+          nullable: true
+        dma:
+          type: number
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        country:
+          type: string
+          nullable: true
+        latitude:
+          type: number
+          nullable: true
+        longitude:
+          type: number
+          nullable: true
+        visits:
+          type: number
+      type: object
+    SVLocationAdgroupV2:
+      properties:
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        poi_id:
+          type: string
+          nullable: true
+        company_name:
+          type: string
+          nullable: true
+        address:
+          type: string
+          nullable: true
+        zip:
+          type: string
+          nullable: true
+        dma:
+          type: number
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        country:
+          type: string
+          nullable: true
+        latitude:
+          type: number
+          nullable: true
+        longitude:
+          type: number
+          nullable: true
+        visits:
+          type: number
+      type: object
+    PublisherCampaignV2:
+      properties:
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        publisher_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        video_start:
+          type: number
+          description: video start
+        video_first_quartile:
+          type: number
+          description: video first quartile
+        video_midpoint:
+          type: number
+          description: video midpoint
+        video_third_quartile:
+          type: number
+          description: video third quartile
+        video_end:
+          type: number
+          description: video end
+        vcr:
+          type: number
+          description: video completion rate
+      type: object
+    PublisherAdgroupV2:
+      properties:
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        publisher_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        video_start:
+          type: number
+          description: video start
+        video_first_quartile:
+          type: number
+          description: video first quartile
+        video_midpoint:
+          type: number
+          description: video midpoint
+        video_third_quartile:
+          type: number
+          description: video third quartile
+        video_end:
+          type: number
+          description: video end
+        vcr:
+          type: number
+          description: video completion rate
+      type: object
+    TODExportCampaign:
+      properties:
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        hr:
+          type: number
+          description: hour
+        imp:
+          type: number
+          description: impressions
+        clks:
+          type: number
+          description: clicks
+        spt:
+          type: number
+        sa:
+          type: number
+          description: secondary action
+        web:
+          type: number
+        dir:
+          type: number
+          description: direction
+        ctc:
+          type: number
+          description: click to call
+        info:
+          type: number
+          description: more info
+        cpn:
+          type: number
+          description: coupon
+        vst:
+          type: number
+          description: visits
+        oh_vst:
+          type: number
+          description: overhead visits
+        prj_vst:
+          type: number
+          description: projected visits
+        sar:
+          type: number
+          description: secondary action rate
+        ctr:
+          type: number
+          description: click_thru_rate
+        vcr:
+          type: number
+          description: video completion rate
+        video_start:
+          type: number
+          description: video start
+        video_first_quartile:
+          type: number
+          description: video first quartile
+        video_midpoint:
+          type: number
+          description: video midpoint
+        video_third_quartile:
+          type: number
+          description: video third quartile
+        video_end:
+          type: number
+          description: video end
+      type: object
+    TODExportAdgroup:
+      properties:
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        hr:
+          type: number
+          description: hour
+        imp:
+          type: number
+          description: impressions
+        clks:
+          type: number
+          description: clicks
+        spt:
+          type: number
+        sa:
+          type: number
+          description: secondary action
+        web:
+          type: number
+        dir:
+          type: number
+          description: direction
+        ctc:
+          type: number
+          description: click to call
+        info:
+          type: number
+          description: more info
+        cpn:
+          type: number
+          description: coupon
+        vst:
+          type: number
+          description: visits
+        oh_vst:
+          type: number
+          description: overhead visits
+        prj_vst:
+          type: number
+          description: projected visits
+        sar:
+          type: number
+          description: secondary action rate
+        ctr:
+          type: number
+          description: click_thru_rate
+        vcr:
+          type: number
+          description: video completion rate
+        video_start:
+          type: number
+          description: video start
+        video_first_quartile:
+          type: number
+          description: video first quartile
+        video_midpoint:
+          type: number
+          description: video midpoint
+        video_third_quartile:
+          type: number
+          description: video third quartile
+        video_end:
+          type: number
+          description: video end
+      type: object
+    TODExportCreative:
+      properties:
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        hr:
+          type: number
+          description: hour
+        imp:
+          type: number
+          description: impressions
+        clks:
+          type: number
+          description: clicks
+        spt:
+          type: number
+        sa:
+          type: number
+          description: secondary action
+        web:
+          type: number
+        dir:
+          type: number
+          description: direction
+        ctc:
+          type: number
+          description: click to call
+        info:
+          type: number
+          description: more info
+        cpn:
+          type: number
+          description: coupon
+        vst:
+          type: number
+          description: visits
+        oh_vst:
+          type: number
+          description: overhead visits
+        prj_vst:
+          type: number
+          description: projected visits
+        sar:
+          type: number
+          description: secondary action rate
+        ctr:
+          type: number
+          description: click_thru_rate
+        vcr:
+          type: number
+          description: video completion rate
+        video_start:
+          type: number
+          description: video start
+        video_first_quartile:
+          type: number
+          description: video first quartile
+        video_midpoint:
+          type: number
+          description: video midpoint
+        video_third_quartile:
+          type: number
+          description: video third quartile
+        video_end:
+          type: number
+          description: video end
+      type: object
+    NetworkCampaign:
+      properties:
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        network_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        video_start:
+          type: number
+          description: video start
+        video_first_quartile:
+          type: number
+          description: video first quartile
+        video_midpoint:
+          type: number
+          description: video midpoint
+        video_third_quartile:
+          type: number
+          description: video third quartile
+        video_end:
+          type: number
+          description: video end
+        vcr:
+          type: number
+          description: video completion rate
+      type: object
+    AudioStreamingGenreCampaign:
+      properties:
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        genre:
+          type: string
+          description: streaming genre
+        imp:
+          type: number
+          description: impressions
+        ltr:
+          type: number
+          description: listen through rate
+      type: object
+    AudioStreamingGenreAdgroup:
+      properties:
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        genre:
+          type: string
+          description: streaming genre
+        imp:
+          type: number
+          description: impressions
+        ltr:
+          type: number
+          description: listen through rate
+      type: object
+    AudioPodcastTopicCampaign:
+      properties:
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        topic:
+          type: string
+          description: podcast topic
+        imp:
+          type: number
+          description: impressions
+        ltr:
+          type: number
+          description: listen through rate
+      type: object
+    AudioPodcastTopicAdgroup:
+      properties:
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        topic:
+          type: string
+          description: podcast topic
+        imp:
+          type: number
+          description: impressions
+        ltr:
+          type: number
+          description: listen through rate
+      type: object
+    AudioPodcastSeriesCampaign:
+      properties:
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        series:
+          type: string
+          description: podcast series
+        imp:
+          type: number
+          description: impressions
+        ltr:
+          type: number
+          description: listen through rate
+      type: object
+    AudioPodcastSeriesAdgroup:
+      properties:
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        series:
+          type: string
+          description: podcast series
+        imp:
+          type: number
+          description: impressions
+        ltr:
+          type: number
+          description: listen through rate
+      type: object
+    AudioPublisherCampaign:
+      properties:
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        app_site_publisher_name:
+          type: string
+          description: publisher name
+        imp:
+          type: number
+          description: impressions
+        ltr:
+          type: number
+          description: listen through rate
+      type: object
+    AudioPublisherAdgroup:
+      properties:
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        app_site_publisher_name:
+          type: string
+          description: publisher name
+        imp:
+          type: number
+          description: impressions
+        ltr:
+          type: number
+          description: listen through rate
+      type: object
+info:
+  title: Groundtruth Reporting API
+  description: "**External reporting API.**  \n\n *Note:* All REST API endpoints currently require HTTP/1.1. Please use HTTP/1.1 (e.g., by adding `--http1.1` in curl\
+    \ commands) to receive a response."
+  version: 2.0.0
+openapi: 3.0.1
+paths:
+  /demand/v1/account/{accountID}/totals:
+    get:
+      description: Get account level cumulative data.
+      tags:
+      - demand
+      parameters:
+      - in: header
+        name: X-GT-USER-ID
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-GT-API-KEY
+        required: true
+        schema:
+          type: string
+      - description: request account
+        in: path
+        name: accountID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: start date for data pull.
+        in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+      - description: end date for data pull
+        in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+      - description: flag to get data for all campaigns under that account
+        in: query
+        name: all_campaigns
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TotalsAccount'
+          description: 200 valid response
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get account level cumulative data.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v1/adgroup/{adgroupID}/daily:
+    get:
+      description: Get adgroup level daily data.
+      tags:
+      - demand
+      parameters:
+      - in: header
+        name: X-GT-USER-ID
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-GT-API-KEY
+        required: true
+        schema:
+          type: string
+      - description: request adgroup
+        in: path
+        name: adgroupID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: start date for data pull.
+        in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+      - description: end date for data pull
+        in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+      - description: flag to get data for all creatives under that adgroup
+        in: query
+        name: all_creatives
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DailyAdgroup'
+          description: 200 valid response
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get adgroup level daily data.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v1/adgroup/{adgroupID}/totals:
+    get:
+      description: Get adgroup level cumulative data.
+      tags:
+      - demand
+      parameters:
+      - in: header
+        name: X-GT-USER-ID
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-GT-API-KEY
+        required: true
+        schema:
+          type: string
+      - description: request adgroup id
+        in: path
+        name: adgroupID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: start date for data pull.
+        in: query
+        name: start_date
+        required: false
+        schema:
+          type: string
+      - description: end date for data pull
+        in: query
+        name: end_date
+        required: false
+        schema:
+          type: string
+      - description: flag to get data for all creatives under that adgroup
+        in: query
+        name: all_creatives
+        required: false
+        schema:
+          format: int64
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TotalsAdgroup'
+          description: 200 valid response
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get adgroup level cumulative data.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v1/campaign/{campaignID}/daily:
+    get:
+      description: Get campaign level daily data.
+      tags:
+      - demand
+      parameters:
+      - in: header
+        name: X-GT-USER-ID
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-GT-API-KEY
+        required: true
+        schema:
+          type: string
+      - description: request campaign id
+        in: path
+        name: campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: start date for data pull.
+        in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+      - description: end date for data pull
+        in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+      - description: flag to get data for all adgroups under that campaign
+        in: query
+        name: all_adgroups
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DailyCampaign'
+          description: 200 valid response
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get campaign level daily data.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v1/campaign/{campaignID}/totals:
+    get:
+      description: Get campaign level cumulative data.
+      tags:
+      - demand
+      parameters:
+      - in: header
+        name: X-GT-USER-ID
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-GT-API-KEY
+        required: true
+        schema:
+          type: string
+      - description: request campaign id
+        in: path
+        name: campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: start date for data pull.
+        in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+      - description: end date for data pull
+        in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+      - description: flag to get data for all adgroups under that campaign
+        in: query
+        name: all_adgroups
+        required: false
+        schema:
+          type: integer
+      - description: flag to get data for all adgroups and creatives under that campaign
+        in: query
+        name: all_creatives
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TotalsCampaign'
+          description: 200 valid response
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get campaign level cumulative data.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v1/org/{organizationID}/totals:
+    get:
+      summary: Get organization level data
+      description: Get organization level data
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: organizationID
+        in: path
+        description: request organizationID id
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TotalsOrg'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v1/campaign/product/{campaignID}:
+    get:
+      summary: Get product level data by campaign_id
+      description: Get product level data by campaign_id
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaign id
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductExportCampaign'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v1/adgroups/product/{campaignID}:
+    get:
+      summary: Get product level for all the adgroups under the campaign
+      description: Get product level for all the adgroups under the campaign
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaign id
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductExportAdgroup'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v1/creatives/product/{campaignID}:
+    get:
+      summary: Get product level for all the creatives under the campaign
+      description: Get product level for all the creatives under the campaign
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaign id
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductExportCreative'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v1/campaign/locations/{campaignID}:
+    get:
+      summary: Get Location data
+      description: Get Location data
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaign id
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      - name: location_type
+        in: query
+        description: flag to get data for the campaign by location_type
+        required: true
+        schema:
+          type: string
+          enum:
+          - state
+          - dma
+          - zipcode
+          - county
+      - name: metric
+        in: query
+        description: flag to get the data sorted by given metric, default is impressions
+        required: false
+        schema:
+          type: string
+          enum:
+          - impressions
+          - clicks
+          - ctr
+          - secondary_actions
+          - visits
+      - name: key
+        in: query
+        description: set to 1 to get top 10 records descending by given metric, set to 2 to get top 10 records ascending by given metric, set to 0 for all records
+          with ascending ordering by given metric.
+        required: false
+        schema:
+          format: int64
+          type: integer
+          enum:
+          - 0
+          - 1
+          - 2
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationCampaign'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v1/adgroup/locations/{adgroupID}:
+    get:
+      summary: Get Location data
+      description: Get Location data
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: adgroupID
+        in: path
+        description: request adgroup id
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      - name: location_type
+        in: query
+        description: flag to get data for the campaign by location_type
+        required: true
+        schema:
+          type: string
+          enum:
+          - state
+          - dma
+          - zipcode
+          - county
+      - name: metric
+        in: query
+        description: flag to get the data sorted by given metric, default is impressions
+        required: false
+        schema:
+          type: string
+          enum:
+          - impressions
+          - clicks
+          - ctr
+          - secondary_actions
+          - visits
+      - name: key
+        in: query
+        description: set to 1 to get top 10 records descending by given metric, set to 2 to get top 10 records ascending by given metric, set to 0 for all records
+          with ascending ordering by given metric.
+        required: false
+        schema:
+          format: int64
+          type: integer
+          enum:
+          - 0
+          - 1
+          - 2
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationAdgroup'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v1/campaign/sv_locations/{campaignID}:
+    get:
+      summary: Get SV Location data
+      description: Get SV Location data
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaign id
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      - name: location_type
+        in: query
+        description: flag to get data for the campaign by location_type
+        required: true
+        schema:
+          type: string
+          enum:
+          - state
+          - dma
+          - zipcode
+          - address
+      - name: key
+        in: query
+        description: set to 1 to get top 10 records descending by total_sv, set to 2 to get top 10 records ascending by total_sv, set to 0 for all records with ascending
+          ordering by total_sv.
+        required: false
+        schema:
+          format: int64
+          type: integer
+          enum:
+          - 0
+          - 1
+          - 2
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SVLocationCampaign'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v1/adgroup/sv_locations/{adgroupID}:
+    get:
+      summary: Get SV Location data
+      description: Get SV Location data
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: adgroupID
+        in: path
+        description: request adgroup id
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      - name: location_type
+        in: query
+        description: flag to get data for the campaign by location_type
+        required: true
+        schema:
+          enum:
+          - state
+          - dma
+          - zipcode
+          - address
+          type: string
+      - name: key
+        in: query
+        description: set to 1 to get top 10 records descending by total_sv, set to 2 to get top 10 records ascending by total_sv, set to 0 for all records with ascending
+          ordering by total_sv.
+        required: false
+        schema:
+          format: int64
+          type: integer
+          enum:
+          - 0
+          - 1
+          - 2
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SVLocationAdgroup'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v1/org/account_count/{tenantID}:
+    get:
+      summary: Get count of accounts
+      description: Get count of accounts
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: tenantID
+        in: path
+        description: request tenantID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountCount'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v1/account/conversion_tracking/{accountID}:
+    get:
+      summary: Get conversion tracking for all the adgroups under the account
+      description: Get conversion tracking for all the adgroups under the account
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: accountID
+        in: path
+        description: request accountID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConversionTracking'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v1/creatives/{campaignID}/daily:
+    get:
+      summary: Get creative level data under the campaign
+      description: Get creative level data under the campaign
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DailyExportCreatives'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v1/campaign/behavioral_audience/{campaignID}:
+    get:
+      description: Get campaign level behavioral_audience  data under the campaign
+      tags:
+      - demand
+      parameters:
+      - in: header
+        name: X-GT-USER-ID
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-GT-API-KEY
+        required: true
+        schema:
+          type: string
+      - description: request campaignID
+        in: path
+        name: campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: start date for data pull.
+        in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+      - description: end date for data pull
+        in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BehavioralAudienceCampaign'
+          description: 200 valid response
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get campaign level behavioral_audience  data under the campaign
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v1/adgroups/behavioral_audience/{campaignID}:
+    get:
+      description: Get adgroup level behavioral_audience data under the campaign.
+      tags:
+      - demand
+      parameters:
+      - in: header
+        name: X-GT-USER-ID
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-GT-API-KEY
+        required: true
+        schema:
+          type: string
+      - description: request campaignID
+        in: path
+        name: campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: start date for data pull.
+        in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+      - description: end date for data pull
+        in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BehavioralAudienceAdgroup'
+          description: 200 valid response
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get adgroup level behavioral_audience data under the campaign.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v1/creatives/behavioral_audience/{campaignID}:
+    get:
+      description: Get creative level behavioral_audience data under the campaign.
+      tags:
+      - demand
+      parameters:
+      - in: header
+        name: X-GT-USER-ID
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-GT-API-KEY
+        required: true
+        schema:
+          type: string
+      - description: request campaignID
+        in: path
+        name: campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: start date for data pull.
+        in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+      - description: end date for data pull
+        in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BehavioralAudienceCreative'
+          description: 200 valid response
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get creative level behavioral_audience data under the campaign.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v1/campaign/category/{campaignID}:
+    get:
+      description: Get campaign level category data under the campaign.
+      tags:
+      - demand
+      parameters:
+      - in: header
+        name: X-GT-USER-ID
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-GT-API-KEY
+        required: true
+        schema:
+          type: string
+      - description: request campaignID
+        in: path
+        name: campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: start date for data pull.
+        in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+      - description: end date for data pull
+        in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryCampaign'
+          description: 200 valid response
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get campaign level category data under the campaign.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v1/adgroups/category/{campaignID}:
+    get:
+      description: Get adgroup level category data under the campaign.
+      tags:
+      - demand
+      parameters:
+      - in: header
+        name: X-GT-USER-ID
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-GT-API-KEY
+        required: true
+        schema:
+          type: string
+      - description: request campaignID
+        in: path
+        name: campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: start date for data pull.
+        in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+      - description: end date for data pull
+        in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryAdgroup'
+          description: 200 valid response
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get adgroup level category data under the campaign.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v1/creatives/category/{campaignID}:
+    get:
+      description: Get creative level category data under the campaign.
+      tags:
+      - demand
+      parameters:
+      - in: header
+        name: X-GT-USER-ID
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-GT-API-KEY
+        required: true
+        schema:
+          type: string
+      - description: request campaignID
+        in: path
+        name: campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: start date for data pull.
+        in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+      - description: end date for data pull
+        in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryCreative'
+          description: 200 valid response
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get creative level category data under the campaign.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v1/campaign/brand_affinity/{campaignID}:
+    get:
+      description: Get campaign level brand_affinity data under the campaign.
+      tags:
+      - demand
+      parameters:
+      - in: header
+        name: X-GT-USER-ID
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-GT-API-KEY
+        required: true
+        schema:
+          type: string
+      - description: request campaignID
+        in: path
+        name: campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: start date for data pull.
+        in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+      - description: end date for data pull
+        in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrandAffinityCampaign'
+          description: 200 valid response
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get campaign level brand_affinity data under the campaign.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v1/adgroups/brand_affinity/{campaignID}:
+    get:
+      description: Get adgroup level brand_affinity data under the campaign.
+      tags:
+      - demand
+      parameters:
+      - in: header
+        name: X-GT-USER-ID
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-GT-API-KEY
+        required: true
+        schema:
+          type: string
+      - description: request campaignID
+        in: path
+        name: campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: start date for data pull.
+        in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+      - description: end date for data pull
+        in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrandAffinityAdgroup'
+          description: 200 valid response
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get adgroup level brand_affinity data under the campaign.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v1/creatives/brand_affinity/{campaignID}:
+    get:
+      description: Get creative level brand_affinity data under the campaign.
+      tags:
+      - demand
+      parameters:
+      - in: header
+        name: X-GT-USER-ID
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-GT-API-KEY
+        required: true
+        schema:
+          type: string
+      - description: request campaignID
+        in: path
+        name: campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: start date for data pull.
+        in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+      - description: end date for data pull
+        in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrandAffinityCreative'
+          description: 200 valid response
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get creative level brand_affinity data under the campaign.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v1/campaign/demographic/{campaignID}:
+    get:
+      description: Get demographic data under the campaign.
+      tags:
+      - demand
+      parameters:
+      - in: header
+        name: X-GT-USER-ID
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-GT-API-KEY
+        required: true
+        schema:
+          type: string
+      - description: request campaignID
+        in: path
+        name: campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: start date for data pull.
+        in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+      - description: end date for data pull
+        in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+      - description: flag to get data for all adgroups under that campaign
+        in: query
+        name: all_adgroups
+        required: false
+        schema:
+          type: integer
+      - name: key
+        in: query
+        description: Set key value 1 for age, 2 for gender, 3 for age&gender
+        required: true
+        schema:
+          format: int64
+          type: integer
+          enum:
+          - 1
+          - 2
+          - 3
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DemographicCampaign'
+          description: 200 valid response
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get demographic data under the campaign.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v1/campaign/device_type/{campaignID}:
+    get:
+      description: Get device_type data at campaign level.
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaign id
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceTypeCampaign'
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get device_type data at campaign level.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v1/adgroups/device_type/{campaignID}:
+    get:
+      description: Get adgroup level device_type data under a campaign.
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaign id
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceTypeAdgroup'
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get adgroup level device_type data under a campaign.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v1/timeseries/tod/export/campaign/{campaignID}:
+    get:
+      description: Get campaign level time of day data under a campaign.
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaign id
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TODExportCampaign'
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get campaign level time of day data under a campaign.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v1/timeseries/tod/export/adgroups/{campaignID}:
+    get:
+      description: Get adgroup level time of day data under a campaign.
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaign id
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TODExportAdgroup'
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get adgroup level time of day data under a campaign.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v1/timeseries/tod/export/creatives/{campaignID}:
+    get:
+      description: Get creative level time of day data under a campaign.
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaign id
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TODExportCreative'
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get creative level time of day data under a campaign.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v2/campaign/product/{campaignID}:
+    get:
+      summary: Get product level data by campaign_id
+      description: Get product level data by campaign_id
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaign id
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductExportCampaignV2'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v2/adgroups/product/{campaignID}:
+    get:
+      summary: Get product level for all the adgroups under the campaign
+      description: Get product level for all the adgroups under the campaign
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaign id
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductExportAdgroupV2'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v2/creatives/product/{campaignID}:
+    get:
+      summary: Get product level for all the creatives under the campaign
+      description: Get product level for all the creatives under the campaign
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaign id
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductExportCreativeV2'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v3/campaign/product/{campaignID}:
+    get:
+      summary: Get product level data by campaign_id
+      description: Get product level data by campaign_id
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaign id
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductExportCampaignV3'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v3/adgroups/product/{campaignID}:
+    get:
+      summary: Get product level for all the adgroups under the campaign
+      description: Get product level for all the adgroups under the campaign
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaign id
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductExportAdgroupV3'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v3/creatives/product/{campaignID}:
+    get:
+      summary: Get product level for all the creatives under the campaign
+      description: Get product level for all the creatives under the campaign
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaign id
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductExportCreativeV3'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v2/campaign/behavioral_audience/{campaignID}:
+    get:
+      description: Get campaign level behavioral_audience  data under the campaign
+      tags:
+      - demand
+      parameters:
+      - in: header
+        name: X-GT-USER-ID
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-GT-API-KEY
+        required: true
+        schema:
+          type: string
+      - description: request campaignID
+        in: path
+        name: campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: start date for data pull.
+        in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+      - description: end date for data pull
+        in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BehavioralAudienceCampaignV2'
+          description: 200 valid response
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get campaign level behavioral_audience  data under the campaign
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v2/adgroups/behavioral_audience/{campaignID}:
+    get:
+      description: Get adgroup level behavioral_audience data under the campaign.
+      tags:
+      - demand
+      parameters:
+      - in: header
+        name: X-GT-USER-ID
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-GT-API-KEY
+        required: true
+        schema:
+          type: string
+      - description: request campaignID
+        in: path
+        name: campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: start date for data pull.
+        in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+      - description: end date for data pull
+        in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BehavioralAudienceAdgroupV2'
+          description: 200 valid response
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get adgroup level behavioral_audience data under the campaign.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v2/creatives/behavioral_audience/{campaignID}:
+    get:
+      description: Get creative level behavioral_audience data under the campaign.
+      tags:
+      - demand
+      parameters:
+      - in: header
+        name: X-GT-USER-ID
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-GT-API-KEY
+        required: true
+        schema:
+          type: string
+      - description: request campaignID
+        in: path
+        name: campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: start date for data pull.
+        in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+      - description: end date for data pull
+        in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BehavioralAudienceCreativeV2'
+          description: 200 valid response
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get creative level behavioral_audience data under the campaign.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v2/campaign/category/{campaignID}:
+    get:
+      description: Get campaign level category data under the campaign.
+      tags:
+      - demand
+      parameters:
+      - in: header
+        name: X-GT-USER-ID
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-GT-API-KEY
+        required: true
+        schema:
+          type: string
+      - description: request campaignID
+        in: path
+        name: campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: start date for data pull.
+        in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+      - description: end date for data pull
+        in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryCampaignV2'
+          description: 200 valid response
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get campaign level category data under the campaign.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v2/adgroups/category/{campaignID}:
+    get:
+      description: Get adgroup level category data under the campaign.
+      tags:
+      - demand
+      parameters:
+      - in: header
+        name: X-GT-USER-ID
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-GT-API-KEY
+        required: true
+        schema:
+          type: string
+      - description: request campaignID
+        in: path
+        name: campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: start date for data pull.
+        in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+      - description: end date for data pull
+        in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryAdgroupV2'
+          description: 200 valid response
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get adgroup level category data under the campaign.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v2/creatives/category/{campaignID}:
+    get:
+      description: Get creative level category data under the campaign.
+      tags:
+      - demand
+      parameters:
+      - in: header
+        name: X-GT-USER-ID
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-GT-API-KEY
+        required: true
+        schema:
+          type: string
+      - description: request campaignID
+        in: path
+        name: campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: start date for data pull.
+        in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+      - description: end date for data pull
+        in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryCreativeV2'
+          description: 200 valid response
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get creative level category data under the campaign.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v2/campaign/brand_affinity/{campaignID}:
+    get:
+      description: Get campaign level brand_affinity data under the campaign.
+      tags:
+      - demand
+      parameters:
+      - in: header
+        name: X-GT-USER-ID
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-GT-API-KEY
+        required: true
+        schema:
+          type: string
+      - description: request campaignID
+        in: path
+        name: campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: start date for data pull.
+        in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+      - description: end date for data pull
+        in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrandAffinityCampaignV2'
+          description: 200 valid response
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get campaign level brand_affinity data under the campaign.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v2/adgroups/brand_affinity/{campaignID}:
+    get:
+      description: Get adgroup level brand_affinity data under the campaign.
+      tags:
+      - demand
+      parameters:
+      - in: header
+        name: X-GT-USER-ID
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-GT-API-KEY
+        required: true
+        schema:
+          type: string
+      - description: request campaignID
+        in: path
+        name: campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: start date for data pull.
+        in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+      - description: end date for data pull
+        in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrandAffinityAdgroupV2'
+          description: 200 valid response
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get adgroup level brand_affinity data under the campaign.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v2/creatives/brand_affinity/{campaignID}:
+    get:
+      description: Get creative level brand_affinity data under the campaign.
+      tags:
+      - demand
+      parameters:
+      - in: header
+        name: X-GT-USER-ID
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-GT-API-KEY
+        required: true
+        schema:
+          type: string
+      - description: request campaignID
+        in: path
+        name: campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: start date for data pull.
+        in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+      - description: end date for data pull
+        in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrandAffinityCreativeV2'
+          description: 200 valid response
+      security:
+      - shadowfax-api-authorizer: []
+      summary: Get creative level brand_affinity data under the campaign.
+      x-amazon-apigateway-integration:
+        contentHandling: CONVERT_TO_TEXT
+        httpMethod: POST
+        passthroughBehavior: when_no_match
+        responses:
+          default:
+            statusCode: 200
+        type: aws_proxy
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+  /demand/v2/campaign/sv_locations/{campaignID}:
+    get:
+      summary: Get SV Location data
+      description: Get SV Location data
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaign id
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      - name: location_type
+        in: query
+        description: flag to get data for the campaign by location_type
+        required: true
+        schema:
+          type: string
+          enum:
+          - state
+          - dma
+          - zipcode
+          - address
+      - name: key
+        in: query
+        description: set to 1 to get top 10 records descending by total_sv, set to 2 to get top 10 records ascending by total_sv, set to 0 for all records with ascending
+          ordering by total_sv.
+        required: false
+        schema:
+          format: int64
+          type: integer
+          enum:
+          - 0
+          - 1
+          - 2
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SVLocationCampaignV2'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/V2/adgroup/sv_locations/{adgroupID}:
+    get:
+      summary: Get SV Location data
+      description: Get SV Location data
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: adgroupID
+        in: path
+        description: request adgroup id
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      - name: location_type
+        in: query
+        description: flag to get data for the campaign by location_type
+        required: true
+        schema:
+          enum:
+          - state
+          - dma
+          - zipcode
+          - address
+          type: string
+      - name: key
+        in: query
+        description: set to 1 to get top 10 records descending by total_sv, set to 2 to get top 10 records ascending by total_sv, set to 0 for all records with ascending
+          ordering by total_sv.
+        required: false
+        schema:
+          format: int64
+          type: integer
+          enum:
+          - 0
+          - 1
+          - 2
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SVLocationAdgroupV2'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v2/campaign/publisher/{campaignID}:
+    get:
+      summary: Get campaign level publisher data for CTV/OTT campaigns
+      description: Get campaign level publisher data for CTV/OTT campaigns
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublisherCampaignV2'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v2/adgroups/publisher/{campaignID}:
+    get:
+      summary: Get adgroup level publisher data for CTV/OTT campaigns
+      description: Get adgroup level publisher data for CTV/OTT campaigns
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublisherAdgroupV2'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v2/campaign/network/{campaignID}:
+    get:
+      summary: Get campaign level network data for CTV/OTT campaigns
+      description: Get campaign level network data for CTV/OTT campaigns
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkCampaign'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v2/campaign/audio/streaming_genre/{campaignID}:
+    get:
+      summary: Get campaign level streaming genre data for AUDIO campaigns
+      description: Get campaign level streaming genre data for AUDIO campaigns
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioStreamingGenreCampaign'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v2/adgroups/audio/streaming_genre/{campaignID}:
+    get:
+      summary: Get adgroup level streaming genre data under AUDIO campaigns
+      description: Get adgroup level streaming genre data under AUDIO campaigns
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioStreamingGenreAdgroup'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v2/campaign/audio/podcast_topic/{campaignID}:
+    get:
+      summary: Get campaign level podcast topic data for AUDIO campaigns
+      description: Get campaign level podcast topic data for AUDIO campaigns
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioPodcastTopicCampaign'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v2/adgroups/audio/podcast_topic/{campaignID}:
+    get:
+      summary: Get adgroup level podcast topic data under AUDIO campaigns
+      description: Get adgroup level podcast topic data under AUDIO campaigns
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioPodcastTopicAdgroup'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v2/campaign/audio/podcast_series/{campaignID}:
+    get:
+      summary: Get campaign level podcast series data for AUDIO campaigns
+      description: Get campaign level podcast series data for AUDIO campaigns
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioPodcastSeriesCampaign'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v2/adgroups/audio/podcast_series/{campaignID}:
+    get:
+      summary: Get adgroup level podcast series data under AUDIO campaigns
+      description: Get adgroup level podcast series data under AUDIO campaigns
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioPodcastSeriesAdgroup'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v2/campaign/audio/publisher/{campaignID}:
+    get:
+      summary: Get campaign level publisher data for AUDIO campaigns
+      description: Get campaign level publisher data for AUDIO campaigns
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioPublisherCampaign'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+  /demand/v2/adgroups/audio/publisher/{campaignID}:
+    get:
+      summary: Get adgroup level publisher data under AUDIO campaigns
+      description: Get adgroup level publisher data under AUDIO campaigns
+      tags:
+      - demand
+      parameters:
+      - name: X-GT-USER-ID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-GT-API-KEY
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: campaignID
+        in: path
+        description: request campaignID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: start_date
+        in: query
+        description: start date for data pull.
+        required: true
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: end date for data pull
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 valid response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioPublisherAdgroup'
+      security:
+      - shadowfax-api-authorizer: []
+      x-amazon-apigateway-request-validator: Validate query string parameters and headers
+      x-amazon-apigateway-integration:
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ShadowfaxIntegrationFunction.Arn}/invocations
+        responses:
+          default:
+            statusCode: 200
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        contentHandling: CONVERT_TO_TEXT
+        type: aws_proxy
+x-amazon-apigateway-request-validators:
+  Validate query string parameters and headers:
+    validateRequestBody: false
+    validateRequestParameters: true
+tags:
+- description: Demand API documentation
+  name: demand
+servers:
+- url: https://reporting.groundtruth.com
+  description: Production

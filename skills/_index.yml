@@ -1,0 +1,71 @@
+generated: '2026-08-12'
+method: generated
+source: openapi/groundtruth-ads-manager-openapi.yml + openapi/groundtruth-reporting-openapi.yml
+note: >-
+  Packaged Agent Skills for the GroundTruth Ads Manager Public API. GroundTruth publishes no
+  AGENTS.md, skills or agent guidance of its own — searched api-docs.groundtruth.com,
+  docs.groundtruth.com and www.groundtruth.com — so these are generated from the provider's own live
+  OpenAPI. Every operationId referenced in every skill was verified present in
+  https://api-public.groundtruth.com/openapi.json on 2026-08-12; none was invented.
+skills:
+- file: groundtruth-launch-campaign.md
+  name: Launch a GroundTruth campaign
+  description: >-
+    Stand up a new flight — resolve the account, pull the static vocabularies, create the campaign
+    and ad groups, check inventory availability, attach creatives and activate.
+  api: openapi/groundtruth-ads-manager-openapi.yml
+  operations: [get_accounts, get_account, get_account_verticals, get_dmas, get_iab_categories,
+    create_campaign, create_campaign_and_adgroups, get_campaign, create_adgroup, get_adgroup,
+    get_adgroup_avails, create_creative, get_creative_preview, update_campaign]
+- file: groundtruth-pull-campaign-performance.md
+  name: Pull GroundTruth campaign performance
+  description: >-
+    Navigate the 160-operation reporting surface by grain and family — totals, timeseries,
+    day-of-week and time-of-day, distribution, product insights, visitation, web engagement and
+    spend — plus the separate demand Reporting API.
+  api: openapi/groundtruth-ads-manager-openapi.yml
+  operations: [get_totals_campaign, get_totals_adgroup, get_totals_creative, get_totals_account,
+    get_totals_organization, get_timeseries_dow_campaign, get_timeseries_tod_imp_campaign,
+    get_dow_metrics_campaign, get_tod_weekday_campaign, get_performance_distribution_campaign,
+    get_supply_system_distribution_campaign, get_product_insights_campaign,
+    get_product_insights_campaign_targeting, get_product_insights_campaign_audience,
+    get_visitation_lag_window_campaign, get_web_engagement_campaign, get_campaign_spend]
+- file: groundtruth-bulk-jobs-and-uploads.md
+  name: Run bulk work on GroundTruth
+  description: >-
+    Submit, poll, confirm and cancel bulk campaign uploads, bulk downloads and location-filter
+    uploads through the asynchronous Jobs surface. There are no webhooks; polling is the only
+    mechanism.
+  api: openapi/groundtruth-ads-manager-openapi.yml
+  operations: [upload, create_campaign_bulk_upload_job, confirm_campaign_bulk_upload_job,
+    cancel_campaign_bulk_upload_job, create_campaign_bulk_download_job,
+    create_location_filter_bulk_upload_job, confirm_location_filter_bulk_upload_job,
+    cancel_location_filter_bulk_upload_job, get_jobs, get_job, export_campaigns_dashboard,
+    download_location_filters]
+- file: groundtruth-search-locations-and-audiences.md
+  name: Build GroundTruth targeting
+  description: >-
+    Resolve real-world places and audience segments into targetable ids — POI sources, location
+    groups and filters, neighborhoods, drive-to and on-premise locations, audience search and
+    recommendations — before attaching them to an ad group.
+  api: openapi/groundtruth-ads-manager-openapi.yml
+  operations: [search_location_groups, search_location_group_pois, search_pois_sources,
+    search_pois_sources_count, search_pois_sources_preview_pois, search_pois_location_filters,
+    search_location_filters, search_neighborhoods, search_drive_to_locations,
+    search_on_premise_locations, search_audiences, get_audience_recommendations, search_campaigns,
+    search_adgroups, search_creatives, search_accounts]
+shared_rules:
+  authentication: Paired X-GT-USER-ID + X-GT-API-KEY headers. Neither works alone.
+  tenancy: tenant_id is a required query parameter on 242 of 259 operations.
+  idempotency: Not supported. No write in this API is safe to blind-retry.
+  rate_limits: None published, no 429 declared, no Retry-After header. Back off on your own schedule.
+  errors: Two envelopes coexist - the standard errors[] envelope and FastAPI's detail[] validation
+    shape. Handle both. See errors/groundtruth-problem-types.yml.
+  tracing: Capture the x-gt-trace-id response header; it is undocumented but present on every response.
+  events: None. No webhooks, no AsyncAPI, no streaming. Poll /jobs.
+cross_links:
+  conventions: conventions/groundtruth-conventions.yml
+  errors: errors/groundtruth-problem-types.yml
+  authentication: authentication/groundtruth-authentication.yml
+  data_model: data-model/groundtruth-data-model.yml
+  rate_limits: rate-limits/groundtruth-rate-limits.yml

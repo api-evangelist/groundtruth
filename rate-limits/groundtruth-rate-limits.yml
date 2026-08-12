@@ -1,0 +1,39 @@
+generated: '2026-08-12'
+method: searched
+source: https://api-docs.groundtruth.com/ + https://reporting.groundtruth.com/api + live probes of api-public.groundtruth.com
+limit_count: 0
+limits: []
+headers: []
+status_on_exhaustion: undocumented
+note: >-
+  GroundTruth publishes no rate limits for either API. An honest zero, not an unchecked field.
+  Searched: the Ads Manager reference at api-docs.groundtruth.com (270 endpoint pages plus the
+  Welcome page, whose entire content is the authentication headers), the Reporting API reference at
+  reporting.groundtruth.com/api, the GroundTruth help centre, and both OpenAPI documents. Zero
+  matches for "rate limit", "ratelimit", "throttl", "quota", "429" or "Retry-After" in either
+  specification. Not one of the 259 Ads Manager operations or 59 Reporting operations declares a 429
+  response. Live responses from api-public.groundtruth.com (GET /health 200, GET /accounts 401,
+  POST /campaigns 401 on 2026-08-12) carried no X-RateLimit-*, RateLimit-* or Retry-After header —
+  only date, content-type, server, x-gt-trace-id, x-frame-options and etag.
+observed_response_headers:
+- x-gt-trace-id
+- x-frame-options
+- etag
+- server
+adjacent_limits_documented:
+  note: >-
+    Not rate limits, but the only published request-size constraints found.
+  pagination_limit_max: 100
+  pagination_limit_default: 10
+  evidence: >-
+    The `limit` query parameter on collection operations declares maximum 100, minimum 1, default 10.
+  reporting_transport: >-
+    The Reporting API's info.description states all endpoints currently require HTTP/1.1.
+gaps_for_the_provider:
+- Publish the per-key and per-tenant limits and the window they apply over.
+- Declare a 429 response on the operations that can be throttled.
+- Emit RateLimit-Limit / RateLimit-Remaining / RateLimit-Reset (or X-RateLimit-*) and Retry-After,
+  so an agent can back off from the runtime signal instead of guessing from a docs page.
+cross_links:
+  conventions: conventions/groundtruth-conventions.yml
+  errors: errors/groundtruth-problem-types.yml

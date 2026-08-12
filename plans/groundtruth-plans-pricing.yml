@@ -1,0 +1,38 @@
+generated: '2026-08-12'
+method: searched
+source: https://www.groundtruth.com/ + https://www.groundtruth.com/get-started/ + https://api-docs.groundtruth.com/
+plan_count: 0
+plans: []
+pricing_model: enterprise-contact-sales
+api_pricing_published: false
+note: >-
+  GroundTruth publishes no pricing page and no API plans. Searched: www.groundtruth.com/pricing/,
+  /plans/, /self-serve/, /ads-manager/ (all HTTP 404 on 2026-08-12), the full page sitemap at
+  www.groundtruth.com/page-sitemap.xml (no pricing, plans or tier page of any kind), the
+  get-started page, the Ads Manager reference at api-docs.groundtruth.com and the Reporting API
+  reference. Nothing states a price, a tier, an included quota or an overage rate.
+api_access_model:
+  onboarding: approval
+  self_serve: false
+  free_tier: false
+  evidence:
+  - url: https://api-docs.groundtruth.com/welcome-824669m0
+    quote: API credentials are provided on a request basis
+  - url: https://help.groundtruth.com/hc/en-us/articles/4402393255315-Can-I-set-up-external-reporting-API
+    quote: >-
+      View our API documentation here: https://reporting.groundtruth.com/api Please contact our
+      support team to request API credentials.
+  note: >-
+    Advertising spend is transacted through the Ads Manager platform and through GroundTruth's sales
+    team; API access is an entitlement on top of a platform relationship, not a separately priced
+    product. There is no published API price list to record.
+probed:
+- url: https://www.groundtruth.com/pricing/
+  status: 404
+- url: https://www.groundtruth.com/plans/
+  status: 404
+- url: https://www.groundtruth.com/get-started/
+  status: 200
+gaps_for_the_provider:
+- Publish an API access page stating who can get credentials and on what commercial terms, even if
+  the number itself stays behind the sales conversation.

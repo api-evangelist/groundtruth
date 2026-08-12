@@ -1,0 +1,78 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the GroundTruth Ads Manager Public API
+  version: 1.0.0
+extends: openapi/groundtruth-ads-manager-openapi.yml
+x-generated: '2026-08-12'
+x-method: generated
+x-source: >-
+  Enhancements over the verbatim provider document harvested from
+  https://api-public.groundtruth.com/openapi.json on 2026-08-12
+  (openapi/_original/groundtruth-ads-manager-openapi.json). The original is never mutated.
+actions:
+- target: $.info
+  description: >-
+    Record where this contract came from and how it was verified, plus the API Evangelist artifacts
+    derived from it.
+  update:
+    x-apievangelist-source: https://api-public.groundtruth.com/openapi.json
+    x-apievangelist-harvested: '2026-08-12'
+    x-apievangelist-http-status: 200
+    x-apievangelist-ownership-check: >-
+      Served by api-public.groundtruth.com, the provider's own host, which also serves Swagger UI at
+      /docs titled "Ads Manager API" with a favicon on cf.groundtruth.com. The provider's published
+      reference at api-docs.groundtruth.com names the same host in servers[] and the same
+      X-GT-API-KEY / X-GT-USER-ID auth headers.
+    x-apievangelist-artifacts:
+      authentication: authentication/groundtruth-authentication.yml
+      conventions: conventions/groundtruth-conventions.yml
+      errors: errors/groundtruth-problem-types.yml
+      data_model: data-model/groundtruth-data-model.yml
+      lifecycle: lifecycle/groundtruth-lifecycle.yml
+      conformance: conformance/groundtruth-conformance.yml
+      rate_limits: rate-limits/groundtruth-rate-limits.yml
+      agentic_access: agentic-access/groundtruth-agentic-access.yml
+      skills: skills/_index.yml
+- target: $
+  description: >-
+    The provider's live document has NO servers[] block, so a generated client cannot resolve a base
+    URL. Supply the real production host, confirmed live (GET /health -> 200 "ok", 2026-08-12).
+  update:
+    servers:
+    - url: https://api-public.groundtruth.com
+      description: Production
+- target: $.components.securitySchemes
+  description: >-
+    248 of 259 operations require a `session` scheme that is NOT defined in the provider's
+    securitySchemes. This documents the gap; it does not guess the mechanism.
+  update:
+    x-apievangelist-undefined-scheme:
+      name: session
+      referenced_by_operations: 248
+      defined: false
+      note: >-
+        Referenced in operation security[] but absent from components.securitySchemes. Believed to
+        be the ads.groundtruth.com browser session cookie, but the provider does not say so, so no
+        definition is asserted here. API key callers should use api-key + user-id together.
+- target: $.info
+  description: Record the runtime and error semantics the contract does not declare.
+  update:
+    x-apievangelist-runtime:
+      trace_header: x-gt-trace-id
+      trace_header_declared_in_spec: false
+      etag: true
+      rate_limit_headers: none observed
+      status_429_declared: false
+      idempotency: not supported
+      error_envelope: '{"errors":[{"code","message","fields"}]}'
+      error_format: proprietary (not RFC 9457)
+- target: $.info
+  description: >-
+    Record the drift between what the provider documents and what the provider serves, measured
+    2026-08-12.
+  update:
+    x-apievangelist-contract-drift:
+      live_operations: 259
+      documented_operations: 270
+      documented_but_not_served: 11
+      detail: lifecycle/groundtruth-lifecycle.yml#contract_drift

@@ -1,0 +1,145 @@
+generated: '2026-08-12'
+method: derived
+source: openapi/groundtruth-ads-manager-openapi.yml (components.schemas $ref links + *_id reference fields)
+summary: >-
+  Entity-relationship graph for the GroundTruth Ads Manager Public API, derived from the 453 schemas
+  in the provider's live OpenAPI. The model is a strict six-level advertising hierarchy —
+  tenant > organization > account > campaign > ad group > creative — with a reporting layer hung off
+  the campaign/ad group/creative levels and a jobs layer for asynchronous work. Every identifier is a
+  bare integer; there are no prefixed or opaque ids anywhere in the contract.
+id_convention:
+  type: integer
+  format: int64 on the Reporting API path parameters
+  prefixed: false
+  note: >-
+    Identifiers are plain integers (campaign_id, adgroup_id, creative_id, account_id ...). They are
+    not globally unique across types and carry no type prefix, so a client must track which kind of
+    id it holds. All of them are tenant-scoped.
+entities:
+- name: Tenant
+  schema: TenantModel
+  root: true
+  operations: [get_tenant, update_tenant]
+  note: Top of the hierarchy. tenant_id is a required query parameter on 242 of 259 operations.
+- name: Organization
+  schema: OrganizationModel
+  operations: [get_organizations, create_organization, get_organization, update_organization, delete_organization]
+- name: Account
+  schema: AccountModel
+  operations: [get_accounts, create_account, get_account, update_account, delete_account]
+  related_schemas: [AccountPixelModel, AccountPixelsModel, AccountMinCPVBidRateModel, AccountVerticalModel]
+- name: Campaign
+  schema: CampaignModel
+  operations: [get_campaigns, create_campaign, get_campaign, update_campaign, delete_campaign]
+  related_schemas: [CampaignsModel, CampaignSpendModel, CampaignsDashboardModel, CampaignAndAdgroupsModel]
+- name: Adgroup
+  schema: AdgroupModel
+  operations: [create_adgroup, get_adgroups, get_adgroup, update_adgroup, patch_adgroup, delete_adgroup]
+  note: The widest entity in the model — 68 properties covering targeting, budget, flight, media type and placement.
+- name: Creative
+  schema: CreativeModel
+  operations: [get_creatives, create_creative, get_creative, update_creative]
+- name: CreativeAsset
+  schema: CreativeAssetModel
+  note: The uploaded file behind a creative; referenced by CreativeModel.asset_id.
+- name: User
+  schema: UserModel
+  operations: [get_users, get_user, signup]
+- name: Audience
+  schema: AudienceModel
+  related_schemas: [AudienceTaxonomy, AudienceRecommendationsModel, AudienceSearchResult]
+- name: Job
+  schema: JobModel
+  note: Asynchronous work unit. Carries back-references to account, campaign, adgroup and creative.
+- name: Order
+  schema: OrderModel
+  note: Direct Mail order.
+- name: AccountPixel
+  schema: AccountPixelModel
+  note: Conversion-tracking pixel attached to an account.
+relationships:
+- from: Organization
+  to: Tenant
+  kind: belongs_to
+  via: tenant_id
+- from: Account
+  to: Organization
+  kind: belongs_to
+  via: organization_id
+- from: Account
+  to: Tenant
+  kind: belongs_to
+  via: tenant_id
+- from: Campaign
+  to: Account
+  kind: belongs_to
+  via: account_id
+- from: Adgroup
+  to: Campaign
+  kind: belongs_to
+  via: campaign_id
+- from: Creative
+  to: CreativeAsset
+  kind: has_one
+  via: asset_id
+- from: Adgroup
+  to: Creative
+  kind: has_many
+  via: creative_id
+  note: Reporting operations break ad groups out by creative (all_creatives=true).
+- from: Campaign
+  to: Adgroup
+  kind: has_many
+  via: adgroup_id
+  note: Reporting operations break campaigns out by ad group (all_adgroups=true).
+- from: Account
+  to: AccountPixel
+  kind: has_many
+  via: pixel
+- from: Job
+  to: Campaign
+  kind: belongs_to
+  via: campaign_id
+- from: Job
+  to: Adgroup
+  kind: belongs_to
+  via: adgroup_id
+- from: Job
+  to: Creative
+  kind: belongs_to
+  via: creative_id
+- from: Order
+  to: Account
+  kind: belongs_to
+  via: account_id
+- from: Account
+  to: Vertical
+  kind: belongs_to
+  via: vertical_id
+- from: Account
+  to: Brand
+  kind: belongs_to
+  via: brand_id
+- from: Adgroup
+  to: LocationGroup
+  kind: has_many
+  via: location_group_ids
+- from: Adgroup
+  to: POI
+  kind: has_many
+  via: poi_ids
+reference_data:
+  note: >-
+    Eight unauthenticated /static/* lookups supply the controlled vocabularies the write model
+    references — DMAs, IAB categories, publisher categories, account verticals, podcast topics,
+    audio streaming genres, streaming-video content categories and premium CTV categories.
+reporting_layer:
+  grain: [campaign, adgroup, creative, order]
+  dimensions: [day-of-week, time-of-day, product, targeting tactic, audience, location, supply/system distribution]
+  note: >-
+    160 of 259 operations are reporting reads. They do not create entities; they project metrics over
+    the hierarchy above, keyed by campaign_id / adgroup_id / creative_id and bounded by
+    start_date / end_date.
+cross_links:
+  conventions: conventions/groundtruth-conventions.yml
+  errors: errors/groundtruth-problem-types.yml

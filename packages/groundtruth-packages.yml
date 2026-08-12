@@ -1,0 +1,51 @@
+generated: '2026-08-12'
+method: searched
+source: npm, PyPI, RubyGems, crates.io, NuGet, Maven Central, pkg.go.dev, Packagist + https://api-docs.groundtruth.com/ + https://docs.groundtruth.com/
+package_count: 0
+official_package_count: 0
+packages: []
+note: >-
+  GroundTruth publishes no first-party client libraries for either API. An honest zero: searched, not
+  skipped. No `SDKs` pointer is emitted in apis.yml, because there is no SDK to point at.
+search_evidence:
+  npm:
+    query: groundtruth
+    results: 20
+    first_party: 0
+    note: >-
+      Every hit is an unrelated project trading on the generic phrase "ground truth" — AI
+      evaluation, AWS SageMaker Ground Truth tooling, coding-agent verification CLIs
+      (@gthos/cli, @groundtruth-sh/cli, @jondot/groundtruth, @veltiq/groundtruth,
+      groundtruth-mcp, serverless-sagemaker-groundtruth). None references
+      groundtruth.com, api-public.groundtruth.com or the X-GT-API-KEY auth model.
+  pypi:
+    checked: [groundtruth, groundtruth-api, gt-api, xad]
+    first_party: 0
+    note: >-
+      `groundtruth` 0.1.0 is an LLM hallucination detector; `gt-api` is a Geotastic wrapper;
+      `xad` is an automatic-differentiation library; `groundtruth-api` does not exist (404).
+      None is GroundTruth the advertising platform.
+  other_registries:
+    checked: [rubygems, crates.io, nuget, maven-central, pkg.go.dev, packagist]
+    first_party: 0
+  docs:
+    note: >-
+      Neither the Ads Manager reference (api-docs.groundtruth.com, 270 endpoint pages) nor the
+      Reporting API reference links a client library, code sample in a named language, or a
+      download. The Welcome page contains only the two required auth headers.
+  github:
+    note: >-
+      github.com/Groundtruth exists but is NOT this company — it is a New Zealand organisation
+      whose profile website is groundtruth.co.nz. github.com/GroundTruthCo and github.com/xad-inc
+      both 404. No first-party GitHub organisation was found, so no `GitHubOrganization` pointer
+      is emitted.
+distribution_reality:
+  note: >-
+    Integrators call the REST surfaces directly with the paired X-GT-USER-ID / X-GT-API-KEY headers.
+    The only generated-client path available is to run a generator against
+    https://api-public.groundtruth.com/openapi.json — which is possible, but note that the live
+    document carries no servers[] block, so the base URL must be supplied by hand.
+gaps_for_the_provider:
+- Ship (or at least generate and publish) a client library in one or two languages, or explicitly
+  document the codegen path from the live OpenAPI.
+- Add a servers[] block to the live OpenAPI so generated clients resolve a base URL.
