@@ -1,0 +1,2557 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Groundtruth Reporting API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "demand",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get account level cumulative data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/account/:accountID/totals",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "accountID",
+                "value": "",
+                "type": "path",
+                "description": "request account"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              },
+              {
+                "name": "all_campaigns",
+                "value": "",
+                "type": "query",
+                "description": "flag to get data for all campaigns under that account"
+              }
+            ]
+          },
+          "docs": "Get account level cumulative data."
+        },
+        {
+          "info": {
+            "name": "Get adgroup level daily data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/adgroup/:adgroupID/daily",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "adgroupID",
+                "value": "",
+                "type": "path",
+                "description": "request adgroup"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              },
+              {
+                "name": "all_creatives",
+                "value": "",
+                "type": "query",
+                "description": "flag to get data for all creatives under that adgroup"
+              }
+            ]
+          },
+          "docs": "Get adgroup level daily data."
+        },
+        {
+          "info": {
+            "name": "Get adgroup level cumulative data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/adgroup/:adgroupID/totals",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "adgroupID",
+                "value": "",
+                "type": "path",
+                "description": "request adgroup id"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              },
+              {
+                "name": "all_creatives",
+                "value": "",
+                "type": "query",
+                "description": "flag to get data for all creatives under that adgroup"
+              }
+            ]
+          },
+          "docs": "Get adgroup level cumulative data."
+        },
+        {
+          "info": {
+            "name": "Get campaign level daily data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/campaign/:campaignID/daily",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaign id"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              },
+              {
+                "name": "all_adgroups",
+                "value": "",
+                "type": "query",
+                "description": "flag to get data for all adgroups under that campaign"
+              }
+            ]
+          },
+          "docs": "Get campaign level daily data."
+        },
+        {
+          "info": {
+            "name": "Get campaign level cumulative data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/campaign/:campaignID/totals",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaign id"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              },
+              {
+                "name": "all_adgroups",
+                "value": "",
+                "type": "query",
+                "description": "flag to get data for all adgroups under that campaign"
+              },
+              {
+                "name": "all_creatives",
+                "value": "",
+                "type": "query",
+                "description": "flag to get data for all adgroups and creatives under that campaign"
+              }
+            ]
+          },
+          "docs": "Get campaign level cumulative data."
+        },
+        {
+          "info": {
+            "name": "Get organization level data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/org/:organizationID/totals",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "organizationID",
+                "value": "",
+                "type": "path",
+                "description": "request organizationID id"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get organization level data"
+        },
+        {
+          "info": {
+            "name": "Get product level data by campaign_id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/campaign/product/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaign id"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get product level data by campaign_id"
+        },
+        {
+          "info": {
+            "name": "Get product level for all the adgroups under the campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/adgroups/product/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaign id"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get product level for all the adgroups under the campaign"
+        },
+        {
+          "info": {
+            "name": "Get product level for all the creatives under the campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/creatives/product/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaign id"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get product level for all the creatives under the campaign"
+        },
+        {
+          "info": {
+            "name": "Get Location data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/campaign/locations/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaign id"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              },
+              {
+                "name": "location_type",
+                "value": "",
+                "type": "query",
+                "description": "flag to get data for the campaign by location_type"
+              },
+              {
+                "name": "metric",
+                "value": "",
+                "type": "query",
+                "description": "flag to get the data sorted by given metric, default is impressions"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "set to 1 to get top 10 records descending by given metric, set to 2 to get top 10 records ascending by given metric, set to 0 for all records with ascending ordering by given metric."
+              }
+            ]
+          },
+          "docs": "Get Location data"
+        },
+        {
+          "info": {
+            "name": "Get Location data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/adgroup/locations/:adgroupID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "adgroupID",
+                "value": "",
+                "type": "path",
+                "description": "request adgroup id"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              },
+              {
+                "name": "location_type",
+                "value": "",
+                "type": "query",
+                "description": "flag to get data for the campaign by location_type"
+              },
+              {
+                "name": "metric",
+                "value": "",
+                "type": "query",
+                "description": "flag to get the data sorted by given metric, default is impressions"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "set to 1 to get top 10 records descending by given metric, set to 2 to get top 10 records ascending by given metric, set to 0 for all records with ascending ordering by given metric."
+              }
+            ]
+          },
+          "docs": "Get Location data"
+        },
+        {
+          "info": {
+            "name": "Get SV Location data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/campaign/sv_locations/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaign id"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              },
+              {
+                "name": "location_type",
+                "value": "",
+                "type": "query",
+                "description": "flag to get data for the campaign by location_type"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "set to 1 to get top 10 records descending by total_sv, set to 2 to get top 10 records ascending by total_sv, set to 0 for all records with ascending ordering by total_sv."
+              }
+            ]
+          },
+          "docs": "Get SV Location data"
+        },
+        {
+          "info": {
+            "name": "Get SV Location data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/adgroup/sv_locations/:adgroupID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "adgroupID",
+                "value": "",
+                "type": "path",
+                "description": "request adgroup id"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              },
+              {
+                "name": "location_type",
+                "value": "",
+                "type": "query",
+                "description": "flag to get data for the campaign by location_type"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "set to 1 to get top 10 records descending by total_sv, set to 2 to get top 10 records ascending by total_sv, set to 0 for all records with ascending ordering by total_sv."
+              }
+            ]
+          },
+          "docs": "Get SV Location data"
+        },
+        {
+          "info": {
+            "name": "Get count of accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/org/account_count/:tenantID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "tenantID",
+                "value": "",
+                "type": "path",
+                "description": "request tenantID"
+              }
+            ]
+          },
+          "docs": "Get count of accounts"
+        },
+        {
+          "info": {
+            "name": "Get conversion tracking for all the adgroups under the account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/account/conversion_tracking/:accountID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "accountID",
+                "value": "",
+                "type": "path",
+                "description": "request accountID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get conversion tracking for all the adgroups under the account"
+        },
+        {
+          "info": {
+            "name": "Get creative level data under the campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/creatives/:campaignID/daily",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get creative level data under the campaign"
+        },
+        {
+          "info": {
+            "name": "Get campaign level behavioral_audience  data under the campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/campaign/behavioral_audience/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get campaign level behavioral_audience  data under the campaign"
+        },
+        {
+          "info": {
+            "name": "Get adgroup level behavioral_audience data under the campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/adgroups/behavioral_audience/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get adgroup level behavioral_audience data under the campaign."
+        },
+        {
+          "info": {
+            "name": "Get creative level behavioral_audience data under the campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/creatives/behavioral_audience/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get creative level behavioral_audience data under the campaign."
+        },
+        {
+          "info": {
+            "name": "Get campaign level category data under the campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/campaign/category/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get campaign level category data under the campaign."
+        },
+        {
+          "info": {
+            "name": "Get adgroup level category data under the campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/adgroups/category/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get adgroup level category data under the campaign."
+        },
+        {
+          "info": {
+            "name": "Get creative level category data under the campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/creatives/category/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get creative level category data under the campaign."
+        },
+        {
+          "info": {
+            "name": "Get campaign level brand_affinity data under the campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/campaign/brand_affinity/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get campaign level brand_affinity data under the campaign."
+        },
+        {
+          "info": {
+            "name": "Get adgroup level brand_affinity data under the campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/adgroups/brand_affinity/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get adgroup level brand_affinity data under the campaign."
+        },
+        {
+          "info": {
+            "name": "Get creative level brand_affinity data under the campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/creatives/brand_affinity/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get creative level brand_affinity data under the campaign."
+        },
+        {
+          "info": {
+            "name": "Get demographic data under the campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/campaign/demographic/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              },
+              {
+                "name": "all_adgroups",
+                "value": "",
+                "type": "query",
+                "description": "flag to get data for all adgroups under that campaign"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Set key value 1 for age, 2 for gender, 3 for age&gender"
+              }
+            ]
+          },
+          "docs": "Get demographic data under the campaign."
+        },
+        {
+          "info": {
+            "name": "Get device_type data at campaign level.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/campaign/device_type/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaign id"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get device_type data at campaign level."
+        },
+        {
+          "info": {
+            "name": "Get adgroup level device_type data under a campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/adgroups/device_type/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaign id"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get adgroup level device_type data under a campaign."
+        },
+        {
+          "info": {
+            "name": "Get campaign level time of day data under a campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/timeseries/tod/export/campaign/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaign id"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get campaign level time of day data under a campaign."
+        },
+        {
+          "info": {
+            "name": "Get adgroup level time of day data under a campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/timeseries/tod/export/adgroups/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaign id"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get adgroup level time of day data under a campaign."
+        },
+        {
+          "info": {
+            "name": "Get creative level time of day data under a campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v1/timeseries/tod/export/creatives/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaign id"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get creative level time of day data under a campaign."
+        },
+        {
+          "info": {
+            "name": "Get product level data by campaign_id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v2/campaign/product/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaign id"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get product level data by campaign_id"
+        },
+        {
+          "info": {
+            "name": "Get product level for all the adgroups under the campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v2/adgroups/product/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaign id"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get product level for all the adgroups under the campaign"
+        },
+        {
+          "info": {
+            "name": "Get product level for all the creatives under the campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v2/creatives/product/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaign id"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get product level for all the creatives under the campaign"
+        },
+        {
+          "info": {
+            "name": "Get product level data by campaign_id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v3/campaign/product/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaign id"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get product level data by campaign_id"
+        },
+        {
+          "info": {
+            "name": "Get product level for all the adgroups under the campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v3/adgroups/product/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaign id"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get product level for all the adgroups under the campaign"
+        },
+        {
+          "info": {
+            "name": "Get product level for all the creatives under the campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v3/creatives/product/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaign id"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get product level for all the creatives under the campaign"
+        },
+        {
+          "info": {
+            "name": "Get campaign level behavioral_audience  data under the campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v2/campaign/behavioral_audience/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get campaign level behavioral_audience  data under the campaign"
+        },
+        {
+          "info": {
+            "name": "Get adgroup level behavioral_audience data under the campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v2/adgroups/behavioral_audience/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get adgroup level behavioral_audience data under the campaign."
+        },
+        {
+          "info": {
+            "name": "Get creative level behavioral_audience data under the campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v2/creatives/behavioral_audience/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get creative level behavioral_audience data under the campaign."
+        },
+        {
+          "info": {
+            "name": "Get campaign level category data under the campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v2/campaign/category/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get campaign level category data under the campaign."
+        },
+        {
+          "info": {
+            "name": "Get adgroup level category data under the campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v2/adgroups/category/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get adgroup level category data under the campaign."
+        },
+        {
+          "info": {
+            "name": "Get creative level category data under the campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v2/creatives/category/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get creative level category data under the campaign."
+        },
+        {
+          "info": {
+            "name": "Get campaign level brand_affinity data under the campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v2/campaign/brand_affinity/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get campaign level brand_affinity data under the campaign."
+        },
+        {
+          "info": {
+            "name": "Get adgroup level brand_affinity data under the campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v2/adgroups/brand_affinity/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get adgroup level brand_affinity data under the campaign."
+        },
+        {
+          "info": {
+            "name": "Get creative level brand_affinity data under the campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v2/creatives/brand_affinity/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get creative level brand_affinity data under the campaign."
+        },
+        {
+          "info": {
+            "name": "Get SV Location data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v2/campaign/sv_locations/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaign id"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              },
+              {
+                "name": "location_type",
+                "value": "",
+                "type": "query",
+                "description": "flag to get data for the campaign by location_type"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "set to 1 to get top 10 records descending by total_sv, set to 2 to get top 10 records ascending by total_sv, set to 0 for all records with ascending ordering by total_sv."
+              }
+            ]
+          },
+          "docs": "Get SV Location data"
+        },
+        {
+          "info": {
+            "name": "Get SV Location data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/V2/adgroup/sv_locations/:adgroupID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "adgroupID",
+                "value": "",
+                "type": "path",
+                "description": "request adgroup id"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              },
+              {
+                "name": "location_type",
+                "value": "",
+                "type": "query",
+                "description": "flag to get data for the campaign by location_type"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "set to 1 to get top 10 records descending by total_sv, set to 2 to get top 10 records ascending by total_sv, set to 0 for all records with ascending ordering by total_sv."
+              }
+            ]
+          },
+          "docs": "Get SV Location data"
+        },
+        {
+          "info": {
+            "name": "Get campaign level publisher data for CTV/OTT campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v2/campaign/publisher/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get campaign level publisher data for CTV/OTT campaigns"
+        },
+        {
+          "info": {
+            "name": "Get adgroup level publisher data for CTV/OTT campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v2/adgroups/publisher/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get adgroup level publisher data for CTV/OTT campaigns"
+        },
+        {
+          "info": {
+            "name": "Get campaign level network data for CTV/OTT campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v2/campaign/network/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get campaign level network data for CTV/OTT campaigns"
+        },
+        {
+          "info": {
+            "name": "Get campaign level streaming genre data for AUDIO campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v2/campaign/audio/streaming_genre/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get campaign level streaming genre data for AUDIO campaigns"
+        },
+        {
+          "info": {
+            "name": "Get adgroup level streaming genre data under AUDIO campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v2/adgroups/audio/streaming_genre/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get adgroup level streaming genre data under AUDIO campaigns"
+        },
+        {
+          "info": {
+            "name": "Get campaign level podcast topic data for AUDIO campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v2/campaign/audio/podcast_topic/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get campaign level podcast topic data for AUDIO campaigns"
+        },
+        {
+          "info": {
+            "name": "Get adgroup level podcast topic data under AUDIO campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v2/adgroups/audio/podcast_topic/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get adgroup level podcast topic data under AUDIO campaigns"
+        },
+        {
+          "info": {
+            "name": "Get campaign level podcast series data for AUDIO campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v2/campaign/audio/podcast_series/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get campaign level podcast series data for AUDIO campaigns"
+        },
+        {
+          "info": {
+            "name": "Get adgroup level podcast series data under AUDIO campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v2/adgroups/audio/podcast_series/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get adgroup level podcast series data under AUDIO campaigns"
+        },
+        {
+          "info": {
+            "name": "Get campaign level publisher data for AUDIO campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v2/campaign/audio/publisher/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get campaign level publisher data for AUDIO campaigns"
+        },
+        {
+          "info": {
+            "name": "Get adgroup level publisher data under AUDIO campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reporting.groundtruth.com/demand/v2/adgroups/audio/publisher/:campaignID",
+            "headers": [
+              {
+                "name": "X-GT-USER-ID",
+                "value": ""
+              },
+              {
+                "name": "X-GT-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaignID",
+                "value": "",
+                "type": "path",
+                "description": "request campaignID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date for data pull."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date for data pull"
+              }
+            ]
+          },
+          "docs": "Get adgroup level publisher data under AUDIO campaigns"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
