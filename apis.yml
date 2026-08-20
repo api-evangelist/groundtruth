@@ -37,6 +37,21 @@ modified: '2026-08-12'
 image: https://www.groundtruth.com/wp-content/uploads/2026/06/GroundTruth-Featured-Image.webp
 tags:
 - Company
+- MarTech
+- Advertising
+- Location Intelligence
+- Marketing
+- AdTech
+- Location-Based Marketing
+- Advertising API
+- Campaign Management
+- Ad Reporting
+- Attribution
+- Geofencing
+- Digital Out Of Home
+- CTV
+tags_raw:
+- Company
 - Martech
 - Advertising
 - Location Intelligence
@@ -63,6 +78,13 @@ apis:
   humanURL: https://api-docs.groundtruth.com/
   baseURL: https://api-public.groundtruth.com
   tags:
+  - Advertising API
+  - Campaign Management
+  - Ad Reporting
+  - AdTech
+  - Location Intelligence
+  - Attribution
+  tags_raw:
   - Advertising API
   - Campaign Management
   - Ad Reporting
