@@ -49,11 +49,11 @@ modified: '2026-08-12'
 image: https://www.groundtruth.com/wp-content/uploads/2026/06/GroundTruth-Featured-Image.webp
 tags:
 - Company
-- MarTech
+- Martech
 - Advertising
 - Location Intelligence
 - Marketing
-- AdTech
+- Adtech
 - Location-Based Marketing
 - Advertising API
 - Campaign Management
@@ -102,6 +102,8 @@ apis:
   humanURL: https://api-docs.groundtruth.com/
   baseURL: https://api-public.groundtruth.com
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -270,6 +272,8 @@ apis:
   humanURL: https://api-docs.groundtruth.com/
   baseURL: https://api-public.groundtruth.com
   tags:
+  - Demand
+  tags_raw:
   - demand
   properties:
   - type: OpenAPI
@@ -354,6 +358,8 @@ apis:
   humanURL: https://api-docs.groundtruth.com/
   baseURL: https://api-public.groundtruth.com
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
@@ -381,7 +387,8 @@ apis:
   description: The Miscellaneous API from GroundTruth — 1 operation(s) for miscellaneous.
   humanURL: https://api-docs.groundtruth.com/
   baseURL: https://api-public.groundtruth.com
-  tags:
+  tags: []
+  tags_raw:
   - Miscellaneous
   properties:
   - type: OpenAPI
@@ -410,6 +417,8 @@ apis:
   humanURL: https://api-docs.groundtruth.com/
   baseURL: https://api-public.groundtruth.com
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
@@ -578,6 +587,8 @@ apis:
   humanURL: https://api-docs.groundtruth.com/
   baseURL: https://api-public.groundtruth.com
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
