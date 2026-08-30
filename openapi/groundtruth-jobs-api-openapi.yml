@@ -1,0 +1,966 @@
+openapi: 3.2.0
+info:
+  title: Ads Manager Jobs API
+  description: Ads Manager API
+  version: 1.0.0
+servers:
+- url: https://api-public.groundtruth.com
+  description: Production
+tags:
+- name: Jobs
+paths:
+  /jobs:
+    get:
+      tags:
+      - Jobs
+      summary: Get Jobs
+      description: Gets jobs
+      operationId: get_jobs
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: adgroup_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Adgroup Id
+      - name: account_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Account Id
+      - name: campaign_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Campaign Id
+      - name: job_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/UploadJobType'
+          - type: 'null'
+          title: Job Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobsModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /jobs/{job_id}:
+    get:
+      tags:
+      - Jobs
+      summary: Get Job
+      description: Gets a job
+      operationId: get_job
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Job Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /jobs/campaign_bulk_upload:
+    post:
+      tags:
+      - Jobs
+      summary: Create Campaign Bulk Upload Job
+      description: Creates a campaign bulk upload job
+      operationId: create_campaign_bulk_upload_job
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /jobs/campaign_bulk_upload/{job_id}/cancel:
+    post:
+      tags:
+      - Jobs
+      summary: Cancel Campaign Bulk Upload Job
+      description: Cancels a campaign bulk upload job
+      operationId: cancel_campaign_bulk_upload_job
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Job Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /jobs/campaign_bulk_upload/{job_id}/confirm:
+    post:
+      tags:
+      - Jobs
+      summary: Confirm Campaign Bulk Upload Job
+      description: Confirms a campaign bulk upload job
+      operationId: confirm_campaign_bulk_upload_job
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Job Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /jobs/location_filter_bulk_upload:
+    post:
+      tags:
+      - Jobs
+      summary: Create Location Filter Bulk Upload Job
+      description: Creates a location filter bulk upload job
+      operationId: create_location_filter_bulk_upload_job
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: adgroup_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Adgroup Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateLocationFilterTargetBulkUploadJobModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /jobs/campaign_bulk_download:
+    post:
+      tags:
+      - Jobs
+      summary: Create Campaign Bulk Download Job
+      description: Creates a campaign bulk download job
+      operationId: create_campaign_bulk_download_job
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCampaignBulkDownloadJobRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /jobs/location_filter_bulk_upload/{job_id}/confirm:
+    post:
+      tags:
+      - Jobs
+      summary: Confirm Location Filter Bulk Upload Job
+      description: Confirms location filter bulk upload job
+      operationId: confirm_location_filter_bulk_upload_job
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Job Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: adgroup_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Adgroup Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationFiltersModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /jobs/location_filter_bulk_upload/{job_id}/cancel:
+    post:
+      tags:
+      - Jobs
+      summary: Cancel Location Filter Bulk Upload Job
+      description: Cancels location filter bulk upload job
+      operationId: cancel_location_filter_bulk_upload_job
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Job Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: adgroup_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Adgroup Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+components:
+  schemas:
+    LocationFiltersModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/LocationFilterModel-Output'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: LocationFiltersModel
+    JobModel:
+      properties:
+        job_id:
+          type: integer
+          title: Job Id
+        type:
+          $ref: '#/components/schemas/UploadJobType'
+        status:
+          $ref: '#/components/schemas/JobStatus'
+        message:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Message
+        input_file_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Input File Url
+          description: Instead of a URL, this can sometimes be a path
+        output_file_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Output File Url
+          description: Instead of a URL, this can sometimes be a path
+        progress:
+          anyOf:
+          - type: number
+            maximum: 100.0
+            minimum: 0.0
+          - type: 'null'
+          title: Progress
+        account_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Account Id
+        campaign_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Campaign Id
+        adgroup_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Adgroup Id
+        creative_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Creative Id
+      type: object
+      required:
+      - job_id
+      - type
+      - status
+      - message
+      - input_file_url
+      - output_file_url
+      - account_id
+      - campaign_id
+      - adgroup_id
+      - creative_id
+      title: JobModel
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
+    JobsModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/JobModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: JobsModel
+    LocationFilterModel-Output:
+      properties:
+        type:
+          $ref: '#/components/schemas/LocationFilterType'
+        exclude:
+          type: boolean
+          title: Exclude
+          default: false
+        city:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: City
+        state:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: State
+          description: State code
+        zip_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Zip Code
+        county:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: County
+          description: County name
+        dma:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Dma
+          description: DMA name
+        lat:
+          anyOf:
+          - type: number
+            maximum: 90.0
+            minimum: -90.0
+          - type: 'null'
+          title: Lat
+        lng:
+          anyOf:
+          - type: number
+            maximum: 180.0
+            minimum: -180.0
+          - type: 'null'
+          title: Lng
+        address:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Address
+        radius:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Radius
+        display_name:
+          type: string
+          title: Display Name
+          readOnly: true
+      type: object
+      required:
+      - type
+      - display_name
+      title: LocationFilterModel
+    LocationFilterType:
+      oneOf:
+      - const: City
+        title: CITY
+      - const: State
+        title: STATE
+      - const: Zip
+        title: ZIP_CODE
+      - const: DMA
+        title: DMA
+      - const: County
+        title: COUNTY
+      - const: LatLng
+        title: LAT_LNG
+      - const: Address
+        title: ADDRESS
+      type: string
+      enum:
+      - City
+      - State
+      - Zip
+      - DMA
+      - County
+      - LatLng
+      - Address
+      title: LocationFilterType
+      x-enum-varnames:
+      - CITY
+      - STATE
+      - ZIP_CODE
+      - DMA
+      - COUNTY
+      - LAT_LNG
+      - ADDRESS
+    JobStatus:
+      oneOf:
+      - const: 0
+        title: NEW
+      - const: 1
+        title: IN_PROGRESS
+      - const: 2
+        title: SUCCESSFULLY_DONE
+      - const: 3
+        title: FAILED_DONE
+      - const: 4
+        title: CANCELLED
+      - const: 5
+        title: CONFIRMED
+      - const: 6
+        title: EXPIRED
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      title: JobStatus
+      x-enum-varnames:
+      - NEW
+      - IN_PROGRESS
+      - SUCCESSFULLY_DONE
+      - FAILED_DONE
+      - CANCELLED
+      - CONFIRMED
+      - EXPIRED
+    CreateCampaignBulkDownloadJobRequestModel:
+      properties:
+        campaign_ids:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+            uniqueItems: true
+          - type: 'null'
+          title: Campaign Ids
+      type: object
+      title: CreateCampaignBulkDownloadJobRequestModel
+    SuccessResponseModel:
+      properties:
+        success:
+          type: boolean
+          title: Success
+          default: true
+      type: object
+      title: SuccessResponseModel
+    UploadJobType:
+      oneOf:
+      - const: 0
+        title: LOCATION_FILTER
+      - const: 1
+        title: CAMPAIGN_BULK_UPLOAD
+      - const: 2
+        title: CAMPAIGN_SUMMARY
+      - const: 3
+        title: VIDEO_TRANSCODER
+      - const: 6
+        title: CREATIVE_BULK_UPLOAD
+      - const: 7
+        title: HTML5_CREATIVE
+      - const: 8
+        title: WAYMARK_VIDEO
+      - const: 9
+        title: CAMPAIGN_BULK_DOWNLOAD
+      - const: 10
+        title: CAMPAIGN_BULK_UPLOAD_V2
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      title: UploadJobType
+      x-enum-varnames:
+      - LOCATION_FILTER
+      - CAMPAIGN_BULK_UPLOAD
+      - CAMPAIGN_SUMMARY
+      - VIDEO_TRANSCODER
+      - CREATIVE_BULK_UPLOAD
+      - HTML5_CREATIVE
+      - WAYMARK_VIDEO
+      - CAMPAIGN_BULK_DOWNLOAD
+      - CAMPAIGN_BULK_UPLOAD_V2
+    CreateLocationFilterTargetBulkUploadJobModel:
+      properties:
+        input_file_url:
+          type: string
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          title: Input File Url
+      type: object
+      required:
+      - input_file_url
+      title: CreateLocationFilterTargetBulkUploadJobModel
+  securitySchemes:
+    api-key:
+      type: apiKey
+      in: header
+      name: x-gt-api-key
+    user-id:
+      type: apiKey
+      in: header
+      name: x-gt-user-id

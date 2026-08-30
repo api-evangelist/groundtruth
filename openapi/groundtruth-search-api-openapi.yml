@@ -1,0 +1,3076 @@
+openapi: 3.2.0
+info:
+  title: Ads Manager Search API
+  description: Ads Manager API
+  version: 1.0.0
+servers:
+- url: https://api-public.groundtruth.com
+  description: Production
+tags:
+- name: Search
+paths:
+  /search/tenants:
+    post:
+      tags:
+      - Search
+      summary: Search Tenants
+      description: Searches tenants
+      operationId: search_tenants
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequestModel'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchTenantsResultsModel'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+  /search/organizations:
+    post:
+      tags:
+      - Search
+      summary: Search Organizations
+      description: Searches organizations
+      operationId: search_organizations
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Tenant Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchOrganizationsResultsModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /search/accounts:
+    post:
+      tags:
+      - Search
+      summary: Search Accounts
+      description: Searches accounts
+      operationId: search_accounts
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Tenant Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchAccountsRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchAccountsResultsModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /search/campaigns:
+    post:
+      tags:
+      - Search
+      summary: Search Campaigns
+      description: Searches campaigns
+      operationId: search_campaigns
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Tenant Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchCampaignsRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchCampaignsResultsModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /search/adgroups:
+    post:
+      tags:
+      - Search
+      summary: Search Adgroups
+      description: Searches ad groups
+      operationId: search_adgroups
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Tenant Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchAdgroupsRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchAdgroupsResultsModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /search/creatives:
+    post:
+      tags:
+      - Search
+      summary: Search Creatives
+      description: Searches creatives
+      operationId: search_creatives
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Tenant Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchCreativesRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchCreativesResultsModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /search/location_filters:
+    post:
+      tags:
+      - Search
+      summary: Search Location Filters
+      description: Searches location filters
+      operationId: search_location_filters
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchLocationFiltersRequestModel'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchLocationFiltersResultsModel'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+  /search/audiences:
+    post:
+      tags:
+      - Search
+      summary: Search Audiences
+      description: Searches audiences
+      operationId: search_audiences
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchAudiencesRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchAudiencesResultsModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /search/neighborhoods:
+    post:
+      tags:
+      - Search
+      summary: Search Neighborhoods
+      description: Searches neighborhoods (behaviors, brands, categories, and location groups)
+      operationId: search_neighborhoods
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchNeighborhoodsRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NeighborhoodSearchResult'
+                title: Response Search Neighborhoods Search Neighborhoods Post
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /search/on_premise_locations:
+    post:
+      tags:
+      - Search
+      summary: Search On Premise Locations
+      description: Searches on premise brands, categories, and location groups
+      operationId: search_on_premise_locations
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchOnPremiseLocationsRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OnPremiseLocationSearchResult'
+                title: Response Search On Premise Locations Search On Premise Locations Post
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /search/drive_to_locations:
+    post:
+      tags:
+      - Search
+      summary: Search Drive To Locations
+      description: Searches drive-to locations (brands and location groups)
+      operationId: search_drive_to_locations
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchDriveToLocationsRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DriveToLocationsSearchResult'
+                title: Response Search Drive To Locations Search Drive To Locations Post
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /search/location_groups:
+    post:
+      tags:
+      - Search
+      summary: Search Location Groups
+      description: Searches location groups for audience targeting
+      operationId: search_location_groups
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchLocationGroupsRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchLocationGroupsResultsModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /search/ad_packages:
+    post:
+      tags:
+      - Search
+      summary: Search Ad Packages
+      description: Searches ad packages
+      operationId: search_ad_packages
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: campaign_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Campaign Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchAdPackagesResultsModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /search/location_groups/sources:
+    post:
+      tags:
+      - Search
+      summary: Search Pois Sources
+      description: Searches sources to add to a location group
+      operationId: search_pois_sources
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchPOISourcesResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /search/location_groups/sources/count:
+    post:
+      tags:
+      - Search
+      summary: Search Pois Sources Count
+      description: Returns counts for requested sources
+      operationId: search_pois_sources_count
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchPOISourcesRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchPOISourcesCountResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /search/location_groups/sources/pois:
+    post:
+      tags:
+      - Search
+      summary: Search Pois Sources Preview Pois
+      description: Searches POIs given requested sources
+      operationId: search_pois_sources_preview_pois
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchPOISourcesPreviewPOIsRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchPOISourcesPreviewResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /search/location_groups/location_filters:
+    post:
+      tags:
+      - Search
+      summary: Search Pois Location Filters
+      description: Searches location filters for a location group
+      operationId: search_pois_location_filters
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchPOIsLocationFiltersResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /search/location_groups/pois:
+    post:
+      tags:
+      - Search
+      summary: Search Location Group Pois
+      description: Searches POIs and addresses by business name and/or address
+      operationId: search_location_group_pois
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchLocationGroupPOIsRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchLocationGroupPOIsResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+components:
+  schemas:
+    SearchPOISourcesPreviewPOIsRequestModel:
+      properties:
+        brand_ids:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Brand Ids
+          description: Brands to filter by
+        category_ids:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+          title: Category Ids
+          description: Categories to filter by
+        location_group_ids:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Location Group Ids
+          description: Location groups to filter by
+        poi_ids:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Poi Ids
+          description: POIs to filter by
+        states:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+          title: States
+          description: States to filter by
+        cities:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+          title: Cities
+          description: Cities to filter by
+        dma_ids:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Dma Ids
+          description: DMAs to filter by
+        zipcodes:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+          title: Zipcodes
+          description: Zipcodes to filter by
+        city_state_pairs:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+          title: City State Pairs
+          description: City, State pairs to filter by
+        exclude_pois:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Exclude Pois
+          description: POIs to exclude from the results
+        limit:
+          type: integer
+          maximum: 100.0
+          minimum: 1.0
+          title: Limit
+          default: 10
+        page_num:
+          type: integer
+          minimum: 1.0
+          title: Page Num
+          default: 1
+      type: object
+      title: SearchPOISourcesPreviewPOIsRequestModel
+    SearchAccountsRequestModel:
+      properties:
+        search_text:
+          type: string
+          minLength: 1
+          title: Search Text
+        limit:
+          type: integer
+          maximum: 10000.0
+          minimum: 1.0
+          title: Limit
+          default: 50
+        created_since:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Created Since
+          description: Filter by account creation Unix timestamp
+      type: object
+      required:
+      - search_text
+      title: SearchAccountsRequestModel
+    AccountSearchResult:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        created_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created Date
+        tenant_id:
+          type: integer
+          title: Tenant Id
+        tenant_name:
+          type: string
+          title: Tenant Name
+        organization_id:
+          type: integer
+          title: Organization Id
+        organization_name:
+          type: string
+          title: Organization Name
+      type: object
+      required:
+      - id
+      - name
+      - created_date
+      - tenant_id
+      - tenant_name
+      - organization_id
+      - organization_name
+      title: AccountSearchResult
+    SearchLocationGroupPOIsResponseModel:
+      properties:
+        pois:
+          items:
+            $ref: '#/components/schemas/SearchLocationGroupPOIsResultModel'
+          type: array
+          title: Pois
+          description: POI and address search results
+      type: object
+      title: SearchLocationGroupPOIsResponseModel
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    SearchAdgroupsResultsModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/AdgroupSearchResult'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: SearchAdgroupsResultsModel
+    SearchLocationGroupPOIsResultModel:
+      properties:
+        poi_id:
+          type: integer
+          title: Poi Id
+          description: Unique POI identifier
+        name:
+          type: string
+          title: Name
+          description: POI or business name
+        display_form:
+          type: string
+          title: Display Form
+          description: Formatted address for display
+        brand_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Brand Id
+          description: Brand identifier
+        brand_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Brand Name
+          description: Brand name
+        city:
+          type: string
+          title: City
+          description: City name
+          default: ''
+        state:
+          type: string
+          title: State
+          description: State or province name
+          default: ''
+        state_code:
+          type: string
+          title: State Code
+          description: State or province code
+          default: ''
+        postal_code:
+          type: string
+          title: Postal Code
+          description: Postal or ZIP code
+          default: ''
+        country_code:
+          type: string
+          title: Country Code
+          description: Country code
+          default: ''
+        position:
+          $ref: '#/components/schemas/SearchLocationGroupPOIsPositionModel'
+          description: Geographic position of the POI
+        match_score:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Match Score
+          description: Search match score
+        brand_logo_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Brand Logo Url
+          description: Brand logo URL
+        category_icon_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Category Icon Url
+          description: Category icon URL
+        polygon_exists:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Polygon Exists
+          description: Whether a polygon exists for the POI
+        tenant_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Tenant Id
+          description: Tenant that owns the POI (0 = global)
+      type: object
+      required:
+      - poi_id
+      - name
+      - display_form
+      - position
+      title: SearchLocationGroupPOIsResultModel
+    POISourceSearchLocationGroupModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+          description: Location group ID
+        name:
+          type: string
+          title: Name
+          description: Location group name
+        description:
+          type: string
+          title: Description
+          description: Location group description
+        tenant_id:
+          type: integer
+          title: Tenant Id
+          description: Tenant ID
+        account_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Account Id
+          description: Account ID
+      type: object
+      required:
+      - id
+      - name
+      - description
+      - tenant_id
+      title: POISourceSearchLocationGroupModel
+    SearchPOIsCityLocationFilterResponseModel:
+      properties:
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        state_id:
+          type: integer
+          title: State Id
+        state_code:
+          type: string
+          title: State Code
+        state_name:
+          type: string
+          title: State Name
+        country_code:
+          $ref: '#/components/schemas/CountryCode'
+        country_name:
+          type: string
+          title: Country Name
+      type: object
+      required:
+      - id
+      - name
+      - state_id
+      - state_code
+      - state_name
+      - country_code
+      - country_name
+      title: SearchPOIsCityLocationFilterResponseModel
+    SearchLocationGroupsResultsModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/LocationGroupResult'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: SearchLocationGroupsResultsModel
+    NeighborhoodSearchResult:
+      properties:
+        type:
+          $ref: '#/components/schemas/NeighborhoodTargetType'
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        sensitivity:
+          anyOf:
+          - $ref: '#/components/schemas/Sensitivity'
+          - type: 'null'
+        location_group_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/app__api__models__LocationGroupMetadata'
+          - type: 'null'
+      type: object
+      required:
+      - type
+      - id
+      - name
+      title: NeighborhoodSearchResult
+    SearchCreativesRequestModel:
+      properties:
+        search_text:
+          type: string
+          minLength: 1
+          title: Search Text
+        limit:
+          type: integer
+          maximum: 10000.0
+          minimum: 1.0
+          title: Limit
+          default: 50
+        updated_since:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Updated Since
+          description: Filter by creative last updated Unix timestamp
+        started_since:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Started Since
+          description: Filter by creative start Unix timestamp
+      type: object
+      required:
+      - search_text
+      title: SearchCreativesRequestModel
+    TenantSearchResult:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - name
+      title: TenantSearchResult
+    POISourceSearchBrandModel:
+      properties:
+        category_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Category Code
+          description: Category code of the brand
+        id:
+          type: integer
+          title: Id
+          description: Brand ID
+        name:
+          type: string
+          title: Name
+          description: Brand name
+          examples:
+          - Foodtown
+      type: object
+      required:
+      - id
+      - name
+      title: POISourceSearchBrandModel
+    app__services__audience__types__LocationGroupMetadata:
+      properties:
+        type:
+          anyOf:
+          - $ref: '#/components/schemas/LocationGroupType'
+          - type: 'null'
+        url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Url
+        accepted:
+          type: integer
+          title: Accepted
+        rejected:
+          type: integer
+          title: Rejected
+        invalid:
+          type: integer
+          title: Invalid
+        conflict:
+          type: integer
+          title: Conflict
+        build_status:
+          $ref: '#/components/schemas/LocationGroupBuildStatus'
+        is_sensitive:
+          type: boolean
+          title: Is Sensitive
+      type: object
+      required:
+      - type
+      - url
+      - accepted
+      - rejected
+      - invalid
+      - conflict
+      - build_status
+      - is_sensitive
+      title: LocationGroupMetadata
+    SearchPOISourcesCountResponseModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/SearchPOISourcesCountItemModel'
+          type: array
+          title: Items
+          description: List of sources with POIs count if available
+      type: object
+      title: SearchPOISourcesCountResponseModel
+    SearchPOISourcesCountItemModel:
+      properties:
+        type:
+          $ref: '#/components/schemas/POISourceType'
+        count:
+          type: integer
+          title: Count
+        category_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Category Id
+        brand_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Brand Id
+        location_group_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Location Group Id
+        poi_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Poi Id
+      type: object
+      required:
+      - type
+      - count
+      title: SearchPOISourcesCountItemModel
+    Sensitivity:
+      oneOf:
+      - const: 0
+        title: WHITELIST
+      - const: 1
+        title: GRAYLIST
+      - const: 2
+        title: SEMI_SENSITIVE
+      - const: 3
+        title: BLACKLIST
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      title: Sensitivity
+      x-enum-varnames:
+      - WHITELIST
+      - GRAYLIST
+      - SEMI_SENSITIVE
+      - BLACKLIST
+    DriveToLocationType:
+      oneOf:
+      - const: brand
+        title: BRAND
+      - const: location_group
+        title: LOCATION_GROUP
+      type: string
+      enum:
+      - brand
+      - location_group
+      title: DriveToLocationType
+      x-enum-varnames:
+      - BRAND
+      - LOCATION_GROUP
+    LocationGroupResult:
+      properties:
+        id:
+          type: string
+          title: Id
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Url
+        accepted:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Accepted
+        invalid:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Invalid
+        conflict:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Conflict
+        rejected:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Rejected
+        tag_type:
+          anyOf:
+          - $ref: '#/components/schemas/LocationGroupType'
+          - type: 'null'
+        build_status:
+          $ref: '#/components/schemas/LocationGroupBuildStatus'
+          default: not_required
+        is_sensitive:
+          type: boolean
+          title: Is Sensitive
+          default: false
+      type: object
+      required:
+      - id
+      title: LocationGroupResult
+    OrganizationSearchResult:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        tenant_id:
+          type: integer
+          title: Tenant Id
+        tenant_name:
+          type: string
+          title: Tenant Name
+      type: object
+      required:
+      - id
+      - name
+      - tenant_id
+      - tenant_name
+      title: OrganizationSearchResult
+    SearchCreativesResultsModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CreativeSearchResult'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: SearchCreativesResultsModel
+    CreativeSearchResult:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        start_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Start Date
+        end_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: End Date
+        updated_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated Date
+        tenant_id:
+          type: integer
+          title: Tenant Id
+        tenant_name:
+          type: string
+          title: Tenant Name
+        organization_id:
+          type: integer
+          title: Organization Id
+        organization_name:
+          type: string
+          title: Organization Name
+        account_id:
+          type: integer
+          title: Account Id
+        account_name:
+          type: string
+          title: Account Name
+        campaign_id:
+          type: integer
+          title: Campaign Id
+        campaign_name:
+          type: string
+          title: Campaign Name
+        adgroup_id:
+          type: integer
+          title: Adgroup Id
+        adgroup_name:
+          type: string
+          title: Adgroup Name
+      type: object
+      required:
+      - id
+      - name
+      - start_date
+      - end_date
+      - updated_date
+      - tenant_id
+      - tenant_name
+      - organization_id
+      - organization_name
+      - account_id
+      - account_name
+      - campaign_id
+      - campaign_name
+      - adgroup_id
+      - adgroup_name
+      title: CreativeSearchResult
+    SearchAdPackagesResultsModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/AdPackageSearchResult'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: SearchAdPackagesResultsModel
+    CountryCode:
+      type: string
+      enum:
+      - US
+      - CA
+      title: CountryCode
+    DetailedAudienceCategory:
+      properties:
+        name:
+          type: string
+          title: Name
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        audiences:
+          items:
+            $ref: '#/components/schemas/Audience'
+          type: array
+          title: Audiences
+        size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Size
+        category_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Category Id
+      type: object
+      required:
+      - name
+      - description
+      - audiences
+      title: DetailedAudienceCategory
+    SearchLocationGroupPOIsRequestModel:
+      properties:
+        search_text:
+          type: string
+          maxLength: 200
+          minLength: 1
+          title: Search Text
+          description: Business name and/or address to search
+        limit:
+          type: integer
+          maximum: 100.0
+          minimum: 1.0
+          title: Limit
+          description: Maximum number of results to return
+          default: 50
+      type: object
+      required:
+      - search_text
+      title: SearchLocationGroupPOIsRequestModel
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
+    OnPremiseLocationType:
+      oneOf:
+      - const: brand
+        title: BRAND
+      - const: category
+        title: CATEGORY
+      - const: location_group
+        title: LOCATION_GROUP
+      type: string
+      enum:
+      - brand
+      - category
+      - location_group
+      title: OnPremiseLocationType
+      x-enum-varnames:
+      - BRAND
+      - CATEGORY
+      - LOCATION_GROUP
+    SearchNeighborhoodsRequestModel:
+      properties:
+        search_text:
+          type: string
+          minLength: 1
+          title: Search Text
+        limit:
+          type: integer
+          maximum: 10000.0
+          minimum: 1.0
+          title: Limit
+          default: 50
+        country_code:
+          $ref: '#/components/schemas/CountryCode'
+      type: object
+      required:
+      - search_text
+      - country_code
+      title: SearchNeighborhoodsRequestModel
+    SearchDriveToLocationsRequestModel:
+      properties:
+        search_text:
+          type: string
+          minLength: 1
+          title: Search Text
+        limit:
+          type: integer
+          maximum: 10000.0
+          minimum: 1.0
+          title: Limit
+          default: 50
+        country_code:
+          $ref: '#/components/schemas/CountryCode'
+      type: object
+      required:
+      - search_text
+      - country_code
+      title: SearchDriveToLocationsRequestModel
+    SearchPOISourcesRequestModel:
+      properties:
+        brand_ids:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Brand Ids
+          description: Brands to filter by
+        category_ids:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+          title: Category Ids
+          description: Categories to filter by
+        location_group_ids:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Location Group Ids
+          description: Location groups to filter by
+        poi_ids:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Poi Ids
+          description: POIs to filter by
+        states:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+          title: States
+          description: States to filter by
+        cities:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+          title: Cities
+          description: Cities to filter by
+        dma_ids:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Dma Ids
+          description: DMAs to filter by
+        zipcodes:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+          title: Zipcodes
+          description: Zipcodes to filter by
+        city_state_pairs:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+          title: City State Pairs
+          description: City, State pairs to filter by
+      type: object
+      title: SearchPOISourcesRequestModel
+    AudienceSearchResult:
+      properties:
+        category:
+          anyOf:
+          - $ref: '#/components/schemas/DetailedAudienceCategory'
+          - type: 'null'
+        audience:
+          anyOf:
+          - $ref: '#/components/schemas/Audience'
+          - type: 'null'
+      type: object
+      required:
+      - category
+      - audience
+      title: AudienceSearchResult
+    LocationGroupBuildStatus:
+      oneOf:
+      - const: not_required
+        title: NOT_REQUIRED
+      - const: initial
+        title: INITIAL
+      - const: in_progress
+        title: IN_PROGRESS
+      - const: updating
+        title: UPDATING
+      - const: ready
+        title: READY
+      - const: expired
+        title: EXPIRED
+      type: string
+      enum:
+      - not_required
+      - initial
+      - in_progress
+      - updating
+      - ready
+      - expired
+      title: LocationGroupBuildStatus
+      x-enum-varnames:
+      - NOT_REQUIRED
+      - INITIAL
+      - IN_PROGRESS
+      - UPDATING
+      - READY
+      - EXPIRED
+    SearchPOIsZipCodeLocationFilterResponseModel:
+      properties:
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        country_code:
+          $ref: '#/components/schemas/CountryCode'
+      type: object
+      required:
+      - id
+      - name
+      - country_code
+      title: SearchPOIsZipCodeLocationFilterResponseModel
+    SearchLocationGroupsRequestModel:
+      properties:
+        location_group_ids:
+          items:
+            type: string
+          type: array
+          title: Location Group Ids
+          description: List of location group IDs to search for
+      type: object
+      required:
+      - location_group_ids
+      title: SearchLocationGroupsRequestModel
+    SearchPOIsStateLocationFilterResponseModel:
+      properties:
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        state_code:
+          type: string
+          title: State Code
+        country_code:
+          $ref: '#/components/schemas/CountryCode'
+        country_name:
+          type: string
+          title: Country Name
+      type: object
+      required:
+      - id
+      - name
+      - state_code
+      - country_code
+      - country_name
+      title: SearchPOIsStateLocationFilterResponseModel
+    DriveToLocationsSearchResult:
+      properties:
+        type:
+          $ref: '#/components/schemas/DriveToLocationType'
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        sensitivity:
+          anyOf:
+          - $ref: '#/components/schemas/Sensitivity'
+          - type: 'null'
+          description: This only applies to brands
+        location_group_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/app__api__models__LocationGroupMetadata'
+          - type: 'null'
+      type: object
+      required:
+      - type
+      - id
+      - name
+      title: DriveToLocationsSearchResult
+    POISourceSearchCategoryModel:
+      properties:
+        id:
+          type: string
+          title: Id
+          description: Category ID
+        name:
+          type: string
+          title: Name
+          description: Name of the category
+          examples:
+          - Caribbean Foods
+      type: object
+      required:
+      - id
+      - name
+      title: POISourceSearchCategoryModel
+    SearchPOIsDMALocationFilterResponseModel:
+      properties:
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - name
+      title: SearchPOIsDMALocationFilterResponseModel
+    SearchCampaignsResultsModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CampaignSearchResult'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: SearchCampaignsResultsModel
+    SearchPOISourcesPreviewItemModel:
+      properties:
+        city:
+          type: string
+          title: City
+        zipcode:
+          type: string
+          title: Zipcode
+        state:
+          type: string
+          title: State
+          description: State code
+        address:
+          type: string
+          title: Address
+        poi_id:
+          type: integer
+          title: Poi Id
+        company_name:
+          type: string
+          title: Company Name
+      type: object
+      required:
+      - city
+      - zipcode
+      - state
+      - address
+      - poi_id
+      - company_name
+      title: SearchPOISourcesPreviewItemModel
+    LocationGroupType:
+      oneOf:
+      - const: 0
+        title: BUSINESS
+      - const: 1
+        title: RESIDENTIAL
+      type: integer
+      enum:
+      - 0
+      - 1
+      title: LocationGroupType
+      x-enum-varnames:
+      - BUSINESS
+      - RESIDENTIAL
+    SearchPOIsLocationFiltersResponseModel:
+      properties:
+        cities:
+          items:
+            $ref: '#/components/schemas/SearchPOIsCityLocationFilterResponseModel'
+          type: array
+          title: Cities
+          description: List of cities
+        states:
+          items:
+            $ref: '#/components/schemas/SearchPOIsStateLocationFilterResponseModel'
+          type: array
+          title: States
+          description: List of states
+        zipcodes:
+          items:
+            $ref: '#/components/schemas/SearchPOIsZipCodeLocationFilterResponseModel'
+          type: array
+          title: Zipcodes
+          description: List of zipcodes
+        dmas:
+          items:
+            $ref: '#/components/schemas/SearchPOIsDMALocationFilterResponseModel'
+          type: array
+          title: Dmas
+          description: List of DMAs
+      type: object
+      title: SearchPOIsLocationFiltersResponseModel
+    SearchAudiencesRequestModel:
+      properties:
+        search_text:
+          type: string
+          minLength: 1
+          title: Search Text
+      type: object
+      required:
+      - search_text
+      title: SearchAudiencesRequestModel
+    SearchAccountsResultsModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/AccountSearchResult'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: SearchAccountsResultsModel
+    SearchAudiencesResultsModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/AudienceSearchResult'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: SearchAudiencesResultsModel
+    CampaignSearchResult:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        created_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created Date
+        start_date:
+          type: string
+          format: date
+          title: Start Date
+        end_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: End Date
+        updated_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated Date
+        tenant_id:
+          type: integer
+          title: Tenant Id
+        tenant_name:
+          type: string
+          title: Tenant Name
+        organization_id:
+          type: integer
+          title: Organization Id
+        organization_name:
+          type: string
+          title: Organization Name
+        account_id:
+          type: integer
+          title: Account Id
+        account_name:
+          type: string
+          title: Account Name
+      type: object
+      required:
+      - id
+      - name
+      - created_date
+      - start_date
+      - end_date
+      - updated_date
+      - tenant_id
+      - tenant_name
+      - organization_id
+      - organization_name
+      - account_id
+      - account_name
+      title: CampaignSearchResult
+    SearchCampaignsRequestModel:
+      properties:
+        search_text:
+          type: string
+          minLength: 1
+          title: Search Text
+        limit:
+          type: integer
+          maximum: 10000.0
+          minimum: 1.0
+          title: Limit
+          default: 50
+        account_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Account Id
+          description: Filter by account ID
+        created_since:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Created Since
+          description: Filter by campaign creation Unix timestamp
+        updated_since:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Updated Since
+          description: Filter by campaign last updated Unix timestamp
+        started_since:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Started Since
+          description: Filter by campaign start Unix timestamp
+      type: object
+      required:
+      - search_text
+      title: SearchCampaignsRequestModel
+    NeighborhoodTargetType:
+      oneOf:
+      - const: behavior
+        title: BEHAVIOR
+      - const: brand
+        title: BRAND
+      - const: category
+        title: CATEGORY
+      - const: location_group
+        title: LOCATION_GROUP
+      type: string
+      enum:
+      - behavior
+      - brand
+      - category
+      - location_group
+      title: NeighborhoodTargetType
+      x-enum-varnames:
+      - BEHAVIOR
+      - BRAND
+      - CATEGORY
+      - LOCATION_GROUP
+    OnPremiseLocationSearchResult:
+      properties:
+        type:
+          $ref: '#/components/schemas/OnPremiseLocationType'
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        sensitivity:
+          anyOf:
+          - $ref: '#/components/schemas/Sensitivity'
+          - type: 'null'
+        location_group_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/app__api__models__LocationGroupMetadata'
+          - type: 'null'
+      type: object
+      required:
+      - type
+      - id
+      - name
+      title: OnPremiseLocationSearchResult
+    SearchLocationFiltersResultsModel:
+      properties:
+        city:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/LocationFilterSearchResultModel'
+            type: array
+          - type: 'null'
+          title: City
+        state:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/LocationFilterSearchResultModel'
+            type: array
+          - type: 'null'
+          title: State
+        zip:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/LocationFilterSearchResultModel'
+            type: array
+          - type: 'null'
+          title: Zip
+        address:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/LocationFilterSearchResultModel'
+            type: array
+          - type: 'null'
+          title: Address
+        latlng:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/LocationFilterSearchResultModel'
+            type: array
+          - type: 'null'
+          title: Latlng
+        county:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/LocationFilterSearchResultModel'
+            type: array
+          - type: 'null'
+          title: County
+        dma:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/LocationFilterSearchResultModel'
+            type: array
+          - type: 'null'
+          title: Dma
+      type: object
+      title: SearchLocationFiltersResultsModel
+    app__api__models__LocationGroupMetadata:
+      properties:
+        type:
+          anyOf:
+          - $ref: '#/components/schemas/LocationGroupType'
+          - type: 'null'
+        url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Url
+        accepted:
+          type: integer
+          title: Accepted
+          default: 0
+        rejected:
+          type: integer
+          title: Rejected
+          default: 0
+        invalid:
+          type: integer
+          title: Invalid
+          default: 0
+        conflict:
+          type: integer
+          title: Conflict
+          default: 0
+        build_status:
+          anyOf:
+          - $ref: '#/components/schemas/LocationGroupBuildStatus'
+          - type: 'null'
+          description: Audience or neighborhood build pipeline state. If the API is unrelated to audiences and neighborhoods (e.g. /search/drive_to_locations), this will be null.
+        is_sensitive:
+          type: boolean
+          title: Is Sensitive
+          description: True if any of the POIs in the location group are deemed sensitive.
+          default: false
+      type: object
+      title: LocationGroupMetadata
+    POISourceSearchPOIModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+          description: POI ID
+        name:
+          type: string
+          title: Name
+          description: POI name
+      type: object
+      required:
+      - id
+      - name
+      title: POISourceSearchPOIModel
+    Audience:
+      properties:
+        id:
+          type: string
+          title: Id
+        type:
+          type: string
+          title: Type
+        name:
+          type: string
+          title: Name
+        size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Size
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        sensitivity:
+          anyOf:
+          - $ref: '#/components/schemas/Sensitivity'
+          - type: 'null'
+        backend_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Backend Key
+        sic_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sic Code
+        location_group_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/app__services__audience__types__LocationGroupMetadata'
+          - type: 'null'
+        category_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Category Id
+        status:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Status
+      type: object
+      required:
+      - id
+      - type
+      - name
+      - size
+      - description
+      - sensitivity
+      - backend_key
+      - sic_code
+      - location_group_metadata
+      - category_id
+      - status
+      title: Audience
+    POISourceType:
+      oneOf:
+      - const: brand
+        title: BRAND
+      - const: category
+        title: CATEGORY
+      - const: location_group
+        title: LOCATION_GROUP
+      - const: poi
+        title: POI
+      type: string
+      enum:
+      - brand
+      - category
+      - location_group
+      - poi
+      title: POISourceType
+      x-enum-varnames:
+      - BRAND
+      - CATEGORY
+      - LOCATION_GROUP
+      - POI
+    SearchLocationGroupPOIsPositionModel:
+      properties:
+        lat:
+          type: number
+          title: Lat
+          description: Latitude
+        lng:
+          type: number
+          title: Lng
+          description: Longitude
+      type: object
+      required:
+      - lat
+      - lng
+      title: SearchLocationGroupPOIsPositionModel
+    SearchPOISourcesPreviewResponseModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/SearchPOISourcesPreviewItemModel'
+          type: array
+          title: Items
+          description: List of POIs preview for selected sources
+      type: object
+      title: SearchPOISourcesPreviewResponseModel
+    SearchOrganizationsResultsModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/OrganizationSearchResult'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: SearchOrganizationsResultsModel
+    LocationFilterSearchResultModel:
+      properties:
+        name:
+          type: string
+          title: Name
+        city:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: City
+        state:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: State
+          description: State code
+        zip_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Zip Code
+        county:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: County
+        dma:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Dma
+          description: DMA name
+        lat:
+          anyOf:
+          - type: number
+            maximum: 90.0
+            minimum: -90.0
+          - type: 'null'
+          title: Lat
+        lng:
+          anyOf:
+          - type: number
+            maximum: 180.0
+            minimum: -180.0
+          - type: 'null'
+          title: Lng
+        address:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Address
+        google_place_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Google Place Id
+          description: Only applies to addresses
+      type: object
+      required:
+      - name
+      title: LocationFilterSearchResultModel
+    LocationFilterType:
+      oneOf:
+      - const: City
+        title: CITY
+      - const: State
+        title: STATE
+      - const: Zip
+        title: ZIP_CODE
+      - const: DMA
+        title: DMA
+      - const: County
+        title: COUNTY
+      - const: LatLng
+        title: LAT_LNG
+      - const: Address
+        title: ADDRESS
+      type: string
+      enum:
+      - City
+      - State
+      - Zip
+      - DMA
+      - County
+      - LatLng
+      - Address
+      title: LocationFilterType
+      x-enum-varnames:
+      - CITY
+      - STATE
+      - ZIP_CODE
+      - DMA
+      - COUNTY
+      - LAT_LNG
+      - ADDRESS
+    SearchPOISourcesResponseModel:
+      properties:
+        brands:
+          items:
+            $ref: '#/components/schemas/POISourceSearchBrandModel'
+          type: array
+          title: Brands
+        categories:
+          items:
+            $ref: '#/components/schemas/POISourceSearchCategoryModel'
+          type: array
+          title: Categories
+        location_groups:
+          items:
+            $ref: '#/components/schemas/POISourceSearchLocationGroupModel'
+          type: array
+          title: Location Groups
+        pois:
+          items:
+            $ref: '#/components/schemas/POISourceSearchPOIModel'
+          type: array
+          title: Pois
+      type: object
+      title: SearchPOISourcesResponseModel
+    AdPackageSearchResult:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - name
+      title: AdPackageSearchResult
+    SearchOnPremiseLocationsRequestModel:
+      properties:
+        search_text:
+          type: string
+          minLength: 1
+          title: Search Text
+        limit:
+          type: integer
+          maximum: 10000.0
+          minimum: 1.0
+          title: Limit
+          default: 50
+        country_code:
+          $ref: '#/components/schemas/CountryCode'
+      type: object
+      required:
+      - search_text
+      - country_code
+      title: SearchOnPremiseLocationsRequestModel
+    SearchTenantsResultsModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/TenantSearchResult'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: SearchTenantsResultsModel
+    SearchAdgroupsRequestModel:
+      properties:
+        search_text:
+          type: string
+          minLength: 1
+          title: Search Text
+        limit:
+          type: integer
+          maximum: 10000.0
+          minimum: 1.0
+          title: Limit
+          default: 50
+        created_since:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Created Since
+          description: Filter by ad group creation Unix timestamp
+        updated_since:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Updated Since
+          description: Filter by ad group last updated Unix timestamp
+        started_since:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Started Since
+          description: Filter by ad group start Unix timestamp
+      type: object
+      required:
+      - search_text
+      title: SearchAdgroupsRequestModel
+    SearchLocationFiltersRequestModel:
+      properties:
+        search_text:
+          type: string
+          minLength: 1
+          title: Search Text
+        limit:
+          type: integer
+          maximum: 10000.0
+          minimum: 1.0
+          title: Limit
+          default: 50
+        country_code:
+          $ref: '#/components/schemas/CountryCode'
+        types:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/LocationFilterType'
+            type: array
+          - type: 'null'
+          title: Types
+      type: object
+      required:
+      - search_text
+      - country_code
+      title: SearchLocationFiltersRequestModel
+    SearchRequestModel:
+      properties:
+        search_text:
+          type: string
+          minLength: 1
+          title: Search Text
+        limit:
+          type: integer
+          maximum: 10000.0
+          minimum: 1.0
+          title: Limit
+          default: 50
+      type: object
+      required:
+      - search_text
+      title: SearchRequestModel
+    AdgroupSearchResult:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        created_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created Date
+        start_date:
+          type: string
+          format: date
+          title: Start Date
+        end_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: End Date
+        updated_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated Date
+        tenant_id:
+          type: integer
+          title: Tenant Id
+        tenant_name:
+          type: string
+          title: Tenant Name
+        organization_id:
+          type: integer
+          title: Organization Id
+        organization_name:
+          type: string
+          title: Organization Name
+        account_id:
+          type: integer
+          title: Account Id
+        account_name:
+          type: string
+          title: Account Name
+        campaign_id:
+          type: integer
+          title: Campaign Id
+        campaign_name:
+          type: string
+          title: Campaign Name
+      type: object
+      required:
+      - id
+      - name
+      - created_date
+      - start_date
+      - end_date
+      - updated_date
+      - tenant_id
+      - tenant_name
+      - organization_id
+      - organization_name
+      - account_id
+      - account_name
+      - campaign_id
+      - campaign_name
+      title: AdgroupSearchResult
+  securitySchemes:
+    api-key:
+      type: apiKey
+      in: header
+      name: x-gt-api-key
+    user-id:
+      type: apiKey
+      in: header
+      name: x-gt-user-id

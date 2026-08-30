@@ -1,0 +1,273 @@
+openapi: 3.2.0
+info:
+  title: Ads Manager Tenants API
+  description: Ads Manager API
+  version: 1.0.0
+servers:
+- url: https://api-public.groundtruth.com
+  description: Production
+tags:
+- name: Tenants
+paths:
+  /tenants/{tenant_id}:
+    get:
+      tags:
+      - Tenants
+      summary: Get Tenant
+      description: Gets a tenant
+      operationId: get_tenant
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+    put:
+      tags:
+      - Tenants
+      summary: Update Tenant
+      description: Updates a tenant
+      operationId: update_tenant
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTenantModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+components:
+  schemas:
+    TenantModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        type:
+          $ref: '#/components/schemas/TenantType'
+        tier:
+          type: integer
+          title: Tier
+        is_holding_company:
+          type: boolean
+          title: Is Holding Company
+        payment_type:
+          $ref: '#/components/schemas/PaymentType'
+        created_date:
+          type: string
+          format: date-time
+          title: Created Date
+        updated_date:
+          type: string
+          format: date-time
+          title: Updated Date
+        referrer_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Referrer Url
+        utm_campaign:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Utm Campaign
+      type: object
+      required:
+      - id
+      - name
+      - type
+      - tier
+      - is_holding_company
+      - payment_type
+      - created_date
+      - updated_date
+      - referrer_url
+      - utm_campaign
+      title: TenantModel
+    UpdateTenantModel:
+      properties:
+        name:
+          type: string
+          maxLength: 64
+          minLength: 1
+          title: Name
+      type: object
+      required:
+      - name
+      title: UpdateTenantModel
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
+    PaymentType:
+      oneOf:
+      - const: 0
+        title: INVOICE
+      - const: 1
+        title: CREDIT_CARD
+      - const: 2
+        title: SPEND_LIMIT
+      - const: 3
+        title: CREDIT_CARD_V2
+      - const: 4
+        title: ACCOUNT_LEVEL_CREDIT_CARD
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      title: PaymentType
+      x-enum-varnames:
+      - INVOICE
+      - CREDIT_CARD
+      - SPEND_LIMIT
+      - CREDIT_CARD_V2
+      - ACCOUNT_LEVEL_CREDIT_CARD
+    TenantType:
+      oneOf:
+      - const: 0
+        title: MANAGED
+      - const: 1
+        title: SELF_SERVE
+      - const: 2
+        title: CHANNEL
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      title: TenantType
+      x-enum-varnames:
+      - MANAGED
+      - SELF_SERVE
+      - CHANNEL
+  securitySchemes:
+    api-key:
+      type: apiKey
+      in: header
+      name: x-gt-api-key
+    user-id:
+      type: apiKey
+      in: header
+      name: x-gt-user-id

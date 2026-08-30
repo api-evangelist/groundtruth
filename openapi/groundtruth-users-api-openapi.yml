@@ -1,0 +1,843 @@
+openapi: 3.2.0
+info:
+  title: Ads Manager Users API
+  description: Ads Manager API
+  version: 1.0.0
+servers:
+- url: https://api-public.groundtruth.com
+  description: Production
+tags:
+- name: Users
+paths:
+  /users/signup:
+    post:
+      tags:
+      - Users
+      summary: Signup
+      description: Creates a new user, tenant, organization, and account
+      operationId: signup
+      parameters:
+      - name: utm_source
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Utm Source
+      - name: utm_medium
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Utm Medium
+      - name: utm_campaign
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Utm Campaign
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignupModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignupResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /users/current:
+    get:
+      tags:
+      - Users
+      summary: Get Current User
+      description: Gets the current user
+      operationId: get_current_user
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserModel'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+  /users/{user_id}:
+    get:
+      tags:
+      - Users
+      summary: Get User
+      description: Gets a user
+      operationId: get_user
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: User Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+    delete:
+      tags:
+      - Users
+      summary: Delete User
+      description: Deletes a user
+      operationId: delete_user
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: User Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+    put:
+      tags:
+      - Users
+      summary: Update User
+      description: Updates a user
+      operationId: update_user
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: User Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /users:
+    get:
+      tags:
+      - Users
+      summary: Get Users
+      description: Gets users under a tenant
+      operationId: get_users
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsersModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+components:
+  schemas:
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    CountryCode:
+      type: string
+      enum:
+      - US
+      - CA
+      title: CountryCode
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
+    UsersModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/UserModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: UsersModel
+    UserStatus:
+      oneOf:
+      - const: 0
+        title: INACTIVE
+      - const: 1
+        title: ACTIVE
+      - const: 2
+        title: NEEDS_ACTIVATION
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      title: UserStatus
+      x-enum-varnames:
+      - INACTIVE
+      - ACTIVE
+      - NEEDS_ACTIVATION
+    BusinessType:
+      oneOf:
+      - const: 0
+        title: OTHER
+      - const: 1
+        title: CHANNEL_SELF_SERVE
+      - const: 2
+        title: CHANNEL_MANAGED
+      - const: 3
+        title: AGENCY_DIRECT
+      - const: 4
+        title: HOLDING_COMPANY
+      - const: 5
+        title: BRAND_DIRECT
+      - const: 6
+        title: MID_MARKET
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      title: BusinessType
+      x-enum-varnames:
+      - OTHER
+      - CHANNEL_SELF_SERVE
+      - CHANNEL_MANAGED
+      - AGENCY_DIRECT
+      - HOLDING_COMPANY
+      - BRAND_DIRECT
+      - MID_MARKET
+    SignupModel:
+      properties:
+        first_name:
+          type: string
+          maxLength: 64
+          minLength: 1
+          title: First Name
+        last_name:
+          type: string
+          maxLength: 64
+          minLength: 1
+          title: Last Name
+        company_name:
+          type: string
+          maxLength: 64
+          title: Company Name
+        business_type:
+          $ref: '#/components/schemas/BusinessType'
+        website:
+          type: string
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          title: Website
+        country_code:
+          $ref: '#/components/schemas/CountryCode'
+        email:
+          type: string
+          format: email
+          title: Email
+        password:
+          type: string
+          title: Password
+      type: object
+      required:
+      - first_name
+      - last_name
+      - company_name
+      - business_type
+      - website
+      - country_code
+      - email
+      - password
+      title: SignupModel
+    SuccessResponseModel:
+      properties:
+        success:
+          type: boolean
+          title: Success
+          default: true
+      type: object
+      title: SuccessResponseModel
+    AppCode:
+      type: string
+      enum:
+      - MF
+      - LM
+      - CAB
+      - MP
+      - SM
+      - RA
+      - XC
+      - AD
+      - PE
+      - CP
+      - FR
+      - XA
+      - IO
+      - AV
+      - PM
+      - CBP
+      - BPM
+      - BQA
+      - BPE
+      - API
+      - AM2
+      title: AppCode
+    SignupResponseModel:
+      properties:
+        user_id:
+          type: integer
+          title: User Id
+        tenant_id:
+          type: integer
+          title: Tenant Id
+        organization_id:
+          type: integer
+          title: Organization Id
+        account_id:
+          type: integer
+          title: Account Id
+      type: object
+      required:
+      - user_id
+      - tenant_id
+      - organization_id
+      - account_id
+      title: SignupResponseModel
+    UpdateUserModel:
+      properties:
+        first_name:
+          type: string
+          maxLength: 64
+          minLength: 1
+          title: First Name
+        last_name:
+          type: string
+          maxLength: 64
+          minLength: 1
+          title: Last Name
+        password:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Password
+        groups:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Group'
+            type: array
+          - type: 'null'
+          title: Groups
+      type: object
+      required:
+      - first_name
+      - last_name
+      title: UpdateUserModel
+    Group:
+      oneOf:
+      - const: 1
+        title: ADMIN
+      - const: 2
+        title: DIRECT_SALES
+      - const: 3
+        title: CHANNEL_SALES
+      - const: 4
+        title: DIRECT_OPS
+      - const: 5
+        title: CHANNEL_OPS
+      - const: 6
+        title: SUPPLY_OPS
+      - const: 7
+        title: MONETIZATION
+      - const: 8
+        title: EXECUTIVES
+      - const: 9
+        title: EXPERIMENTAL
+      - const: 10
+        title: SELF_SERVICE_ADMIN
+      - const: 11
+        title: ENGINEERING
+      - const: 12
+        title: ACCOUNT_MANAGER
+      - const: 15
+        title: MARKETING
+      - const: 16
+        title: CLIENT_PUBLISHER
+      - const: 18
+        title: PRODUCT
+      - const: 20
+        title: BLUEPRINTER
+      - const: 21
+        title: BLUEPRINTS_CONTRACTUAL_AUDITOR
+      - const: 25
+        title: BLUEPRINTS_ADMIN
+      - const: 26
+        title: BLUEPRINTS_DQ_USER
+      - const: 27
+        title: BLUEPRINTS_INGESTION_USER
+      - const: 28
+        title: BLUEPRINTS_OO_USER
+      - const: 29
+        title: BLUEPRINTS_PQ_USER
+      - const: 30
+        title: BLUEPRINTS_AUDITOR
+      - const: 31
+        title: BETA
+      - const: 41
+        title: CREATIVE_EDITOR
+      - const: 42
+        title: CHANNEL_PARTNER
+      - const: 43
+        title: SELF_SERVICE
+      - const: 44
+        title: HOLDING_COMPANY
+      - const: 45
+        title: VIEW_ONLY
+      - const: 46
+        title: CPV
+      - const: 47
+        title: VISIT_OPTIMIZATION
+      - const: 48
+        title: CROSS_DEVICE
+      - const: 49
+        title: REPORTING_ONLY
+      - const: 55
+        title: ANALYST
+      - const: 56
+        title: PALPATINE_MANAGEMENT
+      - const: 59
+        title: BLUEPRINTS_QA_TRAINEE
+      - const: 60
+        title: BLUEPRINTS_EDITOR_TRAINEE
+      - const: 63
+        title: BLUEPRINTS_HQ_USER
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 15
+      - 16
+      - 18
+      - 20
+      - 21
+      - 25
+      - 26
+      - 27
+      - 28
+      - 29
+      - 30
+      - 31
+      - 41
+      - 42
+      - 43
+      - 44
+      - 45
+      - 46
+      - 47
+      - 48
+      - 49
+      - 55
+      - 56
+      - 59
+      - 60
+      - 63
+      title: Group
+      x-enum-varnames:
+      - ADMIN
+      - DIRECT_SALES
+      - CHANNEL_SALES
+      - DIRECT_OPS
+      - CHANNEL_OPS
+      - SUPPLY_OPS
+      - MONETIZATION
+      - EXECUTIVES
+      - EXPERIMENTAL
+      - SELF_SERVICE_ADMIN
+      - ENGINEERING
+      - ACCOUNT_MANAGER
+      - MARKETING
+      - CLIENT_PUBLISHER
+      - PRODUCT
+      - BLUEPRINTER
+      - BLUEPRINTS_CONTRACTUAL_AUDITOR
+      - BLUEPRINTS_ADMIN
+      - BLUEPRINTS_DQ_USER
+      - BLUEPRINTS_INGESTION_USER
+      - BLUEPRINTS_OO_USER
+      - BLUEPRINTS_PQ_USER
+      - BLUEPRINTS_AUDITOR
+      - BETA
+      - CREATIVE_EDITOR
+      - CHANNEL_PARTNER
+      - SELF_SERVICE
+      - HOLDING_COMPANY
+      - VIEW_ONLY
+      - CPV
+      - VISIT_OPTIMIZATION
+      - CROSS_DEVICE
+      - REPORTING_ONLY
+      - ANALYST
+      - PALPATINE_MANAGEMENT
+      - BLUEPRINTS_QA_TRAINEE
+      - BLUEPRINTS_EDITOR_TRAINEE
+      - BLUEPRINTS_HQ_USER
+    UserModel:
+      properties:
+        user_id:
+          type: integer
+          title: User Id
+        tenant_id:
+          type: integer
+          title: Tenant Id
+        first_name:
+          type: string
+          title: First Name
+        last_name:
+          type: string
+          title: Last Name
+        email:
+          type: string
+          format: email
+          title: Email
+        created_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created Date
+        updated_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated Date
+        groups:
+          items:
+            $ref: '#/components/schemas/Group'
+          type: array
+          title: Groups
+        status:
+          $ref: '#/components/schemas/UserStatus'
+        authorized_apps:
+          items:
+            $ref: '#/components/schemas/AppCode'
+          type: array
+          title: Authorized Apps
+      type: object
+      required:
+      - user_id
+      - tenant_id
+      - first_name
+      - last_name
+      - email
+      - created_date
+      - updated_date
+      - groups
+      - status
+      - authorized_apps
+      title: UserModel
+      example:
+        authorized_apps:
+        - MF
+        - RA
+        created_date: '2024-01-01T00:00:00'
+        email: eb@groundtruth.com
+        first_name: Emmett
+        groups:
+        - 1
+        - 11
+        last_name: Brown
+        status: 1
+        tenant_id: 1
+        updated_date: '2025-01-01T00:00:00'
+        user_id: 1
+  securitySchemes:
+    api-key:
+      type: apiKey
+      in: header
+      name: x-gt-api-key
+    user-id:
+      type: apiKey
+      in: header
+      name: x-gt-user-id

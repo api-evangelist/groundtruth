@@ -1,0 +1,107 @@
+openapi: 3.2.0
+info:
+  title: Ads Manager Miscellaneous API
+  description: Ads Manager API
+  version: 1.0.0
+servers:
+- url: https://api-public.groundtruth.com
+  description: Production
+tags:
+- name: Miscellaneous
+paths:
+  /version:
+    get:
+      tags:
+      - Miscellaneous
+      summary: Get Version
+      description: Gets the current API version
+      operationId: get_version
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VersionModel'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+components:
+  schemas:
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    VersionModel:
+      properties:
+        version:
+          type: string
+          title: Version
+      type: object
+      required:
+      - version
+      title: VersionModel
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
+  securitySchemes:
+    api-key:
+      type: apiKey
+      in: header
+      name: x-gt-api-key
+    user-id:
+      type: apiKey
+      in: header
+      name: x-gt-user-id

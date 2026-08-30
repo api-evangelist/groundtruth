@@ -1,0 +1,1258 @@
+openapi: 3.2.0
+info:
+  title: Ads Manager Accounts API
+  description: Ads Manager API
+  version: 1.0.0
+servers:
+- url: https://api-public.groundtruth.com
+  description: Production
+tags:
+- name: Accounts
+paths:
+  /accounts:
+    get:
+      tags:
+      - Accounts
+      summary: Get Accounts
+      description: Gets accounts in an organization
+      operationId: get_accounts
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 100
+          exclusiveMinimum: 1
+          description: Number of accounts to limit response to
+          default: 10
+          title: Limit
+        description: Number of accounts to limit response to
+      - name: page_num
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          description: Page number to retrieve. Starts at 1.
+          default: 1
+          title: Page Num
+        description: Page number to retrieve. Starts at 1.
+      - name: sort_order
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+          description: Sorts accounts by name
+          default: asc
+        description: Sorts accounts by name
+      - name: updated_since
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Limits results to accounts updated since a unix timestamp
+          title: Updated Since
+        description: Limits results to accounts updated since a unix timestamp
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: organization_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Organization Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountsModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+    post:
+      tags:
+      - Accounts
+      summary: Create Account
+      description: Creates an account
+      operationId: create_account
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: organization_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Organization Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAccountModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /accounts/{account_id}:
+    get:
+      tags:
+      - Accounts
+      summary: Get Account
+      description: Gets an account
+      operationId: get_account
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: account_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+    put:
+      tags:
+      - Accounts
+      summary: Update Account
+      description: Updates an account
+      operationId: update_account
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: account_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAccountModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+    delete:
+      tags:
+      - Accounts
+      summary: Delete Account
+      description: Deletes an account
+      operationId: delete_account
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: account_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: organization_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Organization Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /accounts/{account_id}/min_cpv_bid_rate:
+    get:
+      tags:
+      - Accounts
+      summary: Get Account Min Cpv Bid Rate
+      description: Gets the minimum CPV bid rate for an account
+      operationId: get_account_min_cpv_bid_rate
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: account_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountMinCPVBidRateModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /accounts/{account_id}/pixels:
+    get:
+      tags:
+      - Accounts
+      summary: Get Account Pixels
+      description: Gets pixels for an account
+      operationId: get_account_pixels
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: account_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 100
+          exclusiveMinimum: 1
+          description: Number of account pixels to limit response to
+          default: 10
+          title: Limit
+        description: Number of account pixels to limit response to
+      - name: page_num
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          description: Page number to retrieve. Starts at 1.
+          default: 1
+          title: Page Num
+        description: Page number to retrieve. Starts at 1.
+      - name: sort_order
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+          description: Sorts account pixels by name
+          default: asc
+        description: Sorts account pixels by name
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountPixelsModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+    post:
+      tags:
+      - Accounts
+      summary: Create Account Pixel
+      description: Creates an account pixel
+      operationId: create_account_pixel
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: account_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAccountPixelModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountPixelModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /accounts/{account_id}/pixels/export:
+    get:
+      tags:
+      - Accounts
+      summary: Get Account Pixels Export
+      description: Downloads a spreadsheet with account pixel information
+      operationId: get_account_pixels_export
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: account_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /accounts/{account_id}/pixels/{pixel_id}:
+    delete:
+      tags:
+      - Accounts
+      summary: Delete Account Pixel
+      description: Deletes an account pixel
+      operationId: delete_account_pixel
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: pixel_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Pixel Id
+      - name: account_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+components:
+  schemas:
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    CountryCode:
+      type: string
+      enum:
+      - US
+      - CA
+      title: CountryCode
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
+    AccountPixelsModel:
+      properties:
+        total_count:
+          type: integer
+          title: Total Count
+        limit:
+          type: integer
+          title: Limit
+        page_num:
+          type: integer
+          title: Page Num
+        total_pages:
+          type: integer
+          title: Total Pages
+        has_next_page:
+          type: boolean
+          title: Has Next Page
+        has_prev_page:
+          type: boolean
+          title: Has Prev Page
+        items:
+          items:
+            $ref: '#/components/schemas/AccountPixelModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - total_count
+      - limit
+      - page_num
+      - total_pages
+      - has_next_page
+      - has_prev_page
+      - items
+      title: AccountPixelsModel
+    SortOrder:
+      oneOf:
+      - const: desc
+        title: DESC
+      - const: asc
+        title: ASC
+      type: string
+      enum:
+      - desc
+      - asc
+      title: SortOrder
+      x-enum-varnames:
+      - DESC
+      - ASC
+    CreateAccountModel:
+      properties:
+        name:
+          type: string
+          maxLength: 128
+          minLength: 1
+          title: Name
+        country_code:
+          $ref: '#/components/schemas/CountryCode'
+        timezone:
+          $ref: '#/components/schemas/Timezone'
+        currency:
+          $ref: '#/components/schemas/Currency'
+        website_domain:
+          type: string
+          maxLength: 512
+          title: Website Domain
+        vertical_id:
+          anyOf:
+          - $ref: '#/components/schemas/AccountVertical'
+          - type: 'null'
+      type: object
+      required:
+      - name
+      - country_code
+      - timezone
+      - currency
+      - website_domain
+      title: CreateAccountModel
+    Timezone:
+      oneOf:
+      - const: America/Los_Angeles
+        title: AMERICA_LOS_ANGELES
+      - const: America/Phoenix
+        title: AMERICA_PHOENIX
+      - const: America/Chicago
+        title: AMERICA_CHICAGO
+      - const: America/New_York
+        title: AMERICA_NEW_YORK
+      - const: Pacific/Honolulu
+        title: PACIFIC_HONOLULU
+      - const: America/Anchorage
+        title: AMERICA_ANCHORAGE
+      - const: America/St_Johns
+        title: AMERICA_ST_JOHNS
+      - const: America/Halifax
+        title: AMERICA_HALIFAX
+      - const: America/Blanc-Sablon
+        title: AMERICA_BLANC_SABLON
+      - const: America/Toronto
+        title: AMERICA_TORONTO
+      - const: America/Atikokan
+        title: AMERICA_ATIKOKAN
+      - const: America/Winnipeg
+        title: AMERICA_WINNIPEG
+      - const: America/Resolute
+        title: AMERICA_RESOLUTE
+      - const: America/Regina
+        title: AMERICA_REGINA
+      - const: America/Edmonton
+        title: AMERICA_EDMONTON
+      - const: America/Creston
+        title: AMERICA_CRESTON
+      - const: America/Vancouver
+        title: AMERICA_VANCOUVER
+      type: string
+      enum:
+      - America/Los_Angeles
+      - America/Phoenix
+      - America/Chicago
+      - America/New_York
+      - Pacific/Honolulu
+      - America/Anchorage
+      - America/St_Johns
+      - America/Halifax
+      - America/Blanc-Sablon
+      - America/Toronto
+      - America/Atikokan
+      - America/Winnipeg
+      - America/Resolute
+      - America/Regina
+      - America/Edmonton
+      - America/Creston
+      - America/Vancouver
+      title: Timezone
+      x-enum-varnames:
+      - AMERICA_LOS_ANGELES
+      - AMERICA_PHOENIX
+      - AMERICA_CHICAGO
+      - AMERICA_NEW_YORK
+      - PACIFIC_HONOLULU
+      - AMERICA_ANCHORAGE
+      - AMERICA_ST_JOHNS
+      - AMERICA_HALIFAX
+      - AMERICA_BLANC_SABLON
+      - AMERICA_TORONTO
+      - AMERICA_ATIKOKAN
+      - AMERICA_WINNIPEG
+      - AMERICA_RESOLUTE
+      - AMERICA_REGINA
+      - AMERICA_EDMONTON
+      - AMERICA_CRESTON
+      - AMERICA_VANCOUVER
+    AccountModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        tenant_id:
+          type: integer
+          title: Tenant Id
+        organization_id:
+          type: integer
+          title: Organization Id
+        name:
+          type: string
+          title: Name
+        country_code:
+          $ref: '#/components/schemas/CountryCode'
+        timezone:
+          $ref: '#/components/schemas/Timezone'
+        currency:
+          $ref: '#/components/schemas/Currency'
+        type:
+          $ref: '#/components/schemas/AccountType'
+        website_domain:
+          type: string
+          title: Website Domain
+        brand_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Brand Id
+        vertical_id:
+          anyOf:
+          - $ref: '#/components/schemas/AccountVertical'
+          - type: 'null'
+        dart_billing_account:
+          anyOf:
+          - $ref: '#/components/schemas/DartBillingAccount'
+          - type: 'null'
+        updated_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated Date
+        created_date:
+          type: string
+          format: date-time
+          title: Created Date
+      type: object
+      required:
+      - id
+      - tenant_id
+      - organization_id
+      - name
+      - country_code
+      - timezone
+      - currency
+      - type
+      - website_domain
+      - brand_id
+      - created_date
+      title: AccountModel
+    DartBillingAccount:
+      properties:
+        account_id:
+          type: string
+          title: Account Id
+        account_name:
+          type: string
+          title: Account Name
+      type: object
+      required:
+      - account_id
+      - account_name
+      title: DartBillingAccount
+    AccountsModel:
+      properties:
+        total_count:
+          type: integer
+          title: Total Count
+        limit:
+          type: integer
+          title: Limit
+        page_num:
+          type: integer
+          title: Page Num
+        total_pages:
+          type: integer
+          title: Total Pages
+        has_next_page:
+          type: boolean
+          title: Has Next Page
+        has_prev_page:
+          type: boolean
+          title: Has Prev Page
+        items:
+          items:
+            $ref: '#/components/schemas/AccountModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - total_count
+      - limit
+      - page_num
+      - total_pages
+      - has_next_page
+      - has_prev_page
+      - items
+      title: AccountsModel
+    AccountPixelModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        tenant_id:
+          type: integer
+          title: Tenant Id
+        organization_id:
+          type: integer
+          title: Organization Id
+        account_id:
+          type: integer
+          title: Account Id
+        name:
+          type: string
+          title: Name
+        url:
+          type: string
+          title: Url
+        segment_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Segment Id
+        updated_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated Date
+        website_url:
+          type: string
+          title: Website Url
+        hashcode:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hashcode
+      type: object
+      required:
+      - id
+      - tenant_id
+      - organization_id
+      - account_id
+      - name
+      - url
+      - website_url
+      title: AccountPixelModel
+    CreateAccountPixelModel:
+      properties:
+        name:
+          type: string
+          maxLength: 128
+          minLength: 1
+          title: Name
+        url:
+          type: string
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          title: Url
+        enable_site_retargeting:
+          type: boolean
+          title: Enable Site Retargeting
+      type: object
+      required:
+      - name
+      - url
+      - enable_site_retargeting
+      title: CreateAccountPixelModel
+    SuccessResponseModel:
+      properties:
+        success:
+          type: boolean
+          title: Success
+          default: true
+      type: object
+      title: SuccessResponseModel
+    AccountMinCPVBidRateModel:
+      properties:
+        min_bid_rate:
+          type: number
+          title: Min Bid Rate
+      type: object
+      required:
+      - min_bid_rate
+      title: AccountMinCPVBidRateModel
+    Currency:
+      oneOf:
+      - const: USD
+        title: USD
+      - const: CAD
+        title: CAD
+      type: string
+      enum:
+      - USD
+      - CAD
+      title: Currency
+      x-enum-varnames:
+      - USD
+      - CAD
+    UpdateAccountModel:
+      properties:
+        name:
+          type: string
+          maxLength: 128
+          minLength: 1
+          title: Name
+        website_domain:
+          type: string
+          maxLength: 512
+          title: Website Domain
+        timezone:
+          $ref: '#/components/schemas/Timezone'
+        vertical_id:
+          anyOf:
+          - $ref: '#/components/schemas/AccountVertical'
+          - type: 'null'
+      type: object
+      required:
+      - name
+      - website_domain
+      - timezone
+      title: UpdateAccountModel
+    AccountType:
+      oneOf:
+      - const: 0
+        title: DIRECT_CLIENT
+      - const: 1
+        title: DIRECT_AGENCY
+      - const: 2
+        title: PLATFORM_CMR
+      - const: 3
+        title: PLATFORM_RESELLER
+      - const: 4
+        title: PLATFORM_CHANNEL
+      - const: 5
+        title: DIRECT_PROGRAMMATIC
+      - const: 6
+        title: PLATFORM_PROGRAMMATIC
+      - const: 7
+        title: PROGRAMMATIC
+      - const: 8
+        title: SELF_SERVE
+      - const: 9
+        title: CHARITY
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      title: AccountType
+      x-enum-varnames:
+      - DIRECT_CLIENT
+      - DIRECT_AGENCY
+      - PLATFORM_CMR
+      - PLATFORM_RESELLER
+      - PLATFORM_CHANNEL
+      - DIRECT_PROGRAMMATIC
+      - PLATFORM_PROGRAMMATIC
+      - PROGRAMMATIC
+      - SELF_SERVE
+      - CHARITY
+    AccountVertical:
+      oneOf:
+      - const: 1
+        title: AUTOMOTIVE
+      - const: 2
+        title: CPG
+      - const: 3
+        title: ECOMMERCE
+      - const: 4
+        title: FINANCIAL_SERVICES
+      - const: 5
+        title: GOVERNMENT_POLITICAL
+      - const: 6
+        title: HEALTH
+      - const: 7
+        title: INDUSTRIAL_UTILITIES
+      - const: 8
+        title: MEDIA_AND_ENTERTAINMENT
+      - const: 9
+        title: RESTAURANTS
+      - const: 10
+        title: RETAIL
+      - const: 11
+        title: SERVICES
+      - const: 12
+        title: TECHNOLOGY
+      - const: 13
+        title: TELECOM_AND_COMMUNICATIONS
+      - const: 14
+        title: TRAVEL
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      title: AccountVertical
+      x-enum-varnames:
+      - AUTOMOTIVE
+      - CPG
+      - ECOMMERCE
+      - FINANCIAL_SERVICES
+      - GOVERNMENT_POLITICAL
+      - HEALTH
+      - INDUSTRIAL_UTILITIES
+      - MEDIA_AND_ENTERTAINMENT
+      - RESTAURANTS
+      - RETAIL
+      - SERVICES
+      - TECHNOLOGY
+      - TELECOM_AND_COMMUNICATIONS
+      - TRAVEL
+  securitySchemes:
+    api-key:
+      type: apiKey
+      in: header
+      name: x-gt-api-key
+    user-id:
+      type: apiKey
+      in: header
+      name: x-gt-user-id

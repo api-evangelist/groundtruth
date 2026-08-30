@@ -1,0 +1,284 @@
+openapi: 3.2.0
+info:
+  title: Ads Manager Direct Mail API
+  description: Ads Manager API
+  version: 1.0.0
+servers:
+- url: https://api-public.groundtruth.com
+  description: Production
+tags:
+- name: Direct Mail
+paths:
+  /direct_mail/orders:
+    get:
+      tags:
+      - Direct Mail
+      summary: Get Orders
+      description: Gets direct mail orders for a tenant
+      operationId: get_orders
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 100
+          exclusiveMinimum: 1
+          description: Number of orders to limit response to
+          default: 10
+          title: Limit
+        description: Number of orders to limit response to
+      - name: page_num
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          description: Page number to retrieve. Starts at 1.
+          default: 1
+          title: Page Num
+        description: Page number to retrieve. Starts at 1.
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrdersModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+components:
+  schemas:
+    OrderModel:
+      properties:
+        id:
+          type: string
+          title: Id
+        price:
+          type: string
+          title: Price
+        start_date:
+          type: string
+          title: Start Date
+        end_date:
+          type: string
+          title: End Date
+        materials_date:
+          type: string
+          title: Materials Date
+        bill_due_date:
+          type: string
+          title: Bill Due Date
+        cart_id:
+          type: string
+          title: Cart Id
+        cart_item_id:
+          type: string
+          title: Cart Item Id
+        billing_status:
+          type: string
+          title: Billing Status
+        media_type:
+          type: string
+          title: Media Type
+        company_name:
+          type: string
+          title: Company Name
+        account_id:
+          type: integer
+          title: Account Id
+        ad_description:
+          type: string
+          title: Ad Description
+        ad_quantity:
+          type: string
+          title: Ad Quantity
+        ad_run:
+          type: string
+          title: Ad Run
+        summary_title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Summary Title
+        summary_line_1:
+          type: string
+          title: Summary Line 1
+        summary_line_2:
+          type: string
+          title: Summary Line 2
+        title:
+          type: string
+          title: Title
+        file_status:
+          type: string
+          title: File Status
+        file_url:
+          type: string
+          title: File Url
+        file_thumb:
+          type: string
+          title: File Thumb
+        flight_status:
+          type: string
+          title: Flight Status
+        invoice_url:
+          type: string
+          title: Invoice Url
+        is_paid:
+          type: boolean
+          title: Is Paid
+        is_cancelled:
+          type: boolean
+          title: Is Cancelled
+        is_overdue:
+          type: boolean
+          title: Is Overdue
+        formatted_price:
+          type: string
+          title: Formatted Price
+      type: object
+      required:
+      - id
+      - price
+      - start_date
+      - end_date
+      - materials_date
+      - bill_due_date
+      - cart_id
+      - cart_item_id
+      - billing_status
+      - media_type
+      - company_name
+      - account_id
+      - ad_description
+      - ad_quantity
+      - ad_run
+      - summary_title
+      - summary_line_1
+      - summary_line_2
+      - title
+      - file_status
+      - file_url
+      - file_thumb
+      - flight_status
+      - invoice_url
+      - is_paid
+      - is_cancelled
+      - is_overdue
+      - formatted_price
+      title: OrderModel
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    OrdersModel:
+      properties:
+        total_count:
+          type: integer
+          title: Total Count
+        limit:
+          type: integer
+          title: Limit
+        page_num:
+          type: integer
+          title: Page Num
+        total_pages:
+          type: integer
+          title: Total Pages
+        has_next_page:
+          type: boolean
+          title: Has Next Page
+        has_prev_page:
+          type: boolean
+          title: Has Prev Page
+        items:
+          items:
+            $ref: '#/components/schemas/OrderModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - total_count
+      - limit
+      - page_num
+      - total_pages
+      - has_next_page
+      - has_prev_page
+      - items
+      title: OrdersModel
+  securitySchemes:
+    api-key:
+      type: apiKey
+      in: header
+      name: x-gt-api-key
+    user-id:
+      type: apiKey
+      in: header
+      name: x-gt-user-id

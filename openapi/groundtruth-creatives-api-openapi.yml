@@ -1,0 +1,2141 @@
+openapi: 3.2.0
+info:
+  title: Ads Manager Creatives API
+  description: Ads Manager API
+  version: 1.0.0
+servers:
+- url: https://api-public.groundtruth.com
+  description: Production
+tags:
+- name: Creatives
+paths:
+  /creatives:
+    post:
+      tags:
+      - Creatives
+      summary: Create Creative
+      description: Creates a creative
+      operationId: create_creative
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: adgroup_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Adgroup Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCreativeModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreativeModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+    get:
+      tags:
+      - Creatives
+      summary: Get Creatives
+      description: Gets all creatives in an ad group
+      operationId: get_creatives
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 100
+          exclusiveMinimum: 1
+          description: Number of creatives to limit response to
+          default: 10
+          title: Limit
+        description: Number of creatives to limit response to
+      - name: page_num
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          description: Page number to retrieve. Starts at 1.
+          default: 1
+          title: Page Num
+        description: Page number to retrieve. Starts at 1.
+      - name: sort_order
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+          description: Sorts creatives by name
+          default: asc
+        description: Sorts creatives by name
+      - name: updated_since
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Limits results to creatives updated since a unix timestamp
+          title: Updated Since
+        description: Limits results to creatives updated since a unix timestamp
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: adgroup_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Adgroup Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreativesModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+    patch:
+      tags:
+      - Creatives
+      summary: Patch Creatives
+      description: Patches multiple creatives in a campaign
+      operationId: patch_creatives
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: campaign_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Campaign Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchCreativesModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /creatives/{creative_id}:
+    get:
+      tags:
+      - Creatives
+      summary: Get Creative
+      description: Gets a creative
+      operationId: get_creative
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: creative_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Creative Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreativeModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+    put:
+      tags:
+      - Creatives
+      summary: Update Creative
+      description: Updates a creative
+      operationId: update_creative
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: creative_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Creative Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCreativeModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreativeModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+    patch:
+      tags:
+      - Creatives
+      summary: Patch Creative
+      description: Patches a creative
+      operationId: patch_creative
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: creative_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Creative Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchCreativeModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreativeModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /creatives/{creative_id}/clone:
+    post:
+      tags:
+      - Creatives
+      summary: Clone Creative
+      description: Clones a creative
+      operationId: clone_creative
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: creative_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Creative Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreativeModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /creatives/{creative_id}/preview:
+    get:
+      tags:
+      - Creatives
+      summary: Get Creative Preview
+      description: Gets the creative preview using the stored CMS configuration. Video creatives return VAST XML; other types return HTML.
+      operationId: get_creative_preview
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: creative_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Creative Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /creatives/{creative_id}/landing_page_preview:
+    get:
+      tags:
+      - Creatives
+      summary: Get Creative Landing Page Preview
+      description: Gets the landing page preview HTML for a creative
+      operationId: get_creative_landing_page_preview
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: creative_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Creative Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            text/html:
+              schema:
+                type: string
+        '400':
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+components:
+  schemas:
+    CreativeModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        status:
+          $ref: '#/components/schemas/CreativeStatus'
+        type:
+          $ref: '#/components/schemas/CreativeType'
+        click_through_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Click Through Url
+        image_banner_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Image Banner Url
+        vast_tag_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Vast Tag Url
+        script_tag:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Script Tag
+        size:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Size
+        api_type:
+          anyOf:
+          - $ref: '#/components/schemas/CreativeAPI'
+          - type: 'null'
+        landing_page:
+          anyOf:
+          - oneOf:
+            - $ref: '#/components/schemas/StandardSuperLandingPage-Output'
+            - $ref: '#/components/schemas/ImageLandingPage-Output'
+            discriminator:
+              propertyName: type
+              mapping:
+                '1': '#/components/schemas/StandardSuperLandingPage-Output'
+                '2': '#/components/schemas/StandardSuperLandingPage-Output'
+                '3': '#/components/schemas/ImageLandingPage-Output'
+          - type: 'null'
+          title: Landing Page
+          description: Settings for custom GT landing page
+        third_party_click_tracker_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Third Party Click Tracker Url
+          description: Applies to `landing_page` on image creatives and HTML5 third-party click tracking.
+        html5_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Html5 Url
+          description: Only applies to HTML5 creatives.
+        external_impression_urls:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: External Impression Urls
+        external_script_urls:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: External Script Urls
+        html_tag:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Html Tag
+          description: Only applies to HTML5 creatives. Populated with processed banner HTML once processing is complete.
+        start_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Start Date
+        end_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: End Date
+        freq_cap_duration:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Freq Cap Duration
+        freq_cap_value:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Freq Cap Value
+        interstitial:
+          type: boolean
+          title: Interstitial
+          default: false
+        rotation_weight:
+          type: integer
+          title: Rotation Weight
+          default: 1
+        asset_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Asset Id
+        thumbnail_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Thumbnail Url
+          description: Thumbnails are only available for video creatives. But not all video creatives will have them.
+        dooh_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/CreativeDOOHMetadata'
+          - type: 'null'
+        updated_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated Date
+        blocked:
+          type: boolean
+          title: Blocked
+        image_banner_text_overlay:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Image Banner Text Overlay
+          description: Only applies to IMAGE creatives
+        image_banner_text_overlay_css:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Image Banner Text Overlay Css
+          description: Only applies to IMAGE creatives
+        text_banner:
+          anyOf:
+          - $ref: '#/components/schemas/TextBannerCreativeSettings-Output'
+          - type: 'null'
+          description: Only applies to TEXT_BANNER creatives
+        third_party_placement_id:
+          anyOf:
+          - type: string
+            maxLength: 128
+          - type: 'null'
+          title: Third Party Placement Id
+        waymark_asset_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Waymark Asset Id
+      type: object
+      required:
+      - id
+      - name
+      - status
+      - type
+      - blocked
+      title: CreativeModel
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    PatchCreativeModel:
+      properties:
+        name:
+          anyOf:
+          - type: string
+            maxLength: 128
+            minLength: 1
+          - type: 'null'
+          title: Name
+        status:
+          anyOf:
+          - $ref: '#/components/schemas/CreativeStatus'
+          - type: 'null'
+        start_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Start Date
+        end_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: End Date
+        freq_cap_duration:
+          anyOf:
+          - type: integer
+            maximum: 126.0
+            minimum: 1.0
+          - type: 'null'
+          title: Freq Cap Duration
+        freq_cap_value:
+          anyOf:
+          - type: integer
+            maximum: 32766.0
+            minimum: 1.0
+          - type: 'null'
+          title: Freq Cap Value
+        rotation_weight:
+          anyOf:
+          - type: integer
+            maximum: 32766.0
+            minimum: 1.0
+          - type: 'null'
+          title: Rotation Weight
+        click_through_url:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: 'null'
+          title: Click Through Url
+        third_party_placement_id:
+          anyOf:
+          - type: string
+            maxLength: 128
+          - type: 'null'
+          title: Third Party Placement Id
+      type: object
+      title: PatchCreativeModel
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
+    GTLandingPagePageOverlayAction:
+      oneOf:
+      - const: website
+        title: WEBSITE
+      - const: moreinfo
+        title: MORE_INFO
+      - const: appstore
+        title: APP_STORE
+      - const: passbook
+        title: PASSBOOK
+      - const: direction
+        title: DIRECTION
+      - const: coupon
+        title: COUPON
+      - const: media
+        title: MEDIA
+      type: string
+      enum:
+      - website
+      - moreinfo
+      - appstore
+      - passbook
+      - direction
+      - coupon
+      - media
+      title: GTLandingPagePageOverlayAction
+      x-enum-varnames:
+      - WEBSITE
+      - MORE_INFO
+      - APP_STORE
+      - PASSBOOK
+      - DIRECTION
+      - COUPON
+      - MEDIA
+    PatchCreativesModel:
+      properties:
+        creatives:
+          items:
+            $ref: '#/components/schemas/MultiPatchCreativeModel'
+          type: array
+          minItems: 1
+          title: Creatives
+      type: object
+      required:
+      - creatives
+      title: PatchCreativesModel
+    SuccessResponseModel:
+      properties:
+        success:
+          type: boolean
+          title: Success
+          default: true
+      type: object
+      title: SuccessResponseModel
+    CreativeDOOHMetadata:
+      properties:
+        approval_status:
+          $ref: '#/components/schemas/ConsolidatedDOOHApprovalStatus'
+        approval_feedback:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Approval Feedback
+      type: object
+      required:
+      - approval_status
+      title: CreativeDOOHMetadata
+    ConsolidatedDOOHApprovalStatus:
+      oneOf:
+      - const: 1
+        title: SUBMITTED
+      - const: 2
+        title: INITIAL_REVIEW_APPROVED
+      - const: 3
+        title: INITIAL_REVIEW_REJECTED
+      - const: 4
+        title: PUBLISHER_REVIEW_APPROVED
+      - const: 5
+        title: PUBLISHER_REVIEW_REJECTED
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      title: ConsolidatedDOOHApprovalStatus
+      x-enum-varnames:
+      - SUBMITTED
+      - INITIAL_REVIEW_APPROVED
+      - INITIAL_REVIEW_REJECTED
+      - PUBLISHER_REVIEW_APPROVED
+      - PUBLISHER_REVIEW_REJECTED
+    TextBannerCreativeSettings-Input:
+      properties:
+        caption:
+          type: string
+          maxLength: 160
+          title: Caption
+          description: Headline text shown on the banner
+          default: ''
+        business_name:
+          anyOf:
+          - type: string
+            maxLength: 128
+          - type: 'null'
+          title: Business Name
+          description: Business name shown on the banner
+        background_color:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$
+            examples:
+            - FFAA74
+            - 01AB23CD
+          - type: 'null'
+          title: Background Color
+          description: Hex color (without leading `#`). Used when no `background_image_url` is provided.
+        background_image_url:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: 'null'
+          title: Background Image Url
+          description: Must be 320x50 or proportional
+        business_logo_url:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: 'null'
+          title: Business Logo Url
+          description: Must be 40x40 or proportional
+        business_name_color:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$
+            examples:
+            - FFAA74
+            - 01AB23CD
+          - type: 'null'
+          title: Business Name Color
+        caption_color:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$
+            examples:
+            - FFAA74
+            - 01AB23CD
+          - type: 'null'
+          title: Caption Color
+        distance_color:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$
+            examples:
+            - FFAA74
+            - 01AB23CD
+          - type: 'null'
+          title: Distance Color
+        show_scrolling_text:
+          type: boolean
+          title: Show Scrolling Text
+          default: false
+        show_distance:
+          type: boolean
+          title: Show Distance
+          default: false
+      type: object
+      title: TextBannerCreativeSettings
+    StandardSuperLandingPage-Output:
+      properties:
+        type:
+          type: integer
+          enum:
+          - 1
+          - 2
+          title: Type
+        header_image_url:
+          type: string
+          title: Header Image Url
+          description: Must be 640x400 or proportional
+        header_click_through_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Header Click Through Url
+        button_color:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$
+            examples:
+            - FFAA74
+            - 01AB23CD
+          - type: 'null'
+          title: Button Color
+        directions_button_label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Directions Button Label
+        call_button_label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Call Button Label
+        additional_button_click_through_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Additional Button Click Through Url
+        additional_button_text:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Additional Button Text
+        coupon_image_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Coupon Image Url
+          description: Must be 750x704 or proportional
+        coupon_click_through_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Coupon Click Through Url
+        youtube_video_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Youtube Video Id
+          description: The `v` query parameter from a Youtube video URL
+        footer_title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Footer Title
+        footer_text:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Footer Text
+        flip_coupon_and_video:
+          type: boolean
+          title: Flip Coupon And Video
+          description: If true, the coupon will appear above the Youtube video
+          default: false
+      type: object
+      required:
+      - type
+      - header_image_url
+      title: StandardSuperLandingPage
+    CreativeType:
+      oneOf:
+      - const: IMAGE
+        title: IMAGE
+      - const: HTML5
+        title: HTML5
+      - const: SCRIPT
+        title: SCRIPT
+      - const: VIDEO
+        title: VIDEO
+      - const: TEXT_BANNER
+        title: TEXT_BANNER
+      - const: AUDIO
+        title: AUDIO
+      type: string
+      enum:
+      - IMAGE
+      - HTML5
+      - SCRIPT
+      - VIDEO
+      - TEXT_BANNER
+      - AUDIO
+      title: CreativeType
+      x-enum-varnames:
+      - IMAGE
+      - HTML5
+      - SCRIPT
+      - VIDEO
+      - TEXT_BANNER
+      - AUDIO
+    CreativeStatus:
+      oneOf:
+      - const: 1
+        title: ACTIVE
+      - const: 2
+        title: PAUSED
+      - const: 7
+        title: INCOMPLETE
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 7
+      title: CreativeStatus
+      x-enum-varnames:
+      - ACTIVE
+      - PAUSED
+      - INCOMPLETE
+    UpdateCreativeModel:
+      properties:
+        name:
+          type: string
+          maxLength: 128
+          minLength: 1
+          title: Name
+        type:
+          $ref: '#/components/schemas/CreativeType'
+          description: 'Currently supported: IMAGE, AUDIO, SCRIPT, HTML5, VIDEO, TEXT_BANNER'
+        click_through_url:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: 'null'
+          title: Click Through Url
+        status:
+          $ref: '#/components/schemas/CreativeStatus'
+          description: INCOMPLETE status is not available
+          default: 1
+        image_banner_url:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: 'null'
+          title: Image Banner Url
+          description: Only applies to IMAGE creatives
+        vast_tag_url:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: 'null'
+          title: Vast Tag Url
+          description: Only applies to VIDEO and AUDIO creatives. Either `vast_tag_url` or `video_url` or `audio_url` must be used.
+        video_url:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: 'null'
+          title: Video Url
+          description: This value comes from `cdn_url` in the `POST /upload` response. Only applies to VIDEO creatives. Either `vast_tag_url` or `video_url` must be used.
+        audio_url:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: 'null'
+          title: Audio Url
+          description: Only applies to AUDIO creatives. Either `vast_tag_url` or `audio_url` must be used.
+        script_tag:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Script Tag
+          description: Only applies to SCRIPT creatives
+        size:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Size
+          description: Only applies to SCRIPT creatives. This is ignored for other types.
+        api_type:
+          $ref: '#/components/schemas/CreativeAPI'
+          description: Only applies to IMAGE and SCRIPT creatives. This is ignored for other types.
+          default: 0
+        landing_page:
+          anyOf:
+          - oneOf:
+            - $ref: '#/components/schemas/StandardSuperLandingPage-Input'
+            - $ref: '#/components/schemas/ImageLandingPage-Input'
+            discriminator:
+              propertyName: type
+              mapping:
+                '1': '#/components/schemas/StandardSuperLandingPage-Input'
+                '2': '#/components/schemas/StandardSuperLandingPage-Input'
+                '3': '#/components/schemas/ImageLandingPage-Input'
+          - type: 'null'
+          title: Landing Page
+          description: Settings for custom GT landing page
+        third_party_click_tracker_url:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: 'null'
+          title: Third Party Click Tracker Url
+          description: This only applies when `landing_page` is provided.
+        start_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Start Date
+        end_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: End Date
+        freq_cap_duration:
+          anyOf:
+          - type: integer
+            maximum: 126.0
+            minimum: 1.0
+          - type: 'null'
+          title: Freq Cap Duration
+        freq_cap_value:
+          anyOf:
+          - type: integer
+            maximum: 32766.0
+            minimum: 1.0
+          - type: 'null'
+          title: Freq Cap Value
+        interstitial:
+          type: boolean
+          title: Interstitial
+          default: false
+        rotation_weight:
+          type: integer
+          maximum: 32766.0
+          minimum: 1.0
+          title: Rotation Weight
+          default: 1
+        image_banner_text_overlay:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Image Banner Text Overlay
+          description: Only applies to IMAGE creatives
+        image_banner_text_overlay_css:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Image Banner Text Overlay Css
+          description: Only applies to IMAGE creatives
+        text_banner:
+          anyOf:
+          - $ref: '#/components/schemas/TextBannerCreativeSettings-Input'
+          - type: 'null'
+          description: Only applies to TEXT_BANNER creatives. Required for that type.
+        html5_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Html5 Url
+          description: Only applies to HTML5 creatives. And should be a zip file
+        third_party_placement_id:
+          anyOf:
+          - type: string
+            maxLength: 128
+          - type: 'null'
+          title: Third Party Placement Id
+        external_impression_urls:
+          anyOf:
+          - items:
+              type: string
+              maxLength: 2083
+              minLength: 1
+              format: uri
+            type: array
+          - type: 'null'
+          title: External Impression Urls
+          description: Third-party impression tracker URLs.
+        external_script_urls:
+          anyOf:
+          - items:
+              type: string
+              maxLength: 2083
+              minLength: 1
+              format: uri
+            type: array
+          - type: 'null'
+          title: External Script Urls
+          description: Third-party script tracker URLs.
+      type: object
+      required:
+      - name
+      - type
+      title: UpdateCreativeModel
+    ImageLandingPage-Input:
+      properties:
+        type:
+          type: integer
+          const: 3
+          title: Type
+        background_image_url:
+          type: string
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          title: Background Image Url
+          description: Must be 640x960 or proportional
+        directions_overlay_css:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Directions Overlay Css
+        call_overlay_css:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Call Overlay Css
+        text_1_overlay:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text 1 Overlay
+        text_1_overlay_css:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text 1 Overlay Css
+        text_2_overlay:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text 2 Overlay
+        text_2_overlay_css:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text 2 Overlay Css
+        additional_overlay_1_action:
+          anyOf:
+          - $ref: '#/components/schemas/GTLandingPagePageOverlayAction'
+          - type: 'null'
+        additional_overlay_1_url:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: 'null'
+          title: Additional Overlay 1 Url
+        additional_overlay_1_css:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Additional Overlay 1 Css
+        additional_overlay_2_action:
+          anyOf:
+          - $ref: '#/components/schemas/GTLandingPagePageOverlayAction'
+          - type: 'null'
+        additional_overlay_2_url:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: 'null'
+          title: Additional Overlay 2 Url
+        additional_overlay_2_css:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Additional Overlay 2 Css
+        additional_overlay_3_action:
+          anyOf:
+          - $ref: '#/components/schemas/GTLandingPagePageOverlayAction'
+          - type: 'null'
+        additional_overlay_3_url:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: 'null'
+          title: Additional Overlay 3 Url
+        additional_overlay_3_css:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Additional Overlay 3 Css
+        additional_overlay_4_action:
+          anyOf:
+          - $ref: '#/components/schemas/GTLandingPagePageOverlayAction'
+          - type: 'null'
+        additional_overlay_4_url:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: 'null'
+          title: Additional Overlay 4 Url
+        additional_overlay_4_css:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Additional Overlay 4 Css
+        youtube_video_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Youtube Video Id
+          description: The `v` query parameter from a Youtube video URL
+        youtube_video_css:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Youtube Video Css
+      type: object
+      required:
+      - type
+      - background_image_url
+      title: ImageLandingPage
+    SortOrder:
+      oneOf:
+      - const: desc
+        title: DESC
+      - const: asc
+        title: ASC
+      type: string
+      enum:
+      - desc
+      - asc
+      title: SortOrder
+      x-enum-varnames:
+      - DESC
+      - ASC
+    StandardSuperLandingPage-Input:
+      properties:
+        type:
+          type: integer
+          enum:
+          - 1
+          - 2
+          title: Type
+        header_image_url:
+          type: string
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          title: Header Image Url
+          description: Must be 640x400 or proportional
+        header_click_through_url:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: 'null'
+          title: Header Click Through Url
+        button_color:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$
+            examples:
+            - FFAA74
+            - 01AB23CD
+          - type: 'null'
+          title: Button Color
+        directions_button_label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Directions Button Label
+        call_button_label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Call Button Label
+        additional_button_click_through_url:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: 'null'
+          title: Additional Button Click Through Url
+        additional_button_text:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Additional Button Text
+        coupon_image_url:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: 'null'
+          title: Coupon Image Url
+          description: Must be 750x704 or proportional
+        coupon_click_through_url:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: 'null'
+          title: Coupon Click Through Url
+        youtube_video_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Youtube Video Id
+          description: The `v` query parameter from a Youtube video URL
+        footer_title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Footer Title
+        footer_text:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Footer Text
+        flip_coupon_and_video:
+          type: boolean
+          title: Flip Coupon And Video
+          description: If true, the coupon will appear above the Youtube video
+          default: false
+      type: object
+      required:
+      - type
+      - header_image_url
+      title: StandardSuperLandingPage
+    MultiPatchCreativeModel:
+      properties:
+        name:
+          anyOf:
+          - type: string
+            maxLength: 128
+            minLength: 1
+          - type: 'null'
+          title: Name
+        status:
+          anyOf:
+          - $ref: '#/components/schemas/CreativeStatus'
+          - type: 'null'
+        start_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Start Date
+        end_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: End Date
+        freq_cap_duration:
+          anyOf:
+          - type: integer
+            maximum: 126.0
+            minimum: 1.0
+          - type: 'null'
+          title: Freq Cap Duration
+        freq_cap_value:
+          anyOf:
+          - type: integer
+            maximum: 32766.0
+            minimum: 1.0
+          - type: 'null'
+          title: Freq Cap Value
+        rotation_weight:
+          anyOf:
+          - type: integer
+            maximum: 32766.0
+            minimum: 1.0
+          - type: 'null'
+          title: Rotation Weight
+        click_through_url:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: 'null'
+          title: Click Through Url
+        third_party_placement_id:
+          anyOf:
+          - type: string
+            maxLength: 128
+          - type: 'null'
+          title: Third Party Placement Id
+        id:
+          type: integer
+          title: Id
+      type: object
+      required:
+      - id
+      title: MultiPatchCreativeModel
+    CreativesModel:
+      properties:
+        total_count:
+          type: integer
+          title: Total Count
+        limit:
+          type: integer
+          title: Limit
+        page_num:
+          type: integer
+          title: Page Num
+        total_pages:
+          type: integer
+          title: Total Pages
+        has_next_page:
+          type: boolean
+          title: Has Next Page
+        has_prev_page:
+          type: boolean
+          title: Has Prev Page
+        items:
+          items:
+            $ref: '#/components/schemas/CreativeModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - total_count
+      - limit
+      - page_num
+      - total_pages
+      - has_next_page
+      - has_prev_page
+      - items
+      title: CreativesModel
+    ImageLandingPage-Output:
+      properties:
+        type:
+          type: integer
+          const: 3
+          title: Type
+        background_image_url:
+          type: string
+          title: Background Image Url
+          description: Must be 640x960 or proportional
+        directions_overlay_css:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Directions Overlay Css
+        call_overlay_css:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Call Overlay Css
+        text_1_overlay:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text 1 Overlay
+        text_1_overlay_css:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text 1 Overlay Css
+        text_2_overlay:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text 2 Overlay
+        text_2_overlay_css:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text 2 Overlay Css
+        additional_overlay_1_action:
+          anyOf:
+          - $ref: '#/components/schemas/GTLandingPagePageOverlayAction'
+          - type: 'null'
+        additional_overlay_1_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Additional Overlay 1 Url
+        additional_overlay_1_css:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Additional Overlay 1 Css
+        additional_overlay_2_action:
+          anyOf:
+          - $ref: '#/components/schemas/GTLandingPagePageOverlayAction'
+          - type: 'null'
+        additional_overlay_2_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Additional Overlay 2 Url
+        additional_overlay_2_css:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Additional Overlay 2 Css
+        additional_overlay_3_action:
+          anyOf:
+          - $ref: '#/components/schemas/GTLandingPagePageOverlayAction'
+          - type: 'null'
+        additional_overlay_3_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Additional Overlay 3 Url
+        additional_overlay_3_css:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Additional Overlay 3 Css
+        additional_overlay_4_action:
+          anyOf:
+          - $ref: '#/components/schemas/GTLandingPagePageOverlayAction'
+          - type: 'null'
+        additional_overlay_4_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Additional Overlay 4 Url
+        additional_overlay_4_css:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Additional Overlay 4 Css
+        youtube_video_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Youtube Video Id
+          description: The `v` query parameter from a Youtube video URL
+        youtube_video_css:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Youtube Video Css
+      type: object
+      required:
+      - type
+      - background_image_url
+      title: ImageLandingPage
+    TextBannerCreativeSettings-Output:
+      properties:
+        caption:
+          type: string
+          maxLength: 160
+          title: Caption
+          description: Headline text shown on the banner
+          default: ''
+        business_name:
+          anyOf:
+          - type: string
+            maxLength: 128
+          - type: 'null'
+          title: Business Name
+          description: Business name shown on the banner
+        background_color:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$
+            examples:
+            - FFAA74
+            - 01AB23CD
+          - type: 'null'
+          title: Background Color
+          description: Hex color (without leading `#`). Used when no `background_image_url` is provided.
+        background_image_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Background Image Url
+          description: Must be 320x50 or proportional
+        business_logo_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Business Logo Url
+          description: Must be 40x40 or proportional
+        business_name_color:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$
+            examples:
+            - FFAA74
+            - 01AB23CD
+          - type: 'null'
+          title: Business Name Color
+        caption_color:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$
+            examples:
+            - FFAA74
+            - 01AB23CD
+          - type: 'null'
+          title: Caption Color
+        distance_color:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$
+            examples:
+            - FFAA74
+            - 01AB23CD
+          - type: 'null'
+          title: Distance Color
+        show_scrolling_text:
+          type: boolean
+          title: Show Scrolling Text
+          default: false
+        show_distance:
+          type: boolean
+          title: Show Distance
+          default: false
+      type: object
+      title: TextBannerCreativeSettings
+    CreativeAPI:
+      oneOf:
+      - const: 0
+        title: NONE
+      - const: 1
+        title: VPAID1
+      - const: 2
+        title: VPAID2
+      - const: 3
+        title: MRAID1
+      - const: 4
+        title: ORMMA
+      - const: 5
+        title: MRAID2
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      title: CreativeAPI
+      x-enum-varnames:
+      - NONE
+      - VPAID1
+      - VPAID2
+      - MRAID1
+      - ORMMA
+      - MRAID2
+    CreateCreativeModel:
+      properties:
+        name:
+          anyOf:
+          - type: string
+            maxLength: 128
+            minLength: 1
+          - type: 'null'
+          title: Name
+          description: A default name will be generated for the creative if none is provided
+        type:
+          $ref: '#/components/schemas/CreativeType'
+          description: 'Currently supported: IMAGE, AUDIO, SCRIPT, HTML5, VIDEO, TEXT_BANNER'
+        click_through_url:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: 'null'
+          title: Click Through Url
+        status:
+          $ref: '#/components/schemas/CreativeStatus'
+          description: INCOMPLETE status is not available
+          default: 1
+        image_banner_url:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: 'null'
+          title: Image Banner Url
+          description: Only applies to IMAGE creatives
+        vast_tag_url:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: 'null'
+          title: Vast Tag Url
+          description: Only applies to VIDEO and AUDIO creatives. Either `vast_tag_url` or `video_url` or `audio_url` must be used.
+        video_url:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: 'null'
+          title: Video Url
+          description: This value comes from `cdn_url` in the `POST /upload` response. Only applies to VIDEO creatives. Either `vast_tag_url` or `video_url` must be used.
+        audio_url:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: 'null'
+          title: Audio Url
+          description: Only applies to AUDIO creatives. Either `vast_tag_url` or `audio_url` must be used.
+        script_tag:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Script Tag
+          description: Only applies to SCRIPT creatives
+        size:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Size
+          description: Only applies to SCRIPT creatives. This is ignored for other types.
+        api_type:
+          $ref: '#/components/schemas/CreativeAPI'
+          description: Only applies to IMAGE and SCRIPT creatives. This is ignored for other types.
+          default: 0
+        landing_page:
+          anyOf:
+          - oneOf:
+            - $ref: '#/components/schemas/StandardSuperLandingPage-Input'
+            - $ref: '#/components/schemas/ImageLandingPage-Input'
+            discriminator:
+              propertyName: type
+              mapping:
+                '1': '#/components/schemas/StandardSuperLandingPage-Input'
+                '2': '#/components/schemas/StandardSuperLandingPage-Input'
+                '3': '#/components/schemas/ImageLandingPage-Input'
+          - type: 'null'
+          title: Landing Page
+          description: Settings for custom GT landing page
+        third_party_click_tracker_url:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: 'null'
+          title: Third Party Click Tracker Url
+          description: This only applies when `landing_page` is provided.
+        start_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Start Date
+        end_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: End Date
+        freq_cap_duration:
+          anyOf:
+          - type: integer
+            maximum: 126.0
+            minimum: 1.0
+          - type: 'null'
+          title: Freq Cap Duration
+        freq_cap_value:
+          anyOf:
+          - type: integer
+            maximum: 32766.0
+            minimum: 1.0
+          - type: 'null'
+          title: Freq Cap Value
+        interstitial:
+          type: boolean
+          title: Interstitial
+          default: false
+        rotation_weight:
+          type: integer
+          maximum: 32766.0
+          minimum: 1.0
+          title: Rotation Weight
+          default: 1
+        image_banner_text_overlay:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Image Banner Text Overlay
+          description: Only applies to IMAGE creatives
+        image_banner_text_overlay_css:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Image Banner Text Overlay Css
+          description: Only applies to IMAGE creatives
+        text_banner:
+          anyOf:
+          - $ref: '#/components/schemas/TextBannerCreativeSettings-Input'
+          - type: 'null'
+          description: Only applies to TEXT_BANNER creatives. Required for that type.
+        html5_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Html5 Url
+          description: Only applies to HTML5 creatives. And should be a zip file
+        third_party_placement_id:
+          anyOf:
+          - type: string
+            maxLength: 128
+          - type: 'null'
+          title: Third Party Placement Id
+        external_impression_urls:
+          anyOf:
+          - items:
+              type: string
+              maxLength: 2083
+              minLength: 1
+              format: uri
+            type: array
+          - type: 'null'
+          title: External Impression Urls
+          description: Third-party impression tracker URLs.
+        external_script_urls:
+          anyOf:
+          - items:
+              type: string
+              maxLength: 2083
+              minLength: 1
+              format: uri
+            type: array
+          - type: 'null'
+          title: External Script Urls
+          description: Third-party script tracker URLs.
+      type: object
+      required:
+      - type
+      title: CreateCreativeModel
+  securitySchemes:
+    api-key:
+      type: apiKey
+      in: header
+      name: x-gt-api-key
+    user-id:
+      type: apiKey
+      in: header
+      name: x-gt-user-id

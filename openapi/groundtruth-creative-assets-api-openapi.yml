@@ -1,0 +1,599 @@
+openapi: 3.2.0
+info:
+  title: Ads Manager Creative Assets API
+  description: Ads Manager API
+  version: 1.0.0
+servers:
+- url: https://api-public.groundtruth.com
+  description: Production
+tags:
+- name: Creative Assets
+paths:
+  /creative_assets:
+    get:
+      tags:
+      - Creative Assets
+      summary: Get Creative Assets
+      description: Gets creative assets in a tenant
+      operationId: get_creative_assets
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 100
+          exclusiveMinimum: 1
+          description: Number of creative assets to limit response to
+          default: 10
+          title: Limit
+        description: Number of creative assets to limit response to
+      - name: page_num
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          description: Page number to retrieve. Starts at 1.
+          default: 1
+          title: Page Num
+        description: Page number to retrieve. Starts at 1.
+      - name: sort_by
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/CreativeAssetSortField'
+          description: Field to sort creative assets by
+          default: created_date
+        description: Field to sort creative assets by
+      - name: sort_order
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+          description: Sort order for creative assets
+          default: desc
+        description: Sort order for creative assets
+      - name: updated_date_from
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          description: Filter to creative assets updated on or after this date
+          title: Updated Date From
+        description: Filter to creative assets updated on or after this date
+      - name: updated_date_to
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          description: Filter to creative assets updated on or before this date
+          title: Updated Date To
+        description: Filter to creative assets updated on or before this date
+      - name: sizes
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Filter by size(s)
+          title: Sizes
+        description: Filter by size(s)
+      - name: file_extensions
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Filter by file extension(s)
+          title: File Extensions
+        description: Filter by file extension(s)
+      - name: created_date_from
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          description: Filter to creative assets created on or after this date
+          title: Created Date From
+        description: Filter to creative assets created on or after this date
+      - name: created_date_to
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          description: Filter to creative assets created on or before this date
+          title: Created Date To
+        description: Filter to creative assets created on or before this date
+      - name: created_by
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Filter by creator user ID
+          title: Created By
+        description: Filter by creator user ID
+      - name: organization_ids
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: integer
+          - type: 'null'
+          description: Filter by organization ID(s)
+          title: Organization Ids
+        description: Filter by organization ID(s)
+      - name: account_ids
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: integer
+          - type: 'null'
+          description: Filter by account ID(s)
+          title: Account Ids
+        description: Filter by account ID(s)
+      - name: status
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/CreativeAssetStatus'
+          - type: 'null'
+          description: Filter by status(es)
+          title: Status
+        description: Filter by status(es)
+      - name: types
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/CreativeAssetType'
+          - type: 'null'
+          description: Filter by asset type(s)
+          title: Types
+        description: Filter by asset type(s)
+      - name: name
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Search by name (case-insensitive substring match)
+          title: Name
+        description: Search by name (case-insensitive substring match)
+      - name: search
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Search by name (alias for name)
+          title: Search
+        description: Search by name (alias for name)
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCreativeAssetsModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /creative_assets/{creative_asset_id}:
+    get:
+      tags:
+      - Creative Assets
+      summary: Get Creative Asset
+      description: Gets a creative asset
+      operationId: get_creative_asset
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: creative_asset_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Creative Asset Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreativeAssetModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+    delete:
+      tags:
+      - Creative Assets
+      summary: Delete Creative Asset
+      description: Deletes a creative asset
+      operationId: delete_creative_asset
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: creative_asset_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Creative Asset Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+components:
+  schemas:
+    PaginatedCreativeAssetsModel:
+      properties:
+        total_count:
+          type: integer
+          title: Total Count
+        limit:
+          type: integer
+          title: Limit
+        page_num:
+          type: integer
+          title: Page Num
+        total_pages:
+          type: integer
+          title: Total Pages
+        has_next_page:
+          type: boolean
+          title: Has Next Page
+        has_prev_page:
+          type: boolean
+          title: Has Prev Page
+        items:
+          items:
+            $ref: '#/components/schemas/CreativeAssetModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - total_count
+      - limit
+      - page_num
+      - total_pages
+      - has_next_page
+      - has_prev_page
+      - items
+      title: PaginatedCreativeAssetsModel
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    SortOrder:
+      oneOf:
+      - const: desc
+        title: DESC
+      - const: asc
+        title: ASC
+      type: string
+      enum:
+      - desc
+      - asc
+      title: SortOrder
+      x-enum-varnames:
+      - DESC
+      - ASC
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
+    CreativeAssetModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        size:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Size
+        type:
+          $ref: '#/components/schemas/CreativeAssetType'
+        file_extension:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: File Extension
+        source:
+          type: string
+          title: Source
+        created_date:
+          type: string
+          format: date-time
+          title: Created Date
+        updated_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated Date
+        created_by:
+          type: string
+          title: Created By
+        status:
+          $ref: '#/components/schemas/CreativeAssetStatus'
+      type: object
+      required:
+      - id
+      - name
+      - size
+      - type
+      - file_extension
+      - source
+      - created_date
+      - updated_date
+      - created_by
+      - status
+      title: CreativeAssetModel
+    CreativeAssetType:
+      oneOf:
+      - const: IMAGE
+        title: IMAGE
+      - const: SCRIPT
+        title: SCRIPT
+      - const: VIDEO
+        title: VIDEO
+      - const: AUDIO
+        title: AUDIO
+      type: string
+      enum:
+      - IMAGE
+      - SCRIPT
+      - VIDEO
+      - AUDIO
+      title: CreativeAssetType
+      x-enum-varnames:
+      - IMAGE
+      - SCRIPT
+      - VIDEO
+      - AUDIO
+    CreativeAssetSortField:
+      oneOf:
+      - const: name
+        title: NAME
+      - const: created_date
+        title: CREATED_DATE
+      - const: updated_date
+        title: UPDATED_DATE
+      - const: asset_type
+        title: ASSET_TYPE
+      - const: file_extension
+        title: FILE_EXTENSION
+      - const: size
+        title: SIZE
+      type: string
+      enum:
+      - name
+      - created_date
+      - updated_date
+      - asset_type
+      - file_extension
+      - size
+      title: CreativeAssetSortField
+      x-enum-varnames:
+      - NAME
+      - CREATED_DATE
+      - UPDATED_DATE
+      - ASSET_TYPE
+      - FILE_EXTENSION
+      - SIZE
+    SuccessResponseModel:
+      properties:
+        success:
+          type: boolean
+          title: Success
+          default: true
+      type: object
+      title: SuccessResponseModel
+    CreativeAssetStatus:
+      oneOf:
+      - const: 0
+        title: ACTIVE
+      - const: 1
+        title: PAUSED
+      - const: 2
+        title: PENDING
+      - const: 3
+        title: EXPIRED
+      - const: 4
+        title: UNLINKED
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      title: CreativeAssetStatus
+      x-enum-varnames:
+      - ACTIVE
+      - PAUSED
+      - PENDING
+      - EXPIRED
+      - UNLINKED
+  securitySchemes:
+    api-key:
+      type: apiKey
+      in: header
+      name: x-gt-api-key
+    user-id:
+      type: apiKey
+      in: header
+      name: x-gt-user-id

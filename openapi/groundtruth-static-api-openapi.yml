@@ -1,0 +1,1023 @@
+openapi: 3.2.0
+info:
+  title: Ads Manager Static API
+  description: Ads Manager API
+  version: 1.0.0
+servers:
+- url: https://api-public.groundtruth.com
+  description: Production
+tags:
+- name: Static
+paths:
+  /static/account_verticals:
+    get:
+      tags:
+      - Static
+      summary: Get Account Verticals
+      description: Gets all account verticals
+      operationId: get_account_verticals
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountVerticalsModel'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+  /static/audio/podcast_topics:
+    get:
+      tags:
+      - Static
+      summary: Get Audio Podcast Topics
+      description: Gets all targetable audio podcast topics
+      operationId: get_audio_podcast_topics
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioPodcastTopicsModel'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+  /static/audio/streaming_genres:
+    get:
+      tags:
+      - Static
+      summary: Get Audio Streaming Genres
+      description: Gets all targetable audio streaming genres
+      operationId: get_audio_streaming_genres
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioStreamingGenresModel'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+  /static/mobile_carriers:
+    get:
+      tags:
+      - Static
+      summary: Get Carriers
+      description: Gets all targetable carriers for your account's country
+      operationId: get_carriers
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MobileCarriersModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /static/cities:
+    get:
+      tags:
+      - Static
+      summary: Get Cities
+      description: Gets all targetable cities for your account's country
+      operationId: get_cities
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CitiesModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /static/streaming_video/content_categories:
+    get:
+      tags:
+      - Static
+      summary: Get Streaming Video Content Categories
+      description: Gets all targetable streaming video content categories
+      operationId: get_streaming_video_content_categories
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StreamingVideoContentCategoriesModel'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+  /static/streaming_video/premium_ctv_categories:
+    get:
+      tags:
+      - Static
+      summary: Get Streaming Video Premium Ctv Categories
+      description: Gets all targetable CTV premium categories
+      operationId: get_streaming_video_premium_ctv_categories
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CTVPremiumCategoriesModel'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+  /static/dmas:
+    get:
+      tags:
+      - Static
+      summary: Get Dmas
+      description: Gets all targetable DMAs
+      operationId: get_dmas
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DMAsModel'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+  /static/publisher_categories:
+    get:
+      tags:
+      - Static
+      summary: Get Publisher Categories
+      description: Gets all targetable publisher categories
+      operationId: get_publisher_categories
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublisherCategoriesModel'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+  /static/states:
+    get:
+      tags:
+      - Static
+      summary: Get States
+      description: Gets all targetable states for your account's country
+      operationId: get_states
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatesModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /static/iab_categories:
+    get:
+      tags:
+      - Static
+      summary: Get Iab Categories
+      description: Gets IAB categories
+      operationId: get_iab_categories
+      parameters:
+      - name: search
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Search IAB categories based on name or category
+          default: ''
+          title: Search
+        description: Search IAB categories based on name or category
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IABCategoriesResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /static/publishers:
+    get:
+      tags:
+      - Static
+      summary: Get Publishers
+      description: Gets available publishers for a campaign
+      operationId: get_publishers
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: campaign_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Campaign Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublishersModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+components:
+  schemas:
+    AudioStreamingGenresModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/app__api__routes__static__models__AudioStreamingGenreModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: AudioStreamingGenresModel
+    app__api__routes__static__models__CTVPremiumCategoryModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        apps:
+          items:
+            $ref: '#/components/schemas/CTVAppModel'
+          type: array
+          title: Apps
+      type: object
+      required:
+      - id
+      - name
+      - apps
+      title: CTVPremiumCategoryModel
+    CTVAppModel:
+      properties:
+        name:
+          type: string
+          title: Name
+        logo_url:
+          type: string
+          title: Logo Url
+      type: object
+      required:
+      - name
+      - logo_url
+      title: CTVAppModel
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    app__api__routes__static__models__AudioStreamingGenreModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        icon:
+          type: string
+          title: Icon
+      type: object
+      required:
+      - id
+      - name
+      - icon
+      title: AudioStreamingGenreModel
+    AccountVerticalModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - name
+      title: AccountVerticalModel
+    IABCategoriesResponseModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/IABCategoryModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: IABCategoriesResponseModel
+    AccountVerticalsModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/AccountVerticalModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: AccountVerticalsModel
+    CityModel:
+      properties:
+        name:
+          type: string
+          title: Name
+        state_code:
+          type: string
+          title: State Code
+      type: object
+      required:
+      - name
+      - state_code
+      title: CityModel
+    app__api__routes__static__models__AudioPodcastTopicModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        icon:
+          type: string
+          title: Icon
+        color:
+          type: string
+          pattern: ^[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$
+          title: Color
+          examples:
+          - FFAA74
+          - 01AB23CD
+      type: object
+      required:
+      - id
+      - name
+      - icon
+      - color
+      title: AudioPodcastTopicModel
+    CitiesModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CityModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: CitiesModel
+    PublisherCategoriesModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/app__api__routes__static__models__PublisherCategoryModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: PublisherCategoriesModel
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
+    DMAModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - code
+      - name
+      title: DMAModel
+    app__api__routes__static__models__StreamingVideoContentCategoryModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        icon:
+          type: string
+          title: Icon
+      type: object
+      required:
+      - id
+      - name
+      - icon
+      title: StreamingVideoContentCategoryModel
+    PublishersModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/app__api__routes__static__models__PublisherModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: PublishersModel
+    MobileCarrierModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - code
+      - name
+      title: MobileCarrierModel
+    app__api__routes__static__models__PublisherCategoryModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        icon:
+          type: string
+          title: Icon
+      type: object
+      required:
+      - id
+      - name
+      - icon
+      title: PublisherCategoryModel
+    PublisherTier:
+      oneOf:
+      - const: 4
+        title: EXCHANGE
+      - const: 6
+        title: CUSTOM
+      type: integer
+      enum:
+      - 4
+      - 6
+      title: PublisherTier
+      x-enum-varnames:
+      - EXCHANGE
+      - CUSTOM
+    MobileCarriersModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/MobileCarrierModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: MobileCarriersModel
+    app__api__routes__static__models__PublisherModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        tier:
+          $ref: '#/components/schemas/PublisherTier'
+      type: object
+      required:
+      - id
+      - name
+      - tier
+      title: PublisherModel
+    StateModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        code:
+          type: string
+          title: Code
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - code
+      - name
+      title: StateModel
+    AudioPodcastTopicsModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/app__api__routes__static__models__AudioPodcastTopicModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: AudioPodcastTopicsModel
+    DMAsModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/DMAModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: DMAsModel
+    StreamingVideoContentCategoriesModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/app__api__routes__static__models__StreamingVideoContentCategoryModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: StreamingVideoContentCategoriesModel
+    StatesModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/StateModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: StatesModel
+    IABCategoryModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        category:
+          type: string
+          title: Category
+        name:
+          type: string
+          title: Name
+        children:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IABCategoryModel'
+            type: array
+          - type: 'null'
+          title: Children
+      type: object
+      required:
+      - id
+      - category
+      - name
+      title: IABCategoryModel
+    CTVPremiumCategoriesModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/app__api__routes__static__models__CTVPremiumCategoryModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: CTVPremiumCategoriesModel
+  securitySchemes:
+    api-key:
+      type: apiKey
+      in: header
+      name: x-gt-api-key
+    user-id:
+      type: apiKey
+      in: header
+      name: x-gt-user-id

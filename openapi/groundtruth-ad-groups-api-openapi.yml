@@ -1,0 +1,4007 @@
+openapi: 3.2.0
+info:
+  title: Ads Manager Ad Groups API
+  description: Ads Manager API
+  version: 1.0.0
+servers:
+- url: https://api-public.groundtruth.com
+  description: Production
+tags:
+- name: Ad Groups
+paths:
+  /adgroups:
+    post:
+      tags:
+      - Ad Groups
+      summary: Create Adgroup
+      description: Creates an ad group
+      operationId: create_adgroup
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: campaign_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Campaign Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAdgroupModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdgroupModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+    get:
+      tags:
+      - Ad Groups
+      summary: Get Adgroups
+      description: Gets all ad groups in a campaign
+      operationId: get_adgroups
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 100
+          exclusiveMinimum: 1
+          description: Number of ad groups to limit response to
+          default: 10
+          title: Limit
+        description: Number of ad groups to limit response to
+      - name: page_num
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          description: Page number to retrieve. Starts at 1.
+          default: 1
+          title: Page Num
+        description: Page number to retrieve. Starts at 1.
+      - name: sort_order
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+          description: Sorts ad groups by name
+          default: asc
+        description: Sorts ad groups by name
+      - name: updated_since
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Limits results to ad adgroups updated since a unix timestamp
+          title: Updated Since
+        description: Limits results to ad adgroups updated since a unix timestamp
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: campaign_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Campaign Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdgroupsModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /adgroups/dooh:
+    post:
+      tags:
+      - Ad Groups
+      summary: Create Dooh Adgroups
+      description: Creates dooh ad groups with plan data
+      operationId: create_dooh_adgroups
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: campaign_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Campaign Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDoohAdgroupsModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DOOHAdgroupIDsModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /adgroups/{adgroup_id}:
+    put:
+      tags:
+      - Ad Groups
+      summary: Update Adgroup
+      description: Updates an ad group
+      operationId: update_adgroup
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: adgroup_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Adgroup Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAdgroupModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdgroupModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+    patch:
+      tags:
+      - Ad Groups
+      summary: Patch Adgroup
+      description: Patches an ad group
+      operationId: patch_adgroup
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: adgroup_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Adgroup Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchAdgroupModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdgroupModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+    delete:
+      tags:
+      - Ad Groups
+      summary: Delete Adgroup
+      description: Deletes an ad group
+      operationId: delete_adgroup
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: adgroup_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Adgroup Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+    get:
+      tags:
+      - Ad Groups
+      summary: Get Adgroup
+      description: Gets an ad group
+      operationId: get_adgroup
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: adgroup_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Adgroup Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdgroupModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /adgroups/{adgroup_id}/avails:
+    get:
+      tags:
+      - Ad Groups
+      summary: Get Adgroup Avails
+      description: Gets avails for an ad group
+      operationId: get_adgroup_avails
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: adgroup_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Adgroup Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdgroupAvailsResponse'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /adgroups/{adgroup_id}/location_filters/download:
+    get:
+      tags:
+      - Ad Groups
+      summary: Download Location Filters
+      description: Downloads location filters for an ad group
+      operationId: download_location_filters
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: adgroup_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Adgroup Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /adgroups/{adgroup_id}/clone:
+    post:
+      tags:
+      - Ad Groups
+      summary: Clone Adgroup
+      description: Clones an ad group once per requested media type with the given objective
+      operationId: clone_adgroup
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: adgroup_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Adgroup Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CloneAdgroupRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClonedAdgroupsResponse'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+components:
+  schemas:
+    BudgetModel-Input:
+      properties:
+        start_date:
+          type: string
+          format: date
+          title: Start Date
+        end_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: End Date
+        budget:
+          anyOf:
+          - type: number
+            minimum: 0.0
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Budget
+          description: If budget is at the campaign level, this will be 0
+      type: object
+      required:
+      - start_date
+      - end_date
+      - budget
+      title: BudgetModel
+    CreateUpdateCTVPremiumCategoryModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+      type: object
+      required:
+      - id
+      title: CreateUpdateCTVPremiumCategoryModel
+    CreateUpdateAudioStreamingGenreModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+      type: object
+      required:
+      - id
+      title: CreateUpdateAudioStreamingGenreModel
+    LookalikeAudienceScale:
+      oneOf:
+      - const: 1
+        title: SCALE_2X
+      - const: 3
+        title: SCALE_4X
+      - const: 5
+        title: SCALE_6X
+      - const: 9
+        title: SCALE_10X
+      type: integer
+      enum:
+      - 1
+      - 3
+      - 5
+      - 9
+      title: LookalikeAudienceScale
+      x-enum-varnames:
+      - SCALE_2X
+      - SCALE_4X
+      - SCALE_6X
+      - SCALE_10X
+    NeighborhoodModel:
+      properties:
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        type:
+          $ref: '#/components/schemas/NeighborhoodTargetType'
+        sensitivity:
+          anyOf:
+          - $ref: '#/components/schemas/Sensitivity'
+          - type: 'null'
+        location_group_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/app__api__models__LocationGroupMetadata'
+          - type: 'null'
+      type: object
+      required:
+      - id
+      - name
+      - type
+      title: NeighborhoodModel
+    DOOHPlanDataModel:
+      properties:
+        creative_formats:
+          items:
+            $ref: '#/components/schemas/DOOHCreativeFormat'
+          type: array
+          title: Creative Formats
+        creative_sizes:
+          items:
+            type: string
+          type: array
+          title: Creative Sizes
+          examples:
+          - - 1920x1080
+            - 1080x1920
+        location_groups:
+          items:
+            $ref: '#/components/schemas/DOOHGeoLocationGroupModel'
+          type: array
+          title: Location Groups
+        locations:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/DOOHGeoCityModel'
+            - $ref: '#/components/schemas/DOOHGeoStateModel'
+            - $ref: '#/components/schemas/DOOHGeoZipcodeModel'
+            - $ref: '#/components/schemas/DOOHGeoDmaModel'
+            - $ref: '#/components/schemas/DOOHGeoCountyModel'
+            discriminator:
+              propertyName: type
+              mapping:
+                city: '#/components/schemas/DOOHGeoCityModel'
+                county: '#/components/schemas/DOOHGeoCountyModel'
+                dma: '#/components/schemas/DOOHGeoDmaModel'
+                state: '#/components/schemas/DOOHGeoStateModel'
+                zip_code: '#/components/schemas/DOOHGeoZipcodeModel'
+          type: array
+          title: Locations
+        publishers:
+          items:
+            $ref: '#/components/schemas/DOOHPublisherModel'
+          type: array
+          title: Publishers
+        venue_types:
+          items:
+            $ref: '#/components/schemas/DOOHVenueTypeModel'
+          type: array
+          title: Venue Types
+        start_date:
+          type: string
+          format: date
+          title: Start Date
+        end_date:
+          type: string
+          format: date
+          title: End Date
+        iab_code:
+          type: string
+          title: Iab Code
+        account_domain:
+          type: string
+          title: Account Domain
+      type: object
+      required:
+      - creative_formats
+      - location_groups
+      - locations
+      - publishers
+      - venue_types
+      - start_date
+      - end_date
+      - iab_code
+      - account_domain
+      title: DOOHPlanDataModel
+    PatchAdgroupModel:
+      properties:
+        name:
+          anyOf:
+          - type: string
+            maxLength: 256
+            minLength: 1
+          - type: 'null'
+          title: Name
+        objective:
+          anyOf:
+          - $ref: '#/components/schemas/Objective'
+          - type: 'null'
+          description: Changing objective may clear targeting that does not apply to the new selection; the saved adgroup may not match your request payload.
+        media_types:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/MediaType'
+            type: array
+            maxItems: 2
+            minItems: 1
+            uniqueItems: true
+          - type: 'null'
+          title: Media Types
+          description: 'Currently supported: desktop, ott, audio-streaming, audio-podcast, ctv, web, app. Changing media types may clear targeting that does not apply to the new selection; the saved adgroup may not match your request payload.'
+        bid_price:
+          anyOf:
+          - anyOf:
+            - type: number
+            - type: string
+              pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+            gt: 0
+          - type: 'null'
+          title: Bid Price
+        gross_bid_price:
+          anyOf:
+          - anyOf:
+            - type: number
+            - type: string
+              pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+            gt: 0
+          - type: 'null'
+          title: Gross Bid Price
+        budgets:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/BudgetModel-Input'
+            type: array
+            minItems: 1
+          - type: 'null'
+          title: Budgets
+        drive_to_locations:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreateUpdateDriveToLocationModel'
+            type: array
+          - type: 'null'
+          title: Drive To Locations
+        tracking_pixels:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreateUpdateTrackingPixelModel'
+            type: array
+          - type: 'null'
+          title: Tracking Pixels
+        status:
+          anyOf:
+          - type: integer
+            enum:
+            - 2
+            - 1
+          - type: 'null'
+          title: Status
+        bid_type:
+          anyOf:
+          - $ref: '#/components/schemas/app__api__routes__constants__BidType'
+          - type: 'null'
+        dayparting:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 336.0
+              minimum: 0.0
+            type: array
+            uniqueItems: true
+          - type: 'null'
+          title: Dayparting
+          description: Each number in the list represents a half hour in a week. 0 is the first half hour (12am - 12:30am) on Sunday. 335 is the last half hour (11:30pm - 12am) on Saturday.
+        pacing_mode:
+          anyOf:
+          - $ref: '#/components/schemas/PacingMode'
+          - type: 'null'
+          description: Spend pacing for the ad group. Omitted defaults to standard (DEFAULT) pacing.
+        rotate_creatives_evenly:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Rotate Creatives Evenly
+      type: object
+      title: PatchAdgroupModel
+    DriveToLocationType:
+      oneOf:
+      - const: brand
+        title: BRAND
+      - const: location_group
+        title: LOCATION_GROUP
+      type: string
+      enum:
+      - brand
+      - location_group
+      title: DriveToLocationType
+      x-enum-varnames:
+      - BRAND
+      - LOCATION_GROUP
+    AdgroupAvailsResponse:
+      properties:
+        audience_reach:
+          type: integer
+          title: Audience Reach
+        audience_reach_low:
+          type: integer
+          title: Audience Reach Low
+        audience_reach_high:
+          type: integer
+          title: Audience Reach High
+        daily_available_impressions:
+          type: integer
+          title: Daily Available Impressions
+        daily_available_impressions_low:
+          type: integer
+          title: Daily Available Impressions Low
+        daily_available_impressions_high:
+          type: integer
+          title: Daily Available Impressions High
+        daily_budgeted_impressions:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Daily Budgeted Impressions
+        deliverability:
+          anyOf:
+          - type: string
+            enum:
+            - Fair
+            - Good
+            - Poor
+          - type: 'null'
+          title: Deliverability
+        deliverability_ratio:
+          type: number
+          title: Deliverability Ratio
+      type: object
+      required:
+      - audience_reach
+      - audience_reach_low
+      - audience_reach_high
+      - daily_available_impressions
+      - daily_available_impressions_low
+      - daily_available_impressions_high
+      - deliverability
+      - deliverability_ratio
+      title: AdgroupAvailsResponse
+    ClonedAdgroupsResponse:
+      properties:
+        adgroups:
+          items:
+            $ref: '#/components/schemas/AdgroupModel'
+          type: array
+          title: Adgroups
+      type: object
+      required:
+      - adgroups
+      title: ClonedAdgroupsResponse
+    AgeRange:
+      oneOf:
+      - const: 18-24
+        title: _18_24
+      - const: 25-34
+        title: _25_34
+      - const: 35-44
+        title: _35_44
+      - const: 45-54
+        title: _45_54
+      - const: 55-64
+        title: _55_64
+      - const: 65-999
+        title: _65_UP
+      - const: unknown
+        title: UNKNOWN
+      type: string
+      enum:
+      - 18-24
+      - 25-34
+      - 35-44
+      - 45-54
+      - 55-64
+      - 65-999
+      - unknown
+      title: AgeRange
+      x-enum-varnames:
+      - _18_24
+      - _25_34
+      - _35_44
+      - _45_54
+      - _55_64
+      - _65_UP
+      - UNKNOWN
+    DOOHVenueTypeModel:
+      properties:
+        exclude:
+          type: boolean
+          title: Exclude
+        id:
+          type: integer
+          title: Id
+      type: object
+      required:
+      - exclude
+      - id
+      title: DOOHVenueTypeModel
+    CreateUpdateDriveToLocationModel:
+      properties:
+        id:
+          type: string
+          title: Id
+        type:
+          $ref: '#/components/schemas/DriveToLocationType'
+      type: object
+      required:
+      - id
+      - type
+      title: CreateUpdateDriveToLocationModel
+    app__api__routes__adgroups__models__CTVPremiumCategoryModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - name
+      title: CTVPremiumCategoryModel
+    ProximityMode:
+      oneOf:
+      - const: in_store
+        title: IN_STORE
+      - const: on_lot
+        title: ON_LOT
+      - const: retail_block
+        title: RETAIL_BLOCK
+      - const: radial
+        title: RADIAL
+      type: string
+      enum:
+      - in_store
+      - on_lot
+      - retail_block
+      - radial
+      title: ProximityMode
+      x-enum-varnames:
+      - IN_STORE
+      - ON_LOT
+      - RETAIL_BLOCK
+      - RADIAL
+    NeighborhoodType:
+      oneOf:
+      - const: business
+        title: BUSINESS
+      - const: residential
+        title: RESIDENTIAL
+      type: string
+      enum:
+      - business
+      - residential
+      title: NeighborhoodType
+      x-enum-varnames:
+      - BUSINESS
+      - RESIDENTIAL
+    LocationGroupType:
+      oneOf:
+      - const: 0
+        title: BUSINESS
+      - const: 1
+        title: RESIDENTIAL
+      type: integer
+      enum:
+      - 0
+      - 1
+      title: LocationGroupType
+      x-enum-varnames:
+      - BUSINESS
+      - RESIDENTIAL
+    CreateUpdateAudioPodcastTopicModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+      type: object
+      required:
+      - id
+      title: CreateUpdateAudioPodcastTopicModel
+    app__api__routes__adgroups__models__PublisherCategoryModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - name
+      title: PublisherCategoryModel
+    DOOHGeoCountyModel:
+      properties:
+        exclude:
+          type: boolean
+          title: Exclude
+        name:
+          type: string
+          title: Name
+        type:
+          type: string
+          const: county
+          title: Type
+        county_fips:
+          type: string
+          title: County Fips
+      type: object
+      required:
+      - exclude
+      - name
+      - type
+      - county_fips
+      title: DOOHGeoCountyModel
+    CreateUpdateTrackingPixelModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+      type: object
+      required:
+      - id
+      title: CreateUpdateTrackingPixelModel
+    CloneAdgroupRequestModel:
+      properties:
+        objective:
+          $ref: '#/components/schemas/Objective'
+        media_types:
+          items:
+            $ref: '#/components/schemas/MediaType'
+          type: array
+          minItems: 1
+          uniqueItems: true
+          title: Media Types
+          description: Each unique media type produces one cloned ad group with the given objective. DOOH is not supported (use DOOH-specific creation instead).
+      type: object
+      required:
+      - objective
+      - media_types
+      title: CloneAdgroupRequestModel
+    PacingMode:
+      oneOf:
+      - const: 0
+        title: DEFAULT
+      - const: 1
+        title: ACCELERATED
+      - const: 2
+        title: ASAP
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      title: PacingMode
+      x-enum-varnames:
+      - DEFAULT
+      - ACCELERATED
+      - ASAP
+    CreateUpdateAdPackageModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+      type: object
+      required:
+      - id
+      title: CreateUpdateAdPackageModel
+    CreateUpdateOnPremiseLocationModel:
+      properties:
+        id:
+          type: string
+          title: Id
+        type:
+          $ref: '#/components/schemas/OnPremiseLocationType'
+        proximity:
+          anyOf:
+          - $ref: '#/components/schemas/ProximityMode'
+          - type: 'null'
+        radius:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Radius
+      type: object
+      required:
+      - id
+      - type
+      title: CreateUpdateOnPremiseLocationModel
+    UpdateAdgroupModel:
+      properties:
+        name:
+          type: string
+          maxLength: 256
+          minLength: 1
+          title: Name
+        objective:
+          anyOf:
+          - $ref: '#/components/schemas/Objective'
+          - type: 'null'
+          description: Unless you're creating an empty ad group with just a name, objective is required. Changing objective may clear targeting that does not apply to the new selection; the saved adgroup may not match your request payload.
+        tactic:
+          $ref: '#/components/schemas/TargetingTactic'
+          description: 'Currently supported: DEFAULT, GEOTARGETING, ON_PREMISE, AUDIENCE, NEIGHBORHOOD'
+          default: 0
+        media_types:
+          items:
+            $ref: '#/components/schemas/MediaType'
+          type: array
+          maxItems: 2
+          uniqueItems: true
+          title: Media Types
+          description: 'Currently supported: desktop, ott, audio-streaming, audio-podcast, ctv, web, app. Changing media types may clear targeting that does not apply to the new selection; the saved adgroup may not match your request payload.'
+        bid_type:
+          $ref: '#/components/schemas/app__api__routes__constants__BidType'
+          default: cpm
+        bid_price:
+          anyOf:
+          - type: number
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Bid Price
+          default: '0'
+        budgets:
+          items:
+            $ref: '#/components/schemas/BudgetModel-Input'
+          type: array
+          minItems: 1
+          title: Budgets
+          description: You must provide at least one budget time period. The budget itself can be 0 though.
+        audiences:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreateUpdateAudienceModel'
+            type: array
+          - type: 'null'
+          title: Audiences
+        lookalike_audience_scale:
+          anyOf:
+          - $ref: '#/components/schemas/LookalikeAudienceScale'
+          - type: 'null'
+          deprecated: true
+        location_filters:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/LocationFilterModel-Input'
+            type: array
+          - type: 'null'
+          title: Location Filters
+        drive_to_locations:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreateUpdateDriveToLocationModel'
+            type: array
+          - type: 'null'
+          title: Drive To Locations
+        genders:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Gender'
+            type: array
+            uniqueItems: true
+          - type: 'null'
+          title: Genders
+        age_ranges:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/AgeRange'
+            type: array
+            uniqueItems: true
+          - type: 'null'
+          title: Age Ranges
+        enable_alcohol_age:
+          type: boolean
+          title: Enable Alcohol Age
+          default: false
+        enable_privacy_idfas:
+          type: boolean
+          title: Enable Privacy Idfas
+          default: false
+        daily_impression_cap:
+          anyOf:
+          - type: integer
+            exclusiveMinimum: 0.0
+          - type: 'null'
+          title: Daily Impression Cap
+        integration_reports:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IntegrationReport'
+            type: array
+            uniqueItems: true
+          - type: 'null'
+          title: Integration Reports
+        third_party_placement_name:
+          anyOf:
+          - type: string
+            maxLength: 128
+            minLength: 1
+          - type: 'null'
+          title: Third Party Placement Name
+        third_party_placement_id:
+          anyOf:
+          - type: string
+            maxLength: 128
+            minLength: 1
+          - type: 'null'
+          title: Third Party Placement Id
+        mobile_carriers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/MobileCarrierCode'
+            type: array
+          - type: 'null'
+          title: Mobile Carriers
+        income_ranges:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IncomeRange'
+            type: array
+            uniqueItems: true
+          - type: 'null'
+          title: Income Ranges
+        communities:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Community'
+            type: array
+            uniqueItems: true
+          - type: 'null'
+          title: Communities
+        optimization_strategy:
+          $ref: '#/components/schemas/OptimizationStrategy'
+          default: delivery
+        ctr_threshold:
+          anyOf:
+          - type: number
+            maximum: 0.7
+            minimum: 0.0
+          - type: 'null'
+          title: Ctr Threshold
+          description: Use null for system default
+          default: 0
+        sar_threshold:
+          anyOf:
+          - type: integer
+            maximum: 10.0
+            minimum: 0.0
+          - type: 'null'
+          title: Sar Threshold
+          description: Use null for system default
+          default: 0
+        conversion_threshold:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Conversion Threshold
+          description: Use null for system default
+          default: 0
+        psvr_threshold:
+          anyOf:
+          - type: number
+            maximum: 0.99
+            minimum: 0.0
+          - type: 'null'
+          title: Psvr Threshold
+          description: Use null for system default
+          default: 0
+        publisher_categories:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreateUpdatePublisherCategoryModel'
+            type: array
+          - type: 'null'
+          title: Publisher Categories
+          description: This is only applicable or mobile and desktop media types
+        streaming_video_content_categories:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreateUpdateStreamingVideoContentCategoryModel'
+            type: array
+          - type: 'null'
+          title: Streaming Video Content Categories
+          description: This only works for CTV and OTT media types
+        ctv_premium_categories:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreateUpdateCTVPremiumCategoryModel'
+            type: array
+          - type: 'null'
+          title: Ctv Premium Categories
+          description: This only works for CTV media type
+        audio_podcast_topics:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreateUpdateAudioPodcastTopicModel'
+            type: array
+          - type: 'null'
+          title: Audio Podcast Topics
+          description: This only works for audio podcast media type
+        audio_streaming_genres:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreateUpdateAudioStreamingGenreModel'
+            type: array
+          - type: 'null'
+          title: Audio Streaming Genres
+          description: This only works for audio streaming media type
+        audio_podcast_ad_positions:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/AudioPodcastAdPosition'
+            type: array
+            uniqueItems: true
+          - type: 'null'
+          title: Audio Podcast Ad Positions
+          description: This only works for audio podcast media type
+        languages:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Language'
+            type: array
+            uniqueItems: true
+          - type: 'null'
+          title: Languages
+          description: This only works for audio podcast and streaming media types
+        operating_systems:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/OperatingSystem'
+            type: array
+            uniqueItems: true
+          - type: 'null'
+          title: Operating Systems
+          description: This only works for mobile media type
+        dayparting:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 336.0
+              minimum: 0.0
+            type: array
+            uniqueItems: true
+          - type: 'null'
+          title: Dayparting
+          description: Each number in the list represents a half hour in a week. 0 is the first half hour (12am - 12:30am) on Sunday. 335 is the last half hour (11:30pm - 12am) on Saturday.
+        on_premise_locations:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreateUpdateOnPremiseLocationModel'
+            type: array
+          - type: 'null'
+          title: On Premise Locations
+        neighborhoods:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreateNeighborhoodModel'
+            type: array
+          - type: 'null'
+          title: Neighborhoods
+        neighborhood_types:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/NeighborhoodType'
+            type: array
+            uniqueItems: true
+          - type: 'null'
+          title: Neighborhood Types
+        tracking_pixels:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreateUpdateTrackingPixelModel'
+            type: array
+          - type: 'null'
+          title: Tracking Pixels
+        billability_type:
+          $ref: '#/components/schemas/BillabilityType'
+          default: 0
+        added_cost_cpm:
+          anyOf:
+          - type: number
+            minimum: 0.0
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Added Cost Cpm
+          description: Additional CPM added on top of the base bid price
+          default: '0'
+        viewable_percentage:
+          anyOf:
+          - type: integer
+            maximum: 100.0
+            exclusiveMinimum: 0.0
+          - type: 'null'
+          title: Viewable Percentage
+          description: Percentage of measurable impressions that must be viewable
+        measurable_percentage:
+          anyOf:
+          - type: integer
+            maximum: 100.0
+            exclusiveMinimum: 0.0
+          - type: 'null'
+          title: Measurable Percentage
+          description: Percentage of impressions that must be measurable
+        gross_bid_price:
+          anyOf:
+          - type: number
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Gross Bid Price
+        ad_package:
+          anyOf:
+          - $ref: '#/components/schemas/CreateUpdateAdPackageModel'
+          - type: 'null'
+          description: Used to group similar ad groups
+        budget_padding:
+          anyOf:
+          - type: number
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Budget Padding
+          default: '0'
+        rotate_creatives_evenly:
+          type: boolean
+          title: Rotate Creatives Evenly
+          default: true
+        pacing_mode:
+          $ref: '#/components/schemas/PacingMode'
+          description: Spend pacing for the ad group. Omitted defaults to standard (DEFAULT) pacing.
+          default: 0
+        retargeting_segment_name:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Retargeting Segment Name
+          description: Audience name for retargeting segment
+        exchange_publishers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreatePublisherModel'
+            type: array
+          - type: 'null'
+          title: Exchange Publishers
+        custom_publishers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreatePublisherModel'
+            type: array
+          - type: 'null'
+          title: Custom Publishers
+        exchange_bid_type:
+          anyOf:
+          - $ref: '#/components/schemas/ExchangeBidType'
+          - type: 'null'
+        exchange_bid_price:
+          anyOf:
+          - anyOf:
+            - type: number
+            - type: string
+              pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+            gt: 0
+          - type: 'null'
+          title: Exchange Bid Price
+        status:
+          type: integer
+          enum:
+          - 2
+          - 1
+          title: Status
+      type: object
+      required:
+      - name
+      - budgets
+      - status
+      title: UpdateAdgroupModel
+    Community:
+      oneOf:
+      - const: aa
+        title: AFRICAN_AMERICAN
+      - const: as
+        title: ASIAN_AMERICAN
+      - const: hl
+        title: HISPANIC_LATINO
+      type: string
+      enum:
+      - aa
+      - as
+      - hl
+      title: Community
+      x-enum-varnames:
+      - AFRICAN_AMERICAN
+      - ASIAN_AMERICAN
+      - HISPANIC_LATINO
+    CreateUpdatePublisherCategoryModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+      type: object
+      required:
+      - id
+      title: CreateUpdatePublisherCategoryModel
+    CreateDoohAdgroupModel:
+      properties:
+        venue_type_id:
+          type: integer
+          title: Venue Type Id
+        venue_type_name:
+          type: string
+          title: Venue Type Name
+        publisher_id:
+          type: string
+          title: Publisher Id
+        publisher_name:
+          type: string
+          title: Publisher Name
+        min_bid_rate:
+          anyOf:
+          - type: number
+            exclusiveMinimum: 0.0
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Min Bid Rate
+        bid_rate:
+          anyOf:
+          - type: number
+            exclusiveMinimum: 0.0
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Bid Rate
+        gross_bid_rate:
+          anyOf:
+          - type: number
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Gross Bid Rate
+        num_screens:
+          type: integer
+          title: Num Screens
+        original_daily_impressions:
+          type: integer
+          minimum: 0.0
+          title: Original Daily Impressions
+        original_budgeted_impressions:
+          type: integer
+          minimum: 0.0
+          title: Original Budgeted Impressions
+        original_budget:
+          anyOf:
+          - type: number
+            minimum: 0.0
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Original Budget
+        original_gross_budget:
+          anyOf:
+          - type: number
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Original Gross Budget
+        creative_sizes:
+          items:
+            type: string
+          type: array
+          title: Creative Sizes
+          examples:
+          - - 1920x1080
+            - 1080x1920
+      type: object
+      required:
+      - venue_type_id
+      - venue_type_name
+      - publisher_id
+      - publisher_name
+      - min_bid_rate
+      - bid_rate
+      - num_screens
+      - original_daily_impressions
+      - original_budgeted_impressions
+      - original_budget
+      title: CreateDoohAdgroupModel
+    AdPackageModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - name
+      title: AdPackageModel
+    BillabilityType:
+      oneOf:
+      - const: 0
+        title: BILLABLE
+      - const: 1
+        title: ADDED_VALUE
+      - const: 2
+        title: MAKE_GOOD
+      - const: 3
+        title: SURVEY
+      - const: 4
+        title: TEST
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      title: BillabilityType
+      x-enum-varnames:
+      - BILLABLE
+      - ADDED_VALUE
+      - MAKE_GOOD
+      - SURVEY
+      - TEST
+    IncomeRange:
+      oneOf:
+      - const: '-50'
+        title: _50_UNDER
+      - const: 50-100
+        title: _50_100
+      - const: 100-150
+        title: _100_150
+      - const: 150-200
+        title: _150_200
+      - const: 200-
+        title: _200_UP
+      type: string
+      enum:
+      - '-50'
+      - 50-100
+      - 100-150
+      - 150-200
+      - 200-
+      title: IncomeRange
+      x-enum-varnames:
+      - _50_UNDER
+      - _50_100
+      - _100_150
+      - _150_200
+      - _200_UP
+    Gender:
+      oneOf:
+      - const: M
+        title: MALE
+      - const: F
+        title: FEMALE
+      - const: unknown
+        title: UNKNOWN
+      type: string
+      enum:
+      - M
+      - F
+      - unknown
+      title: Gender
+      x-enum-varnames:
+      - MALE
+      - FEMALE
+      - UNKNOWN
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
+    CreateUpdateAudienceModel:
+      properties:
+        id:
+          type: string
+          title: Id
+        type:
+          $ref: '#/components/schemas/AudienceType-Input'
+        exclude:
+          type: boolean
+          title: Exclude
+          default: false
+      type: object
+      required:
+      - id
+      - type
+      title: CreateUpdateAudienceModel
+    app__api__routes__adgroups__models__AudioStreamingGenreModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - name
+      title: AudioStreamingGenreModel
+    Language:
+      oneOf:
+      - const: en
+        title: ENGLISH
+      - const: es
+        title: SPANISH
+      type: string
+      enum:
+      - en
+      - es
+      title: Language
+      x-enum-varnames:
+      - ENGLISH
+      - SPANISH
+    AudienceType-Input:
+      oneOf:
+      - const: behavior
+        title: BEHAVIOR
+      - const: custom_audience
+        title: CUSTOM_AUDIENCE
+      - const: segment
+        title: SEGMENT
+      - const: brand
+        title: BRAND
+      - const: category
+        title: CATEGORY
+      - const: location_group
+        title: LOCATION_GROUP
+      - const: third_party
+        title: THIRD_PARTY
+      type: string
+      enum:
+      - behavior
+      - custom_audience
+      - segment
+      - brand
+      - category
+      - location_group
+      - third_party
+      title: AudienceType
+      x-enum-varnames:
+      - BEHAVIOR
+      - CUSTOM_AUDIENCE
+      - SEGMENT
+      - BRAND
+      - CATEGORY
+      - LOCATION_GROUP
+      - THIRD_PARTY
+    AudienceModel:
+      properties:
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        type:
+          $ref: '#/components/schemas/app__api__routes__adgroups__constants__AudienceType'
+        exclude:
+          type: boolean
+          title: Exclude
+        size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Size
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        sensitivity:
+          anyOf:
+          - $ref: '#/components/schemas/Sensitivity'
+          - type: 'null'
+        status:
+          anyOf:
+          - $ref: '#/components/schemas/ThirdPartyAudienceStatus'
+          - type: 'null'
+        category_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Category Id
+        location_group_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/app__api__models__LocationGroupMetadata'
+          - type: 'null'
+      type: object
+      required:
+      - id
+      - name
+      - type
+      - exclude
+      - size
+      title: AudienceModel
+    DOOHMetadataModel:
+      properties:
+        venue_type_id:
+          type: integer
+          title: Venue Type Id
+        publisher_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Publisher Name
+        num_screens:
+          type: integer
+          title: Num Screens
+        num_ad_units:
+          type: integer
+          title: Num Ad Units
+        ad_specs:
+          additionalProperties: true
+          type: object
+          title: Ad Specs
+        venue_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Venue Type
+      type: object
+      required:
+      - venue_type_id
+      - num_screens
+      - num_ad_units
+      - ad_specs
+      title: DOOHMetadataModel
+    LocationFilterModel-Input:
+      properties:
+        type:
+          $ref: '#/components/schemas/LocationFilterType'
+        exclude:
+          type: boolean
+          title: Exclude
+          default: false
+        city:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: City
+        state:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: State
+          description: State code
+        zip_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Zip Code
+        county:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: County
+          description: County name
+        dma:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Dma
+          description: DMA name
+        lat:
+          anyOf:
+          - type: number
+            maximum: 90.0
+            minimum: -90.0
+          - type: 'null'
+          title: Lat
+        lng:
+          anyOf:
+          - type: number
+            maximum: 180.0
+            minimum: -180.0
+          - type: 'null'
+          title: Lng
+        address:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Address
+        radius:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Radius
+      type: object
+      required:
+      - type
+      title: LocationFilterModel
+    app__api__models__LocationGroupMetadata:
+      properties:
+        type:
+          anyOf:
+          - $ref: '#/components/schemas/LocationGroupType'
+          - type: 'null'
+        url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Url
+        accepted:
+          type: integer
+          title: Accepted
+          default: 0
+        rejected:
+          type: integer
+          title: Rejected
+          default: 0
+        invalid:
+          type: integer
+          title: Invalid
+          default: 0
+        conflict:
+          type: integer
+          title: Conflict
+          default: 0
+        build_status:
+          anyOf:
+          - $ref: '#/components/schemas/LocationGroupBuildStatus'
+          - type: 'null'
+          description: Audience or neighborhood build pipeline state. If the API is unrelated to audiences and neighborhoods (e.g. /search/drive_to_locations), this will be null.
+        is_sensitive:
+          type: boolean
+          title: Is Sensitive
+          description: True if any of the POIs in the location group are deemed sensitive.
+          default: false
+      type: object
+      title: LocationGroupMetadata
+    DOOHDistanceUnit:
+      oneOf:
+      - const: miles
+        title: MILES
+      - const: feet
+        title: FEET
+      type: string
+      enum:
+      - miles
+      - feet
+      title: DOOHDistanceUnit
+      x-enum-varnames:
+      - MILES
+      - FEET
+    ExchangeBidType:
+      oneOf:
+      - const: cpm
+        title: CPM
+      - const: cpc
+        title: CPC
+      type: string
+      enum:
+      - cpm
+      - cpc
+      title: ExchangeBidType
+      x-enum-varnames:
+      - CPM
+      - CPC
+    AdgroupModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        tenant_id:
+          type: integer
+          title: Tenant Id
+        organization_id:
+          type: integer
+          title: Organization Id
+        account_id:
+          type: integer
+          title: Account Id
+        campaign_id:
+          type: integer
+          title: Campaign Id
+        name:
+          type: string
+          title: Name
+        start_date:
+          type: string
+          format: date
+          title: Start Date
+        end_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: End Date
+        status:
+          type: integer
+          enum:
+          - 2
+          - 1
+          title: Status
+        objective:
+          anyOf:
+          - $ref: '#/components/schemas/Objective'
+          - type: 'null'
+        tactic:
+          anyOf:
+          - $ref: '#/components/schemas/TargetingTactic'
+          - type: 'null'
+        media_types:
+          items:
+            $ref: '#/components/schemas/MediaType'
+          type: array
+          title: Media Types
+        bid_type:
+          $ref: '#/components/schemas/app__api__routes__constants__BidType'
+        bid_price:
+          type: string
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Bid Price
+        budgets:
+          items:
+            $ref: '#/components/schemas/BudgetModel-Output'
+          type: array
+          title: Budgets
+        gross_budget:
+          anyOf:
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Gross Budget
+        budget_type:
+          $ref: '#/components/schemas/BudgetType'
+        audiences:
+          items:
+            $ref: '#/components/schemas/AudienceModel'
+          type: array
+          title: Audiences
+        lookalike_audience_scale:
+          anyOf:
+          - $ref: '#/components/schemas/LookalikeAudienceScale'
+          - type: 'null'
+          deprecated: true
+        location_filters:
+          items:
+            $ref: '#/components/schemas/LocationFilterModel-Output'
+          type: array
+          title: Location Filters
+        drive_to_locations:
+          items:
+            $ref: '#/components/schemas/DriveToLocationModel'
+          type: array
+          title: Drive To Locations
+        genders:
+          items:
+            $ref: '#/components/schemas/Gender'
+          type: array
+          title: Genders
+        age_ranges:
+          items:
+            $ref: '#/components/schemas/AgeRange'
+          type: array
+          title: Age Ranges
+        enable_alcohol_age:
+          type: boolean
+          title: Enable Alcohol Age
+        enable_privacy_idfas:
+          type: boolean
+          title: Enable Privacy Idfas
+        income_ranges:
+          items:
+            $ref: '#/components/schemas/IncomeRange'
+          type: array
+          title: Income Ranges
+        communities:
+          items:
+            $ref: '#/components/schemas/Community'
+          type: array
+          title: Communities
+        optimization_strategy:
+          $ref: '#/components/schemas/OptimizationStrategy'
+        ctr_threshold:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Ctr Threshold
+        sar_threshold:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Sar Threshold
+        conversion_threshold:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Conversion Threshold
+        psvr_threshold:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Psvr Threshold
+        publisher_categories:
+          items:
+            $ref: '#/components/schemas/app__api__routes__adgroups__models__PublisherCategoryModel'
+          type: array
+          title: Publisher Categories
+        streaming_video_content_categories:
+          items:
+            $ref: '#/components/schemas/app__api__routes__adgroups__models__StreamingVideoContentCategoryModel'
+          type: array
+          title: Streaming Video Content Categories
+        ctv_premium_categories:
+          items:
+            $ref: '#/components/schemas/app__api__routes__adgroups__models__CTVPremiumCategoryModel'
+          type: array
+          title: Ctv Premium Categories
+        audio_podcast_topics:
+          items:
+            $ref: '#/components/schemas/app__api__routes__adgroups__models__AudioPodcastTopicModel'
+          type: array
+          title: Audio Podcast Topics
+        audio_streaming_genres:
+          items:
+            $ref: '#/components/schemas/app__api__routes__adgroups__models__AudioStreamingGenreModel'
+          type: array
+          title: Audio Streaming Genres
+        audio_podcast_ad_positions:
+          items:
+            $ref: '#/components/schemas/AudioPodcastAdPosition'
+          type: array
+          title: Audio Podcast Ad Positions
+        operating_systems:
+          items:
+            $ref: '#/components/schemas/OperatingSystem'
+          type: array
+          title: Operating Systems
+        languages:
+          items:
+            $ref: '#/components/schemas/Language'
+          type: array
+          title: Languages
+        dayparting:
+          items:
+            type: integer
+          type: array
+          title: Dayparting
+        neighborhoods:
+          items:
+            $ref: '#/components/schemas/NeighborhoodModel'
+          type: array
+          title: Neighborhoods
+        neighborhood_types:
+          items:
+            $ref: '#/components/schemas/NeighborhoodType'
+          type: array
+          title: Neighborhood Types
+        created_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created Date
+        updated_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated Date
+        on_premise_locations:
+          items:
+            $ref: '#/components/schemas/OnPremiseLocationModel'
+          type: array
+          title: On Premise Locations
+        completed_steps:
+          items:
+            $ref: '#/components/schemas/AdgroupStep'
+          type: array
+          title: Completed Steps
+        tracking_pixels:
+          items:
+            $ref: '#/components/schemas/TrackingPixelModel'
+          type: array
+          title: Tracking Pixels
+        billability_type:
+          $ref: '#/components/schemas/BillabilityType'
+        added_cost_cpm:
+          type: string
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Added Cost Cpm
+          default: '0'
+        viewable_percentage:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Viewable Percentage
+        measurable_percentage:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Measurable Percentage
+        gross_bid_price:
+          anyOf:
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Gross Bid Price
+        ad_package:
+          anyOf:
+          - $ref: '#/components/schemas/AdPackageModel'
+          - type: 'null'
+        budget_padding:
+          type: string
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Budget Padding
+          default: '0'
+        daily_impression_cap:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Daily Impression Cap
+        integration_reports:
+          items:
+            $ref: '#/components/schemas/IntegrationReport'
+          type: array
+          title: Integration Reports
+        third_party_placement_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Third Party Placement Name
+        third_party_placement_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Third Party Placement Id
+        mobile_carriers:
+          items:
+            $ref: '#/components/schemas/MobileCarrierCode'
+          type: array
+          title: Mobile Carriers
+        exchange_publishers:
+          items:
+            $ref: '#/components/schemas/app__api__routes__adgroups__models__PublisherModel'
+          type: array
+          title: Exchange Publishers
+        custom_publishers:
+          items:
+            $ref: '#/components/schemas/app__api__routes__adgroups__models__PublisherModel'
+          type: array
+          title: Custom Publishers
+        exchange_bid_type:
+          anyOf:
+          - $ref: '#/components/schemas/ExchangeBidType'
+          - type: 'null'
+        exchange_bid_price:
+          anyOf:
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Exchange Bid Price
+        rotate_creatives_evenly:
+          type: boolean
+          title: Rotate Creatives Evenly
+        pacing_mode:
+          $ref: '#/components/schemas/PacingMode'
+        dooh_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/DOOHMetadataModel'
+          - type: 'null'
+        retargeting_segment_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Retargeting Segment Name
+      type: object
+      required:
+      - id
+      - tenant_id
+      - organization_id
+      - account_id
+      - campaign_id
+      - name
+      - start_date
+      - end_date
+      - status
+      - objective
+      - tactic
+      - media_types
+      - bid_type
+      - bid_price
+      - budgets
+      - gross_budget
+      - budget_type
+      - audiences
+      - lookalike_audience_scale
+      - location_filters
+      - drive_to_locations
+      - genders
+      - age_ranges
+      - enable_alcohol_age
+      - enable_privacy_idfas
+      - income_ranges
+      - communities
+      - optimization_strategy
+      - ctr_threshold
+      - sar_threshold
+      - conversion_threshold
+      - psvr_threshold
+      - publisher_categories
+      - streaming_video_content_categories
+      - ctv_premium_categories
+      - audio_podcast_topics
+      - audio_streaming_genres
+      - audio_podcast_ad_positions
+      - operating_systems
+      - languages
+      - dayparting
+      - neighborhoods
+      - neighborhood_types
+      - on_premise_locations
+      - completed_steps
+      - tracking_pixels
+      - billability_type
+      - integration_reports
+      - mobile_carriers
+      - exchange_publishers
+      - custom_publishers
+      - exchange_bid_type
+      - exchange_bid_price
+      - rotate_creatives_evenly
+      - pacing_mode
+      title: AdgroupModel
+    TrackingPixelModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        hashcode:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hashcode
+      type: object
+      required:
+      - id
+      - name
+      title: TrackingPixelModel
+    CreateDoohAdgroupsModel:
+      properties:
+        adgroups:
+          items:
+            $ref: '#/components/schemas/CreateDoohAdgroupModel'
+          type: array
+          minItems: 1
+          title: Adgroups
+        objective:
+          anyOf:
+          - $ref: '#/components/schemas/Objective'
+          - type: 'null'
+          description: Applied to each ad group in this request. REACH when omitted or null.
+          default: 4
+        plan_data:
+          $ref: '#/components/schemas/DOOHPlanDataModel'
+        total_budget:
+          anyOf:
+          - type: number
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Total Budget
+        total_gross_budget:
+          anyOf:
+          - type: number
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Total Gross Budget
+      type: object
+      required:
+      - adgroups
+      - plan_data
+      title: CreateDoohAdgroupsModel
+    MobileCarrierCode:
+      oneOf:
+      - const: ALLTEL
+        title: ALLTEL
+      - const: APPLCHN
+        title: APPALACHIAN_WIRELESS
+      - const: ATT
+        title: ATT
+      - const: BLUEGRASS
+        title: BLUEGRASS_CELLULAR
+      - const: CINCINNATI
+        title: CINCINNATI_BELL
+      - const: CORR
+        title: CORR_WIRELESS
+      - const: CRICKET
+        title: CRICKET
+      - const: METROPCS
+        title: METRO_PCS
+      - const: PLATEAU
+        title: PLATEAU_WIRELESS
+      - const: SIMMETRY
+        title: SIMMETRY
+      - const: SPRINT
+        title: SPRINT
+      - const: TMOBILE
+        title: TMOBILE
+      - const: USCELLULAR
+        title: US_CELLULAR
+      - const: VERIZON
+        title: VERIZON_WIRELESS
+      - const: WIFI
+        title: WIFI
+      type: string
+      enum:
+      - ALLTEL
+      - APPLCHN
+      - ATT
+      - BLUEGRASS
+      - CINCINNATI
+      - CORR
+      - CRICKET
+      - METROPCS
+      - PLATEAU
+      - SIMMETRY
+      - SPRINT
+      - TMOBILE
+      - USCELLULAR
+      - VERIZON
+      - WIFI
+      title: MobileCarrierCode
+      x-enum-varnames:
+      - ALLTEL
+      - APPALACHIAN_WIRELESS
+      - ATT
+      - BLUEGRASS_CELLULAR
+      - CINCINNATI_BELL
+      - CORR_WIRELESS
+      - CRICKET
+      - METRO_PCS
+      - PLATEAU_WIRELESS
+      - SIMMETRY
+      - SPRINT
+      - TMOBILE
+      - US_CELLULAR
+      - VERIZON_WIRELESS
+      - WIFI
+    Status:
+      oneOf:
+      - const: 1
+        title: ACTIVE
+      - const: 2
+        title: PAUSED
+      - const: 7
+        title: INCOMPLETE
+      - const: 10
+        title: DRAFT
+      - const: 11
+        title: REJECTED
+      - const: 12
+        title: SUBMITTED
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 7
+      - 10
+      - 11
+      - 12
+      title: Status
+      x-enum-varnames:
+      - ACTIVE
+      - PAUSED
+      - INCOMPLETE
+      - DRAFT
+      - REJECTED
+      - SUBMITTED
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    AdgroupStep:
+      oneOf:
+      - const: 1
+        title: OBJECTIVE
+      - const: 2
+        title: MEDIA_CHANNEL
+      - const: 3
+        title: LOCATION_AUDIENCE
+      - const: 4
+        title: PLACEMENT
+      - const: 5
+        title: BUDGET_SCHEDULE
+      - const: 6
+        title: MEASUREMENT
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      title: AdgroupStep
+      x-enum-varnames:
+      - OBJECTIVE
+      - MEDIA_CHANNEL
+      - LOCATION_AUDIENCE
+      - PLACEMENT
+      - BUDGET_SCHEDULE
+      - MEASUREMENT
+    LocationFilterModel-Output:
+      properties:
+        type:
+          $ref: '#/components/schemas/LocationFilterType'
+        exclude:
+          type: boolean
+          title: Exclude
+          default: false
+        city:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: City
+        state:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: State
+          description: State code
+        zip_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Zip Code
+        county:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: County
+          description: County name
+        dma:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Dma
+          description: DMA name
+        lat:
+          anyOf:
+          - type: number
+            maximum: 90.0
+            minimum: -90.0
+          - type: 'null'
+          title: Lat
+        lng:
+          anyOf:
+          - type: number
+            maximum: 180.0
+            minimum: -180.0
+          - type: 'null'
+          title: Lng
+        address:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Address
+        radius:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Radius
+        display_name:
+          type: string
+          title: Display Name
+          readOnly: true
+      type: object
+      required:
+      - type
+      - display_name
+      title: LocationFilterModel
+    MediaType:
+      oneOf:
+      - const: app
+        title: APP
+      - const: web
+        title: MOBILE_WEB
+      - const: desktop
+        title: DESKTOP
+      - const: ott
+        title: OTT
+      - const: ctv
+        title: CTV
+      - const: audio-podcast
+        title: AUDIO_PODCAST
+      - const: audio-streaming
+        title: AUDIO_STREAMING
+      - const: dooh
+        title: DOOH
+      type: string
+      enum:
+      - app
+      - web
+      - desktop
+      - ott
+      - ctv
+      - audio-podcast
+      - audio-streaming
+      - dooh
+      title: MediaType
+      x-enum-varnames:
+      - APP
+      - MOBILE_WEB
+      - DESKTOP
+      - OTT
+      - CTV
+      - AUDIO_PODCAST
+      - AUDIO_STREAMING
+      - DOOH
+    Objective:
+      oneOf:
+      - const: 1
+        title: BRAND_AWARENESS
+      - const: 2
+        title: AD_CLICKS
+      - const: 3
+        title: IN_STORE_VISITS
+      - const: 4
+        title: REACH
+      - const: 5
+        title: VIDEO_VIEWS
+      - const: 6
+        title: AUDIO_LISTENS
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      title: Objective
+      x-enum-varnames:
+      - BRAND_AWARENESS
+      - AD_CLICKS
+      - IN_STORE_VISITS
+      - REACH
+      - VIDEO_VIEWS
+      - AUDIO_LISTENS
+    TargetingTactic:
+      oneOf:
+      - const: 0
+        title: DEFAULT
+      - const: 31
+        title: WEATHER
+      - const: 32
+        title: ON_PREMISE
+      - const: 33
+        title: GEOTARGETING
+      - const: 34
+        title: NEIGHBORHOOD
+      - const: 35
+        title: AUDIENCE
+      type: integer
+      enum:
+      - 0
+      - 31
+      - 32
+      - 33
+      - 34
+      - 35
+      title: TargetingTactic
+      x-enum-varnames:
+      - DEFAULT
+      - WEATHER
+      - ON_PREMISE
+      - GEOTARGETING
+      - NEIGHBORHOOD
+      - AUDIENCE
+    Sensitivity:
+      oneOf:
+      - const: 0
+        title: WHITELIST
+      - const: 1
+        title: GRAYLIST
+      - const: 2
+        title: SEMI_SENSITIVE
+      - const: 3
+        title: BLACKLIST
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      title: Sensitivity
+      x-enum-varnames:
+      - WHITELIST
+      - GRAYLIST
+      - SEMI_SENSITIVE
+      - BLACKLIST
+    DOOHCreativeFormat:
+      oneOf:
+      - const: image
+        title: IMAGE
+      - const: video
+        title: VIDEO
+      - const: audio
+        title: AUDIO
+      type: string
+      enum:
+      - image
+      - video
+      - audio
+      title: DOOHCreativeFormat
+      x-enum-varnames:
+      - IMAGE
+      - VIDEO
+      - AUDIO
+    DriveToLocationModel:
+      properties:
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        type:
+          $ref: '#/components/schemas/DriveToLocationType'
+        sensitivity:
+          anyOf:
+          - $ref: '#/components/schemas/Sensitivity'
+          - type: 'null'
+        location_group_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/app__api__models__LocationGroupMetadata'
+          - type: 'null'
+      type: object
+      required:
+      - id
+      - name
+      - type
+      title: DriveToLocationModel
+    AudioPodcastAdPosition:
+      oneOf:
+      - const: 0
+        title: PRE_ROLL
+      - const: -1
+        title: MID_ROLL
+      - const: -2
+        title: POST_ROLL
+      type: integer
+      enum:
+      - 0
+      - -1
+      - -2
+      title: AudioPodcastAdPosition
+      x-enum-varnames:
+      - PRE_ROLL
+      - MID_ROLL
+      - POST_ROLL
+    OnPremiseLocationType:
+      oneOf:
+      - const: brand
+        title: BRAND
+      - const: category
+        title: CATEGORY
+      - const: location_group
+        title: LOCATION_GROUP
+      type: string
+      enum:
+      - brand
+      - category
+      - location_group
+      title: OnPremiseLocationType
+      x-enum-varnames:
+      - BRAND
+      - CATEGORY
+      - LOCATION_GROUP
+    LocationGroupBuildStatus:
+      oneOf:
+      - const: not_required
+        title: NOT_REQUIRED
+      - const: initial
+        title: INITIAL
+      - const: in_progress
+        title: IN_PROGRESS
+      - const: updating
+        title: UPDATING
+      - const: ready
+        title: READY
+      - const: expired
+        title: EXPIRED
+      type: string
+      enum:
+      - not_required
+      - initial
+      - in_progress
+      - updating
+      - ready
+      - expired
+      title: LocationGroupBuildStatus
+      x-enum-varnames:
+      - NOT_REQUIRED
+      - INITIAL
+      - IN_PROGRESS
+      - UPDATING
+      - READY
+      - EXPIRED
+    OptimizationStrategy:
+      oneOf:
+      - const: delivery
+        title: DELIVERY
+      - const: click
+        title: CLICK
+      - const: sar
+        title: SAR
+      - const: conversion
+        title: CONVERSION
+      - const: visit
+        title: VISIT
+      type: string
+      enum:
+      - delivery
+      - click
+      - sar
+      - conversion
+      - visit
+      title: OptimizationStrategy
+      x-enum-varnames:
+      - DELIVERY
+      - CLICK
+      - SAR
+      - CONVERSION
+      - VISIT
+    ThirdPartyAudienceStatus:
+      oneOf:
+      - const: Ready
+        title: READY
+      - const: Building
+        title: BUILDING
+      - const: Available
+        title: AVAILABLE
+      type: string
+      enum:
+      - Ready
+      - Building
+      - Available
+      title: ThirdPartyAudienceStatus
+      x-enum-varnames:
+      - READY
+      - BUILDING
+      - AVAILABLE
+    app__api__routes__adgroups__models__AudioPodcastTopicModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - name
+      title: AudioPodcastTopicModel
+    CreateUpdateStreamingVideoContentCategoryModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+      type: object
+      required:
+      - id
+      title: CreateUpdateStreamingVideoContentCategoryModel
+    BudgetModel-Output:
+      properties:
+        start_date:
+          type: string
+          format: date
+          title: Start Date
+        end_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: End Date
+        budget:
+          type: string
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Budget
+          description: If budget is at the campaign level, this will be 0
+      type: object
+      required:
+      - start_date
+      - end_date
+      - budget
+      title: BudgetModel
+    BasicAdgroupModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        tenant_id:
+          type: integer
+          title: Tenant Id
+        organization_id:
+          type: integer
+          title: Organization Id
+        account_id:
+          type: integer
+          title: Account Id
+        campaign_id:
+          type: integer
+          title: Campaign Id
+        name:
+          type: string
+          title: Name
+        start_date:
+          type: string
+          format: date
+          title: Start Date
+        end_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: End Date
+        status:
+          $ref: '#/components/schemas/Status'
+        created_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created Date
+        updated_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated Date
+      type: object
+      required:
+      - id
+      - tenant_id
+      - organization_id
+      - account_id
+      - campaign_id
+      - name
+      - start_date
+      - end_date
+      - status
+      title: BasicAdgroupModel
+    NeighborhoodTargetType:
+      oneOf:
+      - const: behavior
+        title: BEHAVIOR
+      - const: brand
+        title: BRAND
+      - const: category
+        title: CATEGORY
+      - const: location_group
+        title: LOCATION_GROUP
+      type: string
+      enum:
+      - behavior
+      - brand
+      - category
+      - location_group
+      title: NeighborhoodTargetType
+      x-enum-varnames:
+      - BEHAVIOR
+      - BRAND
+      - CATEGORY
+      - LOCATION_GROUP
+    DOOHGeoLocationGroupModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        distance_unit:
+          $ref: '#/components/schemas/DOOHDistanceUnit'
+        distance:
+          type: number
+          title: Distance
+        exclude:
+          type: boolean
+          title: Exclude
+          default: false
+      type: object
+      required:
+      - id
+      - distance_unit
+      - distance
+      title: DOOHGeoLocationGroupModel
+    OnPremiseLocationModel:
+      properties:
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        type:
+          $ref: '#/components/schemas/OnPremiseLocationType'
+        proximity:
+          anyOf:
+          - $ref: '#/components/schemas/ProximityMode'
+          - type: 'null'
+        radius:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Radius
+        sensitivity:
+          type: integer
+          title: Sensitivity
+        location_group_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/app__api__models__LocationGroupMetadata'
+          - type: 'null'
+      type: object
+      required:
+      - id
+      - name
+      - type
+      - proximity
+      - sensitivity
+      title: OnPremiseLocationModel
+    IntegrationReport:
+      oneOf:
+      - const: USAMP
+        title: USAMP
+      - const: PLACED
+        title: PLACED_FOURSQUARE
+      - const: LIVERAMP
+        title: LIVE_RAMP_EXPOSURE_FILES
+      - const: XAD
+        title: XAD_EXPOSURE_FILE
+      - const: NEUSTAR
+        title: NEUSTAR
+      - const: CARDLYTICS
+        title: CARDLYTICS
+      - const: AFFINITY
+        title: AFFINITY
+      type: string
+      enum:
+      - USAMP
+      - PLACED
+      - LIVERAMP
+      - XAD
+      - NEUSTAR
+      - CARDLYTICS
+      - AFFINITY
+      title: IntegrationReport
+      x-enum-varnames:
+      - USAMP
+      - PLACED_FOURSQUARE
+      - LIVE_RAMP_EXPOSURE_FILES
+      - XAD_EXPOSURE_FILE
+      - NEUSTAR
+      - CARDLYTICS
+      - AFFINITY
+    SortOrder:
+      oneOf:
+      - const: desc
+        title: DESC
+      - const: asc
+        title: ASC
+      type: string
+      enum:
+      - desc
+      - asc
+      title: SortOrder
+      x-enum-varnames:
+      - DESC
+      - ASC
+    AdgroupsModel:
+      properties:
+        total_count:
+          type: integer
+          title: Total Count
+        limit:
+          type: integer
+          title: Limit
+        page_num:
+          type: integer
+          title: Page Num
+        total_pages:
+          type: integer
+          title: Total Pages
+        has_next_page:
+          type: boolean
+          title: Has Next Page
+        has_prev_page:
+          type: boolean
+          title: Has Prev Page
+        items:
+          items:
+            $ref: '#/components/schemas/BasicAdgroupModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - total_count
+      - limit
+      - page_num
+      - total_pages
+      - has_next_page
+      - has_prev_page
+      - items
+      title: AdgroupsModel
+    CreateNeighborhoodModel:
+      properties:
+        id:
+          type: string
+          title: Id
+        type:
+          $ref: '#/components/schemas/NeighborhoodTargetType'
+      type: object
+      required:
+      - id
+      - type
+      title: CreateNeighborhoodModel
+    app__api__routes__adgroups__models__PublisherModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - name
+      title: PublisherModel
+    app__api__routes__adgroups__constants__AudienceType:
+      oneOf:
+      - const: behavior
+        title: BEHAVIOR
+      - const: custom_audience
+        title: CUSTOM_AUDIENCE
+      - const: segment
+        title: SEGMENT
+      - const: brand
+        title: BRAND
+      - const: category
+        title: CATEGORY
+      - const: location_group
+        title: LOCATION_GROUP
+      - const: third_party
+        title: THIRD_PARTY
+      type: string
+      enum:
+      - behavior
+      - custom_audience
+      - segment
+      - brand
+      - category
+      - location_group
+      - third_party
+      title: AudienceType
+      x-enum-varnames:
+      - BEHAVIOR
+      - CUSTOM_AUDIENCE
+      - SEGMENT
+      - BRAND
+      - CATEGORY
+      - LOCATION_GROUP
+      - THIRD_PARTY
+    DOOHPublisherModel:
+      properties:
+        id:
+          type: string
+          title: Id
+        exclude:
+          type: boolean
+          title: Exclude
+      type: object
+      required:
+      - id
+      - exclude
+      title: DOOHPublisherModel
+    SuccessResponseModel:
+      properties:
+        success:
+          type: boolean
+          title: Success
+          default: true
+      type: object
+      title: SuccessResponseModel
+    DOOHGeoZipcodeModel:
+      properties:
+        exclude:
+          type: boolean
+          title: Exclude
+        name:
+          type: string
+          title: Name
+        type:
+          type: string
+          const: zip_code
+          title: Type
+        zipcode:
+          type: string
+          title: Zipcode
+      type: object
+      required:
+      - exclude
+      - name
+      - type
+      - zipcode
+      title: DOOHGeoZipcodeModel
+    DOOHGeoStateModel:
+      properties:
+        exclude:
+          type: boolean
+          title: Exclude
+        name:
+          type: string
+          title: Name
+        type:
+          type: string
+          const: state
+          title: Type
+        id:
+          type: integer
+          title: Id
+        state:
+          type: string
+          title: State
+      type: object
+      required:
+      - exclude
+      - name
+      - type
+      - id
+      - state
+      title: DOOHGeoStateModel
+    BudgetType:
+      oneOf:
+      - const: 0
+        title: LIFETIME
+      - const: 1
+        title: PERIODIC
+      - const: 2
+        title: TIME_PERIOD
+      - const: 3
+        title: DAILY
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      title: BudgetType
+      x-enum-varnames:
+      - LIFETIME
+      - PERIODIC
+      - TIME_PERIOD
+      - DAILY
+    CreatePublisherModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+      type: object
+      required:
+      - id
+      title: CreatePublisherModel
+    CreateAdgroupModel:
+      properties:
+        name:
+          type: string
+          maxLength: 256
+          minLength: 1
+          title: Name
+        objective:
+          anyOf:
+          - $ref: '#/components/schemas/Objective'
+          - type: 'null'
+          description: Unless you're creating an empty ad group with just a name, objective is required. Changing objective may clear targeting that does not apply to the new selection; the saved adgroup may not match your request payload.
+        tactic:
+          $ref: '#/components/schemas/TargetingTactic'
+          description: 'Currently supported: DEFAULT, GEOTARGETING, ON_PREMISE, AUDIENCE, NEIGHBORHOOD'
+          default: 0
+        media_types:
+          items:
+            $ref: '#/components/schemas/MediaType'
+          type: array
+          maxItems: 2
+          uniqueItems: true
+          title: Media Types
+          description: 'Currently supported: desktop, ott, audio-streaming, audio-podcast, ctv, web, app. Changing media types may clear targeting that does not apply to the new selection; the saved adgroup may not match your request payload.'
+        bid_type:
+          $ref: '#/components/schemas/app__api__routes__constants__BidType'
+          default: cpm
+        bid_price:
+          anyOf:
+          - type: number
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Bid Price
+          default: '0'
+        budgets:
+          items:
+            $ref: '#/components/schemas/BudgetModel-Input'
+          type: array
+          minItems: 1
+          title: Budgets
+          description: You must provide at least one budget time period. The budget itself can be 0 though.
+        audiences:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreateUpdateAudienceModel'
+            type: array
+          - type: 'null'
+          title: Audiences
+        lookalike_audience_scale:
+          anyOf:
+          - $ref: '#/components/schemas/LookalikeAudienceScale'
+          - type: 'null'
+          deprecated: true
+        location_filters:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/LocationFilterModel-Input'
+            type: array
+          - type: 'null'
+          title: Location Filters
+        drive_to_locations:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreateUpdateDriveToLocationModel'
+            type: array
+          - type: 'null'
+          title: Drive To Locations
+        genders:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Gender'
+            type: array
+            uniqueItems: true
+          - type: 'null'
+          title: Genders
+        age_ranges:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/AgeRange'
+            type: array
+            uniqueItems: true
+          - type: 'null'
+          title: Age Ranges
+        enable_alcohol_age:
+          type: boolean
+          title: Enable Alcohol Age
+          default: false
+        enable_privacy_idfas:
+          type: boolean
+          title: Enable Privacy Idfas
+          default: false
+        daily_impression_cap:
+          anyOf:
+          - type: integer
+            exclusiveMinimum: 0.0
+          - type: 'null'
+          title: Daily Impression Cap
+        integration_reports:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IntegrationReport'
+            type: array
+            uniqueItems: true
+          - type: 'null'
+          title: Integration Reports
+        third_party_placement_name:
+          anyOf:
+          - type: string
+            maxLength: 128
+            minLength: 1
+          - type: 'null'
+          title: Third Party Placement Name
+        third_party_placement_id:
+          anyOf:
+          - type: string
+            maxLength: 128
+            minLength: 1
+          - type: 'null'
+          title: Third Party Placement Id
+        mobile_carriers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/MobileCarrierCode'
+            type: array
+          - type: 'null'
+          title: Mobile Carriers
+        income_ranges:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IncomeRange'
+            type: array
+            uniqueItems: true
+          - type: 'null'
+          title: Income Ranges
+        communities:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Community'
+            type: array
+            uniqueItems: true
+          - type: 'null'
+          title: Communities
+        optimization_strategy:
+          $ref: '#/components/schemas/OptimizationStrategy'
+          default: delivery
+        ctr_threshold:
+          anyOf:
+          - type: number
+            maximum: 0.7
+            minimum: 0.0
+          - type: 'null'
+          title: Ctr Threshold
+          description: Use null for system default
+          default: 0
+        sar_threshold:
+          anyOf:
+          - type: integer
+            maximum: 10.0
+            minimum: 0.0
+          - type: 'null'
+          title: Sar Threshold
+          description: Use null for system default
+          default: 0
+        conversion_threshold:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Conversion Threshold
+          description: Use null for system default
+          default: 0
+        psvr_threshold:
+          anyOf:
+          - type: number
+            maximum: 0.99
+            minimum: 0.0
+          - type: 'null'
+          title: Psvr Threshold
+          description: Use null for system default
+          default: 0
+        publisher_categories:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreateUpdatePublisherCategoryModel'
+            type: array
+          - type: 'null'
+          title: Publisher Categories
+          description: This is only applicable or mobile and desktop media types
+        streaming_video_content_categories:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreateUpdateStreamingVideoContentCategoryModel'
+            type: array
+          - type: 'null'
+          title: Streaming Video Content Categories
+          description: This only works for CTV and OTT media types
+        ctv_premium_categories:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreateUpdateCTVPremiumCategoryModel'
+            type: array
+          - type: 'null'
+          title: Ctv Premium Categories
+          description: This only works for CTV media type
+        audio_podcast_topics:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreateUpdateAudioPodcastTopicModel'
+            type: array
+          - type: 'null'
+          title: Audio Podcast Topics
+          description: This only works for audio podcast media type
+        audio_streaming_genres:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreateUpdateAudioStreamingGenreModel'
+            type: array
+          - type: 'null'
+          title: Audio Streaming Genres
+          description: This only works for audio streaming media type
+        audio_podcast_ad_positions:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/AudioPodcastAdPosition'
+            type: array
+            uniqueItems: true
+          - type: 'null'
+          title: Audio Podcast Ad Positions
+          description: This only works for audio podcast media type
+        languages:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Language'
+            type: array
+            uniqueItems: true
+          - type: 'null'
+          title: Languages
+          description: This only works for audio podcast and streaming media types
+        operating_systems:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/OperatingSystem'
+            type: array
+            uniqueItems: true
+          - type: 'null'
+          title: Operating Systems
+          description: This only works for mobile media type
+        dayparting:
+          anyOf:
+          - items:
+              type: integer
+              exclusiveMaximum: 336.0
+              minimum: 0.0
+            type: array
+            uniqueItems: true
+          - type: 'null'
+          title: Dayparting
+          description: Each number in the list represents a half hour in a week. 0 is the first half hour (12am - 12:30am) on Sunday. 335 is the last half hour (11:30pm - 12am) on Saturday.
+        on_premise_locations:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreateUpdateOnPremiseLocationModel'
+            type: array
+          - type: 'null'
+          title: On Premise Locations
+        neighborhoods:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreateNeighborhoodModel'
+            type: array
+          - type: 'null'
+          title: Neighborhoods
+        neighborhood_types:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/NeighborhoodType'
+            type: array
+            uniqueItems: true
+          - type: 'null'
+          title: Neighborhood Types
+        tracking_pixels:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreateUpdateTrackingPixelModel'
+            type: array
+          - type: 'null'
+          title: Tracking Pixels
+        billability_type:
+          $ref: '#/components/schemas/BillabilityType'
+          default: 0
+        added_cost_cpm:
+          anyOf:
+          - type: number
+            minimum: 0.0
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Added Cost Cpm
+          description: Additional CPM added on top of the base bid price
+          default: '0'
+        viewable_percentage:
+          anyOf:
+          - type: integer
+            maximum: 100.0
+            exclusiveMinimum: 0.0
+          - type: 'null'
+          title: Viewable Percentage
+          description: Percentage of measurable impressions that must be viewable
+        measurable_percentage:
+          anyOf:
+          - type: integer
+            maximum: 100.0
+            exclusiveMinimum: 0.0
+          - type: 'null'
+          title: Measurable Percentage
+          description: Percentage of impressions that must be measurable
+        gross_bid_price:
+          anyOf:
+          - type: number
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Gross Bid Price
+        ad_package:
+          anyOf:
+          - $ref: '#/components/schemas/CreateUpdateAdPackageModel'
+          - type: 'null'
+          description: Used to group similar ad groups
+        budget_padding:
+          anyOf:
+          - type: number
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Budget Padding
+          default: '0'
+        rotate_creatives_evenly:
+          type: boolean
+          title: Rotate Creatives Evenly
+          default: true
+        pacing_mode:
+          $ref: '#/components/schemas/PacingMode'
+          description: Spend pacing for the ad group. Omitted defaults to standard (DEFAULT) pacing.
+          default: 0
+        retargeting_segment_name:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Retargeting Segment Name
+          description: Audience name for retargeting segment
+        exchange_publishers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreatePublisherModel'
+            type: array
+          - type: 'null'
+          title: Exchange Publishers
+        custom_publishers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CreatePublisherModel'
+            type: array
+          - type: 'null'
+          title: Custom Publishers
+        exchange_bid_type:
+          anyOf:
+          - $ref: '#/components/schemas/ExchangeBidType'
+          - type: 'null'
+        exchange_bid_price:
+          anyOf:
+          - anyOf:
+            - type: number
+            - type: string
+              pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+            gt: 0
+          - type: 'null'
+          title: Exchange Bid Price
+      type: object
+      required:
+      - name
+      - budgets
+      title: CreateAdgroupModel
+    DOOHGeoCityModel:
+      properties:
+        exclude:
+          type: boolean
+          title: Exclude
+        name:
+          type: string
+          title: Name
+        type:
+          type: string
+          const: city
+          title: Type
+        id:
+          type: integer
+          title: Id
+        city:
+          type: string
+          title: City
+        state:
+          type: string
+          title: State
+      type: object
+      required:
+      - exclude
+      - name
+      - type
+      - id
+      - city
+      - state
+      title: DOOHGeoCityModel
+    DOOHAdgroupIDsModel:
+      properties:
+        adgroup_ids:
+          items:
+            type: integer
+          type: array
+          title: Adgroup Ids
+      type: object
+      required:
+      - adgroup_ids
+      title: DOOHAdgroupIDsModel
+    app__api__routes__adgroups__models__StreamingVideoContentCategoryModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - name
+      title: StreamingVideoContentCategoryModel
+    OperatingSystem:
+      oneOf:
+      - const: ios
+        title: IOS
+      - const: android
+        title: ANDROID
+      - const: others
+        title: OTHERS
+      type: string
+      enum:
+      - ios
+      - android
+      - others
+      title: OperatingSystem
+      x-enum-varnames:
+      - IOS
+      - ANDROID
+      - OTHERS
+    app__api__routes__constants__BidType:
+      oneOf:
+      - const: cpm
+        title: CPM
+      - const: cpc
+        title: CPC
+      - const: cpv
+        title: CPV
+      type: string
+      enum:
+      - cpm
+      - cpc
+      - cpv
+      title: BidType
+      x-enum-varnames:
+      - CPM
+      - CPC
+      - CPV
+    LocationFilterType:
+      oneOf:
+      - const: City
+        title: CITY
+      - const: State
+        title: STATE
+      - const: Zip
+        title: ZIP_CODE
+      - const: DMA
+        title: DMA
+      - const: County
+        title: COUNTY
+      - const: LatLng
+        title: LAT_LNG
+      - const: Address
+        title: ADDRESS
+      type: string
+      enum:
+      - City
+      - State
+      - Zip
+      - DMA
+      - County
+      - LatLng
+      - Address
+      title: LocationFilterType
+      x-enum-varnames:
+      - CITY
+      - STATE
+      - ZIP_CODE
+      - DMA
+      - COUNTY
+      - LAT_LNG
+      - ADDRESS
+    DOOHGeoDmaModel:
+      properties:
+        exclude:
+          type: boolean
+          title: Exclude
+        name:
+          type: string
+          title: Name
+        type:
+          type: string
+          const: dma
+          title: Type
+        dmacode:
+          type: integer
+          title: Dmacode
+      type: object
+      required:
+      - exclude
+      - name
+      - type
+      - dmacode
+      title: DOOHGeoDmaModel
+  securitySchemes:
+    api-key:
+      type: apiKey
+      in: header
+      name: x-gt-api-key
+    user-id:
+      type: apiKey
+      in: header
+      name: x-gt-user-id

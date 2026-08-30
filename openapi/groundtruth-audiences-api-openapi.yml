@@ -1,0 +1,429 @@
+openapi: 3.2.0
+info:
+  title: Ads Manager Audiences API
+  description: Ads Manager API
+  version: 1.0.0
+servers:
+- url: https://api-public.groundtruth.com
+  description: Production
+tags:
+- name: Audiences
+paths:
+  /audiences/audience_taxonomy:
+    get:
+      tags:
+      - Audiences
+      summary: Get Audience Taxonomy
+      description: Gets entire audience taxonomy for a tenant and account
+      operationId: get_audience_taxonomy
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudienceTaxonomy'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /audiences/recommendations:
+    post:
+      tags:
+      - Audiences
+      summary: Get Audience Recommendations
+      description: Gets audience recommendations based on current selections
+      operationId: get_audience_recommendations
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AudienceRecommendationsRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudienceRecommendationsModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+components:
+  schemas:
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    LocationGroupType:
+      oneOf:
+      - const: 0
+        title: BUSINESS
+      - const: 1
+        title: RESIDENTIAL
+      type: integer
+      enum:
+      - 0
+      - 1
+      title: LocationGroupType
+      x-enum-varnames:
+      - BUSINESS
+      - RESIDENTIAL
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
+    DetailedAudienceCategory:
+      properties:
+        name:
+          type: string
+          title: Name
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        audiences:
+          items:
+            $ref: '#/components/schemas/Audience'
+          type: array
+          title: Audiences
+        size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Size
+        category_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Category Id
+      type: object
+      required:
+      - name
+      - description
+      - audiences
+      title: DetailedAudienceCategory
+    app__services__audience__types__AudienceType:
+      properties:
+        name:
+          type: string
+          title: Name
+        categories:
+          items:
+            $ref: '#/components/schemas/DetailedAudienceCategory'
+          type: array
+          title: Categories
+      type: object
+      required:
+      - name
+      - categories
+      title: AudienceType
+    LocationGroupBuildStatus:
+      oneOf:
+      - const: not_required
+        title: NOT_REQUIRED
+      - const: initial
+        title: INITIAL
+      - const: in_progress
+        title: IN_PROGRESS
+      - const: updating
+        title: UPDATING
+      - const: ready
+        title: READY
+      - const: expired
+        title: EXPIRED
+      type: string
+      enum:
+      - not_required
+      - initial
+      - in_progress
+      - updating
+      - ready
+      - expired
+      title: LocationGroupBuildStatus
+      x-enum-varnames:
+      - NOT_REQUIRED
+      - INITIAL
+      - IN_PROGRESS
+      - UPDATING
+      - READY
+      - EXPIRED
+    app__services__audience__types__LocationGroupMetadata:
+      properties:
+        type:
+          anyOf:
+          - $ref: '#/components/schemas/LocationGroupType'
+          - type: 'null'
+        url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Url
+        accepted:
+          type: integer
+          title: Accepted
+        rejected:
+          type: integer
+          title: Rejected
+        invalid:
+          type: integer
+          title: Invalid
+        conflict:
+          type: integer
+          title: Conflict
+        build_status:
+          $ref: '#/components/schemas/LocationGroupBuildStatus'
+        is_sensitive:
+          type: boolean
+          title: Is Sensitive
+      type: object
+      required:
+      - type
+      - url
+      - accepted
+      - rejected
+      - invalid
+      - conflict
+      - build_status
+      - is_sensitive
+      title: LocationGroupMetadata
+    AudienceRecommendationsModel:
+      properties:
+        recommendations:
+          items:
+            $ref: '#/components/schemas/Audience'
+          type: array
+          title: Recommendations
+      type: object
+      required:
+      - recommendations
+      title: AudienceRecommendationsModel
+    AudienceTaxonomy:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/app__services__audience__types__AudienceType'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: AudienceTaxonomy
+    Sensitivity:
+      oneOf:
+      - const: 0
+        title: WHITELIST
+      - const: 1
+        title: GRAYLIST
+      - const: 2
+        title: SEMI_SENSITIVE
+      - const: 3
+        title: BLACKLIST
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      title: Sensitivity
+      x-enum-varnames:
+      - WHITELIST
+      - GRAYLIST
+      - SEMI_SENSITIVE
+      - BLACKLIST
+    AudienceRecommendationsRequestModel:
+      properties:
+        audience_ids:
+          items:
+            type: string
+          type: array
+          title: Audience Ids
+      type: object
+      required:
+      - audience_ids
+      title: AudienceRecommendationsRequestModel
+    Audience:
+      properties:
+        id:
+          type: string
+          title: Id
+        type:
+          type: string
+          title: Type
+        name:
+          type: string
+          title: Name
+        size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Size
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        sensitivity:
+          anyOf:
+          - $ref: '#/components/schemas/Sensitivity'
+          - type: 'null'
+        backend_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Backend Key
+        sic_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sic Code
+        location_group_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/app__services__audience__types__LocationGroupMetadata'
+          - type: 'null'
+        category_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Category Id
+        status:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Status
+      type: object
+      required:
+      - id
+      - type
+      - name
+      - size
+      - description
+      - sensitivity
+      - backend_key
+      - sic_code
+      - location_group_metadata
+      - category_id
+      - status
+      title: Audience
+  securitySchemes:
+    api-key:
+      type: apiKey
+      in: header
+      name: x-gt-api-key
+    user-id:
+      type: apiKey
+      in: header
+      name: x-gt-user-id

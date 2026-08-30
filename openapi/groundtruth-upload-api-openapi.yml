@@ -1,0 +1,161 @@
+openapi: 3.2.0
+info:
+  title: Ads Manager Upload API
+  description: Ads Manager API
+  version: 1.0.0
+servers:
+- url: https://api-public.groundtruth.com
+  description: Production
+tags:
+- name: Upload
+paths:
+  /upload:
+    post:
+      tags:
+      - Upload
+      summary: Upload
+      description: Uploads a file and returns a URL
+      operationId: upload
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: upload_type
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/UploadType'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_upload_upload_post'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+components:
+  schemas:
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
+    Body_upload_upload_post:
+      properties:
+        file:
+          type: string
+          format: binary
+          title: File
+      type: object
+      required:
+      - file
+      title: Body_upload_upload_post
+    UploadType:
+      oneOf:
+      - const: 1
+        title: VIDEO
+      - const: 2
+        title: AUDIO
+      - const: 3
+        title: HTML5
+      - const: 4
+        title: OTHER
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      title: UploadType
+      x-enum-varnames:
+      - VIDEO
+      - AUDIO
+      - HTML5
+      - OTHER
+    UploadResponseModel:
+      properties:
+        file_path:
+          type: string
+          title: File Path
+        cdn_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Cdn Url
+      type: object
+      required:
+      - file_path
+      - cdn_url
+      title: UploadResponseModel
+  securitySchemes:
+    api-key:
+      type: apiKey
+      in: header
+      name: x-gt-api-key
+    user-id:
+      type: apiKey
+      in: header
+      name: x-gt-user-id
