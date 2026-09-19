@@ -244,6 +244,8 @@ apis:
   humanURL: https://api-docs.groundtruth.com/
   baseURL: https://api-public.groundtruth.com
   tags:
+  - Creative
+  tags_raw:
   - Creatives
   properties:
   - type: OpenAPI
