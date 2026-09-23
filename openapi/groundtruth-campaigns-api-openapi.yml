@@ -3,9 +3,6 @@ info:
   title: Ads Manager Campaigns API
   description: Ads Manager API
   version: 1.0.0
-servers:
-- url: https://api-public.groundtruth.com
-  description: Production
 tags:
 - name: Campaigns
 paths:
@@ -729,151 +726,92 @@ paths:
           description: Internal Server Error
 components:
   schemas:
-    BudgetModel-Input:
-      properties:
-        start_date:
-          type: string
-          format: date
-          title: Start Date
-        end_date:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: End Date
-        budget:
-          anyOf:
-          - type: number
-            minimum: 0.0
-          - type: string
-            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
-          title: Budget
-          description: If budget is at the campaign level, this will be 0
-      type: object
-      required:
-      - start_date
-      - end_date
-      - budget
-      title: BudgetModel
-    CreateUpdateCTVPremiumCategoryModel:
-      properties:
-        id:
-          type: integer
-          title: Id
-      type: object
-      required:
-      - id
-      title: CreateUpdateCTVPremiumCategoryModel
-    BudgetLevel:
-      oneOf:
-      - const: campaign
-        title: CAMPAIGN
-      - const: adgroup
-        title: ADGROUP
-      type: string
-      enum:
-      - campaign
-      - adgroup
-      title: BudgetLevel
-      x-enum-varnames:
-      - CAMPAIGN
-      - ADGROUP
-    CreateCampaignAndAdgroupsModel:
-      properties:
-        campaign:
-          $ref: '#/components/schemas/CreateCampaignModel'
-        adgroups:
-          items:
-            $ref: '#/components/schemas/CreateAdgroupModel'
-          type: array
-          title: Adgroups
-      type: object
-      required:
-      - campaign
-      title: CreateCampaignAndAdgroupsModel
-    CreateUpdateAudioStreamingGenreModel:
-      properties:
-        id:
-          type: integer
-          title: Id
-      type: object
-      required:
-      - id
-      title: CreateUpdateAudioStreamingGenreModel
-    LookalikeAudienceScale:
-      oneOf:
-      - const: 1
-        title: SCALE_2X
-      - const: 3
-        title: SCALE_4X
-      - const: 5
-        title: SCALE_6X
-      - const: 9
-        title: SCALE_10X
-      type: integer
-      enum:
-      - 1
-      - 3
-      - 5
-      - 9
-      title: LookalikeAudienceScale
-      x-enum-varnames:
-      - SCALE_2X
-      - SCALE_4X
-      - SCALE_6X
-      - SCALE_10X
-    CampaignBudgetType:
+    BudgetType:
       oneOf:
       - const: 0
         title: LIFETIME
+      - const: 1
+        title: PERIODIC
+      - const: 2
+        title: TIME_PERIOD
       - const: 3
         title: DAILY
       type: integer
       enum:
       - 0
+      - 1
+      - 2
       - 3
-      title: CampaignBudgetType
+      title: BudgetType
       x-enum-varnames:
       - LIFETIME
+      - PERIODIC
+      - TIME_PERIOD
       - DAILY
-    NeighborhoodModel:
+    TargetingTactic:
+      oneOf:
+      - const: 0
+        title: DEFAULT
+      - const: 31
+        title: WEATHER
+      - const: 32
+        title: ON_PREMISE
+      - const: 33
+        title: GEOTARGETING
+      - const: 34
+        title: NEIGHBORHOOD
+      - const: 35
+        title: AUDIENCE
+      type: integer
+      enum:
+      - 0
+      - 31
+      - 32
+      - 33
+      - 34
+      - 35
+      title: TargetingTactic
+      x-enum-varnames:
+      - DEFAULT
+      - WEATHER
+      - ON_PREMISE
+      - GEOTARGETING
+      - NEIGHBORHOOD
+      - AUDIENCE
+    Community:
+      oneOf:
+      - const: aa
+        title: AFRICAN_AMERICAN
+      - const: as
+        title: ASIAN_AMERICAN
+      - const: hl
+        title: HISPANIC_LATINO
+      type: string
+      enum:
+      - aa
+      - as
+      - hl
+      title: Community
+      x-enum-varnames:
+      - AFRICAN_AMERICAN
+      - ASIAN_AMERICAN
+      - HISPANIC_LATINO
+    CreateUpdateAudienceModel:
       properties:
         id:
           type: string
           title: Id
-        name:
-          type: string
-          title: Name
         type:
-          $ref: '#/components/schemas/NeighborhoodTargetType'
-        sensitivity:
-          anyOf:
-          - $ref: '#/components/schemas/Sensitivity'
-          - type: 'null'
-        location_group_metadata:
-          anyOf:
-          - $ref: '#/components/schemas/app__api__models__LocationGroupMetadata'
-          - type: 'null'
+          $ref: '#/components/schemas/AudienceType-Input'
+        exclude:
+          type: boolean
+          title: Exclude
+          default: false
       type: object
       required:
       - id
-      - name
       - type
-      title: NeighborhoodModel
-    DriveToLocationType:
-      oneOf:
-      - const: brand
-        title: BRAND
-      - const: location_group
-        title: LOCATION_GROUP
-      type: string
-      enum:
-      - brand
-      - location_group
-      title: DriveToLocationType
-      x-enum-varnames:
-      - BRAND
-      - LOCATION_GROUP
+      title: CreateUpdateAudienceModel
     BillingSource:
       oneOf:
       - const: 1
@@ -996,46 +934,14 @@ components:
       - MIAOZHEN
       - IQMOBILE
       - ADOBE_ANALYTICS
-    AgeRange:
+    CampaignsDashboardExportColumn:
       oneOf:
-      - const: 18-24
-        title: _18_24
-      - const: 25-34
-        title: _25_34
-      - const: 35-44
-        title: _35_44
-      - const: 45-54
-        title: _45_54
-      - const: 55-64
-        title: _55_64
-      - const: 65-999
-        title: _65_UP
-      - const: unknown
-        title: UNKNOWN
-      type: string
-      enum:
-      - 18-24
-      - 25-34
-      - 35-44
-      - 45-54
-      - 55-64
-      - 65-999
-      - unknown
-      title: AgeRange
-      x-enum-varnames:
-      - _18_24
-      - _25_34
-      - _35_44
-      - _45_54
-      - _55_64
-      - _65_UP
-      - UNKNOWN
-    CampaignDashboardSortField:
-      oneOf:
-      - const: name
-        title: NAME
       - const: id
         title: ID
+      - const: name
+        title: NAME
+      - const: status
+        title: STATUS
       - const: account_id
         title: ACCOUNT_ID
       - const: account_name
@@ -1044,470 +950,272 @@ components:
         title: ORGANIZATION_ID
       - const: organization_name
         title: ORGANIZATION_NAME
-      - const: status
-        title: STATUS
-      - const: days_remaining
-        title: DAYS_REMAINING
+      - const: salesforce_number
+        title: SALESFORCE_NUMBER
       - const: start_date
         title: START_DATE
       - const: end_date
         title: END_DATE
-      - const: salesforce_number
-        title: SALESFORCE_NUMBER
+      - const: days_remaining
+        title: DAYS_REMAINING
       - const: budget
         title: BUDGET
+      - const: gross_budget
+        title: GROSS_BUDGET
+      - const: budget_type
+        title: BUDGET_TYPE
       - const: pacing
         title: PACING
+      - const: impressions
+        title: IMPRESSIONS
+      - const: clicks
+        title: CLICKS
+      - const: visits
+        title: VISITS
+      - const: vr
+        title: VR
+      - const: vcr
+        title: VCR
+      - const: ctr
+        title: CTR
+      - const: daily_spend
+        title: DAILY_SPEND
+      - const: spends_spent
+        title: SPEND
+      - const: secondary_actions
+        title: SECONDARY_ACTIONS
+      - const: sar
+        title: SAR
+      - const: reach
+        title: REACH
+      - const: conversions
+        title: CONVERSIONS
       type: string
       enum:
-      - name
       - id
+      - name
+      - status
       - account_id
       - account_name
       - organization_id
       - organization_name
-      - status
-      - days_remaining
+      - salesforce_number
       - start_date
       - end_date
-      - salesforce_number
+      - days_remaining
       - budget
+      - gross_budget
+      - budget_type
       - pacing
-      title: CampaignDashboardSortField
+      - impressions
+      - clicks
+      - visits
+      - vr
+      - vcr
+      - ctr
+      - daily_spend
+      - spends_spent
+      - secondary_actions
+      - sar
+      - reach
+      - conversions
+      title: CampaignsDashboardExportColumn
       x-enum-varnames:
-      - NAME
       - ID
+      - NAME
+      - STATUS
       - ACCOUNT_ID
       - ACCOUNT_NAME
       - ORGANIZATION_ID
       - ORGANIZATION_NAME
-      - STATUS
-      - DAYS_REMAINING
+      - SALESFORCE_NUMBER
       - START_DATE
       - END_DATE
-      - SALESFORCE_NUMBER
+      - DAYS_REMAINING
       - BUDGET
+      - GROSS_BUDGET
+      - BUDGET_TYPE
       - PACING
-    CreateUpdateDriveToLocationModel:
-      properties:
-        id:
-          type: string
-          title: Id
-        type:
-          $ref: '#/components/schemas/DriveToLocationType'
-      type: object
-      required:
-      - id
-      - type
-      title: CreateUpdateDriveToLocationModel
-    app__api__routes__adgroups__models__CTVPremiumCategoryModel:
-      properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-      type: object
-      required:
-      - id
-      - name
-      title: CTVPremiumCategoryModel
-    ProximityMode:
+      - IMPRESSIONS
+      - CLICKS
+      - VISITS
+      - VR
+      - VCR
+      - CTR
+      - DAILY_SPEND
+      - SPEND
+      - SECONDARY_ACTIONS
+      - SAR
+      - REACH
+      - CONVERSIONS
+    MediaType:
       oneOf:
-      - const: in_store
-        title: IN_STORE
-      - const: on_lot
-        title: ON_LOT
-      - const: retail_block
-        title: RETAIL_BLOCK
-      - const: radial
-        title: RADIAL
+      - const: app
+        title: APP
+      - const: web
+        title: MOBILE_WEB
+      - const: desktop
+        title: DESKTOP
+      - const: ott
+        title: OTT
+      - const: ctv
+        title: CTV
+      - const: audio-podcast
+        title: AUDIO_PODCAST
+      - const: audio-streaming
+        title: AUDIO_STREAMING
+      - const: dooh
+        title: DOOH
       type: string
       enum:
-      - in_store
-      - on_lot
-      - retail_block
-      - radial
-      title: ProximityMode
+      - app
+      - web
+      - desktop
+      - ott
+      - ctv
+      - audio-podcast
+      - audio-streaming
+      - dooh
+      title: MediaType
       x-enum-varnames:
-      - IN_STORE
-      - ON_LOT
-      - RETAIL_BLOCK
-      - RADIAL
-    NeighborhoodType:
+      - APP
+      - MOBILE_WEB
+      - DESKTOP
+      - OTT
+      - CTV
+      - AUDIO_PODCAST
+      - AUDIO_STREAMING
+      - DOOH
+    LocationGroupBuildStatus:
       oneOf:
-      - const: business
-        title: BUSINESS
-      - const: residential
-        title: RESIDENTIAL
-      type: string
-      enum:
-      - business
-      - residential
-      title: NeighborhoodType
-      x-enum-varnames:
-      - BUSINESS
-      - RESIDENTIAL
-    LocationGroupType:
-      oneOf:
-      - const: 0
-        title: BUSINESS
-      - const: 1
-        title: RESIDENTIAL
-      type: integer
-      enum:
-      - 0
-      - 1
-      title: LocationGroupType
-      x-enum-varnames:
-      - BUSINESS
-      - RESIDENTIAL
-    CreateUpdateAudioPodcastTopicModel:
-      properties:
-        id:
-          type: integer
-          title: Id
-      type: object
-      required:
-      - id
-      title: CreateUpdateAudioPodcastTopicModel
-    app__api__routes__adgroups__models__PublisherCategoryModel:
-      properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-      type: object
-      required:
-      - id
-      - name
-      title: PublisherCategoryModel
-    CreateUpdateTrackingPixelModel:
-      properties:
-        id:
-          type: integer
-          title: Id
-      type: object
-      required:
-      - id
-      title: CreateUpdateTrackingPixelModel
-    PacingMode:
-      oneOf:
-      - const: 0
-        title: DEFAULT
-      - const: 1
-        title: ACCELERATED
-      - const: 2
-        title: ASAP
-      type: integer
-      enum:
-      - 0
-      - 1
-      - 2
-      title: PacingMode
-      x-enum-varnames:
-      - DEFAULT
-      - ACCELERATED
-      - ASAP
-    CreateUpdateAdPackageModel:
-      properties:
-        id:
-          type: integer
-          title: Id
-      type: object
-      required:
-      - id
-      title: CreateUpdateAdPackageModel
-    CampaignAndAdgroupsModel:
-      properties:
-        campaign:
-          $ref: '#/components/schemas/CampaignModel'
-        adgroups:
-          items:
-            $ref: '#/components/schemas/AdgroupModel'
-          type: array
-          title: Adgroups
-      type: object
-      required:
-      - campaign
-      - adgroups
-      title: CampaignAndAdgroupsModel
-    CreateUpdateOnPremiseLocationModel:
-      properties:
-        id:
-          type: string
-          title: Id
-        type:
-          $ref: '#/components/schemas/OnPremiseLocationType'
-        proximity:
-          anyOf:
-          - $ref: '#/components/schemas/ProximityMode'
-          - type: 'null'
-        radius:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Radius
-      type: object
-      required:
-      - id
-      - type
-      title: CreateUpdateOnPremiseLocationModel
-    CreateCampaignModel:
-      properties:
-        name:
-          type: string
-          maxLength: 256
-          minLength: 1
-          title: Name
-        budget:
-          anyOf:
-          - type: number
-            exclusiveMaximum: 1000000.0
-            exclusiveMinimum: 0.0
-          - type: string
-            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
-          - type: 'null'
-          title: Budget
-        budget_padding:
-          anyOf:
-          - type: number
-            exclusiveMaximum: 100000000.0
-            minimum: 0.0
-          - type: string
-            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
-          - type: 'null'
-          title: Budget Padding
-        budget_level:
-          $ref: '#/components/schemas/BudgetLevel'
-        budget_type:
-          $ref: '#/components/schemas/CampaignBudgetType'
-        billing_source:
-          $ref: '#/components/schemas/BillingSource'
-          default: 1
-        is_auto_reconciliation_enabled:
-          type: boolean
-          title: Is Auto Reconciliation Enabled
-          default: false
-        account_billing_source_id:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Account Billing Source Id
-        impression_frequency_cap:
-          anyOf:
-          - type: integer
-            exclusiveMaximum: 128.0
-            exclusiveMinimum: 0.0
-          - type: 'null'
-          title: Impression Frequency Cap
-        impression_frequency_cap_hours:
-          anyOf:
-          - type: integer
-            exclusiveMaximum: 32768.0
-            exclusiveMinimum: 0.0
-          - type: 'null'
-          title: Impression Frequency Cap Hours
-        client_io_name:
-          anyOf:
-          - type: string
-            maxLength: 500
-            minLength: 1
-          - type: 'null'
-          title: Client Io Name
-        client_io_number:
-          anyOf:
-          - type: string
-            maxLength: 128
-            minLength: 1
-          - type: 'null'
-          title: Client Io Number
-        salesforce_number:
-          anyOf:
-          - type: string
-            maxLength: 16
-            minLength: 1
-          - type: 'null'
-          title: Salesforce Number
-        is_cbd_enabled:
-          type: boolean
-          title: Is Cbd Enabled
-          default: false
-        bid_type:
-          $ref: '#/components/schemas/app__constants__BidType'
-          default: CPM
-        is_political_inventory_enabled:
-          type: boolean
-          title: Is Political Inventory Enabled
-          default: false
-        iab_content_category:
-          anyOf:
-          - type: string
-            maxLength: 10
-            minLength: 1
-          - type: 'null'
-          title: Iab Content Category
-        account_executives:
-          items:
-            $ref: '#/components/schemas/CreateUpdateCampaignUserModel'
-          type: array
-          title: Account Executives
-        account_managers:
-          items:
-            $ref: '#/components/schemas/CreateUpdateCampaignUserModel'
-          type: array
-          title: Account Managers
-        campaign_managers:
-          items:
-            $ref: '#/components/schemas/CreateUpdateCampaignUserModel'
-          type: array
-          title: Campaign Managers
-        publisher_domains:
-          items:
-            $ref: '#/components/schemas/PublisherDomainModel'
-          type: array
-          title: Publisher Domains
-        app_bundles:
-          items:
-            $ref: '#/components/schemas/AppBundleModel'
-          type: array
-          title: App Bundles
-        enable_brand_safe_publishers:
-          type: boolean
-          title: Enable Brand Safe Publishers
-          default: true
-        is_quickstart:
-          type: boolean
-          title: Is Quickstart
-          default: false
-      type: object
-      required:
-      - name
-      - budget_level
-      - budget_type
-      title: CreateCampaignModel
-    Community:
-      oneOf:
-      - const: aa
-        title: AFRICAN_AMERICAN
-      - const: as
-        title: ASIAN_AMERICAN
-      - const: hl
-        title: HISPANIC_LATINO
-      type: string
-      enum:
-      - aa
-      - as
-      - hl
-      title: Community
-      x-enum-varnames:
-      - AFRICAN_AMERICAN
-      - ASIAN_AMERICAN
-      - HISPANIC_LATINO
-    CampaignDashboardStatus:
-      oneOf:
-      - const: active
-        title: ACTIVE
-      - const: paused
-        title: PAUSED
-      - const: pending
-        title: PENDING
+      - const: not_required
+        title: NOT_REQUIRED
+      - const: initial
+        title: INITIAL
+      - const: in_progress
+        title: IN_PROGRESS
+      - const: updating
+        title: UPDATING
+      - const: ready
+        title: READY
       - const: expired
         title: EXPIRED
       type: string
       enum:
-      - active
-      - paused
-      - pending
+      - not_required
+      - initial
+      - in_progress
+      - updating
+      - ready
       - expired
-      title: CampaignDashboardStatus
+      title: LocationGroupBuildStatus
       x-enum-varnames:
-      - ACTIVE
-      - PAUSED
-      - PENDING
+      - NOT_REQUIRED
+      - INITIAL
+      - IN_PROGRESS
+      - UPDATING
+      - READY
       - EXPIRED
-    CreateUpdatePublisherCategoryModel:
-      properties:
-        id:
-          type: integer
-          title: Id
-      type: object
-      required:
-      - id
-      title: CreateUpdatePublisherCategoryModel
-    AdPackageModel:
-      properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-      type: object
-      required:
-      - id
-      - name
-      title: AdPackageModel
-    BillabilityType:
+    OperatingSystem:
       oneOf:
-      - const: 0
-        title: BILLABLE
-      - const: 1
-        title: ADDED_VALUE
-      - const: 2
-        title: MAKE_GOOD
-      - const: 3
-        title: SURVEY
-      - const: 4
-        title: TEST
-      type: integer
+      - const: ios
+        title: IOS
+      - const: android
+        title: ANDROID
+      - const: others
+        title: OTHERS
+      type: string
       enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      title: BillabilityType
+      - ios
+      - android
+      - others
+      title: OperatingSystem
       x-enum-varnames:
-      - BILLABLE
-      - ADDED_VALUE
-      - MAKE_GOOD
-      - SURVEY
-      - TEST
-    PublisherDomainModel:
-      properties:
-        domain:
-          type: string
-          minLength: 1
-          title: Domain
-        exclude:
-          type: boolean
-          title: Exclude
-      type: object
-      required:
-      - domain
-      - exclude
-      title: PublisherDomainModel
-    CampaignUserModel:
+      - IOS
+      - ANDROID
+      - OTHERS
+    OptimizationStrategy:
+      oneOf:
+      - const: delivery
+        title: DELIVERY
+      - const: click
+        title: CLICK
+      - const: sar
+        title: SAR
+      - const: conversion
+        title: CONVERSION
+      - const: visit
+        title: VISIT
+      type: string
+      enum:
+      - delivery
+      - click
+      - sar
+      - conversion
+      - visit
+      title: OptimizationStrategy
+      x-enum-varnames:
+      - DELIVERY
+      - CLICK
+      - SAR
+      - CONVERSION
+      - VISIT
+    Gender:
+      oneOf:
+      - const: M
+        title: MALE
+      - const: F
+        title: FEMALE
+      - const: unknown
+        title: UNKNOWN
+      type: string
+      enum:
+      - M
+      - F
+      - unknown
+      title: Gender
+      x-enum-varnames:
+      - MALE
+      - FEMALE
+      - UNKNOWN
+    app__constants__BidType:
+      oneOf:
+      - const: CPM
+        title: CPM
+      - const: CPV
+        title: CPV
+      type: string
+      enum:
+      - CPM
+      - CPV
+      title: BidType
+      x-enum-varnames:
+      - CPM
+      - CPV
+    DriveToLocationModel:
       properties:
         id:
-          type: integer
-          title: Id
-        email:
           type: string
-          title: Email
+          title: Id
         name:
           type: string
           title: Name
+        type:
+          $ref: '#/components/schemas/DriveToLocationType'
+        sensitivity:
+          anyOf:
+          - $ref: '#/components/schemas/Sensitivity'
+          - type: 'null'
+        location_group_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/app__api__models__LocationGroupMetadata'
+          - type: 'null'
       type: object
       required:
       - id
-      - email
       - name
-      title: CampaignUserModel
+      - type
+      title: DriveToLocationModel
     IncomeRange:
       oneOf:
       - const: '-50'
@@ -1534,611 +1242,24 @@ components:
       - _100_150
       - _150_200
       - _200_UP
-    UpdateCampaignModel:
-      properties:
-        name:
-          type: string
-          maxLength: 256
-          minLength: 1
-          title: Name
-        budget:
-          anyOf:
-          - type: number
-            exclusiveMaximum: 1000000.0
-            exclusiveMinimum: 0.0
-          - type: string
-            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
-          - type: 'null'
-          title: Budget
-        budget_padding:
-          anyOf:
-          - type: number
-            exclusiveMaximum: 100000000.0
-          - type: string
-            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
-          - type: 'null'
-          title: Budget Padding
-        budget_level:
-          $ref: '#/components/schemas/BudgetLevel'
-        billing_source:
-          $ref: '#/components/schemas/BillingSource'
-          default: 1
-        is_auto_reconciliation_enabled:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Is Auto Reconciliation Enabled
-        account_billing_source_id:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Account Billing Source Id
-        impression_frequency_cap:
-          anyOf:
-          - type: integer
-            exclusiveMaximum: 128.0
-            exclusiveMinimum: 0.0
-          - type: 'null'
-          title: Impression Frequency Cap
-        impression_frequency_cap_hours:
-          anyOf:
-          - type: integer
-            exclusiveMaximum: 32768.0
-            exclusiveMinimum: 0.0
-          - type: 'null'
-          title: Impression Frequency Cap Hours
-        client_io_name:
-          anyOf:
-          - type: string
-            maxLength: 500
-            minLength: 1
-          - type: 'null'
-          title: Client Io Name
-        client_io_number:
-          anyOf:
-          - type: string
-            maxLength: 128
-            minLength: 1
-          - type: 'null'
-          title: Client Io Number
-        salesforce_number:
-          anyOf:
-          - type: string
-            maxLength: 16
-            minLength: 1
-          - type: 'null'
-          title: Salesforce Number
-        is_cbd_enabled:
-          type: boolean
-          title: Is Cbd Enabled
-          default: false
-        is_political_inventory_enabled:
-          type: boolean
-          title: Is Political Inventory Enabled
-          default: false
-        iab_content_category:
-          anyOf:
-          - type: string
-            maxLength: 10
-            minLength: 1
-          - type: 'null'
-          title: Iab Content Category
-        account_executives:
-          items:
-            $ref: '#/components/schemas/CreateUpdateCampaignUserModel'
-          type: array
-          title: Account Executives
-        account_managers:
-          items:
-            $ref: '#/components/schemas/CreateUpdateCampaignUserModel'
-          type: array
-          title: Account Managers
-        campaign_managers:
-          items:
-            $ref: '#/components/schemas/CreateUpdateCampaignUserModel'
-          type: array
-          title: Campaign Managers
-        publisher_domains:
-          items:
-            $ref: '#/components/schemas/PublisherDomainModel'
-          type: array
-          title: Publisher Domains
-        app_bundles:
-          items:
-            $ref: '#/components/schemas/AppBundleModel'
-          type: array
-          title: App Bundles
-        enable_brand_safe_publishers:
-          type: boolean
-          title: Enable Brand Safe Publishers
-          default: true
-      type: object
-      required:
-      - name
-      - budget_level
-      title: UpdateCampaignModel
-    Gender:
-      oneOf:
-      - const: M
-        title: MALE
-      - const: F
-        title: FEMALE
-      - const: unknown
-        title: UNKNOWN
-      type: string
-      enum:
-      - M
-      - F
-      - unknown
-      title: Gender
-      x-enum-varnames:
-      - MALE
-      - FEMALE
-      - UNKNOWN
-    ErrorResponseModel:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorModel'
-          type: array
-          title: Errors
-      type: object
-      required:
-      - errors
-      title: ErrorResponseModel
-    CreateUpdateAudienceModel:
-      properties:
-        id:
-          type: string
-          title: Id
-        type:
-          $ref: '#/components/schemas/AudienceType-Input'
-        exclude:
-          type: boolean
-          title: Exclude
-          default: false
-      type: object
-      required:
-      - id
-      - type
-      title: CreateUpdateAudienceModel
-    CampaignDashboardItemModel:
-      properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-        start_date:
-          type: string
-          format: date
-          title: Start Date
-        end_date:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: End Date
-        status:
-          $ref: '#/components/schemas/CampaignDashboardStatus'
-        account_id:
-          type: integer
-          title: Account Id
-        account_name:
-          type: string
-          title: Account Name
-        organization_id:
-          type: integer
-          title: Organization Id
-        organization_name:
-          type: string
-          title: Organization Name
-        salesforce_number:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Salesforce Number
-        days_remaining:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Days Remaining
-        budget:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Budget
-        gross_budget:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Gross Budget
-        budget_type:
-          $ref: '#/components/schemas/BudgetType'
-        pacing:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Pacing
-        impressions:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Impressions
-        clicks:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Clicks
-        visits:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Visits
-        vr:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Vr
-        vcr:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Vcr
-        ctr:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Ctr
-        daily_spend:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Daily Spend
-        spends_spent:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Spends Spent
-        secondary_actions:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Secondary Actions
-        sar:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Sar
-        reach:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Reach
-        conversions:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Conversions
-      type: object
-      required:
-      - id
-      - name
-      - start_date
-      - status
-      - account_id
-      - account_name
-      - organization_id
-      - organization_name
-      - budget_type
-      title: CampaignDashboardItemModel
-    app__api__routes__adgroups__models__AudioStreamingGenreModel:
-      properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-      type: object
-      required:
-      - id
-      - name
-      title: AudioStreamingGenreModel
-    Language:
-      oneOf:
-      - const: en
-        title: ENGLISH
-      - const: es
-        title: SPANISH
-      type: string
-      enum:
-      - en
-      - es
-      title: Language
-      x-enum-varnames:
-      - ENGLISH
-      - SPANISH
-    CampaignsDashboardModel:
-      properties:
-        total_count:
-          type: integer
-          title: Total Count
-        limit:
-          type: integer
-          title: Limit
-        page_num:
-          type: integer
-          title: Page Num
-        total_pages:
-          type: integer
-          title: Total Pages
-        has_next_page:
-          type: boolean
-          title: Has Next Page
-        has_prev_page:
-          type: boolean
-          title: Has Prev Page
-        items:
-          items:
-            $ref: '#/components/schemas/CampaignDashboardItemModel'
-          type: array
-          title: Items
-      type: object
-      required:
-      - total_count
-      - limit
-      - page_num
-      - total_pages
-      - has_next_page
-      - has_prev_page
-      - items
-      title: CampaignsDashboardModel
-    AudienceType-Input:
-      oneOf:
-      - const: behavior
-        title: BEHAVIOR
-      - const: custom_audience
-        title: CUSTOM_AUDIENCE
-      - const: segment
-        title: SEGMENT
-      - const: brand
-        title: BRAND
-      - const: category
-        title: CATEGORY
-      - const: location_group
-        title: LOCATION_GROUP
-      - const: third_party
-        title: THIRD_PARTY
-      type: string
-      enum:
-      - behavior
-      - custom_audience
-      - segment
-      - brand
-      - category
-      - location_group
-      - third_party
-      title: AudienceType
-      x-enum-varnames:
-      - BEHAVIOR
-      - CUSTOM_AUDIENCE
-      - SEGMENT
-      - BRAND
-      - CATEGORY
-      - LOCATION_GROUP
-      - THIRD_PARTY
-    AudienceModel:
-      properties:
-        id:
-          type: string
-          title: Id
-        name:
-          type: string
-          title: Name
-        type:
-          $ref: '#/components/schemas/app__api__routes__adgroups__constants__AudienceType'
-        exclude:
-          type: boolean
-          title: Exclude
-        size:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Size
-        description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Description
-        sensitivity:
-          anyOf:
-          - $ref: '#/components/schemas/Sensitivity'
-          - type: 'null'
-        status:
-          anyOf:
-          - $ref: '#/components/schemas/ThirdPartyAudienceStatus'
-          - type: 'null'
-        category_id:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Category Id
-        location_group_metadata:
-          anyOf:
-          - $ref: '#/components/schemas/app__api__models__LocationGroupMetadata'
-          - type: 'null'
-      type: object
-      required:
-      - id
-      - name
-      - type
-      - exclude
-      - size
-      title: AudienceModel
-    CreatedAdPackageModel:
-      properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-      type: object
-      required:
-      - id
-      - name
-      title: CreatedAdPackageModel
-    DOOHMetadataModel:
-      properties:
-        venue_type_id:
-          type: integer
-          title: Venue Type Id
-        publisher_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Publisher Name
-        num_screens:
-          type: integer
-          title: Num Screens
-        num_ad_units:
-          type: integer
-          title: Num Ad Units
-        ad_specs:
-          additionalProperties: true
-          type: object
-          title: Ad Specs
-        venue_type:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Venue Type
-      type: object
-      required:
-      - venue_type_id
-      - num_screens
-      - num_ad_units
-      - ad_specs
-      title: DOOHMetadataModel
-    LocationFilterModel-Input:
-      properties:
-        type:
-          $ref: '#/components/schemas/LocationFilterType'
-        exclude:
-          type: boolean
-          title: Exclude
-          default: false
-        city:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: City
-        state:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: State
-          description: State code
-        zip_code:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Zip Code
-        county:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: County
-          description: County name
-        dma:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Dma
-          description: DMA name
-        lat:
-          anyOf:
-          - type: number
-            maximum: 90.0
-            minimum: -90.0
-          - type: 'null'
-          title: Lat
-        lng:
-          anyOf:
-          - type: number
-            maximum: 180.0
-            minimum: -180.0
-          - type: 'null'
-          title: Lng
-        address:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Address
-        radius:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Radius
-      type: object
-      required:
-      - type
-      title: LocationFilterModel
-    app__api__models__LocationGroupMetadata:
-      properties:
-        type:
-          anyOf:
-          - $ref: '#/components/schemas/LocationGroupType'
-          - type: 'null'
-        url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Url
-        accepted:
-          type: integer
-          title: Accepted
-          default: 0
-        rejected:
-          type: integer
-          title: Rejected
-          default: 0
-        invalid:
-          type: integer
-          title: Invalid
-          default: 0
-        conflict:
-          type: integer
-          title: Conflict
-          default: 0
-        build_status:
-          anyOf:
-          - $ref: '#/components/schemas/LocationGroupBuildStatus'
-          - type: 'null'
-          description: Audience or neighborhood build pipeline state. If the API is unrelated to audiences and neighborhoods (e.g. /search/drive_to_locations), this will be null.
-        is_sensitive:
-          type: boolean
-          title: Is Sensitive
-          description: True if any of the POIs in the location group are deemed sensitive.
-          default: false
-      type: object
-      title: LocationGroupMetadata
-    ExchangeBidType:
+    app__api__routes__constants__BidType:
       oneOf:
       - const: cpm
         title: CPM
       - const: cpc
         title: CPC
+      - const: cpv
+        title: CPV
       type: string
       enum:
       - cpm
       - cpc
-      title: ExchangeBidType
+      - cpv
+      title: BidType
       x-enum-varnames:
       - CPM
       - CPC
+      - CPV
     AdgroupModel:
       properties:
         id:
@@ -2506,840 +1627,7 @@ components:
       - rotate_creatives_evenly
       - pacing_mode
       title: AdgroupModel
-    TrackingPixelModel:
-      properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-        hashcode:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Hashcode
-      type: object
-      required:
-      - id
-      - name
-      title: TrackingPixelModel
-    MobileCarrierCode:
-      oneOf:
-      - const: ALLTEL
-        title: ALLTEL
-      - const: APPLCHN
-        title: APPALACHIAN_WIRELESS
-      - const: ATT
-        title: ATT
-      - const: BLUEGRASS
-        title: BLUEGRASS_CELLULAR
-      - const: CINCINNATI
-        title: CINCINNATI_BELL
-      - const: CORR
-        title: CORR_WIRELESS
-      - const: CRICKET
-        title: CRICKET
-      - const: METROPCS
-        title: METRO_PCS
-      - const: PLATEAU
-        title: PLATEAU_WIRELESS
-      - const: SIMMETRY
-        title: SIMMETRY
-      - const: SPRINT
-        title: SPRINT
-      - const: TMOBILE
-        title: TMOBILE
-      - const: USCELLULAR
-        title: US_CELLULAR
-      - const: VERIZON
-        title: VERIZON_WIRELESS
-      - const: WIFI
-        title: WIFI
-      type: string
-      enum:
-      - ALLTEL
-      - APPLCHN
-      - ATT
-      - BLUEGRASS
-      - CINCINNATI
-      - CORR
-      - CRICKET
-      - METROPCS
-      - PLATEAU
-      - SIMMETRY
-      - SPRINT
-      - TMOBILE
-      - USCELLULAR
-      - VERIZON
-      - WIFI
-      title: MobileCarrierCode
-      x-enum-varnames:
-      - ALLTEL
-      - APPALACHIAN_WIRELESS
-      - ATT
-      - BLUEGRASS_CELLULAR
-      - CINCINNATI_BELL
-      - CORR_WIRELESS
-      - CRICKET
-      - METRO_PCS
-      - PLATEAU_WIRELESS
-      - SIMMETRY
-      - SPRINT
-      - TMOBILE
-      - US_CELLULAR
-      - VERIZON_WIRELESS
-      - WIFI
-    Status:
-      oneOf:
-      - const: 1
-        title: ACTIVE
-      - const: 2
-        title: PAUSED
-      - const: 7
-        title: INCOMPLETE
-      - const: 10
-        title: DRAFT
-      - const: 11
-        title: REJECTED
-      - const: 12
-        title: SUBMITTED
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 7
-      - 10
-      - 11
-      - 12
-      title: Status
-      x-enum-varnames:
-      - ACTIVE
-      - PAUSED
-      - INCOMPLETE
-      - DRAFT
-      - REJECTED
-      - SUBMITTED
-    ErrorModel:
-      properties:
-        code:
-          type: string
-          title: Code
-        message:
-          type: string
-          title: Message
-        fields:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Fields
-      type: object
-      required:
-      - code
-      - message
-      - fields
-      title: ErrorModel
-    AdgroupStep:
-      oneOf:
-      - const: 1
-        title: OBJECTIVE
-      - const: 2
-        title: MEDIA_CHANNEL
-      - const: 3
-        title: LOCATION_AUDIENCE
-      - const: 4
-        title: PLACEMENT
-      - const: 5
-        title: BUDGET_SCHEDULE
-      - const: 6
-        title: MEASUREMENT
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      title: AdgroupStep
-      x-enum-varnames:
-      - OBJECTIVE
-      - MEDIA_CHANNEL
-      - LOCATION_AUDIENCE
-      - PLACEMENT
-      - BUDGET_SCHEDULE
-      - MEASUREMENT
-    LocationFilterModel-Output:
-      properties:
-        type:
-          $ref: '#/components/schemas/LocationFilterType'
-        exclude:
-          type: boolean
-          title: Exclude
-          default: false
-        city:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: City
-        state:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: State
-          description: State code
-        zip_code:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Zip Code
-        county:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: County
-          description: County name
-        dma:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Dma
-          description: DMA name
-        lat:
-          anyOf:
-          - type: number
-            maximum: 90.0
-            minimum: -90.0
-          - type: 'null'
-          title: Lat
-        lng:
-          anyOf:
-          - type: number
-            maximum: 180.0
-            minimum: -180.0
-          - type: 'null'
-          title: Lng
-        address:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Address
-        radius:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Radius
-        display_name:
-          type: string
-          title: Display Name
-          readOnly: true
-      type: object
-      required:
-      - type
-      - display_name
-      title: LocationFilterModel
-    Objective:
-      oneOf:
-      - const: 1
-        title: BRAND_AWARENESS
-      - const: 2
-        title: AD_CLICKS
-      - const: 3
-        title: IN_STORE_VISITS
-      - const: 4
-        title: REACH
-      - const: 5
-        title: VIDEO_VIEWS
-      - const: 6
-        title: AUDIO_LISTENS
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      title: Objective
-      x-enum-varnames:
-      - BRAND_AWARENESS
-      - AD_CLICKS
-      - IN_STORE_VISITS
-      - REACH
-      - VIDEO_VIEWS
-      - AUDIO_LISTENS
-    MediaType:
-      oneOf:
-      - const: app
-        title: APP
-      - const: web
-        title: MOBILE_WEB
-      - const: desktop
-        title: DESKTOP
-      - const: ott
-        title: OTT
-      - const: ctv
-        title: CTV
-      - const: audio-podcast
-        title: AUDIO_PODCAST
-      - const: audio-streaming
-        title: AUDIO_STREAMING
-      - const: dooh
-        title: DOOH
-      type: string
-      enum:
-      - app
-      - web
-      - desktop
-      - ott
-      - ctv
-      - audio-podcast
-      - audio-streaming
-      - dooh
-      title: MediaType
-      x-enum-varnames:
-      - APP
-      - MOBILE_WEB
-      - DESKTOP
-      - OTT
-      - CTV
-      - AUDIO_PODCAST
-      - AUDIO_STREAMING
-      - DOOH
-    TargetingTactic:
-      oneOf:
-      - const: 0
-        title: DEFAULT
-      - const: 31
-        title: WEATHER
-      - const: 32
-        title: ON_PREMISE
-      - const: 33
-        title: GEOTARGETING
-      - const: 34
-        title: NEIGHBORHOOD
-      - const: 35
-        title: AUDIENCE
-      type: integer
-      enum:
-      - 0
-      - 31
-      - 32
-      - 33
-      - 34
-      - 35
-      title: TargetingTactic
-      x-enum-varnames:
-      - DEFAULT
-      - WEATHER
-      - ON_PREMISE
-      - GEOTARGETING
-      - NEIGHBORHOOD
-      - AUDIENCE
-    Sensitivity:
-      oneOf:
-      - const: 0
-        title: WHITELIST
-      - const: 1
-        title: GRAYLIST
-      - const: 2
-        title: SEMI_SENSITIVE
-      - const: 3
-        title: BLACKLIST
-      type: integer
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      title: Sensitivity
-      x-enum-varnames:
-      - WHITELIST
-      - GRAYLIST
-      - SEMI_SENSITIVE
-      - BLACKLIST
-    DriveToLocationModel:
-      properties:
-        id:
-          type: string
-          title: Id
-        name:
-          type: string
-          title: Name
-        type:
-          $ref: '#/components/schemas/DriveToLocationType'
-        sensitivity:
-          anyOf:
-          - $ref: '#/components/schemas/Sensitivity'
-          - type: 'null'
-        location_group_metadata:
-          anyOf:
-          - $ref: '#/components/schemas/app__api__models__LocationGroupMetadata'
-          - type: 'null'
-      type: object
-      required:
-      - id
-      - name
-      - type
-      title: DriveToLocationModel
-    AudioPodcastAdPosition:
-      oneOf:
-      - const: 0
-        title: PRE_ROLL
-      - const: -1
-        title: MID_ROLL
-      - const: -2
-        title: POST_ROLL
-      type: integer
-      enum:
-      - 0
-      - -1
-      - -2
-      title: AudioPodcastAdPosition
-      x-enum-varnames:
-      - PRE_ROLL
-      - MID_ROLL
-      - POST_ROLL
-    OnPremiseLocationType:
-      oneOf:
-      - const: brand
-        title: BRAND
-      - const: category
-        title: CATEGORY
-      - const: location_group
-        title: LOCATION_GROUP
-      type: string
-      enum:
-      - brand
-      - category
-      - location_group
-      title: OnPremiseLocationType
-      x-enum-varnames:
-      - BRAND
-      - CATEGORY
-      - LOCATION_GROUP
-    LocationGroupBuildStatus:
-      oneOf:
-      - const: not_required
-        title: NOT_REQUIRED
-      - const: initial
-        title: INITIAL
-      - const: in_progress
-        title: IN_PROGRESS
-      - const: updating
-        title: UPDATING
-      - const: ready
-        title: READY
-      - const: expired
-        title: EXPIRED
-      type: string
-      enum:
-      - not_required
-      - initial
-      - in_progress
-      - updating
-      - ready
-      - expired
-      title: LocationGroupBuildStatus
-      x-enum-varnames:
-      - NOT_REQUIRED
-      - INITIAL
-      - IN_PROGRESS
-      - UPDATING
-      - READY
-      - EXPIRED
-    OptimizationStrategy:
-      oneOf:
-      - const: delivery
-        title: DELIVERY
-      - const: click
-        title: CLICK
-      - const: sar
-        title: SAR
-      - const: conversion
-        title: CONVERSION
-      - const: visit
-        title: VISIT
-      type: string
-      enum:
-      - delivery
-      - click
-      - sar
-      - conversion
-      - visit
-      title: OptimizationStrategy
-      x-enum-varnames:
-      - DELIVERY
-      - CLICK
-      - SAR
-      - CONVERSION
-      - VISIT
-    ThirdPartyAudienceStatus:
-      oneOf:
-      - const: Ready
-        title: READY
-      - const: Building
-        title: BUILDING
-      - const: Available
-        title: AVAILABLE
-      type: string
-      enum:
-      - Ready
-      - Building
-      - Available
-      title: ThirdPartyAudienceStatus
-      x-enum-varnames:
-      - READY
-      - BUILDING
-      - AVAILABLE
-    app__api__routes__adgroups__models__AudioPodcastTopicModel:
-      properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-      type: object
-      required:
-      - id
-      - name
-      title: AudioPodcastTopicModel
-    CreateUpdateStreamingVideoContentCategoryModel:
-      properties:
-        id:
-          type: integer
-          title: Id
-      type: object
-      required:
-      - id
-      title: CreateUpdateStreamingVideoContentCategoryModel
-    BudgetModel-Output:
-      properties:
-        start_date:
-          type: string
-          format: date
-          title: Start Date
-        end_date:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: End Date
-        budget:
-          type: string
-          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
-          title: Budget
-          description: If budget is at the campaign level, this will be 0
-      type: object
-      required:
-      - start_date
-      - end_date
-      - budget
-      title: BudgetModel
-    NeighborhoodTargetType:
-      oneOf:
-      - const: behavior
-        title: BEHAVIOR
-      - const: brand
-        title: BRAND
-      - const: category
-        title: CATEGORY
-      - const: location_group
-        title: LOCATION_GROUP
-      type: string
-      enum:
-      - behavior
-      - brand
-      - category
-      - location_group
-      title: NeighborhoodTargetType
-      x-enum-varnames:
-      - BEHAVIOR
-      - BRAND
-      - CATEGORY
-      - LOCATION_GROUP
-    OnPremiseLocationModel:
-      properties:
-        id:
-          type: string
-          title: Id
-        name:
-          type: string
-          title: Name
-        type:
-          $ref: '#/components/schemas/OnPremiseLocationType'
-        proximity:
-          anyOf:
-          - $ref: '#/components/schemas/ProximityMode'
-          - type: 'null'
-        radius:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Radius
-        sensitivity:
-          type: integer
-          title: Sensitivity
-        location_group_metadata:
-          anyOf:
-          - $ref: '#/components/schemas/app__api__models__LocationGroupMetadata'
-          - type: 'null'
-      type: object
-      required:
-      - id
-      - name
-      - type
-      - proximity
-      - sensitivity
-      title: OnPremiseLocationModel
-    IntegrationReport:
-      oneOf:
-      - const: USAMP
-        title: USAMP
-      - const: PLACED
-        title: PLACED_FOURSQUARE
-      - const: LIVERAMP
-        title: LIVE_RAMP_EXPOSURE_FILES
-      - const: XAD
-        title: XAD_EXPOSURE_FILE
-      - const: NEUSTAR
-        title: NEUSTAR
-      - const: CARDLYTICS
-        title: CARDLYTICS
-      - const: AFFINITY
-        title: AFFINITY
-      type: string
-      enum:
-      - USAMP
-      - PLACED
-      - LIVERAMP
-      - XAD
-      - NEUSTAR
-      - CARDLYTICS
-      - AFFINITY
-      title: IntegrationReport
-      x-enum-varnames:
-      - USAMP
-      - PLACED_FOURSQUARE
-      - LIVE_RAMP_EXPOSURE_FILES
-      - XAD_EXPOSURE_FILE
-      - NEUSTAR
-      - CARDLYTICS
-      - AFFINITY
-    SortOrder:
-      oneOf:
-      - const: desc
-        title: DESC
-      - const: asc
-        title: ASC
-      type: string
-      enum:
-      - desc
-      - asc
-      title: SortOrder
-      x-enum-varnames:
-      - DESC
-      - ASC
-    CreateAdPackageModel:
-      properties:
-        name:
-          type: string
-          maxLength: 256
-          minLength: 1
-          title: Name
-      type: object
-      required:
-      - name
-      title: CreateAdPackageModel
-    CreateNeighborhoodModel:
-      properties:
-        id:
-          type: string
-          title: Id
-        type:
-          $ref: '#/components/schemas/NeighborhoodTargetType'
-      type: object
-      required:
-      - id
-      - type
-      title: CreateNeighborhoodModel
-    app__api__routes__adgroups__models__PublisherModel:
-      properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-      type: object
-      required:
-      - id
-      - name
-      title: PublisherModel
-    CampaignModel:
-      properties:
-        id:
-          type: integer
-          title: Id
-        account_id:
-          type: integer
-          title: Account Id
-        organization_id:
-          type: integer
-          title: Organization Id
-        tenant_id:
-          type: integer
-          title: Tenant Id
-        name:
-          type: string
-          title: Name
-        start_date:
-          type: string
-          format: date
-          title: Start Date
-        end_date:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: End Date
-        status:
-          $ref: '#/components/schemas/Status'
-        budget:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Budget
-        gross_budget:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Gross Budget
-        budget_padding:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Budget Padding
-        budget_level:
-          $ref: '#/components/schemas/BudgetLevel'
-        budget_type:
-          $ref: '#/components/schemas/BudgetType'
-        billing_source:
-          anyOf:
-          - $ref: '#/components/schemas/BillingSource'
-          - type: 'null'
-        is_cbd_enabled:
-          type: boolean
-          title: Is Cbd Enabled
-        bid_type:
-          $ref: '#/components/schemas/app__constants__BidType'
-        is_auto_reconciliation_enabled:
-          type: boolean
-          title: Is Auto Reconciliation Enabled
-        account_billing_source_id:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Account Billing Source Id
-        impression_frequency_cap:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Impression Frequency Cap
-        impression_frequency_cap_hours:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Impression Frequency Cap Hours
-        client_io_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Client Io Name
-        client_io_number:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Client Io Number
-        salesforce_number:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Salesforce Number
-        created_date:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Created Date
-        updated_date:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Updated Date
-        is_political_inventory_enabled:
-          type: boolean
-          title: Is Political Inventory Enabled
-        iab_content_category:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Iab Content Category
-        account_executives:
-          items:
-            $ref: '#/components/schemas/CampaignUserModel'
-          type: array
-          title: Account Executives
-        account_managers:
-          items:
-            $ref: '#/components/schemas/CampaignUserModel'
-          type: array
-          title: Account Managers
-        campaign_managers:
-          items:
-            $ref: '#/components/schemas/CampaignUserModel'
-          type: array
-          title: Campaign Managers
-        publisher_domains:
-          items:
-            $ref: '#/components/schemas/PublisherDomainModel'
-          type: array
-          title: Publisher Domains
-        app_bundles:
-          items:
-            $ref: '#/components/schemas/AppBundleModel'
-          type: array
-          title: App Bundles
-        enable_brand_safe_publishers:
-          type: boolean
-          title: Enable Brand Safe Publishers
-          default: true
-        quickstart_step:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Quickstart Step
-      type: object
-      required:
-      - id
-      - account_id
-      - organization_id
-      - tenant_id
-      - name
-      - start_date
-      - status
-      - budget_level
-      - budget_type
-      - is_cbd_enabled
-      - bid_type
-      - is_auto_reconciliation_enabled
-      - is_political_inventory_enabled
-      title: CampaignModel
-    app__api__routes__adgroups__constants__AudienceType:
+    AudienceType-Input:
       oneOf:
       - const: behavior
         title: BEHAVIOR
@@ -3373,307 +1661,143 @@ components:
       - CATEGORY
       - LOCATION_GROUP
       - THIRD_PARTY
-    CampaignsModel:
+    UpdateCampaignModel:
       properties:
-        total_count:
-          type: integer
-          title: Total Count
-        limit:
-          type: integer
-          title: Limit
-        page_num:
-          type: integer
-          title: Page Num
-        total_pages:
-          type: integer
-          title: Total Pages
-        has_next_page:
-          type: boolean
-          title: Has Next Page
-        has_prev_page:
-          type: boolean
-          title: Has Prev Page
-        items:
-          items:
-            $ref: '#/components/schemas/CampaignModel'
-          type: array
-          title: Items
-      type: object
-      required:
-      - total_count
-      - limit
-      - page_num
-      - total_pages
-      - has_next_page
-      - has_prev_page
-      - items
-      title: CampaignsModel
-    CampaignsDashboardExportColumn:
-      oneOf:
-      - const: id
-        title: ID
-      - const: name
-        title: NAME
-      - const: status
-        title: STATUS
-      - const: account_id
-        title: ACCOUNT_ID
-      - const: account_name
-        title: ACCOUNT_NAME
-      - const: organization_id
-        title: ORGANIZATION_ID
-      - const: organization_name
-        title: ORGANIZATION_NAME
-      - const: salesforce_number
-        title: SALESFORCE_NUMBER
-      - const: start_date
-        title: START_DATE
-      - const: end_date
-        title: END_DATE
-      - const: days_remaining
-        title: DAYS_REMAINING
-      - const: budget
-        title: BUDGET
-      - const: gross_budget
-        title: GROSS_BUDGET
-      - const: budget_type
-        title: BUDGET_TYPE
-      - const: pacing
-        title: PACING
-      - const: impressions
-        title: IMPRESSIONS
-      - const: clicks
-        title: CLICKS
-      - const: visits
-        title: VISITS
-      - const: vr
-        title: VR
-      - const: vcr
-        title: VCR
-      - const: ctr
-        title: CTR
-      - const: daily_spend
-        title: DAILY_SPEND
-      - const: spends_spent
-        title: SPEND
-      - const: secondary_actions
-        title: SECONDARY_ACTIONS
-      - const: sar
-        title: SAR
-      - const: reach
-        title: REACH
-      - const: conversions
-        title: CONVERSIONS
-      type: string
-      enum:
-      - id
-      - name
-      - status
-      - account_id
-      - account_name
-      - organization_id
-      - organization_name
-      - salesforce_number
-      - start_date
-      - end_date
-      - days_remaining
-      - budget
-      - gross_budget
-      - budget_type
-      - pacing
-      - impressions
-      - clicks
-      - visits
-      - vr
-      - vcr
-      - ctr
-      - daily_spend
-      - spends_spent
-      - secondary_actions
-      - sar
-      - reach
-      - conversions
-      title: CampaignsDashboardExportColumn
-      x-enum-varnames:
-      - ID
-      - NAME
-      - STATUS
-      - ACCOUNT_ID
-      - ACCOUNT_NAME
-      - ORGANIZATION_ID
-      - ORGANIZATION_NAME
-      - SALESFORCE_NUMBER
-      - START_DATE
-      - END_DATE
-      - DAYS_REMAINING
-      - BUDGET
-      - GROSS_BUDGET
-      - BUDGET_TYPE
-      - PACING
-      - IMPRESSIONS
-      - CLICKS
-      - VISITS
-      - VR
-      - VCR
-      - CTR
-      - DAILY_SPEND
-      - SPEND
-      - SECONDARY_ACTIONS
-      - SAR
-      - REACH
-      - CONVERSIONS
-    CreateUpdateCampaignUserModel:
-      properties:
-        id:
-          type: integer
-          title: Id
-      type: object
-      required:
-      - id
-      title: CreateUpdateCampaignUserModel
-    AppBundleModel:
-      properties:
-        bundle:
+        name:
           type: string
+          maxLength: 256
           minLength: 1
-          title: Bundle
-        exclude:
+          title: Name
+        budget:
+          anyOf:
+          - type: number
+            exclusiveMaximum: 1000000.0
+            exclusiveMinimum: 0.0
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Budget
+        budget_padding:
+          anyOf:
+          - type: number
+            exclusiveMaximum: 100000000.0
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Budget Padding
+        budget_level:
+          $ref: '#/components/schemas/BudgetLevel'
+        billing_source:
+          $ref: '#/components/schemas/BillingSource'
+          default: 1
+        is_auto_reconciliation_enabled:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Is Auto Reconciliation Enabled
+        account_billing_source_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Account Billing Source Id
+        impression_frequency_cap:
+          anyOf:
+          - type: integer
+            exclusiveMaximum: 128.0
+            exclusiveMinimum: 0.0
+          - type: 'null'
+          title: Impression Frequency Cap
+        impression_frequency_cap_hours:
+          anyOf:
+          - type: integer
+            exclusiveMaximum: 32768.0
+            exclusiveMinimum: 0.0
+          - type: 'null'
+          title: Impression Frequency Cap Hours
+        client_io_name:
+          anyOf:
+          - type: string
+            maxLength: 500
+            minLength: 1
+          - type: 'null'
+          title: Client Io Name
+        client_io_number:
+          anyOf:
+          - type: string
+            maxLength: 128
+            minLength: 1
+          - type: 'null'
+          title: Client Io Number
+        salesforce_number:
+          anyOf:
+          - type: string
+            maxLength: 16
+            minLength: 1
+          - type: 'null'
+          title: Salesforce Number
+        is_cbd_enabled:
           type: boolean
-          title: Exclude
-      type: object
-      required:
-      - bundle
-      - exclude
-      title: AppBundleModel
-    ExportCampaignsDashboardRequestModel:
-      properties:
-        sort_by:
-          $ref: '#/components/schemas/CampaignDashboardSortField'
-          default: name
-        sort_order:
-          $ref: '#/components/schemas/SortOrder'
-          default: asc
-        start_date:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Start Date
-        end_date:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: End Date
-        statuses:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/CampaignDashboardStatus'
-            type: array
-          - type: 'null'
-          title: Statuses
-        account_ids:
-          anyOf:
-          - items:
-              type: integer
-            type: array
-          - type: 'null'
-          title: Account Ids
-        organization_ids:
-          anyOf:
-          - items:
-              type: integer
-            type: array
-          - type: 'null'
-          title: Organization Ids
-        objectives:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Objective'
-            type: array
-          - type: 'null'
-          title: Objectives
-        search:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Search
-        columns:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/CampaignsDashboardExportColumn'
-            type: array
-          - type: 'null'
-          title: Columns
-        included_campaign_ids:
-          anyOf:
-          - items:
-              type: integer
-            type: array
-          - type: 'null'
-          title: Included Campaign Ids
-        excluded_campaign_ids:
-          anyOf:
-          - items:
-              type: integer
-            type: array
-          - type: 'null'
-          title: Excluded Campaign Ids
-      type: object
-      title: ExportCampaignsDashboardRequestModel
-    SuccessResponseModel:
-      properties:
-        success:
+          title: Is Cbd Enabled
+          default: false
+        is_political_inventory_enabled:
           type: boolean
-          title: Success
+          title: Is Political Inventory Enabled
+          default: false
+        iab_content_category:
+          anyOf:
+          - type: string
+            maxLength: 10
+            minLength: 1
+          - type: 'null'
+          title: Iab Content Category
+        account_executives:
+          items:
+            $ref: '#/components/schemas/CreateUpdateCampaignUserModel'
+          type: array
+          title: Account Executives
+        account_managers:
+          items:
+            $ref: '#/components/schemas/CreateUpdateCampaignUserModel'
+          type: array
+          title: Account Managers
+        campaign_managers:
+          items:
+            $ref: '#/components/schemas/CreateUpdateCampaignUserModel'
+          type: array
+          title: Campaign Managers
+        publisher_domains:
+          items:
+            $ref: '#/components/schemas/PublisherDomainModel'
+          type: array
+          title: Publisher Domains
+        app_bundles:
+          items:
+            $ref: '#/components/schemas/AppBundleModel'
+          type: array
+          title: App Bundles
+        enable_brand_safe_publishers:
+          type: boolean
+          title: Enable Brand Safe Publishers
           default: true
       type: object
-      title: SuccessResponseModel
-    BudgetType:
-      oneOf:
-      - const: 0
-        title: LIFETIME
-      - const: 1
-        title: PERIODIC
-      - const: 2
-        title: TIME_PERIOD
-      - const: 3
-        title: DAILY
-      type: integer
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      title: BudgetType
-      x-enum-varnames:
-      - LIFETIME
-      - PERIODIC
-      - TIME_PERIOD
-      - DAILY
-    CreatePublisherModel:
-      properties:
-        id:
-          type: integer
-          title: Id
-      type: object
       required:
-      - id
-      title: CreatePublisherModel
-    app__constants__BidType:
+      - name
+      - budget_level
+      title: UpdateCampaignModel
+    SortOrder:
       oneOf:
-      - const: CPM
-        title: CPM
-      - const: CPV
-        title: CPV
+      - const: desc
+        title: DESC
+      - const: asc
+        title: ASC
       type: string
       enum:
-      - CPM
-      - CPV
-      title: BidType
+      - desc
+      - asc
+      title: SortOrder
       x-enum-varnames:
-      - CPM
-      - CPV
+      - DESC
+      - ASC
     CreateAdgroupModel:
       properties:
         name:
@@ -4056,55 +2180,30 @@ components:
       - name
       - budgets
       title: CreateAdgroupModel
-    app__api__routes__adgroups__models__StreamingVideoContentCategoryModel:
+    NeighborhoodModel:
       properties:
         id:
-          type: integer
+          type: string
           title: Id
         name:
           type: string
           title: Name
+        type:
+          $ref: '#/components/schemas/NeighborhoodTargetType'
+        sensitivity:
+          anyOf:
+          - $ref: '#/components/schemas/Sensitivity'
+          - type: 'null'
+        location_group_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/app__api__models__LocationGroupMetadata'
+          - type: 'null'
       type: object
       required:
       - id
       - name
-      title: StreamingVideoContentCategoryModel
-    OperatingSystem:
-      oneOf:
-      - const: ios
-        title: IOS
-      - const: android
-        title: ANDROID
-      - const: others
-        title: OTHERS
-      type: string
-      enum:
-      - ios
-      - android
-      - others
-      title: OperatingSystem
-      x-enum-varnames:
-      - IOS
-      - ANDROID
-      - OTHERS
-    app__api__routes__constants__BidType:
-      oneOf:
-      - const: cpm
-        title: CPM
-      - const: cpc
-        title: CPC
-      - const: cpv
-        title: CPV
-      type: string
-      enum:
-      - cpm
-      - cpc
-      - cpv
-      title: BidType
-      x-enum-varnames:
-      - CPM
-      - CPC
-      - CPV
+      - type
+      title: NeighborhoodModel
     LocationFilterType:
       oneOf:
       - const: City
@@ -4139,6 +2238,1904 @@ components:
       - COUNTY
       - LAT_LNG
       - ADDRESS
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
+    IntegrationReport:
+      oneOf:
+      - const: USAMP
+        title: USAMP
+      - const: PLACED
+        title: PLACED_FOURSQUARE
+      - const: LIVERAMP
+        title: LIVE_RAMP_EXPOSURE_FILES
+      - const: XAD
+        title: XAD_EXPOSURE_FILE
+      - const: NEUSTAR
+        title: NEUSTAR
+      - const: CARDLYTICS
+        title: CARDLYTICS
+      - const: AFFINITY
+        title: AFFINITY
+      type: string
+      enum:
+      - USAMP
+      - PLACED
+      - LIVERAMP
+      - XAD
+      - NEUSTAR
+      - CARDLYTICS
+      - AFFINITY
+      title: IntegrationReport
+      x-enum-varnames:
+      - USAMP
+      - PLACED_FOURSQUARE
+      - LIVE_RAMP_EXPOSURE_FILES
+      - XAD_EXPOSURE_FILE
+      - NEUSTAR
+      - CARDLYTICS
+      - AFFINITY
+    CreateCampaignAndAdgroupsModel:
+      properties:
+        campaign:
+          $ref: '#/components/schemas/CreateCampaignModel'
+        adgroups:
+          items:
+            $ref: '#/components/schemas/CreateAdgroupModel'
+          type: array
+          title: Adgroups
+      type: object
+      required:
+      - campaign
+      title: CreateCampaignAndAdgroupsModel
+    app__api__routes__adgroups__models__StreamingVideoContentCategoryModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - name
+      title: StreamingVideoContentCategoryModel
+    CreatedAdPackageModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - name
+      title: CreatedAdPackageModel
+    app__api__routes__adgroups__models__AudioPodcastTopicModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - name
+      title: AudioPodcastTopicModel
+    CreateUpdateTrackingPixelModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+      type: object
+      required:
+      - id
+      title: CreateUpdateTrackingPixelModel
+    CreateUpdateStreamingVideoContentCategoryModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+      type: object
+      required:
+      - id
+      title: CreateUpdateStreamingVideoContentCategoryModel
+    AudienceModel:
+      properties:
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        type:
+          $ref: '#/components/schemas/app__api__routes__adgroups__constants__AudienceType'
+        exclude:
+          type: boolean
+          title: Exclude
+        size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Size
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        sensitivity:
+          anyOf:
+          - $ref: '#/components/schemas/Sensitivity'
+          - type: 'null'
+        status:
+          anyOf:
+          - $ref: '#/components/schemas/ThirdPartyAudienceStatus'
+          - type: 'null'
+        category_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Category Id
+        location_group_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/app__api__models__LocationGroupMetadata'
+          - type: 'null'
+      type: object
+      required:
+      - id
+      - name
+      - type
+      - exclude
+      - size
+      title: AudienceModel
+    SuccessResponseModel:
+      properties:
+        success:
+          type: boolean
+          title: Success
+          default: true
+      type: object
+      title: SuccessResponseModel
+    AudioPodcastAdPosition:
+      oneOf:
+      - const: 0
+        title: PRE_ROLL
+      - const: -1
+        title: MID_ROLL
+      - const: -2
+        title: POST_ROLL
+      type: integer
+      enum:
+      - 0
+      - -1
+      - -2
+      title: AudioPodcastAdPosition
+      x-enum-varnames:
+      - PRE_ROLL
+      - MID_ROLL
+      - POST_ROLL
+    CampaignDashboardItemModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        start_date:
+          type: string
+          format: date
+          title: Start Date
+        end_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: End Date
+        status:
+          $ref: '#/components/schemas/CampaignDashboardStatus'
+        account_id:
+          type: integer
+          title: Account Id
+        account_name:
+          type: string
+          title: Account Name
+        organization_id:
+          type: integer
+          title: Organization Id
+        organization_name:
+          type: string
+          title: Organization Name
+        salesforce_number:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Salesforce Number
+        days_remaining:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Days Remaining
+        budget:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Budget
+        gross_budget:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Gross Budget
+        budget_type:
+          $ref: '#/components/schemas/BudgetType'
+        pacing:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Pacing
+        impressions:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Impressions
+        clicks:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Clicks
+        visits:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Visits
+        vr:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Vr
+        vcr:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Vcr
+        ctr:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Ctr
+        daily_spend:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Daily Spend
+        spends_spent:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Spends Spent
+        secondary_actions:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Secondary Actions
+        sar:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Sar
+        reach:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Reach
+        conversions:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Conversions
+      type: object
+      required:
+      - id
+      - name
+      - start_date
+      - status
+      - account_id
+      - account_name
+      - organization_id
+      - organization_name
+      - budget_type
+      title: CampaignDashboardItemModel
+    Objective:
+      oneOf:
+      - const: 1
+        title: BRAND_AWARENESS
+      - const: 2
+        title: AD_CLICKS
+      - const: 3
+        title: IN_STORE_VISITS
+      - const: 4
+        title: REACH
+      - const: 5
+        title: VIDEO_VIEWS
+      - const: 6
+        title: AUDIO_LISTENS
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      title: Objective
+      x-enum-varnames:
+      - BRAND_AWARENESS
+      - AD_CLICKS
+      - IN_STORE_VISITS
+      - REACH
+      - VIDEO_VIEWS
+      - AUDIO_LISTENS
+    AgeRange:
+      oneOf:
+      - const: 18-24
+        title: _18_24
+      - const: 25-34
+        title: _25_34
+      - const: 35-44
+        title: _35_44
+      - const: 45-54
+        title: _45_54
+      - const: 55-64
+        title: _55_64
+      - const: 65-999
+        title: _65_UP
+      - const: unknown
+        title: UNKNOWN
+      type: string
+      enum:
+      - 18-24
+      - 25-34
+      - 35-44
+      - 45-54
+      - 55-64
+      - 65-999
+      - unknown
+      title: AgeRange
+      x-enum-varnames:
+      - _18_24
+      - _25_34
+      - _35_44
+      - _45_54
+      - _55_64
+      - _65_UP
+      - UNKNOWN
+    OnPremiseLocationType:
+      oneOf:
+      - const: brand
+        title: BRAND
+      - const: category
+        title: CATEGORY
+      - const: location_group
+        title: LOCATION_GROUP
+      type: string
+      enum:
+      - brand
+      - category
+      - location_group
+      title: OnPremiseLocationType
+      x-enum-varnames:
+      - BRAND
+      - CATEGORY
+      - LOCATION_GROUP
+    AdgroupStep:
+      oneOf:
+      - const: 1
+        title: OBJECTIVE
+      - const: 2
+        title: MEDIA_CHANNEL
+      - const: 3
+        title: LOCATION_AUDIENCE
+      - const: 4
+        title: PLACEMENT
+      - const: 5
+        title: BUDGET_SCHEDULE
+      - const: 6
+        title: MEASUREMENT
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      title: AdgroupStep
+      x-enum-varnames:
+      - OBJECTIVE
+      - MEDIA_CHANNEL
+      - LOCATION_AUDIENCE
+      - PLACEMENT
+      - BUDGET_SCHEDULE
+      - MEASUREMENT
+    app__api__routes__adgroups__models__PublisherCategoryModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - name
+      title: PublisherCategoryModel
+    CampaignsModel:
+      properties:
+        total_count:
+          type: integer
+          title: Total Count
+        limit:
+          type: integer
+          title: Limit
+        page_num:
+          type: integer
+          title: Page Num
+        total_pages:
+          type: integer
+          title: Total Pages
+        has_next_page:
+          type: boolean
+          title: Has Next Page
+        has_prev_page:
+          type: boolean
+          title: Has Prev Page
+        items:
+          items:
+            $ref: '#/components/schemas/CampaignModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - total_count
+      - limit
+      - page_num
+      - total_pages
+      - has_next_page
+      - has_prev_page
+      - items
+      title: CampaignsModel
+    CreatePublisherModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+      type: object
+      required:
+      - id
+      title: CreatePublisherModel
+    CreateUpdateDriveToLocationModel:
+      properties:
+        id:
+          type: string
+          title: Id
+        type:
+          $ref: '#/components/schemas/DriveToLocationType'
+      type: object
+      required:
+      - id
+      - type
+      title: CreateUpdateDriveToLocationModel
+    CreateAdPackageModel:
+      properties:
+        name:
+          type: string
+          maxLength: 256
+          minLength: 1
+          title: Name
+      type: object
+      required:
+      - name
+      title: CreateAdPackageModel
+    CreateUpdateOnPremiseLocationModel:
+      properties:
+        id:
+          type: string
+          title: Id
+        type:
+          $ref: '#/components/schemas/OnPremiseLocationType'
+        proximity:
+          anyOf:
+          - $ref: '#/components/schemas/ProximityMode'
+          - type: 'null'
+        radius:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Radius
+      type: object
+      required:
+      - id
+      - type
+      title: CreateUpdateOnPremiseLocationModel
+    LocationGroupType:
+      oneOf:
+      - const: 0
+        title: BUSINESS
+      - const: 1
+        title: RESIDENTIAL
+      type: integer
+      enum:
+      - 0
+      - 1
+      title: LocationGroupType
+      x-enum-varnames:
+      - BUSINESS
+      - RESIDENTIAL
+    Language:
+      oneOf:
+      - const: en
+        title: ENGLISH
+      - const: es
+        title: SPANISH
+      type: string
+      enum:
+      - en
+      - es
+      title: Language
+      x-enum-varnames:
+      - ENGLISH
+      - SPANISH
+    DOOHMetadataModel:
+      properties:
+        venue_type_id:
+          type: integer
+          title: Venue Type Id
+        publisher_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Publisher Name
+        num_screens:
+          type: integer
+          title: Num Screens
+        num_ad_units:
+          type: integer
+          title: Num Ad Units
+        ad_specs:
+          additionalProperties: true
+          type: object
+          title: Ad Specs
+        venue_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Venue Type
+      type: object
+      required:
+      - venue_type_id
+      - num_screens
+      - num_ad_units
+      - ad_specs
+      title: DOOHMetadataModel
+    OnPremiseLocationModel:
+      properties:
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        type:
+          $ref: '#/components/schemas/OnPremiseLocationType'
+        proximity:
+          anyOf:
+          - $ref: '#/components/schemas/ProximityMode'
+          - type: 'null'
+        radius:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Radius
+        sensitivity:
+          type: integer
+          title: Sensitivity
+        location_group_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/app__api__models__LocationGroupMetadata'
+          - type: 'null'
+      type: object
+      required:
+      - id
+      - name
+      - type
+      - proximity
+      - sensitivity
+      title: OnPremiseLocationModel
+    Status:
+      oneOf:
+      - const: 1
+        title: ACTIVE
+      - const: 2
+        title: PAUSED
+      - const: 7
+        title: INCOMPLETE
+      - const: 10
+        title: DRAFT
+      - const: 11
+        title: REJECTED
+      - const: 12
+        title: SUBMITTED
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 7
+      - 10
+      - 11
+      - 12
+      title: Status
+      x-enum-varnames:
+      - ACTIVE
+      - PAUSED
+      - INCOMPLETE
+      - DRAFT
+      - REJECTED
+      - SUBMITTED
+    LocationFilterModel-Input:
+      properties:
+        type:
+          $ref: '#/components/schemas/LocationFilterType'
+        exclude:
+          type: boolean
+          title: Exclude
+          default: false
+        city:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: City
+        state:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: State
+          description: State code
+        zip_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Zip Code
+        county:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: County
+          description: County name
+        dma:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Dma
+          description: DMA name
+        lat:
+          anyOf:
+          - type: number
+            maximum: 90.0
+            minimum: -90.0
+          - type: 'null'
+          title: Lat
+        lng:
+          anyOf:
+          - type: number
+            maximum: 180.0
+            minimum: -180.0
+          - type: 'null'
+          title: Lng
+        address:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Address
+        radius:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Radius
+      type: object
+      required:
+      - type
+      title: LocationFilterModel
+    CreateUpdateAudioStreamingGenreModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+      type: object
+      required:
+      - id
+      title: CreateUpdateAudioStreamingGenreModel
+    ProximityMode:
+      oneOf:
+      - const: in_store
+        title: IN_STORE
+      - const: on_lot
+        title: ON_LOT
+      - const: retail_block
+        title: RETAIL_BLOCK
+      - const: radial
+        title: RADIAL
+      type: string
+      enum:
+      - in_store
+      - on_lot
+      - retail_block
+      - radial
+      title: ProximityMode
+      x-enum-varnames:
+      - IN_STORE
+      - ON_LOT
+      - RETAIL_BLOCK
+      - RADIAL
+    BudgetModel-Input:
+      properties:
+        start_date:
+          type: string
+          format: date
+          title: Start Date
+        end_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: End Date
+        budget:
+          anyOf:
+          - type: number
+            minimum: 0.0
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Budget
+          description: If budget is at the campaign level, this will be 0
+      type: object
+      required:
+      - start_date
+      - end_date
+      - budget
+      title: BudgetModel
+    CampaignModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        account_id:
+          type: integer
+          title: Account Id
+        organization_id:
+          type: integer
+          title: Organization Id
+        tenant_id:
+          type: integer
+          title: Tenant Id
+        name:
+          type: string
+          title: Name
+        start_date:
+          type: string
+          format: date
+          title: Start Date
+        end_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: End Date
+        status:
+          $ref: '#/components/schemas/Status'
+        budget:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Budget
+        gross_budget:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Gross Budget
+        budget_padding:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Budget Padding
+        budget_level:
+          $ref: '#/components/schemas/BudgetLevel'
+        budget_type:
+          $ref: '#/components/schemas/BudgetType'
+        billing_source:
+          anyOf:
+          - $ref: '#/components/schemas/BillingSource'
+          - type: 'null'
+        is_cbd_enabled:
+          type: boolean
+          title: Is Cbd Enabled
+        bid_type:
+          $ref: '#/components/schemas/app__constants__BidType'
+        is_auto_reconciliation_enabled:
+          type: boolean
+          title: Is Auto Reconciliation Enabled
+        account_billing_source_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Account Billing Source Id
+        impression_frequency_cap:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Impression Frequency Cap
+        impression_frequency_cap_hours:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Impression Frequency Cap Hours
+        client_io_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Client Io Name
+        client_io_number:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Client Io Number
+        salesforce_number:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Salesforce Number
+        created_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created Date
+        updated_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated Date
+        is_political_inventory_enabled:
+          type: boolean
+          title: Is Political Inventory Enabled
+        iab_content_category:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Iab Content Category
+        account_executives:
+          items:
+            $ref: '#/components/schemas/CampaignUserModel'
+          type: array
+          title: Account Executives
+        account_managers:
+          items:
+            $ref: '#/components/schemas/CampaignUserModel'
+          type: array
+          title: Account Managers
+        campaign_managers:
+          items:
+            $ref: '#/components/schemas/CampaignUserModel'
+          type: array
+          title: Campaign Managers
+        publisher_domains:
+          items:
+            $ref: '#/components/schemas/PublisherDomainModel'
+          type: array
+          title: Publisher Domains
+        app_bundles:
+          items:
+            $ref: '#/components/schemas/AppBundleModel'
+          type: array
+          title: App Bundles
+        enable_brand_safe_publishers:
+          type: boolean
+          title: Enable Brand Safe Publishers
+          default: true
+        quickstart_step:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Quickstart Step
+      type: object
+      required:
+      - id
+      - account_id
+      - organization_id
+      - tenant_id
+      - name
+      - start_date
+      - status
+      - budget_level
+      - budget_type
+      - is_cbd_enabled
+      - bid_type
+      - is_auto_reconciliation_enabled
+      - is_political_inventory_enabled
+      title: CampaignModel
+    CampaignUserModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        email:
+          type: string
+          title: Email
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - email
+      - name
+      title: CampaignUserModel
+    NeighborhoodType:
+      oneOf:
+      - const: business
+        title: BUSINESS
+      - const: residential
+        title: RESIDENTIAL
+      type: string
+      enum:
+      - business
+      - residential
+      title: NeighborhoodType
+      x-enum-varnames:
+      - BUSINESS
+      - RESIDENTIAL
+    LocationFilterModel-Output:
+      properties:
+        type:
+          $ref: '#/components/schemas/LocationFilterType'
+        exclude:
+          type: boolean
+          title: Exclude
+          default: false
+        city:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: City
+        state:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: State
+          description: State code
+        zip_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Zip Code
+        county:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: County
+          description: County name
+        dma:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Dma
+          description: DMA name
+        lat:
+          anyOf:
+          - type: number
+            maximum: 90.0
+            minimum: -90.0
+          - type: 'null'
+          title: Lat
+        lng:
+          anyOf:
+          - type: number
+            maximum: 180.0
+            minimum: -180.0
+          - type: 'null'
+          title: Lng
+        address:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Address
+        radius:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Radius
+        display_name:
+          type: string
+          title: Display Name
+          readOnly: true
+      type: object
+      required:
+      - type
+      - display_name
+      title: LocationFilterModel
+    CampaignAndAdgroupsModel:
+      properties:
+        campaign:
+          $ref: '#/components/schemas/CampaignModel'
+        adgroups:
+          items:
+            $ref: '#/components/schemas/AdgroupModel'
+          type: array
+          title: Adgroups
+      type: object
+      required:
+      - campaign
+      - adgroups
+      title: CampaignAndAdgroupsModel
+    MobileCarrierCode:
+      oneOf:
+      - const: ALLTEL
+        title: ALLTEL
+      - const: APPLCHN
+        title: APPALACHIAN_WIRELESS
+      - const: ATT
+        title: ATT
+      - const: BLUEGRASS
+        title: BLUEGRASS_CELLULAR
+      - const: CINCINNATI
+        title: CINCINNATI_BELL
+      - const: CORR
+        title: CORR_WIRELESS
+      - const: CRICKET
+        title: CRICKET
+      - const: METROPCS
+        title: METRO_PCS
+      - const: PLATEAU
+        title: PLATEAU_WIRELESS
+      - const: SIMMETRY
+        title: SIMMETRY
+      - const: SPRINT
+        title: SPRINT
+      - const: TMOBILE
+        title: TMOBILE
+      - const: USCELLULAR
+        title: US_CELLULAR
+      - const: VERIZON
+        title: VERIZON_WIRELESS
+      - const: WIFI
+        title: WIFI
+      type: string
+      enum:
+      - ALLTEL
+      - APPLCHN
+      - ATT
+      - BLUEGRASS
+      - CINCINNATI
+      - CORR
+      - CRICKET
+      - METROPCS
+      - PLATEAU
+      - SIMMETRY
+      - SPRINT
+      - TMOBILE
+      - USCELLULAR
+      - VERIZON
+      - WIFI
+      title: MobileCarrierCode
+      x-enum-varnames:
+      - ALLTEL
+      - APPALACHIAN_WIRELESS
+      - ATT
+      - BLUEGRASS_CELLULAR
+      - CINCINNATI_BELL
+      - CORR_WIRELESS
+      - CRICKET
+      - METRO_PCS
+      - PLATEAU_WIRELESS
+      - SIMMETRY
+      - SPRINT
+      - TMOBILE
+      - US_CELLULAR
+      - VERIZON_WIRELESS
+      - WIFI
+    CreateUpdateCampaignUserModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+      type: object
+      required:
+      - id
+      title: CreateUpdateCampaignUserModel
+    CampaignBudgetType:
+      oneOf:
+      - const: 0
+        title: LIFETIME
+      - const: 3
+        title: DAILY
+      type: integer
+      enum:
+      - 0
+      - 3
+      title: CampaignBudgetType
+      x-enum-varnames:
+      - LIFETIME
+      - DAILY
+    CreateUpdateAudioPodcastTopicModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+      type: object
+      required:
+      - id
+      title: CreateUpdateAudioPodcastTopicModel
+    CreateUpdateCTVPremiumCategoryModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+      type: object
+      required:
+      - id
+      title: CreateUpdateCTVPremiumCategoryModel
+    CampaignDashboardStatus:
+      oneOf:
+      - const: active
+        title: ACTIVE
+      - const: paused
+        title: PAUSED
+      - const: pending
+        title: PENDING
+      - const: expired
+        title: EXPIRED
+      type: string
+      enum:
+      - active
+      - paused
+      - pending
+      - expired
+      title: CampaignDashboardStatus
+      x-enum-varnames:
+      - ACTIVE
+      - PAUSED
+      - PENDING
+      - EXPIRED
+    app__api__routes__adgroups__models__PublisherModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - name
+      title: PublisherModel
+    app__api__models__LocationGroupMetadata:
+      properties:
+        type:
+          anyOf:
+          - $ref: '#/components/schemas/LocationGroupType'
+          - type: 'null'
+        url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Url
+        accepted:
+          type: integer
+          title: Accepted
+          default: 0
+        rejected:
+          type: integer
+          title: Rejected
+          default: 0
+        invalid:
+          type: integer
+          title: Invalid
+          default: 0
+        conflict:
+          type: integer
+          title: Conflict
+          default: 0
+        build_status:
+          anyOf:
+          - $ref: '#/components/schemas/LocationGroupBuildStatus'
+          - type: 'null'
+          description: Audience or neighborhood build pipeline state. If the API is unrelated to audiences and neighborhoods (e.g. /search/drive_to_locations), this will be null.
+        is_sensitive:
+          type: boolean
+          title: Is Sensitive
+          description: True if any of the POIs in the location group are deemed sensitive.
+          default: false
+      type: object
+      title: LocationGroupMetadata
+    CreateUpdatePublisherCategoryModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+      type: object
+      required:
+      - id
+      title: CreateUpdatePublisherCategoryModel
+    TrackingPixelModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        hashcode:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hashcode
+      type: object
+      required:
+      - id
+      - name
+      title: TrackingPixelModel
+    LookalikeAudienceScale:
+      oneOf:
+      - const: 1
+        title: SCALE_2X
+      - const: 3
+        title: SCALE_4X
+      - const: 5
+        title: SCALE_6X
+      - const: 9
+        title: SCALE_10X
+      type: integer
+      enum:
+      - 1
+      - 3
+      - 5
+      - 9
+      title: LookalikeAudienceScale
+      x-enum-varnames:
+      - SCALE_2X
+      - SCALE_4X
+      - SCALE_6X
+      - SCALE_10X
+    Sensitivity:
+      oneOf:
+      - const: 0
+        title: WHITELIST
+      - const: 1
+        title: GRAYLIST
+      - const: 2
+        title: SEMI_SENSITIVE
+      - const: 3
+        title: BLACKLIST
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      title: Sensitivity
+      x-enum-varnames:
+      - WHITELIST
+      - GRAYLIST
+      - SEMI_SENSITIVE
+      - BLACKLIST
+    CreateCampaignModel:
+      properties:
+        name:
+          type: string
+          maxLength: 256
+          minLength: 1
+          title: Name
+        budget:
+          anyOf:
+          - type: number
+            exclusiveMaximum: 1000000.0
+            exclusiveMinimum: 0.0
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Budget
+        budget_padding:
+          anyOf:
+          - type: number
+            exclusiveMaximum: 100000000.0
+            minimum: 0.0
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Budget Padding
+        budget_level:
+          $ref: '#/components/schemas/BudgetLevel'
+        budget_type:
+          $ref: '#/components/schemas/CampaignBudgetType'
+        billing_source:
+          $ref: '#/components/schemas/BillingSource'
+          default: 1
+        is_auto_reconciliation_enabled:
+          type: boolean
+          title: Is Auto Reconciliation Enabled
+          default: false
+        account_billing_source_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Account Billing Source Id
+        impression_frequency_cap:
+          anyOf:
+          - type: integer
+            exclusiveMaximum: 128.0
+            exclusiveMinimum: 0.0
+          - type: 'null'
+          title: Impression Frequency Cap
+        impression_frequency_cap_hours:
+          anyOf:
+          - type: integer
+            exclusiveMaximum: 32768.0
+            exclusiveMinimum: 0.0
+          - type: 'null'
+          title: Impression Frequency Cap Hours
+        client_io_name:
+          anyOf:
+          - type: string
+            maxLength: 500
+            minLength: 1
+          - type: 'null'
+          title: Client Io Name
+        client_io_number:
+          anyOf:
+          - type: string
+            maxLength: 128
+            minLength: 1
+          - type: 'null'
+          title: Client Io Number
+        salesforce_number:
+          anyOf:
+          - type: string
+            maxLength: 16
+            minLength: 1
+          - type: 'null'
+          title: Salesforce Number
+        is_cbd_enabled:
+          type: boolean
+          title: Is Cbd Enabled
+          default: false
+        bid_type:
+          $ref: '#/components/schemas/app__constants__BidType'
+          default: CPM
+        is_political_inventory_enabled:
+          type: boolean
+          title: Is Political Inventory Enabled
+          default: false
+        iab_content_category:
+          anyOf:
+          - type: string
+            maxLength: 10
+            minLength: 1
+          - type: 'null'
+          title: Iab Content Category
+        account_executives:
+          items:
+            $ref: '#/components/schemas/CreateUpdateCampaignUserModel'
+          type: array
+          title: Account Executives
+        account_managers:
+          items:
+            $ref: '#/components/schemas/CreateUpdateCampaignUserModel'
+          type: array
+          title: Account Managers
+        campaign_managers:
+          items:
+            $ref: '#/components/schemas/CreateUpdateCampaignUserModel'
+          type: array
+          title: Campaign Managers
+        publisher_domains:
+          items:
+            $ref: '#/components/schemas/PublisherDomainModel'
+          type: array
+          title: Publisher Domains
+        app_bundles:
+          items:
+            $ref: '#/components/schemas/AppBundleModel'
+          type: array
+          title: App Bundles
+        enable_brand_safe_publishers:
+          type: boolean
+          title: Enable Brand Safe Publishers
+          default: true
+        is_quickstart:
+          type: boolean
+          title: Is Quickstart
+          default: false
+      type: object
+      required:
+      - name
+      - budget_level
+      - budget_type
+      title: CreateCampaignModel
+    BudgetLevel:
+      oneOf:
+      - const: campaign
+        title: CAMPAIGN
+      - const: adgroup
+        title: ADGROUP
+      type: string
+      enum:
+      - campaign
+      - adgroup
+      title: BudgetLevel
+      x-enum-varnames:
+      - CAMPAIGN
+      - ADGROUP
+    DriveToLocationType:
+      oneOf:
+      - const: brand
+        title: BRAND
+      - const: location_group
+        title: LOCATION_GROUP
+      type: string
+      enum:
+      - brand
+      - location_group
+      title: DriveToLocationType
+      x-enum-varnames:
+      - BRAND
+      - LOCATION_GROUP
+    PublisherDomainModel:
+      properties:
+        domain:
+          type: string
+          minLength: 1
+          title: Domain
+        exclude:
+          type: boolean
+          title: Exclude
+      type: object
+      required:
+      - domain
+      - exclude
+      title: PublisherDomainModel
+    PacingMode:
+      oneOf:
+      - const: 0
+        title: DEFAULT
+      - const: 1
+        title: ACCELERATED
+      - const: 2
+        title: ASAP
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      title: PacingMode
+      x-enum-varnames:
+      - DEFAULT
+      - ACCELERATED
+      - ASAP
+    CreateNeighborhoodModel:
+      properties:
+        id:
+          type: string
+          title: Id
+        type:
+          $ref: '#/components/schemas/NeighborhoodTargetType'
+      type: object
+      required:
+      - id
+      - type
+      title: CreateNeighborhoodModel
+    ThirdPartyAudienceStatus:
+      oneOf:
+      - const: Ready
+        title: READY
+      - const: Building
+        title: BUILDING
+      - const: Available
+        title: AVAILABLE
+      type: string
+      enum:
+      - Ready
+      - Building
+      - Available
+      title: ThirdPartyAudienceStatus
+      x-enum-varnames:
+      - READY
+      - BUILDING
+      - AVAILABLE
+    ExportCampaignsDashboardRequestModel:
+      properties:
+        sort_by:
+          $ref: '#/components/schemas/CampaignDashboardSortField'
+          default: name
+        sort_order:
+          $ref: '#/components/schemas/SortOrder'
+          default: asc
+        start_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Start Date
+        end_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: End Date
+        statuses:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CampaignDashboardStatus'
+            type: array
+          - type: 'null'
+          title: Statuses
+        account_ids:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Account Ids
+        organization_ids:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Organization Ids
+        objectives:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Objective'
+            type: array
+          - type: 'null'
+          title: Objectives
+        search:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Search
+        columns:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CampaignsDashboardExportColumn'
+            type: array
+          - type: 'null'
+          title: Columns
+        included_campaign_ids:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Included Campaign Ids
+        excluded_campaign_ids:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Excluded Campaign Ids
+      type: object
+      title: ExportCampaignsDashboardRequestModel
+    BillabilityType:
+      oneOf:
+      - const: 0
+        title: BILLABLE
+      - const: 1
+        title: ADDED_VALUE
+      - const: 2
+        title: MAKE_GOOD
+      - const: 3
+        title: SURVEY
+      - const: 4
+        title: TEST
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      title: BillabilityType
+      x-enum-varnames:
+      - BILLABLE
+      - ADDED_VALUE
+      - MAKE_GOOD
+      - SURVEY
+      - TEST
+    app__api__routes__adgroups__constants__AudienceType:
+      oneOf:
+      - const: behavior
+        title: BEHAVIOR
+      - const: custom_audience
+        title: CUSTOM_AUDIENCE
+      - const: segment
+        title: SEGMENT
+      - const: brand
+        title: BRAND
+      - const: category
+        title: CATEGORY
+      - const: location_group
+        title: LOCATION_GROUP
+      - const: third_party
+        title: THIRD_PARTY
+      type: string
+      enum:
+      - behavior
+      - custom_audience
+      - segment
+      - brand
+      - category
+      - location_group
+      - third_party
+      title: AudienceType
+      x-enum-varnames:
+      - BEHAVIOR
+      - CUSTOM_AUDIENCE
+      - SEGMENT
+      - BRAND
+      - CATEGORY
+      - LOCATION_GROUP
+      - THIRD_PARTY
+    CampaignDashboardSortField:
+      oneOf:
+      - const: name
+        title: NAME
+      - const: id
+        title: ID
+      - const: account_id
+        title: ACCOUNT_ID
+      - const: account_name
+        title: ACCOUNT_NAME
+      - const: organization_id
+        title: ORGANIZATION_ID
+      - const: organization_name
+        title: ORGANIZATION_NAME
+      - const: status
+        title: STATUS
+      - const: days_remaining
+        title: DAYS_REMAINING
+      - const: start_date
+        title: START_DATE
+      - const: end_date
+        title: END_DATE
+      - const: salesforce_number
+        title: SALESFORCE_NUMBER
+      - const: budget
+        title: BUDGET
+      - const: pacing
+        title: PACING
+      type: string
+      enum:
+      - name
+      - id
+      - account_id
+      - account_name
+      - organization_id
+      - organization_name
+      - status
+      - days_remaining
+      - start_date
+      - end_date
+      - salesforce_number
+      - budget
+      - pacing
+      title: CampaignDashboardSortField
+      x-enum-varnames:
+      - NAME
+      - ID
+      - ACCOUNT_ID
+      - ACCOUNT_NAME
+      - ORGANIZATION_ID
+      - ORGANIZATION_NAME
+      - STATUS
+      - DAYS_REMAINING
+      - START_DATE
+      - END_DATE
+      - SALESFORCE_NUMBER
+      - BUDGET
+      - PACING
+    app__api__routes__adgroups__models__CTVPremiumCategoryModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - name
+      title: CTVPremiumCategoryModel
+    AdPackageModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - name
+      title: AdPackageModel
+    CreateUpdateAdPackageModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+      type: object
+      required:
+      - id
+      title: CreateUpdateAdPackageModel
+    AppBundleModel:
+      properties:
+        bundle:
+          type: string
+          minLength: 1
+          title: Bundle
+        exclude:
+          type: boolean
+          title: Exclude
+      type: object
+      required:
+      - bundle
+      - exclude
+      title: AppBundleModel
+    ExchangeBidType:
+      oneOf:
+      - const: cpm
+        title: CPM
+      - const: cpc
+        title: CPC
+      type: string
+      enum:
+      - cpm
+      - cpc
+      title: ExchangeBidType
+      x-enum-varnames:
+      - CPM
+      - CPC
+    app__api__routes__adgroups__models__AudioStreamingGenreModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - name
+      title: AudioStreamingGenreModel
+    BudgetModel-Output:
+      properties:
+        start_date:
+          type: string
+          format: date
+          title: Start Date
+        end_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: End Date
+        budget:
+          type: string
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Budget
+          description: If budget is at the campaign level, this will be 0
+      type: object
+      required:
+      - start_date
+      - end_date
+      - budget
+      title: BudgetModel
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    NeighborhoodTargetType:
+      oneOf:
+      - const: behavior
+        title: BEHAVIOR
+      - const: brand
+        title: BRAND
+      - const: category
+        title: CATEGORY
+      - const: location_group
+        title: LOCATION_GROUP
+      type: string
+      enum:
+      - behavior
+      - brand
+      - category
+      - location_group
+      title: NeighborhoodTargetType
+      x-enum-varnames:
+      - BEHAVIOR
+      - BRAND
+      - CATEGORY
+      - LOCATION_GROUP
+    CampaignsDashboardModel:
+      properties:
+        total_count:
+          type: integer
+          title: Total Count
+        limit:
+          type: integer
+          title: Limit
+        page_num:
+          type: integer
+          title: Page Num
+        total_pages:
+          type: integer
+          title: Total Pages
+        has_next_page:
+          type: boolean
+          title: Has Next Page
+        has_prev_page:
+          type: boolean
+          title: Has Prev Page
+        items:
+          items:
+            $ref: '#/components/schemas/CampaignDashboardItemModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - total_count
+      - limit
+      - page_num
+      - total_pages
+      - has_next_page
+      - has_prev_page
+      - items
+      title: CampaignsDashboardModel
   securitySchemes:
     api-key:
       type: apiKey

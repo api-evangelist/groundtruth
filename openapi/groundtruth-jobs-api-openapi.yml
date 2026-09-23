@@ -3,9 +3,6 @@ info:
   title: Ads Manager Jobs API
   description: Ads Manager API
   version: 1.0.0
-servers:
-- url: https://api-public.groundtruth.com
-  description: Production
 tags:
 - name: Jobs
 paths:
@@ -624,126 +621,40 @@ paths:
           description: Internal Server Error
 components:
   schemas:
-    LocationFiltersModel:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/LocationFilterModel-Output'
-          type: array
-          title: Items
-      type: object
-      required:
-      - items
-      title: LocationFiltersModel
-    JobModel:
-      properties:
-        job_id:
-          type: integer
-          title: Job Id
-        type:
-          $ref: '#/components/schemas/UploadJobType'
-        status:
-          $ref: '#/components/schemas/JobStatus'
-        message:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Message
-        input_file_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Input File Url
-          description: Instead of a URL, this can sometimes be a path
-        output_file_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Output File Url
-          description: Instead of a URL, this can sometimes be a path
-        progress:
-          anyOf:
-          - type: number
-            maximum: 100.0
-            minimum: 0.0
-          - type: 'null'
-          title: Progress
-        account_id:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Account Id
-        campaign_id:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Campaign Id
-        adgroup_id:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Adgroup Id
-        creative_id:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Creative Id
-      type: object
-      required:
-      - job_id
-      - type
-      - status
-      - message
-      - input_file_url
-      - output_file_url
-      - account_id
-      - campaign_id
-      - adgroup_id
-      - creative_id
-      title: JobModel
-    ErrorModel:
-      properties:
-        code:
-          type: string
-          title: Code
-        message:
-          type: string
-          title: Message
-        fields:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Fields
-      type: object
-      required:
-      - code
-      - message
-      - fields
-      title: ErrorModel
-    ErrorResponseModel:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorModel'
-          type: array
-          title: Errors
-      type: object
-      required:
-      - errors
-      title: ErrorResponseModel
-    JobsModel:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/JobModel'
-          type: array
-          title: Items
-      type: object
-      required:
-      - items
-      title: JobsModel
+    LocationFilterType:
+      oneOf:
+      - const: City
+        title: CITY
+      - const: State
+        title: STATE
+      - const: Zip
+        title: ZIP_CODE
+      - const: DMA
+        title: DMA
+      - const: County
+        title: COUNTY
+      - const: LatLng
+        title: LAT_LNG
+      - const: Address
+        title: ADDRESS
+      type: string
+      enum:
+      - City
+      - State
+      - Zip
+      - DMA
+      - County
+      - LatLng
+      - Address
+      title: LocationFilterType
+      x-enum-varnames:
+      - CITY
+      - STATE
+      - ZIP_CODE
+      - DMA
+      - COUNTY
+      - LAT_LNG
+      - ADDRESS
     LocationFilterModel-Output:
       properties:
         type:
@@ -813,40 +724,73 @@ components:
       - type
       - display_name
       title: LocationFilterModel
-    LocationFilterType:
-      oneOf:
-      - const: City
-        title: CITY
-      - const: State
-        title: STATE
-      - const: Zip
-        title: ZIP_CODE
-      - const: DMA
-        title: DMA
-      - const: County
-        title: COUNTY
-      - const: LatLng
-        title: LAT_LNG
-      - const: Address
-        title: ADDRESS
-      type: string
-      enum:
-      - City
-      - State
-      - Zip
-      - DMA
-      - County
-      - LatLng
-      - Address
-      title: LocationFilterType
-      x-enum-varnames:
-      - CITY
-      - STATE
-      - ZIP_CODE
-      - DMA
-      - COUNTY
-      - LAT_LNG
-      - ADDRESS
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
+    CreateCampaignBulkDownloadJobRequestModel:
+      properties:
+        campaign_ids:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+            uniqueItems: true
+          - type: 'null'
+          title: Campaign Ids
+      type: object
+      title: CreateCampaignBulkDownloadJobRequestModel
+    LocationFiltersModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/LocationFilterModel-Output'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: LocationFiltersModel
+    CreateLocationFilterTargetBulkUploadJobModel:
+      properties:
+        input_file_url:
+          type: string
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          title: Input File Url
+      type: object
+      required:
+      - input_file_url
+      title: CreateLocationFilterTargetBulkUploadJobModel
     JobStatus:
       oneOf:
       - const: 0
@@ -881,18 +825,6 @@ components:
       - CANCELLED
       - CONFIRMED
       - EXPIRED
-    CreateCampaignBulkDownloadJobRequestModel:
-      properties:
-        campaign_ids:
-          anyOf:
-          - items:
-              type: integer
-            type: array
-            uniqueItems: true
-          - type: 'null'
-          title: Campaign Ids
-      type: object
-      title: CreateCampaignBulkDownloadJobRequestModel
     SuccessResponseModel:
       properties:
         success:
@@ -943,18 +875,83 @@ components:
       - WAYMARK_VIDEO
       - CAMPAIGN_BULK_DOWNLOAD
       - CAMPAIGN_BULK_UPLOAD_V2
-    CreateLocationFilterTargetBulkUploadJobModel:
+    JobModel:
       properties:
+        job_id:
+          type: integer
+          title: Job Id
+        type:
+          $ref: '#/components/schemas/UploadJobType'
+        status:
+          $ref: '#/components/schemas/JobStatus'
+        message:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Message
         input_file_url:
-          type: string
-          maxLength: 2083
-          minLength: 1
-          format: uri
+          anyOf:
+          - type: string
+          - type: 'null'
           title: Input File Url
+          description: Instead of a URL, this can sometimes be a path
+        output_file_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Output File Url
+          description: Instead of a URL, this can sometimes be a path
+        progress:
+          anyOf:
+          - type: number
+            maximum: 100.0
+            minimum: 0.0
+          - type: 'null'
+          title: Progress
+        account_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Account Id
+        campaign_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Campaign Id
+        adgroup_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Adgroup Id
+        creative_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Creative Id
       type: object
       required:
+      - job_id
+      - type
+      - status
+      - message
       - input_file_url
-      title: CreateLocationFilterTargetBulkUploadJobModel
+      - output_file_url
+      - account_id
+      - campaign_id
+      - adgroup_id
+      - creative_id
+      title: JobModel
+    JobsModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/JobModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: JobsModel
   securitySchemes:
     api-key:
       type: apiKey

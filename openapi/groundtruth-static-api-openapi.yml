@@ -3,9 +3,6 @@ info:
   title: Ads Manager Static API
   description: Ads Manager API
   version: 1.0.0
-servers:
-- url: https://api-public.groundtruth.com
-  description: Production
 tags:
 - name: Static
 paths:
@@ -617,17 +614,57 @@ paths:
           description: Internal Server Error
 components:
   schemas:
-    AudioStreamingGenresModel:
+    CityModel:
+      properties:
+        name:
+          type: string
+          title: Name
+        state_code:
+          type: string
+          title: State Code
+      type: object
+      required:
+      - name
+      - state_code
+      title: CityModel
+    app__api__routes__static__models__PublisherModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        tier:
+          $ref: '#/components/schemas/PublisherTier'
+      type: object
+      required:
+      - id
+      - name
+      - tier
+      title: PublisherModel
+    PublishersModel:
       properties:
         items:
           items:
-            $ref: '#/components/schemas/app__api__routes__static__models__AudioStreamingGenreModel'
+            $ref: '#/components/schemas/app__api__routes__static__models__PublisherModel'
           type: array
           title: Items
       type: object
       required:
       - items
-      title: AudioStreamingGenresModel
+      title: PublishersModel
+    CitiesModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CityModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: CitiesModel
     app__api__routes__static__models__CTVPremiumCategoryModel:
       properties:
         id:
@@ -647,40 +684,6 @@ components:
       - name
       - apps
       title: CTVPremiumCategoryModel
-    CTVAppModel:
-      properties:
-        name:
-          type: string
-          title: Name
-        logo_url:
-          type: string
-          title: Logo Url
-      type: object
-      required:
-      - name
-      - logo_url
-      title: CTVAppModel
-    ErrorModel:
-      properties:
-        code:
-          type: string
-          title: Code
-        message:
-          type: string
-          title: Message
-        fields:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Fields
-      type: object
-      required:
-      - code
-      - message
-      - fields
-      title: ErrorModel
     app__api__routes__static__models__AudioStreamingGenreModel:
       properties:
         id:
@@ -711,6 +714,23 @@ components:
       - id
       - name
       title: AccountVerticalModel
+    app__api__routes__static__models__StreamingVideoContentCategoryModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        icon:
+          type: string
+          title: Icon
+      type: object
+      required:
+      - id
+      - name
+      - icon
+      title: StreamingVideoContentCategoryModel
     IABCategoriesResponseModel:
       properties:
         items:
@@ -722,30 +742,17 @@ components:
       required:
       - items
       title: IABCategoriesResponseModel
-    AccountVerticalsModel:
+    CTVPremiumCategoriesModel:
       properties:
         items:
           items:
-            $ref: '#/components/schemas/AccountVerticalModel'
+            $ref: '#/components/schemas/app__api__routes__static__models__CTVPremiumCategoryModel'
           type: array
           title: Items
       type: object
       required:
       - items
-      title: AccountVerticalsModel
-    CityModel:
-      properties:
-        name:
-          type: string
-          title: Name
-        state_code:
-          type: string
-          title: State Code
-      type: object
-      required:
-      - name
-      - state_code
-      title: CityModel
+      title: CTVPremiumCategoriesModel
     app__api__routes__static__models__AudioPodcastTopicModel:
       properties:
         id:
@@ -771,93 +778,17 @@ components:
       - icon
       - color
       title: AudioPodcastTopicModel
-    CitiesModel:
+    StreamingVideoContentCategoriesModel:
       properties:
         items:
           items:
-            $ref: '#/components/schemas/CityModel'
+            $ref: '#/components/schemas/app__api__routes__static__models__StreamingVideoContentCategoryModel'
           type: array
           title: Items
       type: object
       required:
       - items
-      title: CitiesModel
-    PublisherCategoriesModel:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/app__api__routes__static__models__PublisherCategoryModel'
-          type: array
-          title: Items
-      type: object
-      required:
-      - items
-      title: PublisherCategoriesModel
-    ErrorResponseModel:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorModel'
-          type: array
-          title: Errors
-      type: object
-      required:
-      - errors
-      title: ErrorResponseModel
-    DMAModel:
-      properties:
-        code:
-          type: string
-          title: Code
-        name:
-          type: string
-          title: Name
-      type: object
-      required:
-      - code
-      - name
-      title: DMAModel
-    app__api__routes__static__models__StreamingVideoContentCategoryModel:
-      properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-        icon:
-          type: string
-          title: Icon
-      type: object
-      required:
-      - id
-      - name
-      - icon
-      title: StreamingVideoContentCategoryModel
-    PublishersModel:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/app__api__routes__static__models__PublisherModel'
-          type: array
-          title: Items
-      type: object
-      required:
-      - items
-      title: PublishersModel
-    MobileCarrierModel:
-      properties:
-        code:
-          type: string
-          title: Code
-        name:
-          type: string
-          title: Name
-      type: object
-      required:
-      - code
-      - name
-      title: MobileCarrierModel
+      title: StreamingVideoContentCategoriesModel
     app__api__routes__static__models__PublisherCategoryModel:
       properties:
         id:
@@ -875,6 +806,19 @@ components:
       - name
       - icon
       title: PublisherCategoryModel
+    MobileCarrierModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - code
+      - name
+      title: MobileCarrierModel
     PublisherTier:
       oneOf:
       - const: 4
@@ -889,83 +833,6 @@ components:
       x-enum-varnames:
       - EXCHANGE
       - CUSTOM
-    MobileCarriersModel:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/MobileCarrierModel'
-          type: array
-          title: Items
-      type: object
-      required:
-      - items
-      title: MobileCarriersModel
-    app__api__routes__static__models__PublisherModel:
-      properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-        tier:
-          $ref: '#/components/schemas/PublisherTier'
-      type: object
-      required:
-      - id
-      - name
-      - tier
-      title: PublisherModel
-    StateModel:
-      properties:
-        id:
-          type: integer
-          title: Id
-        code:
-          type: string
-          title: Code
-        name:
-          type: string
-          title: Name
-      type: object
-      required:
-      - id
-      - code
-      - name
-      title: StateModel
-    AudioPodcastTopicsModel:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/app__api__routes__static__models__AudioPodcastTopicModel'
-          type: array
-          title: Items
-      type: object
-      required:
-      - items
-      title: AudioPodcastTopicsModel
-    DMAsModel:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/DMAModel'
-          type: array
-          title: Items
-      type: object
-      required:
-      - items
-      title: DMAsModel
-    StreamingVideoContentCategoriesModel:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/app__api__routes__static__models__StreamingVideoContentCategoryModel'
-          type: array
-          title: Items
-      type: object
-      required:
-      - items
-      title: StreamingVideoContentCategoriesModel
     StatesModel:
       properties:
         items:
@@ -977,6 +844,54 @@ components:
       required:
       - items
       title: StatesModel
+    CTVAppModel:
+      properties:
+        name:
+          type: string
+          title: Name
+        logo_url:
+          type: string
+          title: Logo Url
+      type: object
+      required:
+      - name
+      - logo_url
+      title: CTVAppModel
+    DMAModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - code
+      - name
+      title: DMAModel
+    AccountVerticalsModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/AccountVerticalModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: AccountVerticalsModel
+    DMAsModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/DMAModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: DMAsModel
     IABCategoryModel:
       properties:
         id:
@@ -1001,17 +916,99 @@ components:
       - category
       - name
       title: IABCategoryModel
-    CTVPremiumCategoriesModel:
+    AudioStreamingGenresModel:
       properties:
         items:
           items:
-            $ref: '#/components/schemas/app__api__routes__static__models__CTVPremiumCategoryModel'
+            $ref: '#/components/schemas/app__api__routes__static__models__AudioStreamingGenreModel'
           type: array
           title: Items
       type: object
       required:
       - items
-      title: CTVPremiumCategoriesModel
+      title: AudioStreamingGenresModel
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
+    PublisherCategoriesModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/app__api__routes__static__models__PublisherCategoryModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: PublisherCategoriesModel
+    StateModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        code:
+          type: string
+          title: Code
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - code
+      - name
+      title: StateModel
+    MobileCarriersModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/MobileCarrierModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: MobileCarriersModel
+    AudioPodcastTopicsModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/app__api__routes__static__models__AudioPodcastTopicModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: AudioPodcastTopicsModel
   securitySchemes:
     api-key:
       type: apiKey

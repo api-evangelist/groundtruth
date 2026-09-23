@@ -1,0 +1,27 @@
+# Front Door AI Index — groundtruth — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: groundtruth
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.groundtruth.com
+  final_host: www.groundtruth.com
+  ownership: own
+  owner: groundtruth
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 3
+  host_score: 3
+  density: 4.02
+  words: 746
+  tiers:
+    agentic: 0
+    core: 3
+    model: 0
+  ambiguous: 9
+  top_terms:
+    intelligence: 6
+    AI: 3
+    predictive: 3

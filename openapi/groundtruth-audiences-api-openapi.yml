@@ -3,9 +3,6 @@ info:
   title: Ads Manager Audiences API
   description: Ads Manager API
   version: 1.0.0
-servers:
-- url: https://api-public.groundtruth.com
-  description: Production
 tags:
 - name: Audiences
 paths:
@@ -139,6 +136,54 @@ paths:
           description: Internal Server Error
 components:
   schemas:
+    app__services__audience__types__AudienceType:
+      properties:
+        name:
+          type: string
+          title: Name
+        categories:
+          items:
+            $ref: '#/components/schemas/DetailedAudienceCategory'
+          type: array
+          title: Categories
+      type: object
+      required:
+      - name
+      - categories
+      title: AudienceType
+    Sensitivity:
+      oneOf:
+      - const: 0
+        title: WHITELIST
+      - const: 1
+        title: GRAYLIST
+      - const: 2
+        title: SEMI_SENSITIVE
+      - const: 3
+        title: BLACKLIST
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      title: Sensitivity
+      x-enum-varnames:
+      - WHITELIST
+      - GRAYLIST
+      - SEMI_SENSITIVE
+      - BLACKLIST
+    AudienceTaxonomy:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/app__services__audience__types__AudienceType'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: AudienceTaxonomy
     ErrorModel:
       properties:
         code:
@@ -160,20 +205,6 @@ components:
       - message
       - fields
       title: ErrorModel
-    LocationGroupType:
-      oneOf:
-      - const: 0
-        title: BUSINESS
-      - const: 1
-        title: RESIDENTIAL
-      type: integer
-      enum:
-      - 0
-      - 1
-      title: LocationGroupType
-      x-enum-varnames:
-      - BUSINESS
-      - RESIDENTIAL
     ErrorResponseModel:
       properties:
         errors:
@@ -216,51 +247,6 @@ components:
       - description
       - audiences
       title: DetailedAudienceCategory
-    app__services__audience__types__AudienceType:
-      properties:
-        name:
-          type: string
-          title: Name
-        categories:
-          items:
-            $ref: '#/components/schemas/DetailedAudienceCategory'
-          type: array
-          title: Categories
-      type: object
-      required:
-      - name
-      - categories
-      title: AudienceType
-    LocationGroupBuildStatus:
-      oneOf:
-      - const: not_required
-        title: NOT_REQUIRED
-      - const: initial
-        title: INITIAL
-      - const: in_progress
-        title: IN_PROGRESS
-      - const: updating
-        title: UPDATING
-      - const: ready
-        title: READY
-      - const: expired
-        title: EXPIRED
-      type: string
-      enum:
-      - not_required
-      - initial
-      - in_progress
-      - updating
-      - ready
-      - expired
-      title: LocationGroupBuildStatus
-      x-enum-varnames:
-      - NOT_REQUIRED
-      - INITIAL
-      - IN_PROGRESS
-      - UPDATING
-      - READY
-      - EXPIRED
     app__services__audience__types__LocationGroupMetadata:
       properties:
         type:
@@ -300,50 +286,6 @@ components:
       - build_status
       - is_sensitive
       title: LocationGroupMetadata
-    AudienceRecommendationsModel:
-      properties:
-        recommendations:
-          items:
-            $ref: '#/components/schemas/Audience'
-          type: array
-          title: Recommendations
-      type: object
-      required:
-      - recommendations
-      title: AudienceRecommendationsModel
-    AudienceTaxonomy:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/app__services__audience__types__AudienceType'
-          type: array
-          title: Items
-      type: object
-      required:
-      - items
-      title: AudienceTaxonomy
-    Sensitivity:
-      oneOf:
-      - const: 0
-        title: WHITELIST
-      - const: 1
-        title: GRAYLIST
-      - const: 2
-        title: SEMI_SENSITIVE
-      - const: 3
-        title: BLACKLIST
-      type: integer
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      title: Sensitivity
-      x-enum-varnames:
-      - WHITELIST
-      - GRAYLIST
-      - SEMI_SENSITIVE
-      - BLACKLIST
     AudienceRecommendationsRequestModel:
       properties:
         audience_ids:
@@ -355,6 +297,61 @@ components:
       required:
       - audience_ids
       title: AudienceRecommendationsRequestModel
+    LocationGroupBuildStatus:
+      oneOf:
+      - const: not_required
+        title: NOT_REQUIRED
+      - const: initial
+        title: INITIAL
+      - const: in_progress
+        title: IN_PROGRESS
+      - const: updating
+        title: UPDATING
+      - const: ready
+        title: READY
+      - const: expired
+        title: EXPIRED
+      type: string
+      enum:
+      - not_required
+      - initial
+      - in_progress
+      - updating
+      - ready
+      - expired
+      title: LocationGroupBuildStatus
+      x-enum-varnames:
+      - NOT_REQUIRED
+      - INITIAL
+      - IN_PROGRESS
+      - UPDATING
+      - READY
+      - EXPIRED
+    LocationGroupType:
+      oneOf:
+      - const: 0
+        title: BUSINESS
+      - const: 1
+        title: RESIDENTIAL
+      type: integer
+      enum:
+      - 0
+      - 1
+      title: LocationGroupType
+      x-enum-varnames:
+      - BUSINESS
+      - RESIDENTIAL
+    AudienceRecommendationsModel:
+      properties:
+        recommendations:
+          items:
+            $ref: '#/components/schemas/Audience'
+          type: array
+          title: Recommendations
+      type: object
+      required:
+      - recommendations
+      title: AudienceRecommendationsModel
     Audience:
       properties:
         id:

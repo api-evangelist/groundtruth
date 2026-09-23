@@ -1,0 +1,59 @@
+{
+  "provider": "groundtruth",
+  "sources": [
+    "_original/groundtruth-ads-manager-openapi.json",
+    "_original/groundtruth-reporting-openapi.json"
+  ],
+  "outputs": [
+    "groundtruth-accounts-api-openapi.yml",
+    "groundtruth-ad-groups-api-openapi.yml",
+    "groundtruth-audiences-api-openapi.yml",
+    "groundtruth-campaigns-api-openapi.yml",
+    "groundtruth-creative-assets-api-openapi.yml",
+    "groundtruth-creatives-api-openapi.yml",
+    "groundtruth-direct-mail-api-openapi.yml",
+    "groundtruth-health-api-openapi.yml",
+    "groundtruth-jobs-api-openapi.yml",
+    "groundtruth-miscellaneous-api-openapi.yml",
+    "groundtruth-organizations-api-openapi.yml",
+    "groundtruth-reporting-api-openapi.yml",
+    "groundtruth-search-api-openapi.yml",
+    "groundtruth-static-api-openapi.yml",
+    "groundtruth-tenants-api-openapi.yml",
+    "groundtruth-upload-api-openapi.yml",
+    "groundtruth-users-api-openapi.yml",
+    "groundtruth-demand-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "2 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "groundtruth-ads-manager-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "groundtruth-reporting-openapi.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "_original/groundtruth-reporting-openapi.yml: archived document superseded by a larger archived document",
+    "_original/groundtruth-ads-manager-openapi.yml: archived document superseded by a larger archived document",
+    "groundtruth-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "groundtruth-ad-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "groundtruth-audiences-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "groundtruth-campaigns-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "groundtruth-creative-assets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "groundtruth-creatives-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "groundtruth-demand-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "groundtruth-direct-mail-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "groundtruth-health-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "groundtruth-jobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "groundtruth-miscellaneous-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "groundtruth-organizations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "groundtruth-reporting-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "groundtruth-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "groundtruth-static-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "groundtruth-tenants-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "groundtruth-upload-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "groundtruth-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
+}

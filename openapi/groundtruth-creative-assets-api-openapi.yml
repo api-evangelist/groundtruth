@@ -3,9 +3,6 @@ info:
   title: Ads Manager Creative Assets API
   description: Ads Manager API
   version: 1.0.0
-servers:
-- url: https://api-public.groundtruth.com
-  description: Production
 tags:
 - name: Creative Assets
 paths:
@@ -370,62 +367,6 @@ paths:
           description: Internal Server Error
 components:
   schemas:
-    PaginatedCreativeAssetsModel:
-      properties:
-        total_count:
-          type: integer
-          title: Total Count
-        limit:
-          type: integer
-          title: Limit
-        page_num:
-          type: integer
-          title: Page Num
-        total_pages:
-          type: integer
-          title: Total Pages
-        has_next_page:
-          type: boolean
-          title: Has Next Page
-        has_prev_page:
-          type: boolean
-          title: Has Prev Page
-        items:
-          items:
-            $ref: '#/components/schemas/CreativeAssetModel'
-          type: array
-          title: Items
-      type: object
-      required:
-      - total_count
-      - limit
-      - page_num
-      - total_pages
-      - has_next_page
-      - has_prev_page
-      - items
-      title: PaginatedCreativeAssetsModel
-    ErrorModel:
-      properties:
-        code:
-          type: string
-          title: Code
-        message:
-          type: string
-          title: Message
-        fields:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Fields
-      type: object
-      required:
-      - code
-      - message
-      - fields
-      title: ErrorModel
     SortOrder:
       oneOf:
       - const: desc
@@ -440,17 +381,6 @@ components:
       x-enum-varnames:
       - DESC
       - ASC
-    ErrorResponseModel:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorModel'
-          type: array
-          title: Errors
-      type: object
-      required:
-      - errors
-      title: ErrorResponseModel
     CreativeAssetModel:
       properties:
         id:
@@ -502,6 +432,99 @@ components:
       - created_by
       - status
       title: CreativeAssetModel
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
+    CreativeAssetStatus:
+      oneOf:
+      - const: 0
+        title: ACTIVE
+      - const: 1
+        title: PAUSED
+      - const: 2
+        title: PENDING
+      - const: 3
+        title: EXPIRED
+      - const: 4
+        title: UNLINKED
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      title: CreativeAssetStatus
+      x-enum-varnames:
+      - ACTIVE
+      - PAUSED
+      - PENDING
+      - EXPIRED
+      - UNLINKED
+    PaginatedCreativeAssetsModel:
+      properties:
+        total_count:
+          type: integer
+          title: Total Count
+        limit:
+          type: integer
+          title: Limit
+        page_num:
+          type: integer
+          title: Page Num
+        total_pages:
+          type: integer
+          title: Total Pages
+        has_next_page:
+          type: boolean
+          title: Has Next Page
+        has_prev_page:
+          type: boolean
+          title: Has Prev Page
+        items:
+          items:
+            $ref: '#/components/schemas/CreativeAssetModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - total_count
+      - limit
+      - page_num
+      - total_pages
+      - has_next_page
+      - has_prev_page
+      - items
+      title: PaginatedCreativeAssetsModel
     CreativeAssetType:
       oneOf:
       - const: IMAGE
@@ -562,32 +585,6 @@ components:
           default: true
       type: object
       title: SuccessResponseModel
-    CreativeAssetStatus:
-      oneOf:
-      - const: 0
-        title: ACTIVE
-      - const: 1
-        title: PAUSED
-      - const: 2
-        title: PENDING
-      - const: 3
-        title: EXPIRED
-      - const: 4
-        title: UNLINKED
-      type: integer
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      title: CreativeAssetStatus
-      x-enum-varnames:
-      - ACTIVE
-      - PAUSED
-      - PENDING
-      - EXPIRED
-      - UNLINKED
   securitySchemes:
     api-key:
       type: apiKey

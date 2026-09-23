@@ -3,9 +3,6 @@ info:
   title: Ads Manager Tenants API
   description: Ads Manager API
   version: 1.0.0
-servers:
-- url: https://api-public.groundtruth.com
-  description: Production
 tags:
 - name: Tenants
 paths:
@@ -126,55 +123,6 @@ paths:
           description: Internal Server Error
 components:
   schemas:
-    TenantModel:
-      properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-        type:
-          $ref: '#/components/schemas/TenantType'
-        tier:
-          type: integer
-          title: Tier
-        is_holding_company:
-          type: boolean
-          title: Is Holding Company
-        payment_type:
-          $ref: '#/components/schemas/PaymentType'
-        created_date:
-          type: string
-          format: date-time
-          title: Created Date
-        updated_date:
-          type: string
-          format: date-time
-          title: Updated Date
-        referrer_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Referrer Url
-        utm_campaign:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Utm Campaign
-      type: object
-      required:
-      - id
-      - name
-      - type
-      - tier
-      - is_holding_company
-      - payment_type
-      - created_date
-      - updated_date
-      - referrer_url
-      - utm_campaign
-      title: TenantModel
     UpdateTenantModel:
       properties:
         name:
@@ -244,6 +192,55 @@ components:
       - SPEND_LIMIT
       - CREDIT_CARD_V2
       - ACCOUNT_LEVEL_CREDIT_CARD
+    TenantModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        type:
+          $ref: '#/components/schemas/TenantType'
+        tier:
+          type: integer
+          title: Tier
+        is_holding_company:
+          type: boolean
+          title: Is Holding Company
+        payment_type:
+          $ref: '#/components/schemas/PaymentType'
+        created_date:
+          type: string
+          format: date-time
+          title: Created Date
+        updated_date:
+          type: string
+          format: date-time
+          title: Updated Date
+        referrer_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Referrer Url
+        utm_campaign:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Utm Campaign
+      type: object
+      required:
+      - id
+      - name
+      - type
+      - tier
+      - is_holding_company
+      - payment_type
+      - created_date
+      - updated_date
+      - referrer_url
+      - utm_campaign
+      title: TenantModel
     TenantType:
       oneOf:
       - const: 0

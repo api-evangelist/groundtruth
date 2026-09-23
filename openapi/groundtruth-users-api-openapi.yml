@@ -3,9 +3,6 @@ info:
   title: Ads Manager Users API
   description: Ads Manager API
   version: 1.0.0
-servers:
-- url: https://api-public.groundtruth.com
-  description: Production
 tags:
 - name: Users
 paths:
@@ -376,6 +373,53 @@ paths:
           description: Internal Server Error
 components:
   schemas:
+    UpdateUserModel:
+      properties:
+        first_name:
+          type: string
+          maxLength: 64
+          minLength: 1
+          title: First Name
+        last_name:
+          type: string
+          maxLength: 64
+          minLength: 1
+          title: Last Name
+        password:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Password
+        groups:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Group'
+            type: array
+          - type: 'null'
+          title: Groups
+      type: object
+      required:
+      - first_name
+      - last_name
+      title: UpdateUserModel
+    UserStatus:
+      oneOf:
+      - const: 0
+        title: INACTIVE
+      - const: 1
+        title: ACTIVE
+      - const: 2
+        title: NEEDS_ACTIVATION
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      title: UserStatus
+      x-enum-varnames:
+      - INACTIVE
+      - ACTIVE
+      - NEEDS_ACTIVATION
     ErrorModel:
       properties:
         code:
@@ -397,52 +441,6 @@ components:
       - message
       - fields
       title: ErrorModel
-    CountryCode:
-      type: string
-      enum:
-      - US
-      - CA
-      title: CountryCode
-    ErrorResponseModel:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorModel'
-          type: array
-          title: Errors
-      type: object
-      required:
-      - errors
-      title: ErrorResponseModel
-    UsersModel:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/UserModel'
-          type: array
-          title: Items
-      type: object
-      required:
-      - items
-      title: UsersModel
-    UserStatus:
-      oneOf:
-      - const: 0
-        title: INACTIVE
-      - const: 1
-        title: ACTIVE
-      - const: 2
-        title: NEEDS_ACTIVATION
-      type: integer
-      enum:
-      - 0
-      - 1
-      - 2
-      title: UserStatus
-      x-enum-varnames:
-      - INACTIVE
-      - ACTIVE
-      - NEEDS_ACTIVATION
     BusinessType:
       oneOf:
       - const: 0
@@ -477,133 +475,17 @@ components:
       - HOLDING_COMPANY
       - BRAND_DIRECT
       - MID_MARKET
-    SignupModel:
+    ErrorResponseModel:
       properties:
-        first_name:
-          type: string
-          maxLength: 64
-          minLength: 1
-          title: First Name
-        last_name:
-          type: string
-          maxLength: 64
-          minLength: 1
-          title: Last Name
-        company_name:
-          type: string
-          maxLength: 64
-          title: Company Name
-        business_type:
-          $ref: '#/components/schemas/BusinessType'
-        website:
-          type: string
-          maxLength: 2083
-          minLength: 1
-          format: uri
-          title: Website
-        country_code:
-          $ref: '#/components/schemas/CountryCode'
-        email:
-          type: string
-          format: email
-          title: Email
-        password:
-          type: string
-          title: Password
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
       type: object
       required:
-      - first_name
-      - last_name
-      - company_name
-      - business_type
-      - website
-      - country_code
-      - email
-      - password
-      title: SignupModel
-    SuccessResponseModel:
-      properties:
-        success:
-          type: boolean
-          title: Success
-          default: true
-      type: object
-      title: SuccessResponseModel
-    AppCode:
-      type: string
-      enum:
-      - MF
-      - LM
-      - CAB
-      - MP
-      - SM
-      - RA
-      - XC
-      - AD
-      - PE
-      - CP
-      - FR
-      - XA
-      - IO
-      - AV
-      - PM
-      - CBP
-      - BPM
-      - BQA
-      - BPE
-      - API
-      - AM2
-      title: AppCode
-    SignupResponseModel:
-      properties:
-        user_id:
-          type: integer
-          title: User Id
-        tenant_id:
-          type: integer
-          title: Tenant Id
-        organization_id:
-          type: integer
-          title: Organization Id
-        account_id:
-          type: integer
-          title: Account Id
-      type: object
-      required:
-      - user_id
-      - tenant_id
-      - organization_id
-      - account_id
-      title: SignupResponseModel
-    UpdateUserModel:
-      properties:
-        first_name:
-          type: string
-          maxLength: 64
-          minLength: 1
-          title: First Name
-        last_name:
-          type: string
-          maxLength: 64
-          minLength: 1
-          title: Last Name
-        password:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Password
-        groups:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Group'
-            type: array
-          - type: 'null'
-          title: Groups
-      type: object
-      required:
-      - first_name
-      - last_name
-      title: UpdateUserModel
+      - errors
+      title: ErrorResponseModel
     Group:
       oneOf:
       - const: 1
@@ -762,6 +644,12 @@ components:
       - BLUEPRINTS_QA_TRAINEE
       - BLUEPRINTS_EDITOR_TRAINEE
       - BLUEPRINTS_HQ_USER
+    CountryCode:
+      type: string
+      enum:
+      - US
+      - CA
+      title: CountryCode
     UserModel:
       properties:
         user_id:
@@ -832,6 +720,115 @@ components:
         tenant_id: 1
         updated_date: '2025-01-01T00:00:00'
         user_id: 1
+    SuccessResponseModel:
+      properties:
+        success:
+          type: boolean
+          title: Success
+          default: true
+      type: object
+      title: SuccessResponseModel
+    SignupResponseModel:
+      properties:
+        user_id:
+          type: integer
+          title: User Id
+        tenant_id:
+          type: integer
+          title: Tenant Id
+        organization_id:
+          type: integer
+          title: Organization Id
+        account_id:
+          type: integer
+          title: Account Id
+      type: object
+      required:
+      - user_id
+      - tenant_id
+      - organization_id
+      - account_id
+      title: SignupResponseModel
+    SignupModel:
+      properties:
+        first_name:
+          type: string
+          maxLength: 64
+          minLength: 1
+          title: First Name
+        last_name:
+          type: string
+          maxLength: 64
+          minLength: 1
+          title: Last Name
+        company_name:
+          type: string
+          maxLength: 64
+          title: Company Name
+        business_type:
+          $ref: '#/components/schemas/BusinessType'
+        website:
+          type: string
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          title: Website
+        country_code:
+          $ref: '#/components/schemas/CountryCode'
+        email:
+          type: string
+          format: email
+          title: Email
+        password:
+          type: string
+          title: Password
+      type: object
+      required:
+      - first_name
+      - last_name
+      - company_name
+      - business_type
+      - website
+      - country_code
+      - email
+      - password
+      title: SignupModel
+    AppCode:
+      type: string
+      enum:
+      - MF
+      - LM
+      - CAB
+      - MP
+      - SM
+      - RA
+      - XC
+      - AD
+      - PE
+      - CP
+      - FR
+      - XA
+      - IO
+      - AV
+      - PM
+      - CBP
+      - BPM
+      - BQA
+      - BPE
+      - API
+      - AM2
+      title: AppCode
+    UsersModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/UserModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: UsersModel
   securitySchemes:
     api-key:
       type: apiKey

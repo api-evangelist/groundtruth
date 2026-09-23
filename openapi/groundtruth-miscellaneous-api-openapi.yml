@@ -3,9 +3,6 @@ info:
   title: Ads Manager Miscellaneous API
   description: Ads Manager API
   version: 1.0.0
-servers:
-- url: https://api-public.groundtruth.com
-  description: Production
 tags:
 - name: Miscellaneous
 paths:
@@ -55,6 +52,15 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseModel'
 components:
   schemas:
+    VersionModel:
+      properties:
+        version:
+          type: string
+          title: Version
+      type: object
+      required:
+      - version
+      title: VersionModel
     ErrorModel:
       properties:
         code:
@@ -76,15 +82,6 @@ components:
       - message
       - fields
       title: ErrorModel
-    VersionModel:
-      properties:
-        version:
-          type: string
-          title: Version
-      type: object
-      required:
-      - version
-      title: VersionModel
     ErrorResponseModel:
       properties:
         errors:

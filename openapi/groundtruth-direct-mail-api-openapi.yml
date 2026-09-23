@@ -3,9 +3,6 @@ info:
   title: Ads Manager Direct Mail API
   description: Ads Manager API
   version: 1.0.0
-servers:
-- url: https://api-public.groundtruth.com
-  description: Production
 tags:
 - name: Direct Mail
 paths:
@@ -206,17 +203,6 @@ components:
       - is_overdue
       - formatted_price
       title: OrderModel
-    ErrorResponseModel:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorModel'
-          type: array
-          title: Errors
-      type: object
-      required:
-      - errors
-      title: ErrorResponseModel
     ErrorModel:
       properties:
         code:
@@ -238,6 +224,17 @@ components:
       - message
       - fields
       title: ErrorModel
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
     OrdersModel:
       properties:
         total_count:

@@ -3,9 +3,6 @@ info:
   title: Ads Manager Health API
   description: Ads Manager API
   version: 1.0.0
-servers:
-- url: https://api-public.groundtruth.com
-  description: Production
 tags:
 - name: Health
 paths:
