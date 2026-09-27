@@ -52,15 +52,17 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseModel'
 components:
   schemas:
-    VersionModel:
+    ErrorResponseModel:
       properties:
-        version:
-          type: string
-          title: Version
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
       type: object
       required:
-      - version
-      title: VersionModel
+      - errors
+      title: ErrorResponseModel
     ErrorModel:
       properties:
         code:
@@ -82,17 +84,15 @@ components:
       - message
       - fields
       title: ErrorModel
-    ErrorResponseModel:
+    VersionModel:
       properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorModel'
-          type: array
-          title: Errors
+        version:
+          type: string
+          title: Version
       type: object
       required:
-      - errors
-      title: ErrorResponseModel
+      - version
+      title: VersionModel
   securitySchemes:
     api-key:
       type: apiKey

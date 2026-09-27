@@ -134,64 +134,6 @@ components:
       required:
       - name
       title: UpdateTenantModel
-    ErrorModel:
-      properties:
-        code:
-          type: string
-          title: Code
-        message:
-          type: string
-          title: Message
-        fields:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Fields
-      type: object
-      required:
-      - code
-      - message
-      - fields
-      title: ErrorModel
-    ErrorResponseModel:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorModel'
-          type: array
-          title: Errors
-      type: object
-      required:
-      - errors
-      title: ErrorResponseModel
-    PaymentType:
-      oneOf:
-      - const: 0
-        title: INVOICE
-      - const: 1
-        title: CREDIT_CARD
-      - const: 2
-        title: SPEND_LIMIT
-      - const: 3
-        title: CREDIT_CARD_V2
-      - const: 4
-        title: ACCOUNT_LEVEL_CREDIT_CARD
-      type: integer
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      title: PaymentType
-      x-enum-varnames:
-      - INVOICE
-      - CREDIT_CARD
-      - SPEND_LIMIT
-      - CREDIT_CARD_V2
-      - ACCOUNT_LEVEL_CREDIT_CARD
     TenantModel:
       properties:
         id:
@@ -259,6 +201,64 @@ components:
       - MANAGED
       - SELF_SERVE
       - CHANNEL
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
+    PaymentType:
+      oneOf:
+      - const: 0
+        title: INVOICE
+      - const: 1
+        title: CREDIT_CARD
+      - const: 2
+        title: SPEND_LIMIT
+      - const: 3
+        title: CREDIT_CARD_V2
+      - const: 4
+        title: ACCOUNT_LEVEL_CREDIT_CARD
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      title: PaymentType
+      x-enum-varnames:
+      - INVOICE
+      - CREDIT_CARD
+      - SPEND_LIMIT
+      - CREDIT_CARD_V2
+      - ACCOUNT_LEVEL_CREDIT_CARD
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
   securitySchemes:
     api-key:
       type: apiKey

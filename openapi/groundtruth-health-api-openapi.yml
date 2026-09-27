@@ -53,6 +53,17 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseModel'
 components:
   schemas:
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
     ErrorModel:
       properties:
         code:
@@ -74,17 +85,6 @@ components:
       - message
       - fields
       title: ErrorModel
-    ErrorResponseModel:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorModel'
-          type: array
-          title: Errors
-      type: object
-      required:
-      - errors
-      title: ErrorResponseModel
   securitySchemes:
     api-key:
       type: apiKey

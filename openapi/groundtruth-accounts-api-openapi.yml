@@ -711,6 +711,83 @@ paths:
           description: Internal Server Error
 components:
   schemas:
+    AccountsModel:
+      properties:
+        total_count:
+          type: integer
+          title: Total Count
+        limit:
+          type: integer
+          title: Limit
+        page_num:
+          type: integer
+          title: Page Num
+        total_pages:
+          type: integer
+          title: Total Pages
+        has_next_page:
+          type: boolean
+          title: Has Next Page
+        has_prev_page:
+          type: boolean
+          title: Has Prev Page
+        items:
+          items:
+            $ref: '#/components/schemas/AccountModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - total_count
+      - limit
+      - page_num
+      - total_pages
+      - has_next_page
+      - has_prev_page
+      - items
+      title: AccountsModel
+    DartBillingAccount:
+      properties:
+        account_id:
+          type: string
+          title: Account Id
+        account_name:
+          type: string
+          title: Account Name
+      type: object
+      required:
+      - account_id
+      - account_name
+      title: DartBillingAccount
+    UpdateAccountModel:
+      properties:
+        name:
+          type: string
+          maxLength: 128
+          minLength: 1
+          title: Name
+        website_domain:
+          type: string
+          maxLength: 512
+          title: Website Domain
+        timezone:
+          $ref: '#/components/schemas/Timezone'
+        vertical_id:
+          anyOf:
+          - $ref: '#/components/schemas/AccountVertical'
+          - type: 'null'
+      type: object
+      required:
+      - name
+      - website_domain
+      - timezone
+      title: UpdateAccountModel
+    CountryCode:
+      type: string
+      enum:
+      - US
+      - CA
+      title: CountryCode
     AccountVertical:
       oneOf:
       - const: 1
@@ -773,49 +850,28 @@ components:
       - TECHNOLOGY
       - TELECOM_AND_COMMUNICATIONS
       - TRAVEL
-    SortOrder:
-      oneOf:
-      - const: desc
-        title: DESC
-      - const: asc
-        title: ASC
-      type: string
-      enum:
-      - desc
-      - asc
-      title: SortOrder
-      x-enum-varnames:
-      - DESC
-      - ASC
-    CreateAccountModel:
+    CreateAccountPixelModel:
       properties:
         name:
           type: string
           maxLength: 128
           minLength: 1
           title: Name
-        country_code:
-          $ref: '#/components/schemas/CountryCode'
-        timezone:
-          $ref: '#/components/schemas/Timezone'
-        currency:
-          $ref: '#/components/schemas/Currency'
-        website_domain:
+        url:
           type: string
-          maxLength: 512
-          title: Website Domain
-        vertical_id:
-          anyOf:
-          - $ref: '#/components/schemas/AccountVertical'
-          - type: 'null'
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          title: Url
+        enable_site_retargeting:
+          type: boolean
+          title: Enable Site Retargeting
       type: object
       required:
       - name
-      - country_code
-      - timezone
-      - currency
-      - website_domain
-      title: CreateAccountModel
+      - url
+      - enable_site_retargeting
+      title: CreateAccountPixelModel
     AccountType:
       oneOf:
       - const: 0
@@ -862,81 +918,6 @@ components:
       - PROGRAMMATIC
       - SELF_SERVE
       - CHARITY
-    SuccessResponseModel:
-      properties:
-        success:
-          type: boolean
-          title: Success
-          default: true
-      type: object
-      title: SuccessResponseModel
-    ErrorModel:
-      properties:
-        code:
-          type: string
-          title: Code
-        message:
-          type: string
-          title: Message
-        fields:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Fields
-      type: object
-      required:
-      - code
-      - message
-      - fields
-      title: ErrorModel
-    ErrorResponseModel:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorModel'
-          type: array
-          title: Errors
-      type: object
-      required:
-      - errors
-      title: ErrorResponseModel
-    AccountsModel:
-      properties:
-        total_count:
-          type: integer
-          title: Total Count
-        limit:
-          type: integer
-          title: Limit
-        page_num:
-          type: integer
-          title: Page Num
-        total_pages:
-          type: integer
-          title: Total Pages
-        has_next_page:
-          type: boolean
-          title: Has Next Page
-        has_prev_page:
-          type: boolean
-          title: Has Prev Page
-        items:
-          items:
-            $ref: '#/components/schemas/AccountModel'
-          type: array
-          title: Items
-      type: object
-      required:
-      - total_count
-      - limit
-      - page_num
-      - total_pages
-      - has_next_page
-      - has_prev_page
-      - items
-      title: AccountsModel
     AccountModel:
       properties:
         id:
@@ -999,54 +980,15 @@ components:
       - brand_id
       - created_date
       title: AccountModel
-    AccountPixelsModel:
+    AccountMinCPVBidRateModel:
       properties:
-        total_count:
-          type: integer
-          title: Total Count
-        limit:
-          type: integer
-          title: Limit
-        page_num:
-          type: integer
-          title: Page Num
-        total_pages:
-          type: integer
-          title: Total Pages
-        has_next_page:
-          type: boolean
-          title: Has Next Page
-        has_prev_page:
-          type: boolean
-          title: Has Prev Page
-        items:
-          items:
-            $ref: '#/components/schemas/AccountPixelModel'
-          type: array
-          title: Items
+        min_bid_rate:
+          type: number
+          title: Min Bid Rate
       type: object
       required:
-      - total_count
-      - limit
-      - page_num
-      - total_pages
-      - has_next_page
-      - has_prev_page
-      - items
-      title: AccountPixelsModel
-    DartBillingAccount:
-      properties:
-        account_id:
-          type: string
-          title: Account Id
-        account_name:
-          type: string
-          title: Account Name
-      type: object
-      required:
-      - account_id
-      - account_name
-      title: DartBillingAccount
+      - min_bid_rate
+      title: AccountMinCPVBidRateModel
     AccountPixelModel:
       properties:
         id:
@@ -1096,37 +1038,43 @@ components:
       - url
       - website_url
       title: AccountPixelModel
-    AccountMinCPVBidRateModel:
+    SuccessResponseModel:
       properties:
-        min_bid_rate:
-          type: number
-          title: Min Bid Rate
+        success:
+          type: boolean
+          title: Success
+          default: true
       type: object
-      required:
-      - min_bid_rate
-      title: AccountMinCPVBidRateModel
-    CreateAccountPixelModel:
+      title: SuccessResponseModel
+    CreateAccountModel:
       properties:
         name:
           type: string
           maxLength: 128
           minLength: 1
           title: Name
-        url:
+        country_code:
+          $ref: '#/components/schemas/CountryCode'
+        timezone:
+          $ref: '#/components/schemas/Timezone'
+        currency:
+          $ref: '#/components/schemas/Currency'
+        website_domain:
           type: string
-          maxLength: 2083
-          minLength: 1
-          format: uri
-          title: Url
-        enable_site_retargeting:
-          type: boolean
-          title: Enable Site Retargeting
+          maxLength: 512
+          title: Website Domain
+        vertical_id:
+          anyOf:
+          - $ref: '#/components/schemas/AccountVertical'
+          - type: 'null'
       type: object
       required:
       - name
-      - url
-      - enable_site_retargeting
-      title: CreateAccountPixelModel
+      - country_code
+      - timezone
+      - currency
+      - website_domain
+      title: CreateAccountModel
     Timezone:
       oneOf:
       - const: America/Los_Angeles
@@ -1201,12 +1149,52 @@ components:
       - AMERICA_EDMONTON
       - AMERICA_CRESTON
       - AMERICA_VANCOUVER
-    CountryCode:
-      type: string
-      enum:
-      - US
-      - CA
-      title: CountryCode
+    AccountPixelsModel:
+      properties:
+        total_count:
+          type: integer
+          title: Total Count
+        limit:
+          type: integer
+          title: Limit
+        page_num:
+          type: integer
+          title: Page Num
+        total_pages:
+          type: integer
+          title: Total Pages
+        has_next_page:
+          type: boolean
+          title: Has Next Page
+        has_prev_page:
+          type: boolean
+          title: Has Prev Page
+        items:
+          items:
+            $ref: '#/components/schemas/AccountPixelModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - total_count
+      - limit
+      - page_num
+      - total_pages
+      - has_next_page
+      - has_prev_page
+      - items
+      title: AccountPixelsModel
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
     Currency:
       oneOf:
       - const: USD
@@ -1221,29 +1209,41 @@ components:
       x-enum-varnames:
       - USD
       - CAD
-    UpdateAccountModel:
+    SortOrder:
+      oneOf:
+      - const: desc
+        title: DESC
+      - const: asc
+        title: ASC
+      type: string
+      enum:
+      - desc
+      - asc
+      title: SortOrder
+      x-enum-varnames:
+      - DESC
+      - ASC
+    ErrorModel:
       properties:
-        name:
+        code:
           type: string
-          maxLength: 128
-          minLength: 1
-          title: Name
-        website_domain:
+          title: Code
+        message:
           type: string
-          maxLength: 512
-          title: Website Domain
-        timezone:
-          $ref: '#/components/schemas/Timezone'
-        vertical_id:
+          title: Message
+        fields:
           anyOf:
-          - $ref: '#/components/schemas/AccountVertical'
+          - items:
+              type: string
+            type: array
           - type: 'null'
+          title: Fields
       type: object
       required:
-      - name
-      - website_domain
-      - timezone
-      title: UpdateAccountModel
+      - code
+      - message
+      - fields
+      title: ErrorModel
   securitySchemes:
     api-key:
       type: apiKey

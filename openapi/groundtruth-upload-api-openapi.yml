@@ -68,6 +68,54 @@ paths:
           description: Internal Server Error
 components:
   schemas:
+    UploadType:
+      oneOf:
+      - const: 1
+        title: VIDEO
+      - const: 2
+        title: AUDIO
+      - const: 3
+        title: HTML5
+      - const: 4
+        title: OTHER
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      title: UploadType
+      x-enum-varnames:
+      - VIDEO
+      - AUDIO
+      - HTML5
+      - OTHER
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
+    UploadResponseModel:
+      properties:
+        file_path:
+          type: string
+          title: File Path
+        cdn_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Cdn Url
+      type: object
+      required:
+      - file_path
+      - cdn_url
+      title: UploadResponseModel
     Body_upload_upload_post:
       properties:
         file:
@@ -99,54 +147,6 @@ components:
       - message
       - fields
       title: ErrorModel
-    ErrorResponseModel:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorModel'
-          type: array
-          title: Errors
-      type: object
-      required:
-      - errors
-      title: ErrorResponseModel
-    UploadType:
-      oneOf:
-      - const: 1
-        title: VIDEO
-      - const: 2
-        title: AUDIO
-      - const: 3
-        title: HTML5
-      - const: 4
-        title: OTHER
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 3
-      - 4
-      title: UploadType
-      x-enum-varnames:
-      - VIDEO
-      - AUDIO
-      - HTML5
-      - OTHER
-    UploadResponseModel:
-      properties:
-        file_path:
-          type: string
-          title: File Path
-        cdn_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Cdn Url
-      type: object
-      required:
-      - file_path
-      - cdn_url
-      title: UploadResponseModel
   securitySchemes:
     api-key:
       type: apiKey
