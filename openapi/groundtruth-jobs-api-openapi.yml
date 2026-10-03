@@ -621,113 +621,27 @@ paths:
           description: Internal Server Error
 components:
   schemas:
-    UploadJobType:
-      oneOf:
-      - const: 0
-        title: LOCATION_FILTER
-      - const: 1
-        title: CAMPAIGN_BULK_UPLOAD
-      - const: 2
-        title: CAMPAIGN_SUMMARY
-      - const: 3
-        title: VIDEO_TRANSCODER
-      - const: 6
-        title: CREATIVE_BULK_UPLOAD
-      - const: 7
-        title: HTML5_CREATIVE
-      - const: 8
-        title: WAYMARK_VIDEO
-      - const: 9
-        title: CAMPAIGN_BULK_DOWNLOAD
-      - const: 10
-        title: CAMPAIGN_BULK_UPLOAD_V2
-      type: integer
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
-      title: UploadJobType
-      x-enum-varnames:
-      - LOCATION_FILTER
-      - CAMPAIGN_BULK_UPLOAD
-      - CAMPAIGN_SUMMARY
-      - VIDEO_TRANSCODER
-      - CREATIVE_BULK_UPLOAD
-      - HTML5_CREATIVE
-      - WAYMARK_VIDEO
-      - CAMPAIGN_BULK_DOWNLOAD
-      - CAMPAIGN_BULK_UPLOAD_V2
-    CreateCampaignBulkDownloadJobRequestModel:
+    ErrorModel:
       properties:
-        campaign_ids:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
           anyOf:
           - items:
-              type: integer
+              type: string
             type: array
-            uniqueItems: true
           - type: 'null'
-          title: Campaign Ids
-      type: object
-      title: CreateCampaignBulkDownloadJobRequestModel
-    JobsModel:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/JobModel'
-          type: array
-          title: Items
+          title: Fields
       type: object
       required:
-      - items
-      title: JobsModel
-    LocationFiltersModel:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/LocationFilterModel-Output'
-          type: array
-          title: Items
-      type: object
-      required:
-      - items
-      title: LocationFiltersModel
-    SuccessResponseModel:
-      properties:
-        success:
-          type: boolean
-          title: Success
-          default: true
-      type: object
-      title: SuccessResponseModel
-    ErrorResponseModel:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorModel'
-          type: array
-          title: Errors
-      type: object
-      required:
-      - errors
-      title: ErrorResponseModel
-    CreateLocationFilterTargetBulkUploadJobModel:
-      properties:
-        input_file_url:
-          type: string
-          maxLength: 2083
-          minLength: 1
-          format: uri
-          title: Input File Url
-      type: object
-      required:
-      - input_file_url
-      title: CreateLocationFilterTargetBulkUploadJobModel
+      - code
+      - message
+      - fields
+      title: ErrorModel
     JobStatus:
       oneOf:
       - const: 0
@@ -831,40 +745,37 @@ components:
       - type
       - display_name
       title: LocationFilterModel
-    LocationFilterType:
-      oneOf:
-      - const: City
-        title: CITY
-      - const: State
-        title: STATE
-      - const: Zip
-        title: ZIP_CODE
-      - const: DMA
-        title: DMA
-      - const: County
-        title: COUNTY
-      - const: LatLng
-        title: LAT_LNG
-      - const: Address
-        title: ADDRESS
-      type: string
-      enum:
-      - City
-      - State
-      - Zip
-      - DMA
-      - County
-      - LatLng
-      - Address
-      title: LocationFilterType
-      x-enum-varnames:
-      - CITY
-      - STATE
-      - ZIP_CODE
-      - DMA
-      - COUNTY
-      - LAT_LNG
-      - ADDRESS
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
+    SuccessResponseModel:
+      properties:
+        success:
+          type: boolean
+          title: Success
+          default: true
+      type: object
+      title: SuccessResponseModel
+    CreateLocationFilterTargetBulkUploadJobModel:
+      properties:
+        input_file_url:
+          type: string
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          title: Input File Url
+      type: object
+      required:
+      - input_file_url
+      title: CreateLocationFilterTargetBulkUploadJobModel
     JobModel:
       properties:
         job_id:
@@ -931,27 +842,116 @@ components:
       - adgroup_id
       - creative_id
       title: JobModel
-    ErrorModel:
+    CreateCampaignBulkDownloadJobRequestModel:
       properties:
-        code:
-          type: string
-          title: Code
-        message:
-          type: string
-          title: Message
-        fields:
+        campaign_ids:
           anyOf:
           - items:
-              type: string
+              type: integer
             type: array
+            uniqueItems: true
           - type: 'null'
-          title: Fields
+          title: Campaign Ids
+      type: object
+      title: CreateCampaignBulkDownloadJobRequestModel
+    LocationFiltersModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/LocationFilterModel-Output'
+          type: array
+          title: Items
       type: object
       required:
-      - code
-      - message
-      - fields
-      title: ErrorModel
+      - items
+      title: LocationFiltersModel
+    JobsModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/JobModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: JobsModel
+    LocationFilterType:
+      oneOf:
+      - const: City
+        title: CITY
+      - const: State
+        title: STATE
+      - const: Zip
+        title: ZIP_CODE
+      - const: DMA
+        title: DMA
+      - const: County
+        title: COUNTY
+      - const: LatLng
+        title: LAT_LNG
+      - const: Address
+        title: ADDRESS
+      type: string
+      enum:
+      - City
+      - State
+      - Zip
+      - DMA
+      - County
+      - LatLng
+      - Address
+      title: LocationFilterType
+      x-enum-varnames:
+      - CITY
+      - STATE
+      - ZIP_CODE
+      - DMA
+      - COUNTY
+      - LAT_LNG
+      - ADDRESS
+    UploadJobType:
+      oneOf:
+      - const: 0
+        title: LOCATION_FILTER
+      - const: 1
+        title: CAMPAIGN_BULK_UPLOAD
+      - const: 2
+        title: CAMPAIGN_SUMMARY
+      - const: 3
+        title: VIDEO_TRANSCODER
+      - const: 6
+        title: CREATIVE_BULK_UPLOAD
+      - const: 7
+        title: HTML5_CREATIVE
+      - const: 8
+        title: WAYMARK_VIDEO
+      - const: 9
+        title: CAMPAIGN_BULK_DOWNLOAD
+      - const: 10
+        title: CAMPAIGN_BULK_UPLOAD_V2
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      title: UploadJobType
+      x-enum-varnames:
+      - LOCATION_FILTER
+      - CAMPAIGN_BULK_UPLOAD
+      - CAMPAIGN_SUMMARY
+      - VIDEO_TRANSCODER
+      - CREATIVE_BULK_UPLOAD
+      - HTML5_CREATIVE
+      - WAYMARK_VIDEO
+      - CAMPAIGN_BULK_DOWNLOAD
+      - CAMPAIGN_BULK_UPLOAD_V2
   securitySchemes:
     api-key:
       type: apiKey

@@ -378,6 +378,35 @@ components:
       - tenant_id
       - name
       title: OrganizationModel
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    SuccessResponseModel:
+      properties:
+        success:
+          type: boolean
+          title: Success
+          default: true
+      type: object
+      title: SuccessResponseModel
     OrganizationsModel:
       properties:
         total_count:
@@ -413,14 +442,6 @@ components:
       - has_prev_page
       - items
       title: OrganizationsModel
-    SuccessResponseModel:
-      properties:
-        success:
-          type: boolean
-          title: Success
-          default: true
-      type: object
-      title: SuccessResponseModel
     ErrorResponseModel:
       properties:
         errors:
@@ -457,27 +478,6 @@ components:
       required:
       - name
       title: CreateOrUpdateOrganizationModel
-    ErrorModel:
-      properties:
-        code:
-          type: string
-          title: Code
-        message:
-          type: string
-          title: Message
-        fields:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Fields
-      type: object
-      required:
-      - code
-      - message
-      - fields
-      title: ErrorModel
   securitySchemes:
     api-key:
       type: apiKey

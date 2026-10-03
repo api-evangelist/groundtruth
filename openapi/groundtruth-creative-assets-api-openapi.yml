@@ -367,41 +367,49 @@ paths:
           description: Internal Server Error
 components:
   schemas:
-    PaginatedCreativeAssetsModel:
+    ErrorModel:
       properties:
-        total_count:
-          type: integer
-          title: Total Count
-        limit:
-          type: integer
-          title: Limit
-        page_num:
-          type: integer
-          title: Page Num
-        total_pages:
-          type: integer
-          title: Total Pages
-        has_next_page:
-          type: boolean
-          title: Has Next Page
-        has_prev_page:
-          type: boolean
-          title: Has Prev Page
-        items:
-          items:
-            $ref: '#/components/schemas/CreativeAssetModel'
-          type: array
-          title: Items
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
       type: object
       required:
-      - total_count
-      - limit
-      - page_num
-      - total_pages
-      - has_next_page
-      - has_prev_page
-      - items
-      title: PaginatedCreativeAssetsModel
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    CreativeAssetType:
+      oneOf:
+      - const: IMAGE
+        title: IMAGE
+      - const: SCRIPT
+        title: SCRIPT
+      - const: VIDEO
+        title: VIDEO
+      - const: AUDIO
+        title: AUDIO
+      type: string
+      enum:
+      - IMAGE
+      - SCRIPT
+      - VIDEO
+      - AUDIO
+      title: CreativeAssetType
+      x-enum-varnames:
+      - IMAGE
+      - SCRIPT
+      - VIDEO
+      - AUDIO
     SuccessResponseModel:
       properties:
         success:
@@ -410,6 +418,47 @@ components:
           default: true
       type: object
       title: SuccessResponseModel
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
+    CreativeAssetSortField:
+      oneOf:
+      - const: name
+        title: NAME
+      - const: created_date
+        title: CREATED_DATE
+      - const: updated_date
+        title: UPDATED_DATE
+      - const: asset_type
+        title: ASSET_TYPE
+      - const: file_extension
+        title: FILE_EXTENSION
+      - const: size
+        title: SIZE
+      type: string
+      enum:
+      - name
+      - created_date
+      - updated_date
+      - asset_type
+      - file_extension
+      - size
+      title: CreativeAssetSortField
+      x-enum-varnames:
+      - NAME
+      - CREATED_DATE
+      - UPDATED_DATE
+      - ASSET_TYPE
+      - FILE_EXTENSION
+      - SIZE
     CreativeAssetModel:
       properties:
         id:
@@ -461,6 +510,55 @@ components:
       - created_by
       - status
       title: CreativeAssetModel
+    SortOrder:
+      oneOf:
+      - const: desc
+        title: DESC
+      - const: asc
+        title: ASC
+      type: string
+      enum:
+      - desc
+      - asc
+      title: SortOrder
+      x-enum-varnames:
+      - DESC
+      - ASC
+    PaginatedCreativeAssetsModel:
+      properties:
+        total_count:
+          type: integer
+          title: Total Count
+        limit:
+          type: integer
+          title: Limit
+        page_num:
+          type: integer
+          title: Page Num
+        total_pages:
+          type: integer
+          title: Total Pages
+        has_next_page:
+          type: boolean
+          title: Has Next Page
+        has_prev_page:
+          type: boolean
+          title: Has Prev Page
+        items:
+          items:
+            $ref: '#/components/schemas/CreativeAssetModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - total_count
+      - limit
+      - page_num
+      - total_pages
+      - has_next_page
+      - has_prev_page
+      - items
+      title: PaginatedCreativeAssetsModel
     CreativeAssetStatus:
       oneOf:
       - const: 0
@@ -487,104 +585,6 @@ components:
       - PENDING
       - EXPIRED
       - UNLINKED
-    ErrorResponseModel:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorModel'
-          type: array
-          title: Errors
-      type: object
-      required:
-      - errors
-      title: ErrorResponseModel
-    CreativeAssetSortField:
-      oneOf:
-      - const: name
-        title: NAME
-      - const: created_date
-        title: CREATED_DATE
-      - const: updated_date
-        title: UPDATED_DATE
-      - const: asset_type
-        title: ASSET_TYPE
-      - const: file_extension
-        title: FILE_EXTENSION
-      - const: size
-        title: SIZE
-      type: string
-      enum:
-      - name
-      - created_date
-      - updated_date
-      - asset_type
-      - file_extension
-      - size
-      title: CreativeAssetSortField
-      x-enum-varnames:
-      - NAME
-      - CREATED_DATE
-      - UPDATED_DATE
-      - ASSET_TYPE
-      - FILE_EXTENSION
-      - SIZE
-    CreativeAssetType:
-      oneOf:
-      - const: IMAGE
-        title: IMAGE
-      - const: SCRIPT
-        title: SCRIPT
-      - const: VIDEO
-        title: VIDEO
-      - const: AUDIO
-        title: AUDIO
-      type: string
-      enum:
-      - IMAGE
-      - SCRIPT
-      - VIDEO
-      - AUDIO
-      title: CreativeAssetType
-      x-enum-varnames:
-      - IMAGE
-      - SCRIPT
-      - VIDEO
-      - AUDIO
-    SortOrder:
-      oneOf:
-      - const: desc
-        title: DESC
-      - const: asc
-        title: ASC
-      type: string
-      enum:
-      - desc
-      - asc
-      title: SortOrder
-      x-enum-varnames:
-      - DESC
-      - ASC
-    ErrorModel:
-      properties:
-        code:
-          type: string
-          title: Code
-        message:
-          type: string
-          title: Message
-        fields:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Fields
-      type: object
-      required:
-      - code
-      - message
-      - fields
-      title: ErrorModel
   securitySchemes:
     api-key:
       type: apiKey

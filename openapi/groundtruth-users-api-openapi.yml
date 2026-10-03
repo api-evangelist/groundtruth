@@ -373,27 +373,57 @@ paths:
           description: Internal Server Error
 components:
   schemas:
-    SignupResponseModel:
+    ErrorModel:
       properties:
-        user_id:
-          type: integer
-          title: User Id
-        tenant_id:
-          type: integer
-          title: Tenant Id
-        organization_id:
-          type: integer
-          title: Organization Id
-        account_id:
-          type: integer
-          title: Account Id
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
       type: object
       required:
-      - user_id
-      - tenant_id
-      - organization_id
-      - account_id
-      title: SignupResponseModel
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    UsersModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/UserModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: UsersModel
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
+    SuccessResponseModel:
+      properties:
+        success:
+          type: boolean
+          title: Success
+          default: true
+      type: object
+      title: SuccessResponseModel
     SignupModel:
       properties:
         first_name:
@@ -438,12 +468,6 @@ components:
       - email
       - password
       title: SignupModel
-    CountryCode:
-      type: string
-      enum:
-      - US
-      - CA
-      title: CountryCode
     BusinessType:
       oneOf:
       - const: 0
@@ -478,178 +502,6 @@ components:
       - HOLDING_COMPANY
       - BRAND_DIRECT
       - MID_MARKET
-    AppCode:
-      type: string
-      enum:
-      - MF
-      - LM
-      - CAB
-      - MP
-      - SM
-      - RA
-      - XC
-      - AD
-      - PE
-      - CP
-      - FR
-      - XA
-      - IO
-      - AV
-      - PM
-      - CBP
-      - BPM
-      - BQA
-      - BPE
-      - API
-      - AM2
-      title: AppCode
-    UserStatus:
-      oneOf:
-      - const: 0
-        title: INACTIVE
-      - const: 1
-        title: ACTIVE
-      - const: 2
-        title: NEEDS_ACTIVATION
-      type: integer
-      enum:
-      - 0
-      - 1
-      - 2
-      title: UserStatus
-      x-enum-varnames:
-      - INACTIVE
-      - ACTIVE
-      - NEEDS_ACTIVATION
-    UserModel:
-      properties:
-        user_id:
-          type: integer
-          title: User Id
-        tenant_id:
-          type: integer
-          title: Tenant Id
-        first_name:
-          type: string
-          title: First Name
-        last_name:
-          type: string
-          title: Last Name
-        email:
-          type: string
-          format: email
-          title: Email
-        created_date:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Created Date
-        updated_date:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Updated Date
-        groups:
-          items:
-            $ref: '#/components/schemas/Group'
-          type: array
-          title: Groups
-        status:
-          $ref: '#/components/schemas/UserStatus'
-        authorized_apps:
-          items:
-            $ref: '#/components/schemas/AppCode'
-          type: array
-          title: Authorized Apps
-      type: object
-      required:
-      - user_id
-      - tenant_id
-      - first_name
-      - last_name
-      - email
-      - created_date
-      - updated_date
-      - groups
-      - status
-      - authorized_apps
-      title: UserModel
-      example:
-        authorized_apps:
-        - MF
-        - RA
-        created_date: '2024-01-01T00:00:00'
-        email: eb@groundtruth.com
-        first_name: Emmett
-        groups:
-        - 1
-        - 11
-        last_name: Brown
-        status: 1
-        tenant_id: 1
-        updated_date: '2025-01-01T00:00:00'
-        user_id: 1
-    UpdateUserModel:
-      properties:
-        first_name:
-          type: string
-          maxLength: 64
-          minLength: 1
-          title: First Name
-        last_name:
-          type: string
-          maxLength: 64
-          minLength: 1
-          title: Last Name
-        password:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Password
-        groups:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Group'
-            type: array
-          - type: 'null'
-          title: Groups
-      type: object
-      required:
-      - first_name
-      - last_name
-      title: UpdateUserModel
-    SuccessResponseModel:
-      properties:
-        success:
-          type: boolean
-          title: Success
-          default: true
-      type: object
-      title: SuccessResponseModel
-    UsersModel:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/UserModel'
-          type: array
-          title: Items
-      type: object
-      required:
-      - items
-      title: UsersModel
-    ErrorResponseModel:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorModel'
-          type: array
-          title: Errors
-      type: object
-      required:
-      - errors
-      title: ErrorResponseModel
     Group:
       oneOf:
       - const: 1
@@ -808,27 +660,175 @@ components:
       - BLUEPRINTS_QA_TRAINEE
       - BLUEPRINTS_EDITOR_TRAINEE
       - BLUEPRINTS_HQ_USER
-    ErrorModel:
+    AppCode:
+      type: string
+      enum:
+      - MF
+      - LM
+      - CAB
+      - MP
+      - SM
+      - RA
+      - XC
+      - AD
+      - PE
+      - CP
+      - FR
+      - XA
+      - IO
+      - AV
+      - PM
+      - CBP
+      - BPM
+      - BQA
+      - BPE
+      - API
+      - AM2
+      title: AppCode
+    SignupResponseModel:
       properties:
-        code:
-          type: string
-          title: Code
-        message:
-          type: string
-          title: Message
-        fields:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Fields
+        user_id:
+          type: integer
+          title: User Id
+        tenant_id:
+          type: integer
+          title: Tenant Id
+        organization_id:
+          type: integer
+          title: Organization Id
+        account_id:
+          type: integer
+          title: Account Id
       type: object
       required:
-      - code
-      - message
-      - fields
-      title: ErrorModel
+      - user_id
+      - tenant_id
+      - organization_id
+      - account_id
+      title: SignupResponseModel
+    UserModel:
+      properties:
+        user_id:
+          type: integer
+          title: User Id
+        tenant_id:
+          type: integer
+          title: Tenant Id
+        first_name:
+          type: string
+          title: First Name
+        last_name:
+          type: string
+          title: Last Name
+        email:
+          type: string
+          format: email
+          title: Email
+        created_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created Date
+        updated_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated Date
+        groups:
+          items:
+            $ref: '#/components/schemas/Group'
+          type: array
+          title: Groups
+        status:
+          $ref: '#/components/schemas/UserStatus'
+        authorized_apps:
+          items:
+            $ref: '#/components/schemas/AppCode'
+          type: array
+          title: Authorized Apps
+      type: object
+      required:
+      - user_id
+      - tenant_id
+      - first_name
+      - last_name
+      - email
+      - created_date
+      - updated_date
+      - groups
+      - status
+      - authorized_apps
+      title: UserModel
+      example:
+        authorized_apps:
+        - MF
+        - RA
+        created_date: '2024-01-01T00:00:00'
+        email: eb@groundtruth.com
+        first_name: Emmett
+        groups:
+        - 1
+        - 11
+        last_name: Brown
+        status: 1
+        tenant_id: 1
+        updated_date: '2025-01-01T00:00:00'
+        user_id: 1
+    UpdateUserModel:
+      properties:
+        first_name:
+          type: string
+          maxLength: 64
+          minLength: 1
+          title: First Name
+        last_name:
+          type: string
+          maxLength: 64
+          minLength: 1
+          title: Last Name
+        password:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Password
+        groups:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Group'
+            type: array
+          - type: 'null'
+          title: Groups
+      type: object
+      required:
+      - first_name
+      - last_name
+      title: UpdateUserModel
+    CountryCode:
+      type: string
+      enum:
+      - US
+      - CA
+      title: CountryCode
+    UserStatus:
+      oneOf:
+      - const: 0
+        title: INACTIVE
+      - const: 1
+        title: ACTIVE
+      - const: 2
+        title: NEEDS_ACTIVATION
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      title: UserStatus
+      x-enum-varnames:
+      - INACTIVE
+      - ACTIVE
+      - NEEDS_ACTIVATION
   securitySchemes:
     api-key:
       type: apiKey

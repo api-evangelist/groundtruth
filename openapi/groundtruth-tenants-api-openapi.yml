@@ -123,17 +123,38 @@ paths:
           description: Internal Server Error
 components:
   schemas:
-    UpdateTenantModel:
+    ErrorModel:
       properties:
-        name:
+        code:
           type: string
-          maxLength: 64
-          minLength: 1
-          title: Name
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
       type: object
       required:
-      - name
-      title: UpdateTenantModel
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
     TenantModel:
       properties:
         id:
@@ -183,35 +204,6 @@ components:
       - referrer_url
       - utm_campaign
       title: TenantModel
-    TenantType:
-      oneOf:
-      - const: 0
-        title: MANAGED
-      - const: 1
-        title: SELF_SERVE
-      - const: 2
-        title: CHANNEL
-      type: integer
-      enum:
-      - 0
-      - 1
-      - 2
-      title: TenantType
-      x-enum-varnames:
-      - MANAGED
-      - SELF_SERVE
-      - CHANNEL
-    ErrorResponseModel:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorModel'
-          type: array
-          title: Errors
-      type: object
-      required:
-      - errors
-      title: ErrorResponseModel
     PaymentType:
       oneOf:
       - const: 0
@@ -238,27 +230,35 @@ components:
       - SPEND_LIMIT
       - CREDIT_CARD_V2
       - ACCOUNT_LEVEL_CREDIT_CARD
-    ErrorModel:
+    TenantType:
+      oneOf:
+      - const: 0
+        title: MANAGED
+      - const: 1
+        title: SELF_SERVE
+      - const: 2
+        title: CHANNEL
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      title: TenantType
+      x-enum-varnames:
+      - MANAGED
+      - SELF_SERVE
+      - CHANNEL
+    UpdateTenantModel:
       properties:
-        code:
+        name:
           type: string
-          title: Code
-        message:
-          type: string
-          title: Message
-        fields:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Fields
+          maxLength: 64
+          minLength: 1
+          title: Name
       type: object
       required:
-      - code
-      - message
-      - fields
-      title: ErrorModel
+      - name
+      title: UpdateTenantModel
   securitySchemes:
     api-key:
       type: apiKey
