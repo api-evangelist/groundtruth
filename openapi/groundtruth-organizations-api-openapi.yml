@@ -349,6 +349,52 @@ paths:
           description: Internal Server Error
 components:
   schemas:
+    SortOrder:
+      oneOf:
+      - const: desc
+        title: DESC
+      - const: asc
+        title: ASC
+      type: string
+      enum:
+      - desc
+      - asc
+      title: SortOrder
+      x-enum-varnames:
+      - DESC
+      - ASC
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    CreateOrUpdateOrganizationModel:
+      properties:
+        name:
+          type: string
+          maxLength: 128
+          minLength: 1
+          title: Name
+      type: object
+      required:
+      - name
+      title: CreateOrUpdateOrganizationModel
     OrganizationModel:
       properties:
         id:
@@ -378,27 +424,6 @@ components:
       - tenant_id
       - name
       title: OrganizationModel
-    ErrorModel:
-      properties:
-        code:
-          type: string
-          title: Code
-        message:
-          type: string
-          title: Message
-        fields:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Fields
-      type: object
-      required:
-      - code
-      - message
-      - fields
-      title: ErrorModel
     SuccessResponseModel:
       properties:
         success:
@@ -453,31 +478,6 @@ components:
       required:
       - errors
       title: ErrorResponseModel
-    SortOrder:
-      oneOf:
-      - const: desc
-        title: DESC
-      - const: asc
-        title: ASC
-      type: string
-      enum:
-      - desc
-      - asc
-      title: SortOrder
-      x-enum-varnames:
-      - DESC
-      - ASC
-    CreateOrUpdateOrganizationModel:
-      properties:
-        name:
-          type: string
-          maxLength: 128
-          minLength: 1
-          title: Name
-      type: object
-      required:
-      - name
-      title: CreateOrUpdateOrganizationModel
   securitySchemes:
     api-key:
       type: apiKey

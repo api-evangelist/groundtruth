@@ -84,6 +84,17 @@ paths:
           description: Internal Server Error
 components:
   schemas:
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
     ErrorModel:
       properties:
         code:
@@ -105,52 +116,6 @@ components:
       - message
       - fields
       title: ErrorModel
-    ErrorResponseModel:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorModel'
-          type: array
-          title: Errors
-      type: object
-      required:
-      - errors
-      title: ErrorResponseModel
-    OrdersModel:
-      properties:
-        total_count:
-          type: integer
-          title: Total Count
-        limit:
-          type: integer
-          title: Limit
-        page_num:
-          type: integer
-          title: Page Num
-        total_pages:
-          type: integer
-          title: Total Pages
-        has_next_page:
-          type: boolean
-          title: Has Next Page
-        has_prev_page:
-          type: boolean
-          title: Has Prev Page
-        items:
-          items:
-            $ref: '#/components/schemas/OrderModel'
-          type: array
-          title: Items
-      type: object
-      required:
-      - total_count
-      - limit
-      - page_num
-      - total_pages
-      - has_next_page
-      - has_prev_page
-      - items
-      title: OrdersModel
     OrderModel:
       properties:
         id:
@@ -270,6 +235,41 @@ components:
       - is_overdue
       - formatted_price
       title: OrderModel
+    OrdersModel:
+      properties:
+        total_count:
+          type: integer
+          title: Total Count
+        limit:
+          type: integer
+          title: Limit
+        page_num:
+          type: integer
+          title: Page Num
+        total_pages:
+          type: integer
+          title: Total Pages
+        has_next_page:
+          type: boolean
+          title: Has Next Page
+        has_prev_page:
+          type: boolean
+          title: Has Prev Page
+        items:
+          items:
+            $ref: '#/components/schemas/OrderModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - total_count
+      - limit
+      - page_num
+      - total_pages
+      - has_next_page
+      - has_prev_page
+      - items
+      title: OrdersModel
   securitySchemes:
     api-key:
       type: apiKey

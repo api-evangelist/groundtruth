@@ -3600,930 +3600,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    AudioStreamingGenreAdgroup:
-      properties:
-        adgroup_id:
-          type: number
-        adgroup_name:
-          type: string
-        genre:
-          type: string
-          description: streaming genre
-        imp:
-          type: number
-          description: impressions
-        ltr:
-          type: number
-          description: listen through rate
-      type: object
-    TODExportAdgroup:
-      properties:
-        campaign_id:
-          type: number
-        campaign_name:
-          type: string
-        hr:
-          type: number
-          description: hour
-        imp:
-          type: number
-          description: impressions
-        clks:
-          type: number
-          description: clicks
-        spt:
-          type: number
-        sa:
-          type: number
-          description: secondary action
-        web:
-          type: number
-        dir:
-          type: number
-          description: direction
-        ctc:
-          type: number
-          description: click to call
-        info:
-          type: number
-          description: more info
-        cpn:
-          type: number
-          description: coupon
-        vst:
-          type: number
-          description: visits
-        oh_vst:
-          type: number
-          description: overhead visits
-        prj_vst:
-          type: number
-          description: projected visits
-        sar:
-          type: number
-          description: secondary action rate
-        ctr:
-          type: number
-          description: click_thru_rate
-        vcr:
-          type: number
-          description: video completion rate
-        video_start:
-          type: number
-          description: video start
-        video_first_quartile:
-          type: number
-          description: video first quartile
-        video_midpoint:
-          type: number
-          description: video midpoint
-        video_third_quartile:
-          type: number
-          description: video third quartile
-        video_end:
-          type: number
-          description: video end
-      type: object
-    AudioPodcastSeriesCampaign:
-      properties:
-        campaign_id:
-          type: number
-        campaign_name:
-          type: string
-        series:
-          type: string
-          description: podcast series
-        imp:
-          type: number
-          description: impressions
-        ltr:
-          type: number
-          description: listen through rate
-      type: object
-    BrandAffinityCampaignV2:
-      properties:
-        b_id:
-          type: number
-          description: brand_id
-        b_name:
-          type: string
-          description: brand_name
-        campaign_id:
-          type: number
-        campaign_name:
-          type: string
-        imp:
-          type: number
-          description: impressions
-        visits:
-          type: number
-          description: visits
-        clicks:
-          type: number
-          description: clicks
-        click_through_rate:
-          type: number
-          description: click_thru_rate
-        secondary_actions:
-          type: number
-          description: secondary_actions
-        secondary_action_rate:
-          type: number
-          description: secondary_action_rate
-        vr:
-          type: number
-          description: visitation_rate
-      type: object
-    DailyAdgroup:
-      properties:
-        account_name:
-          type: string
-        adgroup_id:
-          type: integer
-        adgroup_name:
-          type: string
-        campaign_id:
-          type: integer
-        campaign_name:
-          type: string
-        click_to_call:
-          type: number
-        clicks:
-          type: integer
-        coupon:
-          type: number
-        cpm:
-          type: number
-        creative_id:
-          type:
-          - integer
-          - 'null'
-        creative_name:
-          type:
-          - string
-          - 'null'
-        ctr:
-          type: number
-        cumulative_reach:
-          type: integer
-        daily_reach:
-          type: integer
-        date:
-          type: string
-        directions:
-          type: number
-        impressions:
-          type: integer
-        moreinfo:
-          type: number
-        oh_visitors:
-          type: number
-        oh_vst:
-          type: number
-        prj_vst:
-          type: number
-        sar:
-          type: number
-        spend:
-          type: number
-        svl:
-          type: number
-        svr:
-          type: number
-        total_sa:
-          type: number
-        video:
-          type: number
-        video_end:
-          type: number
-        video_first_quartile:
-          type: number
-        video_midpoint:
-          type: number
-        video_start:
-          type: number
-        video_third_quartile:
-          type: number
-        visitors:
-          type: number
-        visits:
-          type: integer
-        website:
-          type: number
-      type: object
-    NetworkCampaign:
-      properties:
-        campaign_id:
-          type: number
-        campaign_name:
-          type: string
-        network_name:
-          type: string
-        imp:
-          type: number
-          description: impressions
-        video_start:
-          type: number
-          description: video start
-        video_first_quartile:
-          type: number
-          description: video first quartile
-        video_midpoint:
-          type: number
-          description: video midpoint
-        video_third_quartile:
-          type: number
-          description: video third quartile
-        video_end:
-          type: number
-          description: video end
-        vcr:
-          type: number
-          description: video completion rate
-      type: object
-    BehavioralAudienceCreative:
-      properties:
-        a_id:
-          type: number
-          description: audience_id
-        a_name:
-          type: string
-          description: audience_name
-        creative_id:
-          type: number
-        creative_name:
-          type: string
-        imp:
-          type: number
-          description: impressions
-        vst:
-          type: number
-          description: visits
-        oh_vst:
-          type: number
-          description: open_hour_visits
-        clks:
-          type: number
-          description: clicks
-        ctr:
-          type: number
-          description: click_thru_rate
-        sa:
-          type: number
-          description: secondary_actions
-        sar:
-          type: number
-          description: secondary_action_rate
-        vr:
-          type: number
-          description: visitation_rate
-        prj_vst:
-          type: number
-          description: projected_visits
-        prj_oh_vst:
-          type: number
-          description: projected_open_hour_visits
-      type: object
-    TotalsAccount:
-      properties:
-        account_name:
-          type: string
-        campaign_id:
-          type: integer
-        campaign_name:
-          type: string
-        click_to_call:
-          type: number
-        clicks:
-          type: integer
-        coupon:
-          type: number
-        cpm:
-          type: number
-        ctr:
-          type: number
-        cumulative_reach:
-          type: integer
-        cumulative_visitors:
-          type: number
-        directions:
-          type: number
-        impressions:
-          type: integer
-        moreinfo:
-          type: number
-        open_hour_cumulative_visitors:
-          type: number
-        open_hour_visits:
-          type: number
-        projected_open_hour_visits:
-          type: number
-        projected_visits:
-          type: number
-        sar:
-          type: number
-        spend:
-          type: number
-        svr:
-          type: number
-        total_sa:
-          type: number
-        video:
-          type: number
-        video_end:
-          type: number
-        video_first_quartile:
-          type: number
-        video_midpoint:
-          type: number
-        video_start:
-          type: number
-        video_third_quartile:
-          type: number
-        visits:
-          type: integer
-        website:
-          type: number
-      type: object
-    BrandAffinityCreativeV2:
-      properties:
-        b_id:
-          type: number
-          description: brand_id
-        b_name:
-          type: string
-          description: brand_name
-        creative_id:
-          type: number
-        creative_name:
-          type: string
-        imp:
-          type: number
-          description: impressions
-        visits:
-          type: number
-          description: visits
-        clicks:
-          type: number
-          description: clicks
-        click_through_rate:
-          type: number
-          description: click_thru_rate
-        secondary_actions:
-          type: number
-          description: secondary_actions
-        secondary_action_rate:
-          type: number
-          description: secondary_action_rate
-        vr:
-          type: number
-          description: visitation_rate
-      type: object
-    CategoryAdgroup:
-      properties:
-        sic:
-          type: string
-          description: category_id
-        c_name:
-          type: string
-          description: category_name
-        adgroup_id:
-          type: number
-        adgroup_name:
-          type: string
-        imp:
-          type: number
-          description: impressions
-        vst:
-          type: number
-          description: visits
-        oh_vst:
-          type: number
-          description: open_hour_visits
-        clks:
-          type: number
-          description: clicks
-        ctr:
-          type: number
-          description: click_thru_rate
-        sa:
-          type: number
-          description: secondary_actions
-        sar:
-          type: number
-          description: secondary_action_rate
-        vr:
-          type: number
-          description: visitation_rate
-        prj_vst:
-          type: number
-          description: projected_visits
-        prj_oh_vst:
-          type: number
-          description: projected_open_hour_visits
-      type: object
-    ProductExportAdgroup:
-      properties:
-        product_group:
-          type: string
-        product:
-          type: string
-        constraint:
-          type: string
-        adgroup_id:
-          type: number
-        adgroup_name:
-          type: string
-        poi_name:
-          type: string
-        dma_name:
-          type: string
-        address:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        zip:
-          type: string
-        country:
-          type: string
-        latitude:
-          type: string
-        longitude:
-          type: string
-        imp:
-          type: number
-        clks:
-          type: number
-        sa:
-          type: number
-        spt:
-          type: number
-        vst:
-          type: number
-        oh_vst:
-          type: number
-        ctr:
-          type: number
-        sar:
-          type: number
-        vr:
-          type: number
-        prj_vst:
-          type: number
-        prj_oh_vst:
-          type: number
-        web:
-          type: number
-        dir:
-          type: number
-        ctc:
-          type: number
-        info:
-          type: number
-        cpn:
-          type: number
-        vid_0:
-          type: number
-        vid_25:
-          type: number
-        vid_50:
-          type: number
-        vid_75:
-          type: number
-        vid_100:
-          type: number
-      type: object
-    AudioPodcastTopicAdgroup:
-      properties:
-        adgroup_id:
-          type: number
-        adgroup_name:
-          type: string
-        topic:
-          type: string
-          description: podcast topic
-        imp:
-          type: number
-          description: impressions
-        ltr:
-          type: number
-          description: listen through rate
-      type: object
-    BrandAffinityCampaign:
-      properties:
-        b_id:
-          type: number
-          description: brand_id
-        b_name:
-          type: string
-          description: brand_name
-        campaign_id:
-          type: number
-        campaign_name:
-          type: string
-        imp:
-          type: number
-          description: impressions
-        vst:
-          type: number
-          description: visits
-        oh_vst:
-          type: number
-          description: open_hour_visits
-        clks:
-          type: number
-          description: clicks
-        ctr:
-          type: number
-          description: click_thru_rate
-        sa:
-          type: number
-          description: secondary_actions
-        sar:
-          type: number
-          description: secondary_action_rate
-        vr:
-          type: number
-          description: visitation_rate
-        prj_vst:
-          type: number
-          description: projected_visits
-        prj_oh_vst:
-          type: number
-          description: projected_open_hour_visits
-      type: object
-    CategoryCampaign:
-      properties:
-        sic:
-          type: string
-          description: category_id
-        c_name:
-          type: string
-          description: category_name
-        campaign_id:
-          type: number
-        campaign_name:
-          type: string
-        imp:
-          type: number
-          description: impressions
-        vst:
-          type: number
-          description: visits
-        oh_vst:
-          type: number
-          description: open_hour_visits
-        clks:
-          type: number
-          description: clicks
-        ctr:
-          type: number
-          description: click_thru_rate
-        sa:
-          type: number
-          description: secondary_actions
-        sar:
-          type: number
-          description: secondary_action_rate
-        vr:
-          type: number
-          description: visitation_rate
-        prj_vst:
-          type: number
-          description: projected_visits
-        prj_oh_vst:
-          type: number
-          description: projected_open_hour_visits
-      type: object
-    BehavioralAudienceAdgroup:
-      properties:
-        a_id:
-          type: number
-          description: audience_id
-        a_name:
-          type: string
-          description: audience_name
-        adgroup_id:
-          type: number
-        adgroup_name:
-          type: string
-        imp:
-          type: number
-          description: impressions
-        vst:
-          type: number
-          description: visits
-        oh_vst:
-          type: number
-          description: open_hour_visits
-        clks:
-          type: number
-          description: clicks
-        ctr:
-          type: number
-          description: click_thru_rate
-        sa:
-          type: number
-          description: secondary_actions
-        sar:
-          type: number
-          description: secondary_action_rate
-        vr:
-          type: number
-          description: visitation_rate
-        prj_vst:
-          type: number
-          description: projected_visits
-        prj_oh_vst:
-          type: number
-          description: projected_open_hour_visits
-      type: object
-    AudioStreamingGenreCampaign:
-      properties:
-        campaign_id:
-          type: number
-        campaign_name:
-          type: string
-        genre:
-          type: string
-          description: streaming genre
-        imp:
-          type: number
-          description: impressions
-        ltr:
-          type: number
-          description: listen through rate
-      type: object
-    ConversionTracking:
-      properties:
-        account_name:
-          type: string
-        account_id:
-          type: number
-        campaign_id:
-          type: number
-        campaign_name:
-          type: string
-        adgroup_id:
-          type: number
-        adgroup_name:
-          type: string
-        conversions:
-          type: number
-        pixel_id:
-          type: number
-        pixel_name:
-          type: string
-        view_thru_conversions:
-          type: number
-        click_thru_conversions:
-          type: number
-      type: object
-    ProductExportCreativeV2:
-      properties:
-        organization_name:
-          type: string
-        account_id:
-          type: number
-        account_name:
-          type: string
-        campaign_id:
-          type: number
-        campaign_name:
-          type: string
-        adgroup_id:
-          type: number
-        adgroup_name:
-          type: string
-        product_group:
-          type: string
-        product:
-          type: string
-        constraint:
-          type: string
-        creative_id:
-          type: number
-        creative_name:
-          type: string
-        poi_name:
-          type: string
-        dma_name:
-          type: string
-        address:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        zip:
-          type: string
-        country:
-          type: string
-        latitude:
-          type: string
-        longitude:
-          type: string
-        imp:
-          type: number
-        clicks:
-          type: number
-        secondary_actions:
-          type: number
-        spt:
-          type: number
-        visits:
-          type: number
-        click_through_rate:
-          type: number
-        secondary_action_rate:
-          type: number
-        vr:
-          type: number
-        web:
-          type: number
-        dir:
-          type: number
-        ctc:
-          type: number
-        info:
-          type: number
-        cpm:
-          type: number
-        video_start:
-          type: number
-        video_first_quartile:
-          type: number
-        video_midpoint:
-          type: number
-        video_third_quartile:
-          type: number
-        video_end:
-          type: number
-      type: object
-    TODExportCreative:
-      properties:
-        campaign_id:
-          type: number
-        campaign_name:
-          type: string
-        hr:
-          type: number
-          description: hour
-        imp:
-          type: number
-          description: impressions
-        clks:
-          type: number
-          description: clicks
-        spt:
-          type: number
-        sa:
-          type: number
-          description: secondary action
-        web:
-          type: number
-        dir:
-          type: number
-          description: direction
-        ctc:
-          type: number
-          description: click to call
-        info:
-          type: number
-          description: more info
-        cpn:
-          type: number
-          description: coupon
-        vst:
-          type: number
-          description: visits
-        oh_vst:
-          type: number
-          description: overhead visits
-        prj_vst:
-          type: number
-          description: projected visits
-        sar:
-          type: number
-          description: secondary action rate
-        ctr:
-          type: number
-          description: click_thru_rate
-        vcr:
-          type: number
-          description: video completion rate
-        video_start:
-          type: number
-          description: video start
-        video_first_quartile:
-          type: number
-          description: video first quartile
-        video_midpoint:
-          type: number
-          description: video midpoint
-        video_third_quartile:
-          type: number
-          description: video third quartile
-        video_end:
-          type: number
-          description: video end
-      type: object
-    PublisherAdgroupV2:
-      properties:
-        adgroup_id:
-          type: number
-        adgroup_name:
-          type: string
-        publisher_name:
-          type: string
-        imp:
-          type: number
-          description: impressions
-        video_start:
-          type: number
-          description: video start
-        video_first_quartile:
-          type: number
-          description: video first quartile
-        video_midpoint:
-          type: number
-          description: video midpoint
-        video_third_quartile:
-          type: number
-          description: video third quartile
-        video_end:
-          type: number
-          description: video end
-        vcr:
-          type: number
-          description: video completion rate
-      type: object
-    PublisherCampaignV2:
-      properties:
-        campaign_id:
-          type: number
-        campaign_name:
-          type: string
-        publisher_name:
-          type: string
-        imp:
-          type: number
-          description: impressions
-        video_start:
-          type: number
-          description: video start
-        video_first_quartile:
-          type: number
-          description: video first quartile
-        video_midpoint:
-          type: number
-          description: video midpoint
-        video_third_quartile:
-          type: number
-          description: video third quartile
-        video_end:
-          type: number
-          description: video end
-        vcr:
-          type: number
-          description: video completion rate
-      type: object
-    BrandAffinityAdgroupV2:
-      properties:
-        b_id:
-          type: number
-          description: brand_id
-        b_name:
-          type: string
-          description: brand_name
-        adgroup_id:
-          type: number
-        adgroup_name:
-          type: string
-        imp:
-          type: number
-          description: impressions
-        visits:
-          type: number
-          description: visits
-        clicks:
-          type: number
-          description: clicks
-        click_through_rate:
-          type: number
-          description: click_thru_rate
-        secondary_actions:
-          type: number
-          description: secondary_actions
-        secondary_action_rate:
-          type: number
-          description: secondary_action_rate
-        vr:
-          type: number
-          description: visitation_rate
-      type: object
     DailyCampaign:
       properties:
         date:
@@ -4617,88 +3693,186 @@ components:
         budget_type:
           type: string
       type: object
-    CategoryCampaignV2:
+    ProductExportCreativeV2:
       properties:
-        sic:
+        organization_name:
           type: string
-          description: category_id
-        c_name:
+        account_id:
+          type: number
+        account_name:
           type: string
-          description: category_name
         campaign_id:
           type: number
         campaign_name:
+          type: string
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        product_group:
+          type: string
+        product:
+          type: string
+        constraint:
+          type: string
+        creative_id:
+          type: number
+        creative_name:
+          type: string
+        poi_name:
+          type: string
+        dma_name:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        latitude:
+          type: string
+        longitude:
           type: string
         imp:
           type: number
-          description: impressions
-        visits:
-          type: number
-          description: visits
         clicks:
           type: number
-          description: clicks
-        click_through_rate:
-          type: number
-          description: click_thru_rate
         secondary_actions:
           type: number
-          description: secondary_actions
+        spt:
+          type: number
+        visits:
+          type: number
+        click_through_rate:
+          type: number
         secondary_action_rate:
           type: number
-          description: secondary_action_rate
         vr:
           type: number
-          description: visitation_rate
+        web:
+          type: number
+        dir:
+          type: number
+        ctc:
+          type: number
+        info:
+          type: number
+        cpm:
+          type: number
+        video_start:
+          type: number
+        video_first_quartile:
+          type: number
+        video_midpoint:
+          type: number
+        video_third_quartile:
+          type: number
+        video_end:
+          type: number
       type: object
-    SVLocationCampaignV2:
+    AudioPublisherCampaign:
       properties:
         campaign_id:
           type: number
         campaign_name:
           type: string
-        poi_id:
-          type:
-          - string
-          - 'null'
-        company_name:
-          type:
-          - string
-          - 'null'
-        address:
-          type:
-          - string
-          - 'null'
-        zip:
-          type:
-          - string
-          - 'null'
-        dma:
-          type:
-          - number
-          - 'null'
-        city:
-          type:
-          - string
-          - 'null'
-        state:
-          type:
-          - string
-          - 'null'
-        country:
-          type:
-          - string
-          - 'null'
-        latitude:
-          type:
-          - number
-          - 'null'
-        longitude:
-          type:
-          - number
-          - 'null'
-        visits:
+        app_site_publisher_name:
+          type: string
+          description: publisher name
+        imp:
           type: number
+          description: impressions
+        ltr:
+          type: number
+          description: listen through rate
+      type: object
+    AudioStreamingGenreAdgroup:
+      properties:
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        genre:
+          type: string
+          description: streaming genre
+        imp:
+          type: number
+          description: impressions
+        ltr:
+          type: number
+          description: listen through rate
+      type: object
+    TODExportAdgroup:
+      properties:
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        hr:
+          type: number
+          description: hour
+        imp:
+          type: number
+          description: impressions
+        clks:
+          type: number
+          description: clicks
+        spt:
+          type: number
+        sa:
+          type: number
+          description: secondary action
+        web:
+          type: number
+        dir:
+          type: number
+          description: direction
+        ctc:
+          type: number
+          description: click to call
+        info:
+          type: number
+          description: more info
+        cpn:
+          type: number
+          description: coupon
+        vst:
+          type: number
+          description: visits
+        oh_vst:
+          type: number
+          description: overhead visits
+        prj_vst:
+          type: number
+          description: projected visits
+        sar:
+          type: number
+          description: secondary action rate
+        ctr:
+          type: number
+          description: click_thru_rate
+        vcr:
+          type: number
+          description: video completion rate
+        video_start:
+          type: number
+          description: video start
+        video_first_quartile:
+          type: number
+          description: video first quartile
+        video_midpoint:
+          type: number
+          description: video midpoint
+        video_third_quartile:
+          type: number
+          description: video third quartile
+        video_end:
+          type: number
+          description: video end
       type: object
     TotalsOrg:
       properties:
@@ -4759,39 +3933,82 @@ components:
         video_end:
           type: number
       type: object
-    BehavioralAudienceAdgroupV2:
+    DailyAdgroup:
       properties:
-        a_id:
-          type: number
-          description: audience_id
-        a_name:
+        account_name:
           type: string
-          description: audience_name
         adgroup_id:
-          type: number
+          type: integer
         adgroup_name:
           type: string
-        imp:
+        campaign_id:
+          type: integer
+        campaign_name:
+          type: string
+        click_to_call:
           type: number
-          description: impressions
-        visits:
-          type: number
-          description: visits
         clicks:
+          type: integer
+        coupon:
           type: number
-          description: clicks
-        click_through_rate:
+        cpm:
           type: number
-          description: click_thru_rate
-        secondary_actions:
+        creative_id:
+          type:
+          - integer
+          - 'null'
+        creative_name:
+          type:
+          - string
+          - 'null'
+        ctr:
           type: number
-          description: secondary_actions
-        secondary_action_rate:
+        cumulative_reach:
+          type: integer
+        daily_reach:
+          type: integer
+        date:
+          type: string
+        directions:
           type: number
-          description: secondary_action_rate
-        vr:
+        impressions:
+          type: integer
+        moreinfo:
           type: number
-          description: visitation_rate
+        oh_visitors:
+          type: number
+        oh_vst:
+          type: number
+        prj_vst:
+          type: number
+        sar:
+          type: number
+        spend:
+          type: number
+        svl:
+          type: number
+        svr:
+          type: number
+        total_sa:
+          type: number
+        video:
+          type: number
+        video_end:
+          type: number
+        video_first_quartile:
+          type: number
+        video_midpoint:
+          type: number
+        video_start:
+          type: number
+        video_third_quartile:
+          type: number
+        visitors:
+          type: number
+        visits:
+          type: integer
+        website:
+          type: number
       type: object
     SVLocationAdgroupV2:
       properties:
@@ -4846,56 +4063,23 @@ components:
         visits:
           type: number
       type: object
-    SVLocationCampaign:
+    AudioPodcastTopicAdgroup:
       properties:
-        campaign_id:
+        adgroup_id:
           type: number
-        campaign_name:
+        adgroup_name:
           type: string
-        poi_id:
-          type:
-          - string
-          - 'null'
-        company_name:
-          type:
-          - string
-          - 'null'
-        address:
-          type:
-          - string
-          - 'null'
-        zip:
-          type:
-          - string
-          - 'null'
-        dma:
-          type:
-          - number
-          - 'null'
-        city:
-          type:
-          - string
-          - 'null'
-        state:
-          type:
-          - string
-          - 'null'
-        country:
-          type:
-          - string
-          - 'null'
-        latitude:
-          type:
-          - number
-          - 'null'
-        longitude:
-          type:
-          - number
-          - 'null'
-        total_sv:
+        topic:
+          type: string
+          description: podcast topic
+        imp:
           type: number
+          description: impressions
+        ltr:
+          type: number
+          description: listen through rate
       type: object
-    LocationCampaign:
+    DeviceTypeCampaign:
       properties:
         account_name:
           type: string
@@ -4903,31 +4087,83 @@ components:
           type: number
         campaign_name:
           type: string
-        zip:
-          type:
-          - string
-          - 'null'
-        latitude:
+        pub_type:
+          type: string
+          description: device_type
+        impressions:
+          type: number
+        clicks:
+          type: number
+        spend:
+          type: number
+        ctr:
+          type: number
+          description: click_thru_rate
+      type: object
+    BehavioralAudienceCampaign:
+      properties:
+        a_id:
+          type: number
+          description: audience_id
+        a_name:
+          type: string
+          description: audience_name
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        vst:
+          type: number
+          description: visits
+        oh_vst:
+          type: number
+          description: open_hour_visits
+        clks:
+          type: number
+          description: clicks
+        ctr:
+          type: number
+          description: click_thru_rate
+        sa:
+          type: number
+          description: secondary_actions
+        sar:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+        prj_vst:
+          type: number
+          description: projected_visits
+        prj_oh_vst:
+          type: number
+          description: projected_open_hour_visits
+      type: object
+    DemographicCampaign:
+      properties:
+        account_name:
+          type: string
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        adgroup_id:
           type:
           - number
           - 'null'
-        longitude:
-          type:
-          - number
-          - 'null'
-        dma:
-          type:
-          - integer
-          - 'null'
-        city:
+        adgroup_name:
           type:
           - string
           - 'null'
-        state:
+        age:
           type:
           - string
           - 'null'
-        country:
+        gender:
           type:
           - string
           - 'null'
@@ -4939,9 +4175,96 @@ components:
           type: number
         ctr:
           type: number
-        secondary_actions:
+          description: click_thru_rate
+        cpm:
+          type: number
+        total_sa:
+          type: number
+        sar:
+          type: number
+          description: secondary_action_rate
+        click_to_call:
+          type: number
+        directions:
+          type: number
+        website:
+          type: number
+        moreinfo:
+          type: number
+        coupon:
+          type: number
+        video:
+          type: number
+        cumulative_reach:
           type: number
         visits:
+          type: number
+        open_hour_visits:
+          type: number
+        projected_visits:
+          type: number
+        projected_open_hour_visits:
+          type: number
+      type: object
+    DailyExportCreatives:
+      properties:
+        date:
+          type: string
+        organization_name:
+          type: string
+        account_id:
+          type: number
+        account_name:
+          type: string
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        creative_id:
+          type: number
+        creative_name:
+          type: string
+        creative_size:
+          type: string
+        creative_url:
+          type: string
+        campaign_start_date:
+          type: string
+        campaign_end_date:
+          type: string
+        advertiser_bid_type:
+          type: string
+        budget_type:
+          type: string
+        impressions:
+          type: number
+        clicks:
+          type: number
+        daily_reach:
+          type: number
+        ctr:
+          type: number
+        cpm:
+          type: number
+        cpv:
+          type: number
+        visits:
+          type: number
+        video_start:
+          type: number
+        video_first_quartile:
+          type: number
+        video_midpoint:
+          type: number
+        video_third_quartile:
+          type: number
+        video_end:
+          type: number
+        total_sa:
           type: number
         coupon:
           type: number
@@ -4953,22 +4276,24 @@ components:
           type: number
         click_to_call:
           type: number
-      type: object
-    AudioPodcastTopicCampaign:
-      properties:
-        campaign_id:
+        sar:
           type: number
-        campaign_name:
+        spend:
+          type: number
+        market:
           type: string
-        topic:
+        contract_id:
           type: string
-          description: podcast topic
-        imp:
+        campaign_budget:
           type: number
-          description: impressions
-        ltr:
+        total_imp_contracted:
           type: number
-          description: listen through rate
+        external_adgroup_id:
+          type: number
+        oh_vst:
+          type: number
+        prj_vst:
+          type: number
       type: object
     BehavioralAudienceCreativeV2:
       properties:
@@ -5004,26 +4329,220 @@ components:
           type: number
           description: visitation_rate
       type: object
-    DeviceTypeCampaign:
+    TODExportCreative:
       properties:
-        account_name:
-          type: string
         campaign_id:
           type: number
         campaign_name:
           type: string
-        pub_type:
-          type: string
-          description: device_type
-        impressions:
+        hr:
           type: number
-        clicks:
+          description: hour
+        imp:
           type: number
-        spend:
+          description: impressions
+        clks:
           type: number
+          description: clicks
+        spt:
+          type: number
+        sa:
+          type: number
+          description: secondary action
+        web:
+          type: number
+        dir:
+          type: number
+          description: direction
+        ctc:
+          type: number
+          description: click to call
+        info:
+          type: number
+          description: more info
+        cpn:
+          type: number
+          description: coupon
+        vst:
+          type: number
+          description: visits
+        oh_vst:
+          type: number
+          description: overhead visits
+        prj_vst:
+          type: number
+          description: projected visits
+        sar:
+          type: number
+          description: secondary action rate
         ctr:
           type: number
           description: click_thru_rate
+        vcr:
+          type: number
+          description: video completion rate
+        video_start:
+          type: number
+          description: video start
+        video_first_quartile:
+          type: number
+          description: video first quartile
+        video_midpoint:
+          type: number
+          description: video midpoint
+        video_third_quartile:
+          type: number
+          description: video third quartile
+        video_end:
+          type: number
+          description: video end
+      type: object
+    BehavioralAudienceAdgroup:
+      properties:
+        a_id:
+          type: number
+          description: audience_id
+        a_name:
+          type: string
+          description: audience_name
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        vst:
+          type: number
+          description: visits
+        oh_vst:
+          type: number
+          description: open_hour_visits
+        clks:
+          type: number
+          description: clicks
+        ctr:
+          type: number
+          description: click_thru_rate
+        sa:
+          type: number
+          description: secondary_actions
+        sar:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+        prj_vst:
+          type: number
+          description: projected_visits
+        prj_oh_vst:
+          type: number
+          description: projected_open_hour_visits
+      type: object
+    TotalsAccount:
+      properties:
+        account_name:
+          type: string
+        campaign_id:
+          type: integer
+        campaign_name:
+          type: string
+        click_to_call:
+          type: number
+        clicks:
+          type: integer
+        coupon:
+          type: number
+        cpm:
+          type: number
+        ctr:
+          type: number
+        cumulative_reach:
+          type: integer
+        cumulative_visitors:
+          type: number
+        directions:
+          type: number
+        impressions:
+          type: integer
+        moreinfo:
+          type: number
+        open_hour_cumulative_visitors:
+          type: number
+        open_hour_visits:
+          type: number
+        projected_open_hour_visits:
+          type: number
+        projected_visits:
+          type: number
+        sar:
+          type: number
+        spend:
+          type: number
+        svr:
+          type: number
+        total_sa:
+          type: number
+        video:
+          type: number
+        video_end:
+          type: number
+        video_first_quartile:
+          type: number
+        video_midpoint:
+          type: number
+        video_start:
+          type: number
+        video_third_quartile:
+          type: number
+        visits:
+          type: integer
+        website:
+          type: number
+      type: object
+    CategoryCampaign:
+      properties:
+        sic:
+          type: string
+          description: category_id
+        c_name:
+          type: string
+          description: category_name
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        vst:
+          type: number
+          description: visits
+        oh_vst:
+          type: number
+          description: open_hour_visits
+        clks:
+          type: number
+          description: clicks
+        ctr:
+          type: number
+          description: click_thru_rate
+        sa:
+          type: number
+          description: secondary_actions
+        sar:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+        prj_vst:
+          type: number
+          description: projected_visits
+        prj_oh_vst:
+          type: number
+          description: projected_open_hour_visits
       type: object
     ProductExportAdgroupV2:
       properties:
@@ -5092,57 +4611,8 @@ components:
         video_end:
           type: number
       type: object
-    BrandAffinityAdgroup:
+    SVLocationAdgroup:
       properties:
-        b_id:
-          type: number
-          description: brand_id
-        b_name:
-          type: string
-          description: brand_name
-        adgroup_id:
-          type: number
-        adgroup_name:
-          type: string
-        imp:
-          type: number
-          description: impressions
-        vst:
-          type: number
-          description: visits
-        oh_vst:
-          type: number
-          description: open_hour_visits
-        clks:
-          type: number
-          description: clicks
-        ctr:
-          type: number
-          description: click_thru_rate
-        sa:
-          type: number
-          description: secondary_actions
-        sar:
-          type: number
-          description: secondary_action_rate
-        vr:
-          type: number
-          description: visitation_rate
-        prj_vst:
-          type: number
-          description: projected_visits
-        prj_oh_vst:
-          type: number
-          description: projected_open_hour_visits
-      type: object
-    ProductExportCreativeV3:
-      properties:
-        organization_name:
-          type: string
-        account_id:
-          type: number
-        account_name:
-          type: string
         campaign_id:
           type: number
         campaign_name:
@@ -5151,341 +4621,21 @@ components:
           type: number
         adgroup_name:
           type: string
-        product_group:
-          type: string
-        product:
-          type: string
-        constraint:
-          type: string
-        creative_id:
-          type: number
-        creative_name:
-          type: string
-        poi_name:
-          type: string
-        dma_name:
-          type: string
+        poi_id:
+          type:
+          - string
+          - 'null'
+        company_name:
+          type:
+          - string
+          - 'null'
         address:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        zip:
-          type: string
-        country:
-          type: string
-        latitude:
-          type: string
-        longitude:
-          type: string
-        imp:
-          type: number
-        clicks:
-          type: number
-        secondary_actions:
-          type: number
-        spt:
-          type: number
-        visits:
-          type: number
-        click_through_rate:
-          type: number
-        secondary_action_rate:
-          type: number
-        vr:
-          type: number
-        web:
-          type: number
-        dir:
-          type: number
-        ctc:
-          type: number
-        info:
-          type: number
-        cpm:
-          type: number
-        video_start:
-          type: number
-        video_first_quartile:
-          type: number
-        video_midpoint:
-          type: number
-        video_third_quartile:
-          type: number
-        video_end:
-          type: number
-      type: object
-    DemographicCampaign:
-      properties:
-        account_name:
-          type: string
-        campaign_id:
-          type: number
-        campaign_name:
-          type: string
-        adgroup_id:
-          type:
-          - number
-          - 'null'
-        adgroup_name:
           type:
           - string
           - 'null'
-        age:
-          type:
-          - string
-          - 'null'
-        gender:
-          type:
-          - string
-          - 'null'
-        impressions:
-          type: number
-        clicks:
-          type: number
-        spend:
-          type: number
-        ctr:
-          type: number
-          description: click_thru_rate
-        cpm:
-          type: number
-        total_sa:
-          type: number
-        sar:
-          type: number
-          description: secondary_action_rate
-        click_to_call:
-          type: number
-        directions:
-          type: number
-        website:
-          type: number
-        moreinfo:
-          type: number
-        coupon:
-          type: number
-        video:
-          type: number
-        cumulative_reach:
-          type: number
-        visits:
-          type: number
-        open_hour_visits:
-          type: number
-        projected_visits:
-          type: number
-        projected_open_hour_visits:
-          type: number
-      type: object
-    TotalsCampaign:
-      properties:
-        account_name:
-          type: string
-        adgroup_id:
-          type:
-          - integer
-          - 'null'
-        adgroup_name:
-          type:
-          - string
-          - 'null'
-        campaign_id:
-          type: integer
-        campaign_name:
-          type: string
-        click_conversions:
-          type: number
-        click_to_call:
-          type: number
-        clicks:
-          type: integer
-        coupon:
-          type: number
-        cpm:
-          type: number
-        creative_id:
-          type:
-          - integer
-          - 'null'
-        creative_name:
-          type:
-          - string
-          - 'null'
-        ctr:
-          type: number
-        cumulative_reach:
-          type: integer
-        cumulative_visitors:
-          type: number
-        directions:
-          type: number
-        impressions:
-          type: integer
-        moreinfo:
-          type: number
-        open_hour_cumulative_visitors:
-          type: number
-        open_hour_visits:
-          type: integer
-        projected_open_hour_visits:
-          type: number
-        projected_visits:
-          type: number
-        sar:
-          type: number
-        spend:
-          type: number
-        svr:
-          type: number
-        total_conversions:
-          type: number
-        total_sa:
-          type: number
-        video:
-          type: number
-        video_end:
-          type: number
-        video_first_quartile:
-          type: number
-        video_midpoint:
-          type: number
-        video_start:
-          type: number
-        video_third_quartile:
-          type: number
-        view_conversions:
-          type: number
-        visits:
-          type: integer
-        website:
-          type: number
-      type: object
-    AudioPublisherCampaign:
-      properties:
-        campaign_id:
-          type: number
-        campaign_name:
-          type: string
-        app_site_publisher_name:
-          type: string
-          description: publisher name
-        imp:
-          type: number
-          description: impressions
-        ltr:
-          type: number
-          description: listen through rate
-      type: object
-    ProductExportCreative:
-      properties:
-        organization_name:
-          type: string
-        account_id:
-          type: number
-        account_name:
-          type: string
-        campaign_id:
-          type: number
-        campaign_name:
-          type: string
-        adgroup_id:
-          type: number
-        adgroup_name:
-          type: string
-        product_group:
-          type: string
-        product:
-          type: string
-        constraint:
-          type: string
-        creative_id:
-          type: number
-        creative_name:
-          type: string
-        poi_name:
-          type: string
-        dma_name:
-          type: string
-        address:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        zip:
-          type: string
-        country:
-          type: string
-        latitude:
-          type: string
-        longitude:
-          type: string
-        imp:
-          type: number
-        clks:
-          type: number
-        sa:
-          type: number
-        spt:
-          type: number
-        vst:
-          type: number
-        oh_vst:
-          type: number
-        ctr:
-          type: number
-        sar:
-          type: number
-        vr:
-          type: number
-        prj_vst:
-          type: number
-        prj_oh_vst:
-          type: number
-        web:
-          type: number
-        dir:
-          type: number
-        ctc:
-          type: number
-        info:
-          type: number
-        cpn:
-          type: number
-        vid_0:
-          type: number
-        vid_25:
-          type: number
-        vid_50:
-          type: number
-        vid_75:
-          type: number
-        vid_100:
-          type: number
-      type: object
-    LocationAdgroup:
-      properties:
-        campaign_id:
-          type: number
-        campaign_name:
-          type: string
-        adgroup_id:
-          type: number
-        adgroup_name:
-          type: string
         zip:
           type:
           - string
-          - 'null'
-        latitude:
-          type:
-          - number
-          - 'null'
-        longitude:
-          type:
-          - number
           - 'null'
         dma:
           type:
@@ -5503,30 +4653,28 @@ components:
           type:
           - string
           - 'null'
-        impressions:
-          type: number
-        clicks:
-          type: number
-        spend:
-          type: number
-        ctr:
-          type: number
-        secondary_actions:
-          type: number
-        visits:
+        latitude:
+          type:
+          - number
+          - 'null'
+        longitude:
+          type:
+          - number
+          - 'null'
+        total_sv:
           type: number
       type: object
-    BehavioralAudienceCampaign:
+    BrandAffinityAdgroup:
       properties:
-        a_id:
+        b_id:
           type: number
-          description: audience_id
-        a_name:
+          description: brand_id
+        b_name:
           type: string
-          description: audience_name
-        campaign_id:
+          description: brand_name
+        adgroup_id:
           type: number
-        campaign_name:
+        adgroup_name:
           type: string
         imp:
           type: number
@@ -5636,53 +4784,91 @@ components:
           type: number
           description: projected_open_hour_visits
       type: object
-    DailyExportCreatives:
+    PublisherCampaignV2:
       properties:
-        date:
-          type: string
-        organization_name:
-          type: string
-        account_id:
+        campaign_id:
           type: number
-        account_name:
+        campaign_name:
+          type: string
+        publisher_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        video_start:
+          type: number
+          description: video start
+        video_first_quartile:
+          type: number
+          description: video first quartile
+        video_midpoint:
+          type: number
+          description: video midpoint
+        video_third_quartile:
+          type: number
+          description: video third quartile
+        video_end:
+          type: number
+          description: video end
+        vcr:
+          type: number
+          description: video completion rate
+      type: object
+    ProductExportCampaignV2:
+      properties:
+        product_group:
+          type: string
+        product:
+          type: string
+        constraint:
           type: string
         campaign_id:
           type: number
         campaign_name:
           type: string
-        adgroup_id:
-          type: number
-        adgroup_name:
+        poi_name:
           type: string
-        creative_id:
-          type: number
-        creative_name:
+        dma_name:
           type: string
-        creative_size:
+        address:
           type: string
-        creative_url:
+        city:
           type: string
-        campaign_start_date:
+        state:
           type: string
-        campaign_end_date:
+        zip:
           type: string
-        advertiser_bid_type:
+        country:
           type: string
-        budget_type:
+        latitude:
           type: string
-        impressions:
+        longitude:
+          type: string
+        imp:
           type: number
         clicks:
           type: number
-        daily_reach:
+        secondary_actions:
           type: number
-        ctr:
-          type: number
-        cpm:
-          type: number
-        cpv:
+        spt:
           type: number
         visits:
+          type: number
+        click_through_rate:
+          type: number
+        secondary_action_rate:
+          type: number
+        vr:
+          type: number
+        web:
+          type: number
+        dir:
+          type: number
+        ctc:
+          type: number
+        info:
+          type: number
+        cpm:
           type: number
         video_start:
           type: number
@@ -5694,63 +4880,8 @@ components:
           type: number
         video_end:
           type: number
-        total_sa:
-          type: number
-        coupon:
-          type: number
-        website:
-          type: number
-        moreinfo:
-          type: number
-        directions:
-          type: number
-        click_to_call:
-          type: number
-        sar:
-          type: number
-        spend:
-          type: number
-        market:
-          type: string
-        contract_id:
-          type: string
-        campaign_budget:
-          type: number
-        total_imp_contracted:
-          type: number
-        external_adgroup_id:
-          type: number
-        oh_vst:
-          type: number
-        prj_vst:
-          type: number
       type: object
-    DeviceTypeAdgroup:
-      properties:
-        account_name:
-          type: string
-        campaign_id:
-          type: number
-        campaign_name:
-          type: string
-        adgroup_id:
-          type: number
-        adgroup_name:
-          type: string
-        pub_type:
-          type: string
-          description: device_type
-        impressions:
-          type: number
-        clicks:
-          type: number
-        spend:
-          type: number
-        ctr:
-          type: number
-          description: click_thru_rate
-      type: object
-    CategoryCreativeV2:
+    CategoryAdgroup:
       properties:
         sic:
           type: string
@@ -5758,84 +4889,40 @@ components:
         c_name:
           type: string
           description: category_name
-        creative_id:
+        adgroup_id:
           type: number
-        creative_name:
+        adgroup_name:
           type: string
         imp:
           type: number
           description: impressions
-        visits:
+        vst:
           type: number
           description: visits
-        clicks:
+        oh_vst:
+          type: number
+          description: open_hour_visits
+        clks:
           type: number
           description: clicks
-        click_through_rate:
+        ctr:
           type: number
           description: click_thru_rate
-        secondary_actions:
+        sa:
           type: number
           description: secondary_actions
-        secondary_action_rate:
+        sar:
           type: number
           description: secondary_action_rate
         vr:
           type: number
           description: visitation_rate
-      type: object
-    SVLocationAdgroup:
-      properties:
-        campaign_id:
+        prj_vst:
           type: number
-        campaign_name:
-          type: string
-        adgroup_id:
+          description: projected_visits
+        prj_oh_vst:
           type: number
-        adgroup_name:
-          type: string
-        poi_id:
-          type:
-          - string
-          - 'null'
-        company_name:
-          type:
-          - string
-          - 'null'
-        address:
-          type:
-          - string
-          - 'null'
-        zip:
-          type:
-          - string
-          - 'null'
-        dma:
-          type:
-          - number
-          - 'null'
-        city:
-          type:
-          - string
-          - 'null'
-        state:
-          type:
-          - string
-          - 'null'
-        country:
-          type:
-          - string
-          - 'null'
-        latitude:
-          type:
-          - number
-          - 'null'
-        longitude:
-          type:
-          - number
-          - 'null'
-        total_sv:
-          type: number
+          description: projected_open_hour_visits
       type: object
     ProductExportCampaign:
       properties:
@@ -5910,33 +4997,17 @@ components:
         vid_100:
           type: number
       type: object
-    AudioPodcastSeriesAdgroup:
+    BrandAffinityCampaign:
       properties:
-        adgroup_id:
+        b_id:
           type: number
-        adgroup_name:
+          description: brand_id
+        b_name:
           type: string
-        series:
-          type: string
-          description: podcast series
-        imp:
+          description: brand_name
+        campaign_id:
           type: number
-          description: impressions
-        ltr:
-          type: number
-          description: listen through rate
-      type: object
-    CategoryCreative:
-      properties:
-        sic:
-          type: string
-          description: category_id
-        c_name:
-          type: string
-          description: category_name
-        creative_id:
-          type: number
-        creative_name:
+        campaign_name:
           type: string
         imp:
           type: number
@@ -5969,17 +5040,303 @@ components:
           type: number
           description: projected_open_hour_visits
       type: object
-    ProductExportCampaignV3:
+    ConversionTracking:
       properties:
+        account_name:
+          type: string
+        account_id:
+          type: number
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        conversions:
+          type: number
+        pixel_id:
+          type: number
+        pixel_name:
+          type: string
+        view_thru_conversions:
+          type: number
+        click_thru_conversions:
+          type: number
+      type: object
+    PublisherAdgroupV2:
+      properties:
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        publisher_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        video_start:
+          type: number
+          description: video start
+        video_first_quartile:
+          type: number
+          description: video first quartile
+        video_midpoint:
+          type: number
+          description: video midpoint
+        video_third_quartile:
+          type: number
+          description: video third quartile
+        video_end:
+          type: number
+          description: video end
+        vcr:
+          type: number
+          description: video completion rate
+      type: object
+    LocationAdgroup:
+      properties:
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        zip:
+          type:
+          - string
+          - 'null'
+        latitude:
+          type:
+          - number
+          - 'null'
+        longitude:
+          type:
+          - number
+          - 'null'
+        dma:
+          type:
+          - number
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        state:
+          type:
+          - string
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+        impressions:
+          type: number
+        clicks:
+          type: number
+        spend:
+          type: number
+        ctr:
+          type: number
+        secondary_actions:
+          type: number
+        visits:
+          type: number
+      type: object
+    SVLocationCampaignV2:
+      properties:
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        poi_id:
+          type:
+          - string
+          - 'null'
+        company_name:
+          type:
+          - string
+          - 'null'
+        address:
+          type:
+          - string
+          - 'null'
+        zip:
+          type:
+          - string
+          - 'null'
+        dma:
+          type:
+          - number
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        state:
+          type:
+          - string
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+        latitude:
+          type:
+          - number
+          - 'null'
+        longitude:
+          type:
+          - number
+          - 'null'
+        visits:
+          type: number
+      type: object
+    TotalsCampaign:
+      properties:
+        account_name:
+          type: string
+        adgroup_id:
+          type:
+          - integer
+          - 'null'
+        adgroup_name:
+          type:
+          - string
+          - 'null'
+        campaign_id:
+          type: integer
+        campaign_name:
+          type: string
+        click_conversions:
+          type: number
+        click_to_call:
+          type: number
+        clicks:
+          type: integer
+        coupon:
+          type: number
+        cpm:
+          type: number
+        creative_id:
+          type:
+          - integer
+          - 'null'
+        creative_name:
+          type:
+          - string
+          - 'null'
+        ctr:
+          type: number
+        cumulative_reach:
+          type: integer
+        cumulative_visitors:
+          type: number
+        directions:
+          type: number
+        impressions:
+          type: integer
+        moreinfo:
+          type: number
+        open_hour_cumulative_visitors:
+          type: number
+        open_hour_visits:
+          type: integer
+        projected_open_hour_visits:
+          type: number
+        projected_visits:
+          type: number
+        sar:
+          type: number
+        spend:
+          type: number
+        svr:
+          type: number
+        total_conversions:
+          type: number
+        total_sa:
+          type: number
+        video:
+          type: number
+        video_end:
+          type: number
+        video_first_quartile:
+          type: number
+        video_midpoint:
+          type: number
+        video_start:
+          type: number
+        video_third_quartile:
+          type: number
+        view_conversions:
+          type: number
+        visits:
+          type: integer
+        website:
+          type: number
+      type: object
+    BehavioralAudienceCampaignV2:
+      properties:
+        a_id:
+          type: number
+          description: audience_id
+        a_name:
+          type: string
+          description: audience_name
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        visits:
+          type: number
+          description: visits
+        clicks:
+          type: number
+          description: clicks
+        click_through_rate:
+          type: number
+          description: click_thru_rate
+        secondary_actions:
+          type: number
+          description: secondary_actions
+        secondary_action_rate:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+      type: object
+    ProductExportCreative:
+      properties:
+        organization_name:
+          type: string
+        account_id:
+          type: number
+        account_name:
+          type: string
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
         product_group:
           type: string
         product:
           type: string
         constraint:
           type: string
-        campaign_id:
+        creative_id:
           type: number
-        campaign_name:
+        creative_name:
           type: string
         poi_name:
           type: string
@@ -6001,19 +5358,25 @@ components:
           type: string
         imp:
           type: number
-        clicks:
+        clks:
           type: number
-        secondary_actions:
+        sa:
           type: number
         spt:
           type: number
-        visits:
+        vst:
           type: number
-        click_through_rate:
+        oh_vst:
           type: number
-        secondary_action_rate:
+        ctr:
+          type: number
+        sar:
           type: number
         vr:
+          type: number
+        prj_vst:
+          type: number
+        prj_oh_vst:
           type: number
         web:
           type: number
@@ -6023,17 +5386,17 @@ components:
           type: number
         info:
           type: number
-        cpm:
+        cpn:
           type: number
-        video_start:
+        vid_0:
           type: number
-        video_first_quartile:
+        vid_25:
           type: number
-        video_midpoint:
+        vid_50:
           type: number
-        video_third_quartile:
+        vid_75:
           type: number
-        video_end:
+        vid_100:
           type: number
       type: object
     ProductExportAdgroupV3:
@@ -6119,6 +5482,163 @@ components:
           type: number
           description: listen through rate
       type: object
+    BehavioralAudienceCreative:
+      properties:
+        a_id:
+          type: number
+          description: audience_id
+        a_name:
+          type: string
+          description: audience_name
+        creative_id:
+          type: number
+        creative_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        vst:
+          type: number
+          description: visits
+        oh_vst:
+          type: number
+          description: open_hour_visits
+        clks:
+          type: number
+          description: clicks
+        ctr:
+          type: number
+          description: click_thru_rate
+        sa:
+          type: number
+          description: secondary_actions
+        sar:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+        prj_vst:
+          type: number
+          description: projected_visits
+        prj_oh_vst:
+          type: number
+          description: projected_open_hour_visits
+      type: object
+    CategoryCampaignV2:
+      properties:
+        sic:
+          type: string
+          description: category_id
+        c_name:
+          type: string
+          description: category_name
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        visits:
+          type: number
+          description: visits
+        clicks:
+          type: number
+          description: clicks
+        click_through_rate:
+          type: number
+          description: click_thru_rate
+        secondary_actions:
+          type: number
+          description: secondary_actions
+        secondary_action_rate:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+      type: object
+    AudioPodcastSeriesAdgroup:
+      properties:
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        series:
+          type: string
+          description: podcast series
+        imp:
+          type: number
+          description: impressions
+        ltr:
+          type: number
+          description: listen through rate
+      type: object
+    NetworkCampaign:
+      properties:
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        network_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        video_start:
+          type: number
+          description: video start
+        video_first_quartile:
+          type: number
+          description: video first quartile
+        video_midpoint:
+          type: number
+          description: video midpoint
+        video_third_quartile:
+          type: number
+          description: video third quartile
+        video_end:
+          type: number
+          description: video end
+        vcr:
+          type: number
+          description: video completion rate
+      type: object
+    BrandAffinityCampaignV2:
+      properties:
+        b_id:
+          type: number
+          description: brand_id
+        b_name:
+          type: string
+          description: brand_name
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        visits:
+          type: number
+          description: visits
+        clicks:
+          type: number
+          description: clicks
+        click_through_rate:
+          type: number
+          description: click_thru_rate
+        secondary_actions:
+          type: number
+          description: secondary_actions
+        secondary_action_rate:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+      type: object
     TotalsAdgroup:
       properties:
         account_name:
@@ -6202,17 +5722,187 @@ components:
         adgroup_imp_contracted:
           type: number
       type: object
-    BehavioralAudienceCampaignV2:
+    ProductExportCreativeV3:
       properties:
-        a_id:
-          type: number
-          description: audience_id
-        a_name:
+        organization_name:
           type: string
-          description: audience_name
+        account_id:
+          type: number
+        account_name:
+          type: string
         campaign_id:
           type: number
         campaign_name:
+          type: string
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        product_group:
+          type: string
+        product:
+          type: string
+        constraint:
+          type: string
+        creative_id:
+          type: number
+        creative_name:
+          type: string
+        poi_name:
+          type: string
+        dma_name:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        latitude:
+          type: string
+        longitude:
+          type: string
+        imp:
+          type: number
+        clicks:
+          type: number
+        secondary_actions:
+          type: number
+        spt:
+          type: number
+        visits:
+          type: number
+        click_through_rate:
+          type: number
+        secondary_action_rate:
+          type: number
+        vr:
+          type: number
+        web:
+          type: number
+        dir:
+          type: number
+        ctc:
+          type: number
+        info:
+          type: number
+        cpm:
+          type: number
+        video_start:
+          type: number
+        video_first_quartile:
+          type: number
+        video_midpoint:
+          type: number
+        video_third_quartile:
+          type: number
+        video_end:
+          type: number
+      type: object
+    ProductExportAdgroup:
+      properties:
+        product_group:
+          type: string
+        product:
+          type: string
+        constraint:
+          type: string
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        poi_name:
+          type: string
+        dma_name:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        latitude:
+          type: string
+        longitude:
+          type: string
+        imp:
+          type: number
+        clks:
+          type: number
+        sa:
+          type: number
+        spt:
+          type: number
+        vst:
+          type: number
+        oh_vst:
+          type: number
+        ctr:
+          type: number
+        sar:
+          type: number
+        vr:
+          type: number
+        prj_vst:
+          type: number
+        prj_oh_vst:
+          type: number
+        web:
+          type: number
+        dir:
+          type: number
+        ctc:
+          type: number
+        info:
+          type: number
+        cpn:
+          type: number
+        vid_0:
+          type: number
+        vid_25:
+          type: number
+        vid_50:
+          type: number
+        vid_75:
+          type: number
+        vid_100:
+          type: number
+      type: object
+    AudioPodcastTopicCampaign:
+      properties:
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        topic:
+          type: string
+          description: podcast topic
+        imp:
+          type: number
+          description: impressions
+        ltr:
+          type: number
+          description: listen through rate
+      type: object
+    CategoryCreativeV2:
+      properties:
+        sic:
+          type: string
+          description: category_id
+        c_name:
+          type: string
+          description: category_name
+        creative_id:
+          type: number
+        creative_name:
           type: string
         imp:
           type: number
@@ -6236,7 +5926,57 @@ components:
           type: number
           description: visitation_rate
       type: object
-    ProductExportCampaignV2:
+    BrandAffinityCreativeV2:
+      properties:
+        b_id:
+          type: number
+          description: brand_id
+        b_name:
+          type: string
+          description: brand_name
+        creative_id:
+          type: number
+        creative_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        visits:
+          type: number
+          description: visits
+        clicks:
+          type: number
+          description: clicks
+        click_through_rate:
+          type: number
+          description: click_thru_rate
+        secondary_actions:
+          type: number
+          description: secondary_actions
+        secondary_action_rate:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+      type: object
+    AudioStreamingGenreCampaign:
+      properties:
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        genre:
+          type: string
+          description: streaming genre
+        imp:
+          type: number
+          description: impressions
+        ltr:
+          type: number
+          description: listen through rate
+      type: object
+    ProductExportCampaignV3:
       properties:
         product_group:
           type: string
@@ -6371,6 +6111,123 @@ components:
           type: number
           description: video end
       type: object
+    BehavioralAudienceAdgroupV2:
+      properties:
+        a_id:
+          type: number
+          description: audience_id
+        a_name:
+          type: string
+          description: audience_name
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        visits:
+          type: number
+          description: visits
+        clicks:
+          type: number
+          description: clicks
+        click_through_rate:
+          type: number
+          description: click_thru_rate
+        secondary_actions:
+          type: number
+          description: secondary_actions
+        secondary_action_rate:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+      type: object
+    SVLocationCampaign:
+      properties:
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        poi_id:
+          type:
+          - string
+          - 'null'
+        company_name:
+          type:
+          - string
+          - 'null'
+        address:
+          type:
+          - string
+          - 'null'
+        zip:
+          type:
+          - string
+          - 'null'
+        dma:
+          type:
+          - number
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        state:
+          type:
+          - string
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+        latitude:
+          type:
+          - number
+          - 'null'
+        longitude:
+          type:
+          - number
+          - 'null'
+        total_sv:
+          type: number
+      type: object
+    BrandAffinityAdgroupV2:
+      properties:
+        b_id:
+          type: number
+          description: brand_id
+        b_name:
+          type: string
+          description: brand_name
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        visits:
+          type: number
+          description: visits
+        clicks:
+          type: number
+          description: clicks
+        click_through_rate:
+          type: number
+          description: click_thru_rate
+        secondary_actions:
+          type: number
+          description: secondary_actions
+        secondary_action_rate:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+      type: object
     AccountCount:
       properties:
         organization_id:
@@ -6379,6 +6236,149 @@ components:
           type: string
         number_of_accounts:
           type: number
+      type: object
+    LocationCampaign:
+      properties:
+        account_name:
+          type: string
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        zip:
+          type:
+          - string
+          - 'null'
+        latitude:
+          type:
+          - number
+          - 'null'
+        longitude:
+          type:
+          - number
+          - 'null'
+        dma:
+          type:
+          - integer
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        state:
+          type:
+          - string
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+        impressions:
+          type: number
+        clicks:
+          type: number
+        spend:
+          type: number
+        ctr:
+          type: number
+        secondary_actions:
+          type: number
+        visits:
+          type: number
+        coupon:
+          type: number
+        website:
+          type: number
+        moreinfo:
+          type: number
+        directions:
+          type: number
+        click_to_call:
+          type: number
+      type: object
+    AudioPodcastSeriesCampaign:
+      properties:
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        series:
+          type: string
+          description: podcast series
+        imp:
+          type: number
+          description: impressions
+        ltr:
+          type: number
+          description: listen through rate
+      type: object
+    DeviceTypeAdgroup:
+      properties:
+        account_name:
+          type: string
+        campaign_id:
+          type: number
+        campaign_name:
+          type: string
+        adgroup_id:
+          type: number
+        adgroup_name:
+          type: string
+        pub_type:
+          type: string
+          description: device_type
+        impressions:
+          type: number
+        clicks:
+          type: number
+        spend:
+          type: number
+        ctr:
+          type: number
+          description: click_thru_rate
+      type: object
+    CategoryCreative:
+      properties:
+        sic:
+          type: string
+          description: category_id
+        c_name:
+          type: string
+          description: category_name
+        creative_id:
+          type: number
+        creative_name:
+          type: string
+        imp:
+          type: number
+          description: impressions
+        vst:
+          type: number
+          description: visits
+        oh_vst:
+          type: number
+          description: open_hour_visits
+        clks:
+          type: number
+          description: clicks
+        ctr:
+          type: number
+          description: click_thru_rate
+        sa:
+          type: number
+          description: secondary_actions
+        sar:
+          type: number
+          description: secondary_action_rate
+        vr:
+          type: number
+          description: visitation_rate
+        prj_vst:
+          type: number
+          description: projected_visits
+        prj_oh_vst:
+          type: number
+          description: projected_open_hour_visits
       type: object
 x-amazon-apigateway-request-validators:
   Validate query string parameters and headers:

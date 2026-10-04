@@ -136,108 +136,6 @@ paths:
           description: Internal Server Error
 components:
   schemas:
-    AudienceRecommendationsRequestModel:
-      properties:
-        audience_ids:
-          items:
-            type: string
-          type: array
-          title: Audience Ids
-      type: object
-      required:
-      - audience_ids
-      title: AudienceRecommendationsRequestModel
-    ErrorModel:
-      properties:
-        code:
-          type: string
-          title: Code
-        message:
-          type: string
-          title: Message
-        fields:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Fields
-      type: object
-      required:
-      - code
-      - message
-      - fields
-      title: ErrorModel
-    ErrorResponseModel:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorModel'
-          type: array
-          title: Errors
-      type: object
-      required:
-      - errors
-      title: ErrorResponseModel
-    app__services__audience__types__AudienceType:
-      properties:
-        name:
-          type: string
-          title: Name
-        categories:
-          items:
-            $ref: '#/components/schemas/DetailedAudienceCategory'
-          type: array
-          title: Categories
-      type: object
-      required:
-      - name
-      - categories
-      title: AudienceType
-    AudienceTaxonomy:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/app__services__audience__types__AudienceType'
-          type: array
-          title: Items
-      type: object
-      required:
-      - items
-      title: AudienceTaxonomy
-    AudienceRecommendationsModel:
-      properties:
-        recommendations:
-          items:
-            $ref: '#/components/schemas/Audience'
-          type: array
-          title: Recommendations
-      type: object
-      required:
-      - recommendations
-      title: AudienceRecommendationsModel
-    Sensitivity:
-      oneOf:
-      - const: 0
-        title: WHITELIST
-      - const: 1
-        title: GRAYLIST
-      - const: 2
-        title: SEMI_SENSITIVE
-      - const: 3
-        title: BLACKLIST
-      type: integer
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      title: Sensitivity
-      x-enum-varnames:
-      - WHITELIST
-      - GRAYLIST
-      - SEMI_SENSITIVE
-      - BLACKLIST
     Audience:
       properties:
         id:
@@ -301,6 +199,27 @@ components:
       - category_id
       - status
       title: Audience
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
     LocationGroupBuildStatus:
       oneOf:
       - const: not_required
@@ -331,6 +250,68 @@ components:
       - UPDATING
       - READY
       - EXPIRED
+    AudienceRecommendationsModel:
+      properties:
+        recommendations:
+          items:
+            $ref: '#/components/schemas/Audience'
+          type: array
+          title: Recommendations
+      type: object
+      required:
+      - recommendations
+      title: AudienceRecommendationsModel
+    LocationGroupType:
+      oneOf:
+      - const: 0
+        title: BUSINESS
+      - const: 1
+        title: RESIDENTIAL
+      type: integer
+      enum:
+      - 0
+      - 1
+      title: LocationGroupType
+      x-enum-varnames:
+      - BUSINESS
+      - RESIDENTIAL
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
+    AudienceTaxonomy:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/app__services__audience__types__AudienceType'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: AudienceTaxonomy
+    app__services__audience__types__AudienceType:
+      properties:
+        name:
+          type: string
+          title: Name
+        categories:
+          items:
+            $ref: '#/components/schemas/DetailedAudienceCategory'
+          type: array
+          title: Categories
+      type: object
+      required:
+      - name
+      - categories
+      title: AudienceType
     DetailedAudienceCategory:
       properties:
         name:
@@ -362,6 +343,39 @@ components:
       - description
       - audiences
       title: DetailedAudienceCategory
+    AudienceRecommendationsRequestModel:
+      properties:
+        audience_ids:
+          items:
+            type: string
+          type: array
+          title: Audience Ids
+      type: object
+      required:
+      - audience_ids
+      title: AudienceRecommendationsRequestModel
+    Sensitivity:
+      oneOf:
+      - const: 0
+        title: WHITELIST
+      - const: 1
+        title: GRAYLIST
+      - const: 2
+        title: SEMI_SENSITIVE
+      - const: 3
+        title: BLACKLIST
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      title: Sensitivity
+      x-enum-varnames:
+      - WHITELIST
+      - GRAYLIST
+      - SEMI_SENSITIVE
+      - BLACKLIST
     app__services__audience__types__LocationGroupMetadata:
       properties:
         type:
@@ -401,20 +415,6 @@ components:
       - build_status
       - is_sensitive
       title: LocationGroupMetadata
-    LocationGroupType:
-      oneOf:
-      - const: 0
-        title: BUSINESS
-      - const: 1
-        title: RESIDENTIAL
-      type: integer
-      enum:
-      - 0
-      - 1
-      title: LocationGroupType
-      x-enum-varnames:
-      - BUSINESS
-      - RESIDENTIAL
   securitySchemes:
     api-key:
       type: apiKey

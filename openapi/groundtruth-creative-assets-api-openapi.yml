@@ -367,6 +367,20 @@ paths:
           description: Internal Server Error
 components:
   schemas:
+    SortOrder:
+      oneOf:
+      - const: desc
+        title: DESC
+      - const: asc
+        title: ASC
+      type: string
+      enum:
+      - desc
+      - asc
+      title: SortOrder
+      x-enum-varnames:
+      - DESC
+      - ASC
     ErrorModel:
       properties:
         code:
@@ -388,47 +402,6 @@ components:
       - message
       - fields
       title: ErrorModel
-    CreativeAssetType:
-      oneOf:
-      - const: IMAGE
-        title: IMAGE
-      - const: SCRIPT
-        title: SCRIPT
-      - const: VIDEO
-        title: VIDEO
-      - const: AUDIO
-        title: AUDIO
-      type: string
-      enum:
-      - IMAGE
-      - SCRIPT
-      - VIDEO
-      - AUDIO
-      title: CreativeAssetType
-      x-enum-varnames:
-      - IMAGE
-      - SCRIPT
-      - VIDEO
-      - AUDIO
-    SuccessResponseModel:
-      properties:
-        success:
-          type: boolean
-          title: Success
-          default: true
-      type: object
-      title: SuccessResponseModel
-    ErrorResponseModel:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorModel'
-          type: array
-          title: Errors
-      type: object
-      required:
-      - errors
-      title: ErrorResponseModel
     CreativeAssetSortField:
       oneOf:
       - const: name
@@ -510,20 +483,73 @@ components:
       - created_by
       - status
       title: CreativeAssetModel
-    SortOrder:
+    CreativeAssetStatus:
       oneOf:
-      - const: desc
-        title: DESC
-      - const: asc
-        title: ASC
+      - const: 0
+        title: ACTIVE
+      - const: 1
+        title: PAUSED
+      - const: 2
+        title: PENDING
+      - const: 3
+        title: EXPIRED
+      - const: 4
+        title: UNLINKED
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      title: CreativeAssetStatus
+      x-enum-varnames:
+      - ACTIVE
+      - PAUSED
+      - PENDING
+      - EXPIRED
+      - UNLINKED
+    SuccessResponseModel:
+      properties:
+        success:
+          type: boolean
+          title: Success
+          default: true
+      type: object
+      title: SuccessResponseModel
+    CreativeAssetType:
+      oneOf:
+      - const: IMAGE
+        title: IMAGE
+      - const: SCRIPT
+        title: SCRIPT
+      - const: VIDEO
+        title: VIDEO
+      - const: AUDIO
+        title: AUDIO
       type: string
       enum:
-      - desc
-      - asc
-      title: SortOrder
+      - IMAGE
+      - SCRIPT
+      - VIDEO
+      - AUDIO
+      title: CreativeAssetType
       x-enum-varnames:
-      - DESC
-      - ASC
+      - IMAGE
+      - SCRIPT
+      - VIDEO
+      - AUDIO
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
     PaginatedCreativeAssetsModel:
       properties:
         total_count:
@@ -559,32 +585,6 @@ components:
       - has_prev_page
       - items
       title: PaginatedCreativeAssetsModel
-    CreativeAssetStatus:
-      oneOf:
-      - const: 0
-        title: ACTIVE
-      - const: 1
-        title: PAUSED
-      - const: 2
-        title: PENDING
-      - const: 3
-        title: EXPIRED
-      - const: 4
-        title: UNLINKED
-      type: integer
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      title: CreativeAssetStatus
-      x-enum-varnames:
-      - ACTIVE
-      - PAUSED
-      - PENDING
-      - EXPIRED
-      - UNLINKED
   securitySchemes:
     api-key:
       type: apiKey

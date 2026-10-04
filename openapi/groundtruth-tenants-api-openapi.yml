@@ -144,6 +144,24 @@ components:
       - message
       - fields
       title: ErrorModel
+    TenantType:
+      oneOf:
+      - const: 0
+        title: MANAGED
+      - const: 1
+        title: SELF_SERVE
+      - const: 2
+        title: CHANNEL
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      title: TenantType
+      x-enum-varnames:
+      - MANAGED
+      - SELF_SERVE
+      - CHANNEL
     ErrorResponseModel:
       properties:
         errors:
@@ -155,6 +173,43 @@ components:
       required:
       - errors
       title: ErrorResponseModel
+    UpdateTenantModel:
+      properties:
+        name:
+          type: string
+          maxLength: 64
+          minLength: 1
+          title: Name
+      type: object
+      required:
+      - name
+      title: UpdateTenantModel
+    PaymentType:
+      oneOf:
+      - const: 0
+        title: INVOICE
+      - const: 1
+        title: CREDIT_CARD
+      - const: 2
+        title: SPEND_LIMIT
+      - const: 3
+        title: CREDIT_CARD_V2
+      - const: 4
+        title: ACCOUNT_LEVEL_CREDIT_CARD
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      title: PaymentType
+      x-enum-varnames:
+      - INVOICE
+      - CREDIT_CARD
+      - SPEND_LIMIT
+      - CREDIT_CARD_V2
+      - ACCOUNT_LEVEL_CREDIT_CARD
     TenantModel:
       properties:
         id:
@@ -204,61 +259,6 @@ components:
       - referrer_url
       - utm_campaign
       title: TenantModel
-    PaymentType:
-      oneOf:
-      - const: 0
-        title: INVOICE
-      - const: 1
-        title: CREDIT_CARD
-      - const: 2
-        title: SPEND_LIMIT
-      - const: 3
-        title: CREDIT_CARD_V2
-      - const: 4
-        title: ACCOUNT_LEVEL_CREDIT_CARD
-      type: integer
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      title: PaymentType
-      x-enum-varnames:
-      - INVOICE
-      - CREDIT_CARD
-      - SPEND_LIMIT
-      - CREDIT_CARD_V2
-      - ACCOUNT_LEVEL_CREDIT_CARD
-    TenantType:
-      oneOf:
-      - const: 0
-        title: MANAGED
-      - const: 1
-        title: SELF_SERVE
-      - const: 2
-        title: CHANNEL
-      type: integer
-      enum:
-      - 0
-      - 1
-      - 2
-      title: TenantType
-      x-enum-varnames:
-      - MANAGED
-      - SELF_SERVE
-      - CHANNEL
-    UpdateTenantModel:
-      properties:
-        name:
-          type: string
-          maxLength: 64
-          minLength: 1
-          title: Name
-      type: object
-      required:
-      - name
-      title: UpdateTenantModel
   securitySchemes:
     api-key:
       type: apiKey

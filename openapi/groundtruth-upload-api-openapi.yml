@@ -89,17 +89,21 @@ components:
       - message
       - fields
       title: ErrorModel
-    ErrorResponseModel:
+    UploadResponseModel:
       properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorModel'
-          type: array
-          title: Errors
+        file_path:
+          type: string
+          title: File Path
+        cdn_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Cdn Url
       type: object
       required:
-      - errors
-      title: ErrorResponseModel
+      - file_path
+      - cdn_url
+      title: UploadResponseModel
     UploadType:
       oneOf:
       - const: 1
@@ -122,21 +126,17 @@ components:
       - AUDIO
       - HTML5
       - OTHER
-    UploadResponseModel:
+    ErrorResponseModel:
       properties:
-        file_path:
-          type: string
-          title: File Path
-        cdn_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Cdn Url
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
       type: object
       required:
-      - file_path
-      - cdn_url
-      title: UploadResponseModel
+      - errors
+      title: ErrorResponseModel
     Body_upload_upload_post:
       properties:
         file:
