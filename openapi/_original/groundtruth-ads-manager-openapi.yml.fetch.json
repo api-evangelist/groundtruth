@@ -1,0 +1,12 @@
+{
+ "url": "https://api-public.groundtruth.com/openapi.json",
+ "requested_url": "https://api-public.groundtruth.com/openapi.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 1039038,
+ "sha256": "5cf237d600f71876d532301d7fcd47cdb3397f72e39628a090fc765252b53680",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 0.956), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
