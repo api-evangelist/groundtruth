@@ -1,17 +1,24 @@
-generated: '2026-08-12'
+generated: '2026-09-23'
 method: generated
-source: openapi/groundtruth-ads-manager-openapi.yml, openapi/groundtruth-reporting-openapi.yml
+source: openapi/groundtruth-accounts-api-openapi.yml, openapi/groundtruth-ad-groups-api-openapi.yml,
+  openapi/groundtruth-audiences-api-openapi.yml, openapi/groundtruth-campaigns-api-openapi.yml,
+  openapi/groundtruth-creative-assets-api-openapi.yml, openapi/groundtruth-creatives-api-openapi.yml,
+  openapi/groundtruth-demand-api-openapi.yml, openapi/groundtruth-direct-mail-api-openapi.yml,
+  openapi/groundtruth-health-api-openapi.yml, openapi/groundtruth-jobs-api-openapi.yml, openapi/groundtruth-miscellaneous-api-openapi.yml,
+  openapi/groundtruth-organizations-api-openapi.yml, openapi/groundtruth-reporting-api-openapi.yml,
+  openapi/groundtruth-search-api-openapi.yml, openapi/groundtruth-static-api-openapi.yml, openapi/groundtruth-tenants-api-openapi.yml,
+  openapi/groundtruth-upload-api-openapi.yml, openapi/groundtruth-users-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 318
   by_action_class:
-    connected: 255
-    acting: 63
+    connected: 276
+    acting: 42
   by_consequence:
-    read: 255
-    write: 63
+    read: 276
+    write: 42
   human_in_the_loop_required: 0
 operations:
 - path: /accounts
@@ -294,18 +301,12 @@ operations:
   method: post
   operationId: get_audience_recommendations
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /campaigns
   method: get
   operationId: get_campaigns
@@ -588,6 +589,596 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /demand/v1/account/{accountID}/totals
+  method: get
+  operationId: getDemandV1AccountByAccountIDTotals
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/adgroup/{adgroupID}/daily
+  method: get
+  operationId: getDemandV1AdgroupByAdgroupIDDaily
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/adgroup/{adgroupID}/totals
+  method: get
+  operationId: getDemandV1AdgroupByAdgroupIDTotals
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/campaign/{campaignID}/daily
+  method: get
+  operationId: getDemandV1CampaignByCampaignIDDaily
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/campaign/{campaignID}/totals
+  method: get
+  operationId: getDemandV1CampaignByCampaignIDTotals
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/org/{organizationID}/totals
+  method: get
+  operationId: getDemandV1OrgByOrganizationIDTotals
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/campaign/product/{campaignID}
+  method: get
+  operationId: getDemandV1CampaignProductByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/adgroups/product/{campaignID}
+  method: get
+  operationId: getDemandV1AdgroupsProductByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/creatives/product/{campaignID}
+  method: get
+  operationId: getDemandV1CreativesProductByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/campaign/locations/{campaignID}
+  method: get
+  operationId: getDemandV1CampaignLocationsByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/adgroup/locations/{adgroupID}
+  method: get
+  operationId: getDemandV1AdgroupLocationsByAdgroupID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/campaign/sv_locations/{campaignID}
+  method: get
+  operationId: getDemandV1CampaignSvLocationsByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/adgroup/sv_locations/{adgroupID}
+  method: get
+  operationId: getDemandV1AdgroupSvLocationsByAdgroupID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/org/account_count/{tenantID}
+  method: get
+  operationId: getDemandV1OrgAccountCountByTenantID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/account/conversion_tracking/{accountID}
+  method: get
+  operationId: getDemandV1AccountConversionTrackingByAccountID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/creatives/{campaignID}/daily
+  method: get
+  operationId: getDemandV1CreativesByCampaignIDDaily
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/campaign/behavioral_audience/{campaignID}
+  method: get
+  operationId: getDemandV1CampaignBehavioralAudienceByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/adgroups/behavioral_audience/{campaignID}
+  method: get
+  operationId: getDemandV1AdgroupsBehavioralAudienceByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/creatives/behavioral_audience/{campaignID}
+  method: get
+  operationId: getDemandV1CreativesBehavioralAudienceByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/campaign/category/{campaignID}
+  method: get
+  operationId: getDemandV1CampaignCategoryByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/adgroups/category/{campaignID}
+  method: get
+  operationId: getDemandV1AdgroupsCategoryByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/creatives/category/{campaignID}
+  method: get
+  operationId: getDemandV1CreativesCategoryByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/campaign/brand_affinity/{campaignID}
+  method: get
+  operationId: getDemandV1CampaignBrandAffinityByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/adgroups/brand_affinity/{campaignID}
+  method: get
+  operationId: getDemandV1AdgroupsBrandAffinityByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/creatives/brand_affinity/{campaignID}
+  method: get
+  operationId: getDemandV1CreativesBrandAffinityByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/campaign/demographic/{campaignID}
+  method: get
+  operationId: getDemandV1CampaignDemographicByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/campaign/device_type/{campaignID}
+  method: get
+  operationId: getDemandV1CampaignDeviceTypeByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/adgroups/device_type/{campaignID}
+  method: get
+  operationId: getDemandV1AdgroupsDeviceTypeByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/timeseries/tod/export/campaign/{campaignID}
+  method: get
+  operationId: getDemandV1TimeseriesTodExportCampaignByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/timeseries/tod/export/adgroups/{campaignID}
+  method: get
+  operationId: getDemandV1TimeseriesTodExportAdgroupsByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v1/timeseries/tod/export/creatives/{campaignID}
+  method: get
+  operationId: getDemandV1TimeseriesTodExportCreativesByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v2/campaign/product/{campaignID}
+  method: get
+  operationId: getDemandV2CampaignProductByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v2/adgroups/product/{campaignID}
+  method: get
+  operationId: getDemandV2AdgroupsProductByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v2/creatives/product/{campaignID}
+  method: get
+  operationId: getDemandV2CreativesProductByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v3/campaign/product/{campaignID}
+  method: get
+  operationId: getDemandV3CampaignProductByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v3/adgroups/product/{campaignID}
+  method: get
+  operationId: getDemandV3AdgroupsProductByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v3/creatives/product/{campaignID}
+  method: get
+  operationId: getDemandV3CreativesProductByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v2/campaign/behavioral_audience/{campaignID}
+  method: get
+  operationId: getDemandV2CampaignBehavioralAudienceByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v2/adgroups/behavioral_audience/{campaignID}
+  method: get
+  operationId: getDemandV2AdgroupsBehavioralAudienceByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v2/creatives/behavioral_audience/{campaignID}
+  method: get
+  operationId: getDemandV2CreativesBehavioralAudienceByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v2/campaign/category/{campaignID}
+  method: get
+  operationId: getDemandV2CampaignCategoryByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v2/adgroups/category/{campaignID}
+  method: get
+  operationId: getDemandV2AdgroupsCategoryByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v2/creatives/category/{campaignID}
+  method: get
+  operationId: getDemandV2CreativesCategoryByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v2/campaign/brand_affinity/{campaignID}
+  method: get
+  operationId: getDemandV2CampaignBrandAffinityByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v2/adgroups/brand_affinity/{campaignID}
+  method: get
+  operationId: getDemandV2AdgroupsBrandAffinityByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v2/creatives/brand_affinity/{campaignID}
+  method: get
+  operationId: getDemandV2CreativesBrandAffinityByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v2/campaign/sv_locations/{campaignID}
+  method: get
+  operationId: getDemandV2CampaignSvLocationsByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/V2/adgroup/sv_locations/{adgroupID}
+  method: get
+  operationId: getDemandV2AdgroupSvLocationsByAdgroupID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v2/campaign/publisher/{campaignID}
+  method: get
+  operationId: getDemandV2CampaignPublisherByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v2/adgroups/publisher/{campaignID}
+  method: get
+  operationId: getDemandV2AdgroupsPublisherByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v2/campaign/network/{campaignID}
+  method: get
+  operationId: getDemandV2CampaignNetworkByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v2/campaign/audio/streaming_genre/{campaignID}
+  method: get
+  operationId: getDemandV2CampaignAudioStreamingGenreByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v2/adgroups/audio/streaming_genre/{campaignID}
+  method: get
+  operationId: getDemandV2AdgroupsAudioStreamingGenreByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v2/campaign/audio/podcast_topic/{campaignID}
+  method: get
+  operationId: getDemandV2CampaignAudioPodcastTopicByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v2/adgroups/audio/podcast_topic/{campaignID}
+  method: get
+  operationId: getDemandV2AdgroupsAudioPodcastTopicByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v2/campaign/audio/podcast_series/{campaignID}
+  method: get
+  operationId: getDemandV2CampaignAudioPodcastSeriesByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v2/adgroups/audio/podcast_series/{campaignID}
+  method: get
+  operationId: getDemandV2AdgroupsAudioPodcastSeriesByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v2/campaign/audio/publisher/{campaignID}
+  method: get
+  operationId: getDemandV2CampaignAudioPublisherByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /demand/v2/adgroups/audio/publisher/{campaignID}
+  method: get
+  operationId: getDemandV2AdgroupsAudioPublisherByCampaignID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /direct_mail/orders
   method: get
   operationId: get_orders
@@ -740,6 +1331,16 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /version
+  method: get
+  operationId: get_version
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /organizations
   method: get
   operationId: get_organizations
@@ -1610,50 +2211,32 @@ operations:
   method: post
   operationId: get_recommendation_count
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /reporting/foot_traffic_attribution
   method: post
   operationId: get_foot_traffic_attribution
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /reporting/foot_traffic_attribution/detailed
   method: post
   operationId: get_foot_traffic_attribution_detailed
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /reporting/foot_traffic_attribution/v2/order/{order_id}/summary
   method: get
   operationId: get_foot_traffic_attribution_v2_order_summary
@@ -2448,82 +3031,52 @@ operations:
   method: post
   operationId: search_tenants
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /search/organizations
   method: post
   operationId: search_organizations
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /search/accounts
   method: post
   operationId: search_accounts
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /search/campaigns
   method: post
   operationId: search_campaigns
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /search/adgroups
   method: post
   operationId: search_adgroups
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /search/creatives
   method: post
   operationId: search_creatives
@@ -2544,194 +3097,122 @@ operations:
   method: post
   operationId: search_location_filters
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /search/audiences
   method: post
   operationId: search_audiences
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /search/neighborhoods
   method: post
   operationId: search_neighborhoods
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /search/on_premise_locations
   method: post
   operationId: search_on_premise_locations
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /search/drive_to_locations
   method: post
   operationId: search_drive_to_locations
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /search/location_groups
   method: post
   operationId: search_location_groups
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /search/ad_packages
   method: post
   operationId: search_ad_packages
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /search/location_groups/sources
   method: post
   operationId: search_pois_sources
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /search/location_groups/sources/count
   method: post
   operationId: search_pois_sources_count
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /search/location_groups/sources/pois
   method: post
   operationId: search_pois_sources_preview_pois
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /search/location_groups/location_filters
   method: post
   operationId: search_pois_location_filters
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /search/location_groups/pois
   method: post
   operationId: search_location_group_pois
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /static/account_verticals
   method: get
   operationId: get_account_verticals
@@ -2965,547 +3446,6 @@ operations:
 - path: /users
   method: get
   operationId: get_users
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /version
-  method: get
-  operationId: get_version
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/account/{accountID}/totals
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/adgroup/{adgroupID}/daily
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/adgroup/{adgroupID}/totals
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/campaign/{campaignID}/daily
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/campaign/{campaignID}/totals
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/org/{organizationID}/totals
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/campaign/product/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/adgroups/product/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/creatives/product/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/campaign/locations/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/adgroup/locations/{adgroupID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/campaign/sv_locations/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/adgroup/sv_locations/{adgroupID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/org/account_count/{tenantID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/account/conversion_tracking/{accountID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/creatives/{campaignID}/daily
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/campaign/behavioral_audience/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/adgroups/behavioral_audience/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/creatives/behavioral_audience/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/campaign/category/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/adgroups/category/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/creatives/category/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/campaign/brand_affinity/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/adgroups/brand_affinity/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/creatives/brand_affinity/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/campaign/demographic/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/campaign/device_type/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/adgroups/device_type/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/timeseries/tod/export/campaign/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/timeseries/tod/export/adgroups/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v1/timeseries/tod/export/creatives/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v2/campaign/product/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v2/adgroups/product/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v2/creatives/product/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v3/campaign/product/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v3/adgroups/product/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v3/creatives/product/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v2/campaign/behavioral_audience/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v2/adgroups/behavioral_audience/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v2/creatives/behavioral_audience/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v2/campaign/category/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v2/adgroups/category/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v2/creatives/category/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v2/campaign/brand_affinity/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v2/adgroups/brand_affinity/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v2/creatives/brand_affinity/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v2/campaign/sv_locations/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/V2/adgroup/sv_locations/{adgroupID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v2/campaign/publisher/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v2/adgroups/publisher/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v2/campaign/network/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v2/campaign/audio/streaming_genre/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v2/adgroups/audio/streaming_genre/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v2/campaign/audio/podcast_topic/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v2/adgroups/audio/podcast_topic/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v2/campaign/audio/podcast_series/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v2/adgroups/audio/podcast_series/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v2/campaign/audio/publisher/{campaignID}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /demand/v2/adgroups/audio/publisher/{campaignID}
-  method: get
   x-agentic-access:
     action-class: connected
     consequence: read
