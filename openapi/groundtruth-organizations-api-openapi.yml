@@ -349,89 +349,17 @@ paths:
           description: Internal Server Error
 components:
   schemas:
-    SortOrder:
-      oneOf:
-      - const: desc
-        title: DESC
-      - const: asc
-        title: ASC
-      type: string
-      enum:
-      - desc
-      - asc
-      title: SortOrder
-      x-enum-varnames:
-      - DESC
-      - ASC
-    ErrorModel:
+    ErrorResponseModel:
       properties:
-        code:
-          type: string
-          title: Code
-        message:
-          type: string
-          title: Message
-        fields:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Fields
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
       type: object
       required:
-      - code
-      - message
-      - fields
-      title: ErrorModel
-    CreateOrUpdateOrganizationModel:
-      properties:
-        name:
-          type: string
-          maxLength: 128
-          minLength: 1
-          title: Name
-      type: object
-      required:
-      - name
-      title: CreateOrUpdateOrganizationModel
-    OrganizationModel:
-      properties:
-        id:
-          type: integer
-          title: Id
-        tenant_id:
-          type: integer
-          title: Tenant Id
-        name:
-          type: string
-          title: Name
-        created_date:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Created Date
-        updated_date:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Updated Date
-      type: object
-      required:
-      - id
-      - tenant_id
-      - name
-      title: OrganizationModel
-    SuccessResponseModel:
-      properties:
-        success:
-          type: boolean
-          title: Success
-          default: true
-      type: object
-      title: SuccessResponseModel
+      - errors
+      title: ErrorResponseModel
     OrganizationsModel:
       properties:
         total_count:
@@ -467,17 +395,89 @@ components:
       - has_prev_page
       - items
       title: OrganizationsModel
-    ErrorResponseModel:
+    SortOrder:
+      oneOf:
+      - const: desc
+        title: DESC
+      - const: asc
+        title: ASC
+      type: string
+      enum:
+      - desc
+      - asc
+      title: SortOrder
+      x-enum-varnames:
+      - DESC
+      - ASC
+    CreateOrUpdateOrganizationModel:
       properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorModel'
-          type: array
-          title: Errors
+        name:
+          type: string
+          maxLength: 128
+          minLength: 1
+          title: Name
       type: object
       required:
-      - errors
-      title: ErrorResponseModel
+      - name
+      title: CreateOrUpdateOrganizationModel
+    SuccessResponseModel:
+      properties:
+        success:
+          type: boolean
+          title: Success
+          default: true
+      type: object
+      title: SuccessResponseModel
+    OrganizationModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        tenant_id:
+          type: integer
+          title: Tenant Id
+        name:
+          type: string
+          title: Name
+        created_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created Date
+        updated_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated Date
+      type: object
+      required:
+      - id
+      - tenant_id
+      - name
+      title: OrganizationModel
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
   securitySchemes:
     api-key:
       type: apiKey

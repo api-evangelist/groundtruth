@@ -68,27 +68,27 @@ paths:
           description: Internal Server Error
 components:
   schemas:
-    ErrorModel:
+    ErrorResponseModel:
       properties:
-        code:
-          type: string
-          title: Code
-        message:
-          type: string
-          title: Message
-        fields:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Fields
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
       type: object
       required:
-      - code
-      - message
-      - fields
-      title: ErrorModel
+      - errors
+      title: ErrorResponseModel
+    Body_upload_upload_post:
+      properties:
+        file:
+          type: string
+          format: binary
+          title: File
+      type: object
+      required:
+      - file
+      title: Body_upload_upload_post
     UploadResponseModel:
       properties:
         file_path:
@@ -126,27 +126,27 @@ components:
       - AUDIO
       - HTML5
       - OTHER
-    ErrorResponseModel:
+    ErrorModel:
       properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorModel'
-          type: array
-          title: Errors
-      type: object
-      required:
-      - errors
-      title: ErrorResponseModel
-    Body_upload_upload_post:
-      properties:
-        file:
+        code:
           type: string
-          format: binary
-          title: File
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
       type: object
       required:
-      - file
-      title: Body_upload_upload_post
+      - code
+      - message
+      - fields
+      title: ErrorModel
   securitySchemes:
     api-key:
       type: apiKey

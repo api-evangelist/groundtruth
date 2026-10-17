@@ -711,125 +711,17 @@ paths:
           description: Internal Server Error
 components:
   schemas:
-    Currency:
-      oneOf:
-      - const: USD
-        title: USD
-      - const: CAD
-        title: CAD
-      type: string
-      enum:
-      - USD
-      - CAD
-      title: Currency
-      x-enum-varnames:
-      - USD
-      - CAD
-    AccountModel:
+    ErrorResponseModel:
       properties:
-        id:
-          type: integer
-          title: Id
-        tenant_id:
-          type: integer
-          title: Tenant Id
-        organization_id:
-          type: integer
-          title: Organization Id
-        name:
-          type: string
-          title: Name
-        country_code:
-          $ref: '#/components/schemas/CountryCode'
-        timezone:
-          $ref: '#/components/schemas/Timezone'
-        currency:
-          $ref: '#/components/schemas/Currency'
-        type:
-          $ref: '#/components/schemas/AccountType'
-        website_domain:
-          type: string
-          title: Website Domain
-        brand_id:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Brand Id
-        vertical_id:
-          anyOf:
-          - $ref: '#/components/schemas/AccountVertical'
-          - type: 'null'
-        dart_billing_account:
-          anyOf:
-          - $ref: '#/components/schemas/DartBillingAccount'
-          - type: 'null'
-        updated_date:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Updated Date
-        created_date:
-          type: string
-          format: date-time
-          title: Created Date
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
       type: object
       required:
-      - id
-      - tenant_id
-      - organization_id
-      - name
-      - country_code
-      - timezone
-      - currency
-      - type
-      - website_domain
-      - brand_id
-      - created_date
-      title: AccountModel
-    ErrorModel:
-      properties:
-        code:
-          type: string
-          title: Code
-        message:
-          type: string
-          title: Message
-        fields:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Fields
-      type: object
-      required:
-      - code
-      - message
-      - fields
-      title: ErrorModel
-    CreateAccountPixelModel:
-      properties:
-        name:
-          type: string
-          maxLength: 128
-          minLength: 1
-          title: Name
-        url:
-          type: string
-          maxLength: 2083
-          minLength: 1
-          format: uri
-          title: Url
-        enable_site_retargeting:
-          type: boolean
-          title: Enable Site Retargeting
-      type: object
-      required:
-      - name
-      - url
-      - enable_site_retargeting
-      title: CreateAccountPixelModel
+      - errors
+      title: ErrorResponseModel
     AccountPixelsModel:
       properties:
         total_count:
@@ -865,20 +757,52 @@ components:
       - has_prev_page
       - items
       title: AccountPixelsModel
-    SortOrder:
+    AccountType:
       oneOf:
-      - const: desc
-        title: DESC
-      - const: asc
-        title: ASC
-      type: string
+      - const: 0
+        title: DIRECT_CLIENT
+      - const: 1
+        title: DIRECT_AGENCY
+      - const: 2
+        title: PLATFORM_CMR
+      - const: 3
+        title: PLATFORM_RESELLER
+      - const: 4
+        title: PLATFORM_CHANNEL
+      - const: 5
+        title: DIRECT_PROGRAMMATIC
+      - const: 6
+        title: PLATFORM_PROGRAMMATIC
+      - const: 7
+        title: PROGRAMMATIC
+      - const: 8
+        title: SELF_SERVE
+      - const: 9
+        title: CHARITY
+      type: integer
       enum:
-      - desc
-      - asc
-      title: SortOrder
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      title: AccountType
       x-enum-varnames:
-      - DESC
-      - ASC
+      - DIRECT_CLIENT
+      - DIRECT_AGENCY
+      - PLATFORM_CMR
+      - PLATFORM_RESELLER
+      - PLATFORM_CHANNEL
+      - DIRECT_PROGRAMMATIC
+      - PLATFORM_PROGRAMMATIC
+      - PROGRAMMATIC
+      - SELF_SERVE
+      - CHARITY
     AccountVertical:
       oneOf:
       - const: 1
@@ -941,19 +865,41 @@ components:
       - TECHNOLOGY
       - TELECOM_AND_COMMUNICATIONS
       - TRAVEL
-    DartBillingAccount:
+    AccountsModel:
       properties:
-        account_id:
-          type: string
-          title: Account Id
-        account_name:
-          type: string
-          title: Account Name
+        total_count:
+          type: integer
+          title: Total Count
+        limit:
+          type: integer
+          title: Limit
+        page_num:
+          type: integer
+          title: Page Num
+        total_pages:
+          type: integer
+          title: Total Pages
+        has_next_page:
+          type: boolean
+          title: Has Next Page
+        has_prev_page:
+          type: boolean
+          title: Has Prev Page
+        items:
+          items:
+            $ref: '#/components/schemas/AccountModel'
+          type: array
+          title: Items
       type: object
       required:
-      - account_id
-      - account_name
-      title: DartBillingAccount
+      - total_count
+      - limit
+      - page_num
+      - total_pages
+      - has_next_page
+      - has_prev_page
+      - items
+      title: AccountsModel
     AccountPixelModel:
       properties:
         id:
@@ -1003,6 +949,87 @@ components:
       - url
       - website_url
       title: AccountPixelModel
+    AccountModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        tenant_id:
+          type: integer
+          title: Tenant Id
+        organization_id:
+          type: integer
+          title: Organization Id
+        name:
+          type: string
+          title: Name
+        country_code:
+          $ref: '#/components/schemas/CountryCode'
+        timezone:
+          $ref: '#/components/schemas/Timezone'
+        currency:
+          $ref: '#/components/schemas/Currency'
+        type:
+          $ref: '#/components/schemas/AccountType'
+        website_domain:
+          type: string
+          title: Website Domain
+        brand_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Brand Id
+        vertical_id:
+          anyOf:
+          - $ref: '#/components/schemas/AccountVertical'
+          - type: 'null'
+        dart_billing_account:
+          anyOf:
+          - $ref: '#/components/schemas/DartBillingAccount'
+          - type: 'null'
+        updated_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated Date
+        created_date:
+          type: string
+          format: date-time
+          title: Created Date
+      type: object
+      required:
+      - id
+      - tenant_id
+      - organization_id
+      - name
+      - country_code
+      - timezone
+      - currency
+      - type
+      - website_domain
+      - brand_id
+      - created_date
+      title: AccountModel
+    CountryCode:
+      type: string
+      enum:
+      - US
+      - CA
+      title: CountryCode
+    DartBillingAccount:
+      properties:
+        account_id:
+          type: string
+          title: Account Id
+        account_name:
+          type: string
+          title: Account Name
+      type: object
+      required:
+      - account_id
+      - account_name
+      title: DartBillingAccount
     SuccessResponseModel:
       properties:
         success:
@@ -1011,12 +1038,6 @@ components:
           default: true
       type: object
       title: SuccessResponseModel
-    CountryCode:
-      type: string
-      enum:
-      - US
-      - CA
-      title: CountryCode
     UpdateAccountModel:
       properties:
         name:
@@ -1040,6 +1061,49 @@ components:
       - website_domain
       - timezone
       title: UpdateAccountModel
+    CreateAccountModel:
+      properties:
+        name:
+          type: string
+          maxLength: 128
+          minLength: 1
+          title: Name
+        country_code:
+          $ref: '#/components/schemas/CountryCode'
+        timezone:
+          $ref: '#/components/schemas/Timezone'
+        currency:
+          $ref: '#/components/schemas/Currency'
+        website_domain:
+          type: string
+          maxLength: 512
+          title: Website Domain
+        vertical_id:
+          anyOf:
+          - $ref: '#/components/schemas/AccountVertical'
+          - type: 'null'
+      type: object
+      required:
+      - name
+      - country_code
+      - timezone
+      - currency
+      - website_domain
+      title: CreateAccountModel
+    SortOrder:
+      oneOf:
+      - const: desc
+        title: DESC
+      - const: asc
+        title: ASC
+      type: string
+      enum:
+      - desc
+      - asc
+      title: SortOrder
+      x-enum-varnames:
+      - DESC
+      - ASC
     Timezone:
       oneOf:
       - const: America/Los_Angeles
@@ -1114,127 +1178,28 @@ components:
       - AMERICA_EDMONTON
       - AMERICA_CRESTON
       - AMERICA_VANCOUVER
-    AccountType:
-      oneOf:
-      - const: 0
-        title: DIRECT_CLIENT
-      - const: 1
-        title: DIRECT_AGENCY
-      - const: 2
-        title: PLATFORM_CMR
-      - const: 3
-        title: PLATFORM_RESELLER
-      - const: 4
-        title: PLATFORM_CHANNEL
-      - const: 5
-        title: DIRECT_PROGRAMMATIC
-      - const: 6
-        title: PLATFORM_PROGRAMMATIC
-      - const: 7
-        title: PROGRAMMATIC
-      - const: 8
-        title: SELF_SERVE
-      - const: 9
-        title: CHARITY
-      type: integer
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      title: AccountType
-      x-enum-varnames:
-      - DIRECT_CLIENT
-      - DIRECT_AGENCY
-      - PLATFORM_CMR
-      - PLATFORM_RESELLER
-      - PLATFORM_CHANNEL
-      - DIRECT_PROGRAMMATIC
-      - PLATFORM_PROGRAMMATIC
-      - PROGRAMMATIC
-      - SELF_SERVE
-      - CHARITY
-    CreateAccountModel:
+    CreateAccountPixelModel:
       properties:
         name:
           type: string
           maxLength: 128
           minLength: 1
           title: Name
-        country_code:
-          $ref: '#/components/schemas/CountryCode'
-        timezone:
-          $ref: '#/components/schemas/Timezone'
-        currency:
-          $ref: '#/components/schemas/Currency'
-        website_domain:
+        url:
           type: string
-          maxLength: 512
-          title: Website Domain
-        vertical_id:
-          anyOf:
-          - $ref: '#/components/schemas/AccountVertical'
-          - type: 'null'
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          title: Url
+        enable_site_retargeting:
+          type: boolean
+          title: Enable Site Retargeting
       type: object
       required:
       - name
-      - country_code
-      - timezone
-      - currency
-      - website_domain
-      title: CreateAccountModel
-    ErrorResponseModel:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorModel'
-          type: array
-          title: Errors
-      type: object
-      required:
-      - errors
-      title: ErrorResponseModel
-    AccountsModel:
-      properties:
-        total_count:
-          type: integer
-          title: Total Count
-        limit:
-          type: integer
-          title: Limit
-        page_num:
-          type: integer
-          title: Page Num
-        total_pages:
-          type: integer
-          title: Total Pages
-        has_next_page:
-          type: boolean
-          title: Has Next Page
-        has_prev_page:
-          type: boolean
-          title: Has Prev Page
-        items:
-          items:
-            $ref: '#/components/schemas/AccountModel'
-          type: array
-          title: Items
-      type: object
-      required:
-      - total_count
-      - limit
-      - page_num
-      - total_pages
-      - has_next_page
-      - has_prev_page
-      - items
-      title: AccountsModel
+      - url
+      - enable_site_retargeting
+      title: CreateAccountPixelModel
     AccountMinCPVBidRateModel:
       properties:
         min_bid_rate:
@@ -1244,6 +1209,41 @@ components:
       required:
       - min_bid_rate
       title: AccountMinCPVBidRateModel
+    Currency:
+      oneOf:
+      - const: USD
+        title: USD
+      - const: CAD
+        title: CAD
+      type: string
+      enum:
+      - USD
+      - CAD
+      title: Currency
+      x-enum-varnames:
+      - USD
+      - CAD
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
   securitySchemes:
     api-key:
       type: apiKey

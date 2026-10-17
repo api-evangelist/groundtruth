@@ -63,15 +63,6 @@ components:
       required:
       - errors
       title: ErrorResponseModel
-    VersionModel:
-      properties:
-        version:
-          type: string
-          title: Version
-      type: object
-      required:
-      - version
-      title: VersionModel
     ErrorModel:
       properties:
         code:
@@ -93,6 +84,15 @@ components:
       - message
       - fields
       title: ErrorModel
+    VersionModel:
+      properties:
+        version:
+          type: string
+          title: Version
+      type: object
+      required:
+      - version
+      title: VersionModel
   securitySchemes:
     api-key:
       type: apiKey

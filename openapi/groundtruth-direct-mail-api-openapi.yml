@@ -95,27 +95,6 @@ components:
       required:
       - errors
       title: ErrorResponseModel
-    ErrorModel:
-      properties:
-        code:
-          type: string
-          title: Code
-        message:
-          type: string
-          title: Message
-        fields:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Fields
-      type: object
-      required:
-      - code
-      - message
-      - fields
-      title: ErrorModel
     OrderModel:
       properties:
         id:
@@ -235,6 +214,27 @@ components:
       - is_overdue
       - formatted_price
       title: OrderModel
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
     OrdersModel:
       properties:
         total_count:
