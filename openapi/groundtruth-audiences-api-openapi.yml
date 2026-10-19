@@ -67,6 +67,67 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseModel'
           description: Internal Server Error
+  /audiences/audience_taxonomy/v2:
+    get:
+      tags:
+      - Audiences
+      summary: Get Audience Taxonomy V2
+      description: Gets entire audience taxonomy for a tenant and account, split into deterministic, predictive, and premium audiences
+      operationId: get_audience_taxonomy_v2
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudienceTaxonomyV2'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
   /audiences/recommendations:
     post:
       tags:
@@ -147,59 +208,73 @@ components:
       required:
       - errors
       title: ErrorResponseModel
-    Sensitivity:
-      oneOf:
-      - const: 0
-        title: WHITELIST
-      - const: 1
-        title: GRAYLIST
-      - const: 2
-        title: SEMI_SENSITIVE
-      - const: 3
-        title: BLACKLIST
-      type: integer
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      title: Sensitivity
-      x-enum-varnames:
-      - WHITELIST
-      - GRAYLIST
-      - SEMI_SENSITIVE
-      - BLACKLIST
-    DetailedAudienceCategory:
+    Audience:
       properties:
+        id:
+          type: string
+          title: Id
+        type:
+          $ref: '#/components/schemas/AudienceType'
         name:
           type: string
           title: Name
-        description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Description
-        audiences:
-          items:
-            $ref: '#/components/schemas/Audience'
-          type: array
-          title: Audiences
         size:
           anyOf:
           - type: integer
           - type: 'null'
           title: Size
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        sensitivity:
+          anyOf:
+          - $ref: '#/components/schemas/Sensitivity'
+          - type: 'null'
+        subtype:
+          anyOf:
+          - $ref: '#/components/schemas/AudienceSubtype'
+          - type: 'null'
+        backend_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Backend Key
+        sic_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sic Code
+        location_group_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/app__services__audience__types__LocationGroupMetadata'
+          - type: 'null'
         category_id:
           anyOf:
           - type: integer
           - type: 'null'
           title: Category Id
+        status:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Status
       type: object
       required:
+      - id
+      - type
       - name
+      - size
       - description
-      - audiences
-      title: DetailedAudienceCategory
+      - sensitivity
+      - subtype
+      - backend_key
+      - sic_code
+      - location_group_metadata
+      - category_id
+      - status
+      title: Audience
     LocationGroupBuildStatus:
       oneOf:
       - const: not_required
@@ -230,17 +305,156 @@ components:
       - UPDATING
       - READY
       - EXPIRED
-    AudienceRecommendationsRequestModel:
+    Sensitivity:
+      oneOf:
+      - const: 0
+        title: WHITELIST
+      - const: 1
+        title: GRAYLIST
+      - const: 2
+        title: SEMI_SENSITIVE
+      - const: 3
+        title: BLACKLIST
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      title: Sensitivity
+      x-enum-varnames:
+      - WHITELIST
+      - GRAYLIST
+      - SEMI_SENSITIVE
+      - BLACKLIST
+    AudienceTaxonomyType:
       properties:
-        audience_ids:
+        name:
+          type: string
+          title: Name
+        categories:
           items:
-            type: string
+            $ref: '#/components/schemas/DetailedAudienceCategory'
           type: array
-          title: Audience Ids
+          title: Categories
       type: object
       required:
-      - audience_ids
-      title: AudienceRecommendationsRequestModel
+      - name
+      - categories
+      title: AudienceTaxonomyType
+    AudienceRecommendationsModel:
+      properties:
+        recommendations:
+          items:
+            $ref: '#/components/schemas/Audience'
+          type: array
+          title: Recommendations
+      type: object
+      required:
+      - recommendations
+      title: AudienceRecommendationsModel
+    AudienceSubtype:
+      oneOf:
+      - const: deterministic
+        title: DETERMINISTIC
+        description: How an audience was derived, as reported by the audience service's `audience_subclass`.
+      - const: predictive
+        title: PREDICTIVE
+        description: How an audience was derived, as reported by the audience service's `audience_subclass`.
+      - const: premium
+        title: PREMIUM
+        description: How an audience was derived, as reported by the audience service's `audience_subclass`.
+      type: string
+      enum:
+      - deterministic
+      - predictive
+      - premium
+      title: AudienceSubtype
+      description: How an audience was derived, as reported by the audience service's `audience_subclass`.
+      x-enum-varnames:
+      - DETERMINISTIC
+      - PREDICTIVE
+      - PREMIUM
+    AudienceType:
+      oneOf:
+      - const: behavior
+        title: BEHAVIOR
+      - const: custom_audience
+        title: CUSTOM_AUDIENCE
+      - const: segment
+        title: SEGMENT
+      - const: brand
+        title: BRAND
+      - const: category
+        title: CATEGORY
+      - const: location_group
+        title: LOCATION_GROUP
+      - const: third_party
+        title: THIRD_PARTY
+      type: string
+      enum:
+      - behavior
+      - custom_audience
+      - segment
+      - brand
+      - category
+      - location_group
+      - third_party
+      title: AudienceType
+      x-enum-varnames:
+      - BEHAVIOR
+      - CUSTOM_AUDIENCE
+      - SEGMENT
+      - BRAND
+      - CATEGORY
+      - LOCATION_GROUP
+      - THIRD_PARTY
+    AudienceTaxonomy:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/AudienceTaxonomyType'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: AudienceTaxonomy
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    LocationGroupType:
+      oneOf:
+      - const: 0
+        title: BUSINESS
+      - const: 1
+        title: RESIDENTIAL
+      type: integer
+      enum:
+      - 0
+      - 1
+      title: LocationGroupType
+      x-enum-varnames:
+      - BUSINESS
+      - RESIDENTIAL
     app__services__audience__types__LocationGroupMetadata:
       properties:
         type:
@@ -280,141 +494,76 @@ components:
       - build_status
       - is_sensitive
       title: LocationGroupMetadata
-    AudienceTaxonomy:
+    DetailedAudienceCategory:
       properties:
-        items:
-          items:
-            $ref: '#/components/schemas/app__services__audience__types__AudienceType'
-          type: array
-          title: Items
-      type: object
-      required:
-      - items
-      title: AudienceTaxonomy
-    LocationGroupType:
-      oneOf:
-      - const: 0
-        title: BUSINESS
-      - const: 1
-        title: RESIDENTIAL
-      type: integer
-      enum:
-      - 0
-      - 1
-      title: LocationGroupType
-      x-enum-varnames:
-      - BUSINESS
-      - RESIDENTIAL
-    Audience:
-      properties:
-        id:
-          type: string
-          title: Id
-        type:
-          type: string
-          title: Type
         name:
           type: string
           title: Name
-        size:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Size
         description:
           anyOf:
           - type: string
           - type: 'null'
           title: Description
-        sensitivity:
+        audiences:
+          items:
+            $ref: '#/components/schemas/Audience'
+          type: array
+          title: Audiences
+        subtype:
           anyOf:
-          - $ref: '#/components/schemas/Sensitivity'
+          - $ref: '#/components/schemas/AudienceSubtype'
           - type: 'null'
-        backend_key:
+        size:
           anyOf:
-          - type: string
+          - type: integer
           - type: 'null'
-          title: Backend Key
-        sic_code:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Sic Code
-        location_group_metadata:
-          anyOf:
-          - $ref: '#/components/schemas/app__services__audience__types__LocationGroupMetadata'
-          - type: 'null'
+          title: Size
         category_id:
           anyOf:
           - type: integer
           - type: 'null'
           title: Category Id
-        status:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Status
       type: object
       required:
-      - id
-      - type
       - name
-      - size
       - description
-      - sensitivity
-      - backend_key
-      - sic_code
-      - location_group_metadata
-      - category_id
-      - status
-      title: Audience
-    app__services__audience__types__AudienceType:
+      - audiences
+      title: DetailedAudienceCategory
+    AudienceRecommendationsRequestModel:
       properties:
-        name:
-          type: string
-          title: Name
-        categories:
+        audience_ids:
+          items:
+            type: string
+          type: array
+          title: Audience Ids
+      type: object
+      required:
+      - audience_ids
+      title: AudienceRecommendationsRequestModel
+    AudienceTaxonomyV2:
+      properties:
+        deterministic:
+          items:
+            $ref: '#/components/schemas/AudienceTaxonomyType'
+          type: array
+          title: Deterministic
+        predictive:
+          items:
+            $ref: '#/components/schemas/AudienceTaxonomyType'
+          type: array
+          title: Predictive
+        premium:
           items:
             $ref: '#/components/schemas/DetailedAudienceCategory'
           type: array
-          title: Categories
+          title: Premium
       type: object
       required:
-      - name
-      - categories
-      title: AudienceType
-    ErrorModel:
-      properties:
-        code:
-          type: string
-          title: Code
-        message:
-          type: string
-          title: Message
-        fields:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Fields
-      type: object
-      required:
-      - code
-      - message
-      - fields
-      title: ErrorModel
-    AudienceRecommendationsModel:
-      properties:
-        recommendations:
-          items:
-            $ref: '#/components/schemas/Audience'
-          type: array
-          title: Recommendations
-      type: object
-      required:
-      - recommendations
-      title: AudienceRecommendationsModel
+      - deterministic
+      - predictive
+      - premium
+      title: AudienceTaxonomyV2
+      description: Premium audiences have no audience type grouping, so they are a flat list of categories.
   securitySchemes:
     api-key:
       type: apiKey

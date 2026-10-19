@@ -616,6 +616,26 @@ apis:
     url: https://reporting.groundtruth.com/api
   - type: APIReference
     url: https://reporting.groundtruth.com/api
+- aid: groundtruth:groundtruth-location-groups-api
+  name: GroundTruth Location Groups API
+  description: The Location Groups API from GroundTruth — 20 operation(s) for location groups.
+  humanURL: https://docs.groundtruth.com/
+  baseURL: https://docs.groundtruth.com/mcp
+  tags:
+  - Location Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/groundtruth-location-groups-api-openapi.yml
+- aid: groundtruth:groundtruth-pois-api
+  name: GroundTruth POIs API
+  description: The POIs API from GroundTruth — 1 operation(s) for pois.
+  humanURL: https://docs.groundtruth.com/
+  baseURL: https://docs.groundtruth.com/mcp
+  tags:
+  - POIs
+  properties:
+  - type: OpenAPI
+    url: openapi/groundtruth-pois-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

@@ -6,6 +6,228 @@ info:
 tags:
 - name: Tenants
 paths:
+  /tenants/{tenant_id}/dashboard/onboarding:
+    get:
+      tags:
+      - Tenants
+      summary: Get Tenant Dashboard Onboarding
+      description: Returns onboarding data for the tenant home page.
+      operationId: get_tenant_dashboard_onboarding
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantDashboardOnboardingModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /tenants/{tenant_id}/dashboard/campaigns:
+    get:
+      tags:
+      - Tenants
+      summary: Get Tenant Dashboard Campaigns
+      description: Returns a short list of campaigns for the tenant home page. Supports home-specific filters (pacing, flight start/end windows, inactive with no spend).
+      operationId: get_tenant_dashboard_campaigns
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 25
+          minimum: 1
+          description: Max campaigns to return
+          default: 10
+          title: Limit
+        description: Max campaigns to return
+      - name: sort_by
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/TenantDashboardCampaignSortField'
+          description: Field to sort campaigns by
+          default: created_date
+        description: Field to sort campaigns by
+      - name: sort_order
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+          description: Sort order
+          default: desc
+        description: Sort order
+      - name: pacing_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Include campaigns with pacing >= this value
+          title: Pacing Min
+        description: Include campaigns with pacing >= this value
+      - name: pacing_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Include campaigns with pacing < this value
+          title: Pacing Max
+        description: Include campaigns with pacing < this value
+      - name: flight_start_from
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          description: Include campaigns whose start date is on or after this date (YYYY-MM-DD)
+          title: Flight Start From
+        description: Include campaigns whose start date is on or after this date (YYYY-MM-DD)
+      - name: flight_start_to
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          description: Include campaigns whose start date is on or before this date (YYYY-MM-DD)
+          title: Flight Start To
+        description: Include campaigns whose start date is on or before this date (YYYY-MM-DD)
+      - name: flight_end_from
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          description: Include campaigns whose end date is on or after this date (YYYY-MM-DD)
+          title: Flight End From
+        description: Include campaigns whose end date is on or after this date (YYYY-MM-DD)
+      - name: flight_end_to
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          description: Include campaigns whose end date is on or before this date (YYYY-MM-DD)
+          title: Flight End To
+        description: Include campaigns whose end date is on or before this date (YYYY-MM-DD)
+      - name: inactive_no_spend
+        in: query
+        required: false
+        schema:
+          type: boolean
+          description: When true, only campaigns with no lifetime spend and no active ad groups (includes campaigns with no ad groups, or only paused ad groups)
+          default: false
+          title: Inactive No Spend
+        description: When true, only campaigns with no lifetime spend and no active ad groups (includes campaigns with no ad groups, or only paused ad groups)
+      - name: status
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/CampaignDashboardStatus'
+          - type: 'null'
+          description: Filter by derived campaign dashboard statuses (e.g. active)
+          title: Status
+        description: Filter by derived campaign dashboard statuses (e.g. active)
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantDashboardCampaignsModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
   /tenants/{tenant_id}:
     get:
       tags:
@@ -134,24 +356,99 @@ components:
       required:
       - errors
       title: ErrorResponseModel
-    TenantType:
+    TenantDashboardCampaignModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        account_id:
+          type: integer
+          title: Account Id
+        start_date:
+          type: string
+          format: date
+          title: Start Date
+        end_date:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: End Date
+        created_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created Date
+        budget:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Budget
+        budget_type:
+          $ref: '#/components/schemas/BudgetType'
+        pacing:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Pacing
+      type: object
+      required:
+      - id
+      - name
+      - account_id
+      - start_date
+      - budget_type
+      title: TenantDashboardCampaignModel
+    UpdateTenantModel:
+      properties:
+        name:
+          type: string
+          maxLength: 64
+          minLength: 1
+          title: Name
+      type: object
+      required:
+      - name
+      title: UpdateTenantModel
+    TenantDashboardOnboardingModel:
+      properties:
+        has_campaigns:
+          type: boolean
+          title: Has Campaigns
+        has_chargeable_card:
+          type: boolean
+          title: Has Chargeable Card
+      type: object
+      required:
+      - has_campaigns
+      - has_chargeable_card
+      title: TenantDashboardOnboardingModel
+    TenantDashboardCampaignSortField:
       oneOf:
-      - const: 0
-        title: MANAGED
-      - const: 1
-        title: SELF_SERVE
-      - const: 2
-        title: CHANNEL
-      type: integer
+      - const: created_date
+        title: CREATED_DATE
+      - const: start_date
+        title: START_DATE
+      - const: end_date
+        title: END_DATE
+      - const: pacing
+        title: PACING
+      type: string
       enum:
-      - 0
-      - 1
-      - 2
-      title: TenantType
+      - created_date
+      - start_date
+      - end_date
+      - pacing
+      title: TenantDashboardCampaignSortField
       x-enum-varnames:
-      - MANAGED
-      - SELF_SERVE
-      - CHANNEL
+      - CREATED_DATE
+      - START_DATE
+      - END_DATE
+      - PACING
     PaymentType:
       oneOf:
       - const: 0
@@ -178,17 +475,114 @@ components:
       - SPEND_LIMIT
       - CREDIT_CARD_V2
       - ACCOUNT_LEVEL_CREDIT_CARD
-    UpdateTenantModel:
+    BudgetType:
+      oneOf:
+      - const: 0
+        title: LIFETIME
+      - const: 1
+        title: PERIODIC
+      - const: 2
+        title: TIME_PERIOD
+      - const: 3
+        title: DAILY
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      title: BudgetType
+      x-enum-varnames:
+      - LIFETIME
+      - PERIODIC
+      - TIME_PERIOD
+      - DAILY
+    SortOrder:
+      oneOf:
+      - const: desc
+        title: DESC
+      - const: asc
+        title: ASC
+      type: string
+      enum:
+      - desc
+      - asc
+      title: SortOrder
+      x-enum-varnames:
+      - DESC
+      - ASC
+    ErrorModel:
       properties:
-        name:
+        code:
           type: string
-          maxLength: 64
-          minLength: 1
-          title: Name
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
       type: object
       required:
-      - name
-      title: UpdateTenantModel
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    TenantDashboardCampaignsModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/TenantDashboardCampaignModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: TenantDashboardCampaignsModel
+    CampaignDashboardStatus:
+      oneOf:
+      - const: active
+        title: ACTIVE
+      - const: paused
+        title: PAUSED
+      - const: pending
+        title: PENDING
+      - const: expired
+        title: EXPIRED
+      type: string
+      enum:
+      - active
+      - paused
+      - pending
+      - expired
+      title: CampaignDashboardStatus
+      x-enum-varnames:
+      - ACTIVE
+      - PAUSED
+      - PENDING
+      - EXPIRED
+    TenantType:
+      oneOf:
+      - const: 0
+        title: MANAGED
+      - const: 1
+        title: SELF_SERVE
+      - const: 2
+        title: CHANNEL
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      title: TenantType
+      x-enum-varnames:
+      - MANAGED
+      - SELF_SERVE
+      - CHANNEL
     TenantModel:
       properties:
         id:
@@ -238,27 +632,6 @@ components:
       - referrer_url
       - utm_campaign
       title: TenantModel
-    ErrorModel:
-      properties:
-        code:
-          type: string
-          title: Code
-        message:
-          type: string
-          title: Message
-        fields:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Fields
-      type: object
-      required:
-      - code
-      - message
-      - fields
-      title: ErrorModel
   securitySchemes:
     api-key:
       type: apiKey

@@ -89,21 +89,6 @@ components:
       required:
       - file
       title: Body_upload_upload_post
-    UploadResponseModel:
-      properties:
-        file_path:
-          type: string
-          title: File Path
-        cdn_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Cdn Url
-      type: object
-      required:
-      - file_path
-      - cdn_url
-      title: UploadResponseModel
     UploadType:
       oneOf:
       - const: 1
@@ -126,6 +111,21 @@ components:
       - AUDIO
       - HTML5
       - OTHER
+    UploadResponseModel:
+      properties:
+        file_path:
+          type: string
+          title: File Path
+        cdn_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Cdn Url
+      type: object
+      required:
+      - file_path
+      - cdn_url
+      title: UploadResponseModel
     ErrorModel:
       properties:
         code:

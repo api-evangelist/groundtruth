@@ -1,0 +1,3128 @@
+openapi: 3.2.0
+info:
+  title: Ads Manager Location Groups API
+  description: Ads Manager API
+  version: 1.0.0
+tags:
+- name: Location Groups
+paths:
+  /location_groups/upload_template:
+    get:
+      tags:
+      - Location Groups
+      summary: Get Location Group Pois Upload Template
+      description: Downloads a location group POI upload template
+      operationId: get_location_group_pois_upload_template
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: poi_type
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/LocationGroupPOIType'
+          description: POI type whose upload template to download
+          default: standard
+        description: POI type whose upload template to download
+      - name: file_extension
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/LocationGroupPOIUploadTemplateFileExtension'
+          description: File extension to download
+          default: xlsx
+        description: File extension to download
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /location_groups/{location_group_id}/upload:
+    post:
+      tags:
+      - Location Groups
+      summary: Upload Location Group Pois File
+      description: Uploads a POI file to a location group
+      operationId: upload_location_group_pois_file
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: location_group_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Location Group Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_upload_location_group_pois_file_location_groups__location_group_id__upload_post'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadLocationGroupPOIsResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /location_groups/{location_group_id}/tasks/{task_id}/status:
+    get:
+      tags:
+      - Location Groups
+      summary: Get Location Group Poi Upload Task Status
+      description: Gets the status of a location group POI upload task
+      operationId: get_location_group_poi_upload_task_status
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          exclusiveMinimum: 0
+          description: ID of the POI upload task
+          title: Task Id
+        description: ID of the POI upload task
+      - name: location_group_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Location Group Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationGroupPOIUploadTaskStatusResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /location_groups/{location_group_id}/tasks/{task_id}/cancel:
+    post:
+      tags:
+      - Location Groups
+      summary: Cancel Location Group Poi Upload Task
+      description: Cancels a location group POI upload task
+      operationId: cancel_location_group_poi_upload_task
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          exclusiveMinimum: 0
+          description: ID of the POI upload task
+          title: Task Id
+        description: ID of the POI upload task
+      - name: location_group_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Location Group Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /location_groups:
+    get:
+      tags:
+      - Location Groups
+      summary: Get Location Groups
+      description: Get location groups
+      operationId: get_location_groups
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: page_num
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          description: Page number to retrieve. Starts at 1.
+          default: 1
+          title: Page Num
+        description: Page number to retrieve. Starts at 1.
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 100
+          minimum: 1
+          description: Number of location groups per page.
+          default: 50
+          title: Limit
+        description: Number of location groups per page.
+      - name: search
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            minLength: 2
+            maxLength: 100
+          - type: 'null'
+          description: Search term to filter location groups by name
+          title: Search
+        description: Search term to filter location groups by name
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListLocationGroupsResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+    post:
+      tags:
+      - Location Groups
+      summary: Create Location Group
+      description: 'Create a location group with POIs from a JSON body. Location groups cannot be created empty: `pois` is required and uses the same shape as POST /location_groups/{location_group_id}/pois.'
+      operationId: create_location_group
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateLocationGroupRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateLocationGroupResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /location_groups/{location_group_id}:
+    put:
+      tags:
+      - Location Groups
+      summary: Update Location Group
+      description: Update a location group name and description
+      operationId: update_location_group
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: location_group_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Location Group Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateLocationGroupRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateLocationGroupResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /location_groups/{location_group_id}/pois:
+    post:
+      tags:
+      - Location Groups
+      summary: Add Location Group Pois
+      description: Add known POI sources and/or create new POIs from addresses or viewshed coordinates for a location group
+      operationId: add_location_group_pois
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: location_group_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Location Group Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationGroupAddPOIsRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationGroupPOICountModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+    delete:
+      tags:
+      - Location Groups
+      summary: Delete Location Group Pois
+      description: Deletes POIs from a location group by IDs, status filter, or all
+      operationId: delete_location_group_pois
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: location_group_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Location Group Id
+      - name: poi_ids
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: integer
+          - type: 'null'
+          description: List of POI IDs to delete
+          title: Poi Ids
+        description: List of POI IDs to delete
+      - name: address_ids
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: integer
+          - type: 'null'
+          description: List of address IDs to delete
+          title: Address Ids
+        description: List of address IDs to delete
+      - name: poi_status
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/POIStatus'
+          - type: 'null'
+          description: Delete all POIs matching this status
+          title: Poi Status
+        description: Delete all POIs matching this status
+      - name: sub_status
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/POISubStatusFilter'
+          - type: 'null'
+          description: Filter by the specific sub-status associated with the POI.
+          title: Sub Status
+        description: Filter by the specific sub-status associated with the POI.
+      - name: delete_all
+        in: query
+        required: false
+        schema:
+          type: boolean
+          description: Delete all POIs in the location group
+          default: false
+          title: Delete All
+        description: Delete all POIs in the location group
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+    get:
+      tags:
+      - Location Groups
+      summary: Get Location Group Pois
+      description: Get POIs for a location group
+      operationId: get_location_group_pois
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: location_group_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Location Group Id
+      - name: page_num
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          description: Page number to retrieve. Starts at 1.
+          default: 1
+          title: Page Num
+        description: Page number to retrieve. Starts at 1.
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 100
+          minimum: 1
+          description: Number of POIs per page.
+          default: 50
+          title: Limit
+        description: Number of POIs per page.
+      - name: search
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            minLength: 1
+            maxLength: 100
+          - type: 'null'
+          description: Search term to filter POIs by company name
+          title: Search
+        description: Search term to filter POIs by company name
+      - name: state
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            minLength: 1
+            maxLength: 100
+          - type: 'null'
+          description: State to filter POIs by
+          title: State
+        description: State to filter POIs by
+      - name: city
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            minLength: 1
+            maxLength: 100
+          - type: 'null'
+          description: City to filter POIs by
+          title: City
+        description: City to filter POIs by
+      - name: entity_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/LocationEntityType'
+          - type: 'null'
+          description: Entity type to filter POIs by
+          title: Entity Type
+        description: Entity type to filter POIs by
+      - name: poi_status
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/POIStatus'
+          - type: 'null'
+          description: POI Status to filter by
+          title: Poi Status
+        description: POI Status to filter by
+      - name: sub_status
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/POISubStatusFilter'
+          - type: 'null'
+          description: Filter by the specific sub-status associated with the POI.
+          title: Sub Status
+        description: Filter by the specific sub-status associated with the POI.
+      - name: sort_order
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/SortOrder'
+          - type: 'null'
+          description: Sorting Order
+          title: Sort Order
+        description: Sorting Order
+      - name: sort_by
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/LocationGroupPOISortingColumn'
+          - type: 'null'
+          description: Sorting by
+          title: Sort By
+        description: Sorting by
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListLocationGroupPOIsResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /location_groups/{location_group_id}/pois/export:
+    post:
+      tags:
+      - Location Groups
+      summary: Export Location Group Pois
+      description: Exports the POIs of a location group as a spreadsheet. Exports all POIs when no filters are provided.
+      operationId: export_location_group_pois
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: location_group_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Location Group Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportLocationGroupPOIsRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /location_groups/{location_group_id}/pois/{poi_id}/feedback:
+    post:
+      tags:
+      - Location Groups
+      summary: Submit Poi Feedback
+      description: Submits feedback for a POI
+      operationId: submit_poi_feedback
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: location_group_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Location Group Id
+      - name: poi_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          exclusiveMinimum: 0
+          description: ID of the POI to submit feedback for
+          title: Poi Id
+        description: ID of the POI to submit feedback for
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/POIFeedbackRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /location_groups/upload:
+    post:
+      tags:
+      - Location Groups
+      summary: Create Location Group With Upload
+      description: 'Create a location group from a POI CSV/XLSX upload. Location groups cannot be created empty: `file` is required (multipart/form-data).'
+      operationId: create_location_group_with_upload
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_create_location_group_with_upload_location_groups_upload_post'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateLocationGroupResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /location_groups/upload/viewshed:
+    post:
+      tags:
+      - Location Groups
+      summary: Create Location Group With Upload Viewshed
+      description: 'Create a location group from a viewshed (Lat/Lng) CSV/XLSX upload. Location groups cannot be created empty: `file` is required (multipart/form-data).'
+      operationId: create_location_group_with_upload_viewshed
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_create_location_group_with_upload_viewshed_location_groups_upload_viewshed_post'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateLocationGroupResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /location_groups/{location_group_id}/subscribe:
+    post:
+      tags:
+      - Location Groups
+      summary: Subscribe Location Group Notifications
+      description: Subscribe to location group notification
+      operationId: subscribe_location_group_notifications
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: location_group_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Location Group Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /location_groups/{location_group_id}/unsubscribe:
+    post:
+      tags:
+      - Location Groups
+      summary: Unsubscribe Location Group Notifications
+      description: Unsubscribe from location group notification
+      operationId: unsubscribe_location_group_notifications
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: location_group_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Location Group Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /location_groups/{location_group_id}/addresses/{address_id}/suggestions:
+    get:
+      tags:
+      - Location Groups
+      summary: Get Location Group Address Suggestions
+      description: Get possible suggestions for a conflicted POI/address in a location group
+      operationId: get_location_group_address_suggestions
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: location_group_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Location Group Id
+      - name: address_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          exclusiveMinimum: 0
+          description: ID of the address to get suggestions for
+          title: Address Id
+        description: ID of the address to get suggestions for
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressSuggestionModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /location_groups/{location_group_id}/addresses/{address_id}/suggestions/{suggestion_id}:
+    put:
+      tags:
+      - Location Groups
+      summary: Select Matched Poi For Address
+      description: Select the matched POI for a conflicted address in a location group
+      operationId: select_matched_poi_for_address
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: location_group_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Location Group Id
+      - name: address_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          exclusiveMinimum: 0
+          description: ID of the conflicted address the suggestion belongs to
+          title: Address Id
+        description: ID of the conflicted address the suggestion belongs to
+      - name: suggestion_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          exclusiveMinimum: 0
+          description: ID of the address suggestion (matched POI) to select for the conflicted address
+          title: Suggestion Id
+        description: ID of the address suggestion (matched POI) to select for the conflicted address
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /location_groups/{location_group_id}/addresses/save:
+    post:
+      tags:
+      - Location Groups
+      summary: Save Location Group Addresses
+      description: Save conflicted addresses to a location group
+      operationId: save_location_group_addresses
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: location_group_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Location Group Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveLocationGroupAddressesRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /location_groups/{location_group_id}/addresses/{address_id}:
+    patch:
+      tags:
+      - Location Groups
+      summary: Edit Location Group Address
+      description: Edit details for an address in a location group
+      operationId: edit_location_group_address
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: location_group_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Location Group Id
+      - name: address_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          exclusiveMinimum: 0
+          description: ID of the address to edit
+          title: Address Id
+        description: ID of the address to edit
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditLocationGroupAddressRequestModel'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /location_groups/{location_group_id}/targeting:
+    post:
+      tags:
+      - Location Groups
+      summary: Enable Targeting For Location Group
+      description: Enable targeting for a location group
+      operationId: enable_targeting_for_location_group
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: location_group_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Location Group Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationGroupTargetingModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /location_groups/{location_group_id}/viewshed/upload:
+    post:
+      tags:
+      - Location Groups
+      summary: Upload Location Group Viewshed Pois File
+      description: Uploads a Viewshed (Lat/Lng) POI file to a location group
+      operationId: upload_location_group_viewshed_pois_file
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: location_group_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Location Group Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_upload_location_group_viewshed_pois_file_location_groups__location_group_id__viewshed_upload_post'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadLocationGroupPOIsResponseModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+  /location_groups/{location_group_id}/pois/count:
+    get:
+      tags:
+      - Location Groups
+      summary: Get Location Group Pois Count
+      description: Get the POI counts for a location group
+      operationId: get_location_group_pois_count
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: location_group_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Location Group Id
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationGroupPOICountModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+components:
+  schemas:
+    LocationGroupModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        description:
+          type: string
+          title: Description
+        account_id:
+          type: integer
+          title: Account Id
+        brand_count:
+          type: integer
+          title: Brand Count
+        category_count:
+          type: integer
+          title: Category Count
+        build_audience:
+          type: boolean
+          title: Build Audience
+        audience_status:
+          $ref: '#/components/schemas/LocationGroupBuildStatus'
+        neighborhood_status:
+          $ref: '#/components/schemas/LocationGroupBuildStatus'
+        subscription_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Subscription Id
+        task_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Task Id
+        tenant_id:
+          type: integer
+          title: Tenant Id
+        poi_counts:
+          $ref: '#/components/schemas/LocationGroupPOICountModel'
+      type: object
+      required:
+      - id
+      - name
+      - description
+      - account_id
+      - brand_count
+      - category_count
+      - build_audience
+      - audience_status
+      - neighborhood_status
+      - tenant_id
+      - poi_counts
+      title: LocationGroupModel
+    LocationGroupTargetingModel:
+      properties:
+        audience:
+          $ref: '#/components/schemas/TargetingTypeStatusModel'
+          description: Audience targeting state
+        neighborhood:
+          $ref: '#/components/schemas/TargetingTypeStatusModel'
+          description: Neighborhood targeting state
+      type: object
+      required:
+      - audience
+      - neighborhood
+      title: LocationGroupTargetingModel
+    POIStatus:
+      oneOf:
+      - const: accepted
+        title: ACCEPTED
+      - const: rejected
+        title: REJECTED
+      - const: needs_review
+        title: NEEDS_REVIEW
+      type: string
+      enum:
+      - accepted
+      - rejected
+      - needs_review
+      title: POIStatus
+      x-enum-varnames:
+      - ACCEPTED
+      - REJECTED
+      - NEEDS_REVIEW
+    EditLocationGroupAddressRequestModel:
+      properties:
+        address:
+          type: string
+          maxLength: 165
+          minLength: 1
+          title: Address
+          description: Updated address
+        company_name:
+          anyOf:
+          - type: string
+            maxLength: 64
+            minLength: 1
+          - type: 'null'
+          title: Company Name
+          description: Company name
+        city:
+          anyOf:
+          - type: string
+            maxLength: 45
+            minLength: 1
+          - type: 'null'
+          title: City
+          description: City
+        state:
+          anyOf:
+          - type: string
+            maxLength: 30
+            minLength: 2
+          - type: 'null'
+          title: State
+          description: State
+        zipcode:
+          anyOf:
+          - type: string
+            maxLength: 15
+            minLength: 1
+          - type: 'null'
+          title: Zipcode
+          description: Zipcode
+        phone_number:
+          anyOf:
+          - type: string
+            maxLength: 30
+            minLength: 1
+          - type: 'null'
+          title: Phone Number
+          description: Phone number
+      type: object
+      required:
+      - address
+      title: EditLocationGroupAddressRequestModel
+    LocationGroupPOICountModel:
+      properties:
+        status:
+          additionalProperties:
+            type: integer
+          propertyNames:
+            $ref: '#/components/schemas/POIStatus'
+          type: object
+          title: Status
+        total:
+          type: integer
+          title: Total
+        sub_status:
+          additionalProperties:
+            additionalProperties:
+              type: integer
+            propertyNames:
+              $ref: '#/components/schemas/POISubStatusFilter'
+            type: object
+          propertyNames:
+            $ref: '#/components/schemas/POIStatus'
+          type: object
+          title: Sub Status
+      type: object
+      required:
+      - status
+      - total
+      - sub_status
+      title: LocationGroupPOICountModel
+    POISubStatusFilter:
+      oneOf:
+      - const: blueprinted
+        title: BLUEPRINTED
+      - const: rejected
+        title: REJECTED
+      - const: sensitive
+        title: SENSITIVE
+      - const: radial
+        title: RADIAL
+      - const: radial_pending_blueprinting
+        title: RADIAL_PENDING_BLUEPRINTING
+      - const: radial_limited_use_sensitive_poi
+        title: RADIAL_LIMITED_USE_SENSITIVE_POI
+      type: string
+      enum:
+      - blueprinted
+      - rejected
+      - sensitive
+      - radial
+      - radial_pending_blueprinting
+      - radial_limited_use_sensitive_poi
+      title: POISubStatusFilter
+      x-enum-varnames:
+      - BLUEPRINTED
+      - REJECTED
+      - SENSITIVE
+      - RADIAL
+      - RADIAL_PENDING_BLUEPRINTING
+      - RADIAL_LIMITED_USE_SENSITIVE_POI
+    LocationGroupPOIItemModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        location_group_id:
+          type: integer
+          title: Location Group Id
+        company_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Company Name
+        phone_number:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Phone Number
+        address:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Address
+        city:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: City
+        state:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: State
+        country:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Country
+        zipcode:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Zipcode
+        latitude:
+          type: number
+          title: Latitude
+        longitude:
+          type: number
+          title: Longitude
+        category_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Category Name
+        category_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Category Code
+        brand_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Brand Id
+        brand_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Brand Name
+        radius:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Radius
+        status:
+          $ref: '#/components/schemas/POIStatus'
+        status_reason:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Status Reason
+        updated_date:
+          type: integer
+          title: Updated Date
+        entity_type:
+          $ref: '#/components/schemas/LocationEntityType'
+        sub_status:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sub Status
+          description: Detailed status or classification associated with the POI status.
+      type: object
+      required:
+      - id
+      - location_group_id
+      - latitude
+      - longitude
+      - status
+      - updated_date
+      - entity_type
+      title: LocationGroupPOIItemModel
+    AddressSuggestionModel:
+      properties:
+        address:
+          $ref: '#/components/schemas/AddressDetailModel'
+        suggestions:
+          items:
+            $ref: '#/components/schemas/AddressSuggestionItemModel'
+          type: array
+          title: Suggestions
+        location_group:
+          $ref: '#/components/schemas/LocationGroupSummaryModel'
+      type: object
+      required:
+      - address
+      - location_group
+      title: AddressSuggestionModel
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
+    LocationGroupBuildStatus:
+      oneOf:
+      - const: not_required
+        title: NOT_REQUIRED
+      - const: initial
+        title: INITIAL
+      - const: in_progress
+        title: IN_PROGRESS
+      - const: updating
+        title: UPDATING
+      - const: ready
+        title: READY
+      - const: expired
+        title: EXPIRED
+      type: string
+      enum:
+      - not_required
+      - initial
+      - in_progress
+      - updating
+      - ready
+      - expired
+      title: LocationGroupBuildStatus
+      x-enum-varnames:
+      - NOT_REQUIRED
+      - INITIAL
+      - IN_PROGRESS
+      - UPDATING
+      - READY
+      - EXPIRED
+    SaveLocationGroupAddressesRequestModel:
+      properties:
+        address_ids:
+          items:
+            type: integer
+            exclusiveMinimum: 0.0
+          type: array
+          maxItems: 1000
+          uniqueItems: true
+          title: Address Ids
+          description: IDs of the conflicted addresses to save to the location group. Duplicate ids are ignored.
+      type: object
+      required:
+      - address_ids
+      title: SaveLocationGroupAddressesRequestModel
+    LocationGroupAddPOIsRequestModel:
+      properties:
+        sources:
+          anyOf:
+          - $ref: '#/components/schemas/LocationGroupAddPOIsSourcesSelectionModel'
+          - type: 'null'
+          description: Known POI sources to add using filters. Omit or set null when unused.
+        addresses:
+          items:
+            $ref: '#/components/schemas/LocationGroupCreateAddressModel'
+          type: array
+          maxItems: 100
+          title: Addresses
+          description: New POIs to create from user-submitted addresses. Omit or pass an empty list when unused.
+        viewshed_coordinates:
+          items:
+            $ref: '#/components/schemas/LocationGroupViewshedPOICoordinateModel'
+          type: array
+          maxItems: 100
+          title: Viewshed Coordinates
+          description: New viewshed POIs to create from user-submitted coordinates. Omit or pass an empty list when unused.
+      type: object
+      title: LocationGroupAddPOIsRequestModel
+    UpdateLocationGroupRequestModel:
+      properties:
+        name:
+          type: string
+          maxLength: 128
+          minLength: 1
+          title: Name
+          description: Location group name
+        description:
+          type: string
+          maxLength: 128
+          title: Description
+          description: Location group description
+      type: object
+      required:
+      - name
+      - description
+      title: UpdateLocationGroupRequestModel
+    UpdateLocationGroupResponseModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+          description: Location group ID
+        name:
+          type: string
+          title: Name
+          description: Location group name
+        description:
+          type: string
+          title: Description
+          description: Location group description
+      type: object
+      required:
+      - id
+      - name
+      - description
+      title: UpdateLocationGroupResponseModel
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    LocationGroupPOIUploadTaskStatusResponseModel:
+      properties:
+        task_id:
+          type: integer
+          title: Task Id
+        poi_counts:
+          $ref: '#/components/schemas/LocationGroupPOICountModel'
+        status:
+          $ref: '#/components/schemas/POITaskUploadStatus'
+          description: Progress of the POI upload task
+      type: object
+      required:
+      - task_id
+      - poi_counts
+      - status
+      title: LocationGroupPOIUploadTaskStatusResponseModel
+    LocationGroupAddPOIsSourcesSelectionModel:
+      properties:
+        brand_ids:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Brand Ids
+          description: Brands to filter by
+        category_ids:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+          title: Category Ids
+          description: Categories to filter by
+        location_group_ids:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Location Group Ids
+          description: Location groups to filter by
+        poi_ids:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Poi Ids
+          description: POIs to filter by
+        states:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+          title: States
+          description: States to filter by
+        cities:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+          title: Cities
+          description: Cities to filter by
+        dma_ids:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Dma Ids
+          description: DMAs to filter by
+        zipcodes:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+          title: Zipcodes
+          description: Zipcodes to filter by (zipcode names not ids)
+        exclude_pois:
+          items:
+            type: integer
+          type: array
+          uniqueItems: true
+          title: Exclude Pois
+          description: POIs to exclude from the results
+        city_state_pairs:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+          title: City State Pairs
+          description: City, State pairs to filter by
+      type: object
+      title: LocationGroupAddPOIsSourcesSelectionModel
+    POITaskUploadStatus:
+      oneOf:
+      - const: pending
+        title: PENDING
+      - const: running
+        title: RUNNING
+      - const: completed
+        title: COMPLETED
+      type: string
+      enum:
+      - pending
+      - running
+      - completed
+      title: POITaskUploadStatus
+      x-enum-varnames:
+      - PENDING
+      - RUNNING
+      - COMPLETED
+    ExportLocationGroupPOIsRequestModel:
+      properties:
+        poi_ids:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Poi Ids
+          description: POI IDs to export
+        address_ids:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Address Ids
+          description: Address IDs to export
+        entity_type:
+          anyOf:
+          - $ref: '#/components/schemas/LocationEntityType'
+          - type: 'null'
+          description: Entity type to export
+        company_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Company Name
+          description: Filter by company name (partial match)
+        state:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: State
+          description: Filter by state (exact match)
+        city:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: City
+          description: Filter by city (partial match)
+        poi_status:
+          anyOf:
+          - $ref: '#/components/schemas/POIStatus'
+          - type: 'null'
+          description: Filter by POI status. If no filters are provided, all POIs in the location group are exported.
+        sub_status:
+          anyOf:
+          - $ref: '#/components/schemas/POISubStatusFilter'
+          - type: 'null'
+          description: Filter by the specific sub-status associated with the POI.
+      type: object
+      title: ExportLocationGroupPOIsRequestModel
+    ListLocationGroupsResponseModel:
+      properties:
+        total_count:
+          type: integer
+          title: Total Count
+          description: Total number of items
+        limit:
+          type: integer
+          title: Limit
+          description: Number of items per page
+        page_num:
+          type: integer
+          title: Page Num
+          description: Current page number
+        total_pages:
+          type: integer
+          title: Total Pages
+          description: Total number of pages
+        has_next_page:
+          type: boolean
+          title: Has Next Page
+          description: Whether there is a next page
+        has_prev_page:
+          type: boolean
+          title: Has Prev Page
+          description: Whether there is a previous page
+        location_groups:
+          items:
+            $ref: '#/components/schemas/LocationGroupModel'
+          type: array
+          title: Location Groups
+          description: List of location groups
+      type: object
+      required:
+      - total_count
+      - limit
+      - page_num
+      - total_pages
+      - has_next_page
+      - has_prev_page
+      title: ListLocationGroupsResponseModel
+    Body_upload_location_group_viewshed_pois_file_location_groups__location_group_id__viewshed_upload_post:
+      properties:
+        file:
+          type: string
+          format: binary
+          title: File
+          description: CSV or XLSX viewshed POI upload file
+      type: object
+      required:
+      - file
+      title: Body_upload_location_group_viewshed_pois_file_location_groups__location_group_id__viewshed_upload_post
+    LocationEntityType:
+      oneOf:
+      - const: poi
+        title: POI
+      - const: address
+        title: ADDRESS
+      type: string
+      enum:
+      - poi
+      - address
+      title: LocationEntityType
+      x-enum-varnames:
+      - POI
+      - ADDRESS
+    LocationGroupSummaryModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        description:
+          type: string
+          title: Description
+        tenant_id:
+          type: integer
+          title: Tenant Id
+        account_id:
+          type: integer
+          title: Account Id
+        targeting:
+          $ref: '#/components/schemas/LocationGroupTargetingModel'
+      type: object
+      required:
+      - id
+      - name
+      - description
+      - tenant_id
+      - account_id
+      - targeting
+      title: LocationGroupSummaryModel
+    LocationGroupViewshedPOICoordinateModel:
+      properties:
+        latitude:
+          type: number
+          maximum: 90.0
+          minimum: -90.0
+          title: Latitude
+          description: Latitude (-90.0 to 90.0), rounded to 4 decimal places
+        longitude:
+          type: number
+          maximum: 180.0
+          minimum: -180.0
+          title: Longitude
+          description: Longitude (-180.0 to 180.0), rounded to 4 decimal places
+      type: object
+      required:
+      - latitude
+      - longitude
+      title: LocationGroupViewshedPOICoordinateModel
+    LocationGroupCreateAddressModel:
+      properties:
+        business_name:
+          type: string
+          maxLength: 64
+          minLength: 1
+          title: Business Name
+          description: Business name
+        business_address:
+          type: string
+          maxLength: 165
+          minLength: 1
+          title: Business Address
+          description: Business address
+        business_phone:
+          type: string
+          maxLength: 30
+          title: Business Phone
+          description: Business phone number
+          default: ''
+      type: object
+      required:
+      - business_name
+      - business_address
+      title: LocationGroupCreateAddressModel
+    POIFeedbackRequestModel:
+      properties:
+        subject:
+          type: string
+          maxLength: 200
+          minLength: 1
+          title: Subject
+          description: Subject of the feedback
+        message:
+          type: string
+          maxLength: 10000
+          minLength: 1
+          title: Message
+          description: Feedback message
+        image_url:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: 'null'
+          title: Image Url
+          description: Image URL related to the feedback
+          examples:
+          - https://example.com/image.jpg
+      type: object
+      required:
+      - subject
+      - message
+      title: POIFeedbackRequestModel
+    LocationGroupPOISortingColumn:
+      oneOf:
+      - const: name
+        title: NAME
+      - const: address
+        title: ADDRESS
+      - const: city
+        title: CITY
+      - const: state
+        title: STATE
+      - const: zipcode
+        title: ZIPCODE
+      - const: phone_number
+        title: PHONE_NUMBER
+      - const: category
+        title: CATEGORY
+      - const: status
+        title: STATUS
+      - const: sub_status
+        title: SUB_STATUS
+      - const: poi_id
+        title: POI_ID
+      type: string
+      enum:
+      - name
+      - address
+      - city
+      - state
+      - zipcode
+      - phone_number
+      - category
+      - status
+      - sub_status
+      - poi_id
+      title: LocationGroupPOISortingColumn
+      x-enum-varnames:
+      - NAME
+      - ADDRESS
+      - CITY
+      - STATE
+      - ZIPCODE
+      - PHONE_NUMBER
+      - CATEGORY
+      - STATUS
+      - SUB_STATUS
+      - POI_ID
+    UploadLocationGroupPOIsResponseModel:
+      properties:
+        task_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Task Id
+          description: Task ID assigned to the POI upload process
+      type: object
+      title: UploadLocationGroupPOIsResponseModel
+    AddressSuggestionItemModel:
+      properties:
+        updated_date:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Updated Date
+        radius:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Radius
+        suggestion_id:
+          type: integer
+          title: Suggestion Id
+        poi_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Poi Id
+        city:
+          type: string
+          title: City
+        zipcode:
+          type: string
+          title: Zipcode
+        entity_type:
+          $ref: '#/components/schemas/LocationEntityType'
+        is_selected:
+          type: boolean
+          title: Is Selected
+        state:
+          type: string
+          title: State
+        phone_number:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Phone Number
+        status:
+          $ref: '#/components/schemas/POIStatus'
+        category_name:
+          type: string
+          title: Category Name
+        company_name:
+          type: string
+          title: Company Name
+        address:
+          type: string
+          title: Address
+        country:
+          type: string
+          title: Country
+        match_score:
+          type: integer
+          title: Match Score
+        latitude:
+          type: number
+          title: Latitude
+        longitude:
+          type: number
+          title: Longitude
+        brand_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Brand Name
+        sub_status:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sub Status
+          description: Detailed status or classification associated with the POI status.
+      type: object
+      required:
+      - suggestion_id
+      - city
+      - zipcode
+      - entity_type
+      - is_selected
+      - state
+      - status
+      - category_name
+      - company_name
+      - address
+      - country
+      - match_score
+      - latitude
+      - longitude
+      title: AddressSuggestionItemModel
+    ListLocationGroupPOIsResponseModel:
+      properties:
+        total_count:
+          type: integer
+          title: Total Count
+          description: Total number of items
+        limit:
+          type: integer
+          title: Limit
+          description: Number of items per page
+        page_num:
+          type: integer
+          title: Page Num
+          description: Current page number
+        total_pages:
+          type: integer
+          title: Total Pages
+          description: Total number of pages
+        has_next_page:
+          type: boolean
+          title: Has Next Page
+          description: Whether there is a next page
+        has_prev_page:
+          type: boolean
+          title: Has Prev Page
+          description: Whether there is a previous page
+        pois:
+          items:
+            $ref: '#/components/schemas/LocationGroupPOIItemModel'
+          type: array
+          title: Pois
+          description: List of POIs in the location group
+        location_group:
+          $ref: '#/components/schemas/LocationGroupSummaryModel'
+          description: Location group summary
+        counts:
+          $ref: '#/components/schemas/LocationGroupPOICountModel'
+      type: object
+      required:
+      - total_count
+      - limit
+      - page_num
+      - total_pages
+      - has_next_page
+      - has_prev_page
+      - location_group
+      - counts
+      title: ListLocationGroupPOIsResponseModel
+    Body_create_location_group_with_upload_viewshed_location_groups_upload_viewshed_post:
+      properties:
+        file:
+          type: string
+          format: binary
+          title: File
+          description: CSV or XLSX viewshed POI upload file
+        name:
+          type: string
+          maxLength: 128
+          minLength: 1
+          title: Name
+          description: Name of the location group
+        description:
+          type: string
+          maxLength: 128
+          title: Description
+          description: Description of the location group
+          default: ''
+        build_audience:
+          type: boolean
+          title: Build Audience
+          description: Whether to build an audience for the location group
+          default: true
+        enable_targeting:
+          type: boolean
+          title: Enable Targeting
+          description: Whether to enable targeting for the location group
+          default: false
+      type: object
+      required:
+      - file
+      - name
+      title: Body_create_location_group_with_upload_viewshed_location_groups_upload_viewshed_post
+    Body_upload_location_group_pois_file_location_groups__location_group_id__upload_post:
+      properties:
+        file:
+          type: string
+          format: binary
+          title: File
+          description: CSV or XLSX POI upload file
+      type: object
+      required:
+      - file
+      title: Body_upload_location_group_pois_file_location_groups__location_group_id__upload_post
+    AddressDetailModel:
+      properties:
+        address:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Address
+        brand_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Brand Id
+        brand_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Brand Name
+        category_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Category Code
+        category_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Category Name
+        city:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: City
+        company_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Company Name
+        country:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Country
+        entity_type:
+          $ref: '#/components/schemas/LocationEntityType'
+        id:
+          type: integer
+          title: Id
+        is_conflict:
+          type: boolean
+          title: Is Conflict
+        latitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Latitude
+        longitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Longitude
+        phone_number:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Phone Number
+        state:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: State
+        status:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Status
+        zipcode:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Zipcode
+        suggestion_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Suggestion Id
+        is_selected:
+          type: boolean
+          title: Is Selected
+      type: object
+      required:
+      - entity_type
+      - id
+      - is_conflict
+      - is_selected
+      title: AddressDetailModel
+    CreateLocationGroupRequestModel:
+      properties:
+        name:
+          type: string
+          maxLength: 128
+          minLength: 1
+          title: Name
+          description: Name of the location group
+        description:
+          type: string
+          maxLength: 128
+          title: Description
+          description: Description of the location group
+          default: ''
+        build_audience:
+          type: boolean
+          title: Build Audience
+          description: Whether to build an audience for the location group
+          default: true
+        pois:
+          $ref: '#/components/schemas/LocationGroupAddPOIsRequestModel'
+          description: POIs to add on create. Same shape as POST /location_groups/{location_group_id}/pois. Requires at least one of `sources`, `addresses`, or `viewshed_coordinates`.
+        enable_targeting:
+          type: boolean
+          title: Enable Targeting
+          description: Whether to enable targeting for the location group
+          default: false
+      type: object
+      required:
+      - name
+      - pois
+      title: CreateLocationGroupRequestModel
+    TargetingTypeStatusModel:
+      properties:
+        enabled:
+          type: boolean
+          title: Enabled
+          description: Whether this targeting type is active
+        status:
+          $ref: '#/components/schemas/LocationGroupBuildStatus'
+          description: Build status for this targeting type
+      type: object
+      required:
+      - enabled
+      - status
+      title: TargetingTypeStatusModel
+    SuccessResponseModel:
+      properties:
+        success:
+          type: boolean
+          title: Success
+          default: true
+      type: object
+      title: SuccessResponseModel
+    LocationGroupPOIType:
+      oneOf:
+      - const: standard
+        title: STANDARD
+      - const: viewshed
+        title: VIEWSHED
+      type: string
+      enum:
+      - standard
+      - viewshed
+      title: LocationGroupPOIType
+      x-enum-varnames:
+      - STANDARD
+      - VIEWSHED
+    CreateLocationGroupResponseModel:
+      properties:
+        location_group_id:
+          type: integer
+          title: Location Group Id
+          description: ID of the newly created location group
+        task_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Task Id
+          description: Task ID assigned to the file POI upload process
+        poi_counts:
+          $ref: '#/components/schemas/LocationGroupPOICountModel'
+          description: POI counts for the created location group
+        targeting:
+          $ref: '#/components/schemas/LocationGroupTargetingModel'
+          description: Targeting build state for the audience and neighborhood types
+      type: object
+      required:
+      - location_group_id
+      - poi_counts
+      - targeting
+      title: CreateLocationGroupResponseModel
+    SortOrder:
+      oneOf:
+      - const: desc
+        title: DESC
+      - const: asc
+        title: ASC
+      type: string
+      enum:
+      - desc
+      - asc
+      title: SortOrder
+      x-enum-varnames:
+      - DESC
+      - ASC
+    LocationGroupPOIUploadTemplateFileExtension:
+      oneOf:
+      - const: csv
+        title: CSV
+      - const: xlsx
+        title: XLSX
+      type: string
+      enum:
+      - csv
+      - xlsx
+      title: LocationGroupPOIUploadTemplateFileExtension
+      x-enum-varnames:
+      - CSV
+      - XLSX
+    Body_create_location_group_with_upload_location_groups_upload_post:
+      properties:
+        file:
+          type: string
+          format: binary
+          title: File
+          description: CSV or XLSX POI upload file
+        name:
+          type: string
+          maxLength: 128
+          minLength: 1
+          title: Name
+          description: Name of the location group
+        description:
+          type: string
+          maxLength: 128
+          title: Description
+          description: Description of the location group
+          default: ''
+        build_audience:
+          type: boolean
+          title: Build Audience
+          description: Whether to build an audience for the location group
+          default: true
+        enable_targeting:
+          type: boolean
+          title: Enable Targeting
+          description: Whether to enable targeting for the location group
+          default: false
+      type: object
+      required:
+      - file
+      - name
+      title: Body_create_location_group_with_upload_location_groups_upload_post
+  securitySchemes:
+    api-key:
+      type: apiKey
+      in: header
+      name: x-gt-api-key
+    user-id:
+      type: apiKey
+      in: header
+      name: x-gt-user-id

@@ -1,0 +1,259 @@
+openapi: 3.2.0
+info:
+  title: Ads Manager POIs API
+  description: Ads Manager API
+  version: 1.0.0
+tags:
+- name: POIs
+paths:
+  /pois/{poi_id}:
+    get:
+      tags:
+      - POIs
+      summary: Get Poi Details By Id
+      description: Get POI details by ID
+      operationId: get_poi_details_by_id
+      security:
+      - api-key: []
+      - user-id: []
+      - session: []
+      parameters:
+      - name: poi_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          exclusiveMinimum: 0
+          description: POI ID
+          title: Poi Id
+        description: POI ID
+      - name: tenant_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Tenant Id
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/POIDetailModel'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Internal Server Error
+components:
+  schemas:
+    PolygonGeometry:
+      properties:
+        type:
+          type: string
+          const: Polygon
+          title: Type
+        coordinates:
+          items:
+            items:
+              items:
+                type: number
+              type: array
+            type: array
+          type: array
+          title: Coordinates
+      type: object
+      required:
+      - type
+      - coordinates
+      title: PolygonGeometry
+    ErrorResponseModel:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          type: array
+          title: Errors
+      type: object
+      required:
+      - errors
+      title: ErrorResponseModel
+    POIDetailModel:
+      properties:
+        id:
+          type: integer
+          title: Id
+        company_name:
+          type: string
+          title: Company Name
+        address:
+          type: string
+          title: Address
+        city:
+          type: string
+          title: City
+        state:
+          type: string
+          title: State
+        country:
+          type: string
+          title: Country
+        zipcode:
+          type: string
+          title: Zipcode
+        latitude:
+          type: number
+          title: Latitude
+        longitude:
+          type: number
+          title: Longitude
+        category_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Category Name
+        brand_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Brand Id
+        brand_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Brand Name
+        radius:
+          type: number
+          title: Radius
+        in_store_polygon:
+          anyOf:
+          - oneOf:
+            - $ref: '#/components/schemas/PolygonGeometry'
+            - $ref: '#/components/schemas/MultiPolygonGeometry'
+            discriminator:
+              propertyName: type
+              mapping:
+                MultiPolygon: '#/components/schemas/MultiPolygonGeometry'
+                Polygon: '#/components/schemas/PolygonGeometry'
+          - type: 'null'
+          title: In Store Polygon
+        on_lot_polygon:
+          anyOf:
+          - oneOf:
+            - $ref: '#/components/schemas/PolygonGeometry'
+            - $ref: '#/components/schemas/MultiPolygonGeometry'
+            discriminator:
+              propertyName: type
+              mapping:
+                MultiPolygon: '#/components/schemas/MultiPolygonGeometry'
+                Polygon: '#/components/schemas/PolygonGeometry'
+          - type: 'null'
+          title: On Lot Polygon
+        block_polygon:
+          anyOf:
+          - oneOf:
+            - $ref: '#/components/schemas/PolygonGeometry'
+            - $ref: '#/components/schemas/MultiPolygonGeometry'
+            discriminator:
+              propertyName: type
+              mapping:
+                MultiPolygon: '#/components/schemas/MultiPolygonGeometry'
+                Polygon: '#/components/schemas/PolygonGeometry'
+          - type: 'null'
+          title: Block Polygon
+      type: object
+      required:
+      - id
+      - company_name
+      - address
+      - city
+      - state
+      - country
+      - zipcode
+      - latitude
+      - longitude
+      - radius
+      title: POIDetailModel
+    MultiPolygonGeometry:
+      properties:
+        type:
+          type: string
+          const: MultiPolygon
+          title: Type
+        coordinates:
+          items:
+            items:
+              items:
+                items:
+                  type: number
+                type: array
+              type: array
+            type: array
+          type: array
+          title: Coordinates
+      type: object
+      required:
+      - type
+      - coordinates
+      title: MultiPolygonGeometry
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
+  securitySchemes:
+    api-key:
+      type: apiKey
+      in: header
+      name: x-gt-api-key
+    user-id:
+      type: apiKey
+      in: header
+      name: x-gt-user-id

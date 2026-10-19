@@ -632,6 +632,17 @@ components:
       required:
       - errors
       title: ErrorResponseModel
+    LocationFiltersModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/LocationFilterModel-Output'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: LocationFiltersModel
     CreateCampaignBulkDownloadJobRequestModel:
       properties:
         campaign_ids:
@@ -644,6 +655,26 @@ components:
           title: Campaign Ids
       type: object
       title: CreateCampaignBulkDownloadJobRequestModel
+    CreateLocationFilterTargetBulkUploadJobModel:
+      properties:
+        input_file_url:
+          type: string
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          title: Input File Url
+      type: object
+      required:
+      - input_file_url
+      title: CreateLocationFilterTargetBulkUploadJobModel
+    SuccessResponseModel:
+      properties:
+        success:
+          type: boolean
+          title: Success
+          default: true
+      type: object
+      title: SuccessResponseModel
     LocationFilterModel-Output:
       properties:
         type:
@@ -713,17 +744,103 @@ components:
       - type
       - display_name
       title: LocationFilterModel
-    LocationFiltersModel:
+    ErrorModel:
       properties:
-        items:
-          items:
-            $ref: '#/components/schemas/LocationFilterModel-Output'
-          type: array
-          title: Items
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
       type: object
       required:
-      - items
-      title: LocationFiltersModel
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    UploadJobType:
+      oneOf:
+      - const: 0
+        title: LOCATION_FILTER
+      - const: 1
+        title: CAMPAIGN_BULK_UPLOAD
+      - const: 2
+        title: CAMPAIGN_SUMMARY
+      - const: 3
+        title: VIDEO_TRANSCODER
+      - const: 6
+        title: CREATIVE_BULK_UPLOAD
+      - const: 7
+        title: HTML5_CREATIVE
+      - const: 8
+        title: WAYMARK_VIDEO
+      - const: 9
+        title: CAMPAIGN_BULK_DOWNLOAD
+      - const: 10
+        title: CAMPAIGN_BULK_UPLOAD_V2
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      title: UploadJobType
+      x-enum-varnames:
+      - LOCATION_FILTER
+      - CAMPAIGN_BULK_UPLOAD
+      - CAMPAIGN_SUMMARY
+      - VIDEO_TRANSCODER
+      - CREATIVE_BULK_UPLOAD
+      - HTML5_CREATIVE
+      - WAYMARK_VIDEO
+      - CAMPAIGN_BULK_DOWNLOAD
+      - CAMPAIGN_BULK_UPLOAD_V2
+    JobStatus:
+      oneOf:
+      - const: 0
+        title: NEW
+      - const: 1
+        title: IN_PROGRESS
+      - const: 2
+        title: SUCCESSFULLY_DONE
+      - const: 3
+        title: FAILED_DONE
+      - const: 4
+        title: CANCELLED
+      - const: 5
+        title: CONFIRMED
+      - const: 6
+        title: EXPIRED
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      title: JobStatus
+      x-enum-varnames:
+      - NEW
+      - IN_PROGRESS
+      - SUCCESSFULLY_DONE
+      - FAILED_DONE
+      - CANCELLED
+      - CONFIRMED
+      - EXPIRED
     LocationFilterType:
       oneOf:
       - const: City
@@ -758,17 +875,6 @@ components:
       - COUNTY
       - LAT_LNG
       - ADDRESS
-    JobsModel:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/JobModel'
-          type: array
-          title: Items
-      type: object
-      required:
-      - items
-      title: JobsModel
     JobModel:
       properties:
         job_id:
@@ -835,123 +941,17 @@ components:
       - adgroup_id
       - creative_id
       title: JobModel
-    SuccessResponseModel:
+    JobsModel:
       properties:
-        success:
-          type: boolean
-          title: Success
-          default: true
-      type: object
-      title: SuccessResponseModel
-    CreateLocationFilterTargetBulkUploadJobModel:
-      properties:
-        input_file_url:
-          type: string
-          maxLength: 2083
-          minLength: 1
-          format: uri
-          title: Input File Url
+        items:
+          items:
+            $ref: '#/components/schemas/JobModel'
+          type: array
+          title: Items
       type: object
       required:
-      - input_file_url
-      title: CreateLocationFilterTargetBulkUploadJobModel
-    JobStatus:
-      oneOf:
-      - const: 0
-        title: NEW
-      - const: 1
-        title: IN_PROGRESS
-      - const: 2
-        title: SUCCESSFULLY_DONE
-      - const: 3
-        title: FAILED_DONE
-      - const: 4
-        title: CANCELLED
-      - const: 5
-        title: CONFIRMED
-      - const: 6
-        title: EXPIRED
-      type: integer
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      title: JobStatus
-      x-enum-varnames:
-      - NEW
-      - IN_PROGRESS
-      - SUCCESSFULLY_DONE
-      - FAILED_DONE
-      - CANCELLED
-      - CONFIRMED
-      - EXPIRED
-    ErrorModel:
-      properties:
-        code:
-          type: string
-          title: Code
-        message:
-          type: string
-          title: Message
-        fields:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Fields
-      type: object
-      required:
-      - code
-      - message
-      - fields
-      title: ErrorModel
-    UploadJobType:
-      oneOf:
-      - const: 0
-        title: LOCATION_FILTER
-      - const: 1
-        title: CAMPAIGN_BULK_UPLOAD
-      - const: 2
-        title: CAMPAIGN_SUMMARY
-      - const: 3
-        title: VIDEO_TRANSCODER
-      - const: 6
-        title: CREATIVE_BULK_UPLOAD
-      - const: 7
-        title: HTML5_CREATIVE
-      - const: 8
-        title: WAYMARK_VIDEO
-      - const: 9
-        title: CAMPAIGN_BULK_DOWNLOAD
-      - const: 10
-        title: CAMPAIGN_BULK_UPLOAD_V2
-      type: integer
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
-      title: UploadJobType
-      x-enum-varnames:
-      - LOCATION_FILTER
-      - CAMPAIGN_BULK_UPLOAD
-      - CAMPAIGN_SUMMARY
-      - VIDEO_TRANSCODER
-      - CREATIVE_BULK_UPLOAD
-      - HTML5_CREATIVE
-      - WAYMARK_VIDEO
-      - CAMPAIGN_BULK_DOWNLOAD
-      - CAMPAIGN_BULK_UPLOAD_V2
+      - items
+      title: JobsModel
   securitySchemes:
     api-key:
       type: apiKey

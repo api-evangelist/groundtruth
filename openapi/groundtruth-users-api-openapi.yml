@@ -384,6 +384,40 @@ components:
       required:
       - errors
       title: ErrorResponseModel
+    BusinessType:
+      oneOf:
+      - const: 0
+        title: OTHER
+      - const: 1
+        title: CHANNEL_SELF_SERVE
+      - const: 2
+        title: CHANNEL_MANAGED
+      - const: 3
+        title: AGENCY_DIRECT
+      - const: 4
+        title: HOLDING_COMPANY
+      - const: 5
+        title: BRAND_DIRECT
+      - const: 6
+        title: MID_MARKET
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      title: BusinessType
+      x-enum-varnames:
+      - OTHER
+      - CHANNEL_SELF_SERVE
+      - CHANNEL_MANAGED
+      - AGENCY_DIRECT
+      - HOLDING_COMPANY
+      - BRAND_DIRECT
+      - MID_MARKET
     UpdateUserModel:
       properties:
         first_name:
@@ -413,42 +447,27 @@ components:
       - first_name
       - last_name
       title: UpdateUserModel
-    AppCode:
-      type: string
-      enum:
-      - MF
-      - LM
-      - CAB
-      - MP
-      - SM
-      - RA
-      - XC
-      - AD
-      - PE
-      - CP
-      - FR
-      - XA
-      - IO
-      - AV
-      - PM
-      - CBP
-      - BPM
-      - BQA
-      - BPE
-      - API
-      - AM2
-      title: AppCode
-    UsersModel:
+    SignupResponseModel:
       properties:
-        items:
-          items:
-            $ref: '#/components/schemas/UserModel'
-          type: array
-          title: Items
+        user_id:
+          type: integer
+          title: User Id
+        tenant_id:
+          type: integer
+          title: Tenant Id
+        organization_id:
+          type: integer
+          title: Organization Id
+        account_id:
+          type: integer
+          title: Account Id
       type: object
       required:
-      - items
-      title: UsersModel
+      - user_id
+      - tenant_id
+      - organization_id
+      - account_id
+      title: SignupResponseModel
     UserStatus:
       oneOf:
       - const: 0
@@ -467,12 +486,6 @@ components:
       - INACTIVE
       - ACTIVE
       - NEEDS_ACTIVATION
-    CountryCode:
-      type: string
-      enum:
-      - US
-      - CA
-      title: CountryCode
     UserModel:
       properties:
         user_id:
@@ -543,27 +556,67 @@ components:
         tenant_id: 1
         updated_date: '2025-01-01T00:00:00'
         user_id: 1
-    SignupResponseModel:
+    SuccessResponseModel:
       properties:
-        user_id:
-          type: integer
-          title: User Id
-        tenant_id:
-          type: integer
-          title: Tenant Id
-        organization_id:
-          type: integer
-          title: Organization Id
-        account_id:
-          type: integer
-          title: Account Id
+        success:
+          type: boolean
+          title: Success
+          default: true
+      type: object
+      title: SuccessResponseModel
+    CountryCode:
+      type: string
+      enum:
+      - US
+      - CA
+      title: CountryCode
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
       type: object
       required:
-      - user_id
-      - tenant_id
-      - organization_id
-      - account_id
-      title: SignupResponseModel
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    AppCode:
+      type: string
+      enum:
+      - MF
+      - LM
+      - CAB
+      - MP
+      - SM
+      - RA
+      - XC
+      - AD
+      - PE
+      - CP
+      - FR
+      - XA
+      - IO
+      - AV
+      - PM
+      - CBP
+      - BPM
+      - BQA
+      - BPE
+      - API
+      - AM2
+      - AOT
+      title: AppCode
     Group:
       oneOf:
       - const: 1
@@ -722,6 +775,17 @@ components:
       - BLUEPRINTS_QA_TRAINEE
       - BLUEPRINTS_EDITOR_TRAINEE
       - BLUEPRINTS_HQ_USER
+    UsersModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/UserModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: UsersModel
     SignupModel:
       properties:
         first_name:
@@ -766,69 +830,6 @@ components:
       - email
       - password
       title: SignupModel
-    SuccessResponseModel:
-      properties:
-        success:
-          type: boolean
-          title: Success
-          default: true
-      type: object
-      title: SuccessResponseModel
-    BusinessType:
-      oneOf:
-      - const: 0
-        title: OTHER
-      - const: 1
-        title: CHANNEL_SELF_SERVE
-      - const: 2
-        title: CHANNEL_MANAGED
-      - const: 3
-        title: AGENCY_DIRECT
-      - const: 4
-        title: HOLDING_COMPANY
-      - const: 5
-        title: BRAND_DIRECT
-      - const: 6
-        title: MID_MARKET
-      type: integer
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      title: BusinessType
-      x-enum-varnames:
-      - OTHER
-      - CHANNEL_SELF_SERVE
-      - CHANNEL_MANAGED
-      - AGENCY_DIRECT
-      - HOLDING_COMPANY
-      - BRAND_DIRECT
-      - MID_MARKET
-    ErrorModel:
-      properties:
-        code:
-          type: string
-          title: Code
-        message:
-          type: string
-          title: Message
-        fields:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Fields
-      type: object
-      required:
-      - code
-      - message
-      - fields
-      title: ErrorModel
   securitySchemes:
     api-key:
       type: apiKey

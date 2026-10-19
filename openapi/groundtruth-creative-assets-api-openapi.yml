@@ -378,6 +378,28 @@ components:
       required:
       - errors
       title: ErrorResponseModel
+    CreativeAssetType:
+      oneOf:
+      - const: IMAGE
+        title: IMAGE
+      - const: SCRIPT
+        title: SCRIPT
+      - const: VIDEO
+        title: VIDEO
+      - const: AUDIO
+        title: AUDIO
+      type: string
+      enum:
+      - IMAGE
+      - SCRIPT
+      - VIDEO
+      - AUDIO
+      title: CreativeAssetType
+      x-enum-varnames:
+      - IMAGE
+      - SCRIPT
+      - VIDEO
+      - AUDIO
     CreativeAssetSortField:
       oneOf:
       - const: name
@@ -408,63 +430,14 @@ components:
       - ASSET_TYPE
       - FILE_EXTENSION
       - SIZE
-    PaginatedCreativeAssetsModel:
+    SuccessResponseModel:
       properties:
-        total_count:
-          type: integer
-          title: Total Count
-        limit:
-          type: integer
-          title: Limit
-        page_num:
-          type: integer
-          title: Page Num
-        total_pages:
-          type: integer
-          title: Total Pages
-        has_next_page:
+        success:
           type: boolean
-          title: Has Next Page
-        has_prev_page:
-          type: boolean
-          title: Has Prev Page
-        items:
-          items:
-            $ref: '#/components/schemas/CreativeAssetModel'
-          type: array
-          title: Items
+          title: Success
+          default: true
       type: object
-      required:
-      - total_count
-      - limit
-      - page_num
-      - total_pages
-      - has_next_page
-      - has_prev_page
-      - items
-      title: PaginatedCreativeAssetsModel
-    CreativeAssetType:
-      oneOf:
-      - const: IMAGE
-        title: IMAGE
-      - const: SCRIPT
-        title: SCRIPT
-      - const: VIDEO
-        title: VIDEO
-      - const: AUDIO
-        title: AUDIO
-      type: string
-      enum:
-      - IMAGE
-      - SCRIPT
-      - VIDEO
-      - AUDIO
-      title: CreativeAssetType
-      x-enum-varnames:
-      - IMAGE
-      - SCRIPT
-      - VIDEO
-      - AUDIO
+      title: SuccessResponseModel
     CreativeAssetModel:
       properties:
         id:
@@ -530,6 +503,68 @@ components:
       x-enum-varnames:
       - DESC
       - ASC
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
+    PaginatedCreativeAssetsModel:
+      properties:
+        total_count:
+          type: integer
+          title: Total Count
+          description: Total number of items
+        limit:
+          type: integer
+          title: Limit
+          description: Number of items per page
+        page_num:
+          type: integer
+          title: Page Num
+          description: Current page number
+        total_pages:
+          type: integer
+          title: Total Pages
+          description: Total number of pages
+        has_next_page:
+          type: boolean
+          title: Has Next Page
+          description: Whether there is a next page
+        has_prev_page:
+          type: boolean
+          title: Has Prev Page
+          description: Whether there is a previous page
+        items:
+          items:
+            $ref: '#/components/schemas/CreativeAssetModel'
+          type: array
+          title: Items
+      type: object
+      required:
+      - total_count
+      - limit
+      - page_num
+      - total_pages
+      - has_next_page
+      - has_prev_page
+      - items
+      title: PaginatedCreativeAssetsModel
     CreativeAssetStatus:
       oneOf:
       - const: 0
@@ -556,35 +591,6 @@ components:
       - PENDING
       - EXPIRED
       - UNLINKED
-    SuccessResponseModel:
-      properties:
-        success:
-          type: boolean
-          title: Success
-          default: true
-      type: object
-      title: SuccessResponseModel
-    ErrorModel:
-      properties:
-        code:
-          type: string
-          title: Code
-        message:
-          type: string
-          title: Message
-        fields:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Fields
-      type: object
-      required:
-      - code
-      - message
-      - fields
-      title: ErrorModel
   securitySchemes:
     api-key:
       type: apiKey

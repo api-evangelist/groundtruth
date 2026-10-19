@@ -95,6 +95,27 @@ components:
       required:
       - errors
       title: ErrorResponseModel
+    ErrorModel:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+      type: object
+      required:
+      - code
+      - message
+      - fields
+      title: ErrorModel
     OrderModel:
       properties:
         id:
@@ -153,6 +174,12 @@ components:
         summary_line_2:
           type: string
           title: Summary Line 2
+        summary_addresses:
+          type: integer
+          title: Summary Addresses
+        summary_zips:
+          type: integer
+          title: Summary Zips
         title:
           type: string
           title: Title
@@ -203,6 +230,8 @@ components:
       - summary_title
       - summary_line_1
       - summary_line_2
+      - summary_addresses
+      - summary_zips
       - title
       - file_status
       - file_url
@@ -214,47 +243,32 @@ components:
       - is_overdue
       - formatted_price
       title: OrderModel
-    ErrorModel:
-      properties:
-        code:
-          type: string
-          title: Code
-        message:
-          type: string
-          title: Message
-        fields:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Fields
-      type: object
-      required:
-      - code
-      - message
-      - fields
-      title: ErrorModel
     OrdersModel:
       properties:
         total_count:
           type: integer
           title: Total Count
+          description: Total number of items
         limit:
           type: integer
           title: Limit
+          description: Number of items per page
         page_num:
           type: integer
           title: Page Num
+          description: Current page number
         total_pages:
           type: integer
           title: Total Pages
+          description: Total number of pages
         has_next_page:
           type: boolean
           title: Has Next Page
+          description: Whether there is a next page
         has_prev_page:
           type: boolean
           title: Has Prev Page
+          description: Whether there is a previous page
         items:
           items:
             $ref: '#/components/schemas/OrderModel'
